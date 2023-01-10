@@ -19,6 +19,8 @@
 \usepackage{fancyvrb} % extended verbatim environments
   \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
 
+\usepackage{color,soul} % Highlights for text
+
 % Standardize command font styles and environments
 \newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
 \newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
@@ -35,11 +37,77 @@
 
 \begin{abstract}
 \noindent
-Den här filen innehåller -- förhoppningsvis -- all praktisk information om kursen som du kan tänkas behöva. Hur inlämningsuppgiften fungerar, innehåll
+Den här filen innehåller -- förhoppningsvis -- all praktisk information om kursen som du kan tänkas behöva.\sidenote{Om du saknar någon information här, säg till så lägger jag till den.} Hur inlämningsuppgiften fungerar, innehåll
 i föreläsningarna och rekommenderade uppgifter, et cetera. 
 \end{abstract}
 
-Kurslitteratur för denna kurs är \emph{Applied Combinatorics}\cite{mainTextbook} -- men eftersom boken är open source så har vi också en version av boken speciellt anpassad för denna kursen, med alla kapitel vi inte använder bortklippta.
+Kurslitteratur för denna kurs är \emph{Applied Combinatorics}\cite{mainTextbook} -- men eftersom boken är open source så har vi också en version av boken speciellt anpassad för denna kursen, med alla kapitel vi inte använder bortklippta. \textcolor{red}{Lägg till en länk till denna när den är skapad -- eller ta bort referensen till den om det visar sig för svårt att skapa en sådan.}
+
+\section{Planering av föreläsningarna}
+
+Vi skall totalt ha femton schemalagda tillfällen, varav elva kommer vara föreläsningar. Tre kommer vara antingen övningstillfällen, tid att komma ikapp planeringen, eller fördjupning i tidigare ämnen, beroende på hur det går i kursen med att hålla tiden och på era intressen. Det allra sista tillfället kommer vara repetition inför tentan. De tider och datum som anges i tabellen nedan kan så klart komma att ändras, men när detta skrivs bör de vara korrekta.
+
+\begin{table}[h]
+\begin{tabular}{lll}
+Tillfälle \# & Datum \& Tid      & Planerat innehåll \\ \hline
+1            & Tis 17 Jan, 15:15 & F1: Permutationer och kombinationer\\
+2            & Ons 18 Jan, 10:15 & F2: Kombinatoriska bevis, binomialsatsen\\
+3            & Tis 24 Jan, 13:15 & F3: Multinomialkoefficienter, distributioner, och gitterstigar\textcolor{red}{Kolla/byt ut?}\\
+4            & Tor 26 Jan, 08:15 & Övning/komma ikapp\\
+5	      & Tis 31 Jan, 13:15 & F4: Induktion samt inklusion-exklusion\\
+6            & Ons 2 Feb, 08:15 & F5: Fortsättning på inklusion-exklusion\\
+7            & Tis 7 Feb, 10:15  & F6: Lådprincipen\\
+8            & Tor 9 Feb, 13:15  & Övning/komma ikapp\\
+9            & Tis 14 Feb, 15:15 & F7: Genererande funktioner\\
+10            & Tor 16 Feb, 10:15 & F8: Rekurrensrelationer\\
+11            & Tis 21 Feb, 13:15 & F9: Fler exempel\textcolor{red}{Kolla/byt ut}\\
+12           & Ons 22 Feb, 10:15 & Övning/komma ikapp\\
+13           & Tis 28 Feb, 08:15 & F10: Diskret sannolikhetsteori\\
+14           & Tor 2 Mar, 10:15  & F11: Diskret sannolikhetsteori, fortsättning\footnotemark{}\\
+15           & Mån 6 Mar, 08:15 & Repetition
+\end{tabular}
+\end{table}
+\footnotetext{Detta är också näst sista dagen att registrera sig för tentan -- glöm inte!}
+
+\section{Tentan}
+
+Ordinarie tentamen för kursen inträffar den 15 mars -- kom ihåg att registrera er för den minst tolv dagar i förväg, alltså den 3 mars, det är inget kul att inte få skriva tentan för att man glömt registrera sig.\sidenote{Det hände mig mer än en gång under min kandidat och master...} Det går att få max fyrtio poäng på tentan, och för att få betyget 5a, 4a, 3a behövs respektive 32/25/18 poäng.
+
+Omtentor i kursen går i juni och augusti.
+
+\section{Inlämningsuppgiften}
+
+Vi har en inlämningsuppgift i kursen, som kan ge upp till sex bonuspoäng på tentan.\sidenote{Full pott på denna kan alltså lyfta dig nästan ett helt betyg!} Uppgiften består av två delar, dels att läsa igenom föreläsningsanteckningarna från en föreläsning och fylla i mer detaljer och rätta eventuella fel, baserat på vad som faktiskt sades på föreläsningen och på boken, och dels att skriva lösningar till uppgifterna i slutet av föreläsningsanteckningarna. Tanken är att ni, när kursen närmar sig sitt slut, skall ha fullständiga anteckningar från varje föreläsning, och lösningar till uppgifterna, så att ni kan studera inför tentan med hjälp av dessa.
+
+Denna uppgift skall göras i grupp -- och eftersom det är elva föreläsningar blir det elva grupper, vilket preliminärt bör motsvara grupper om fyra eller fem personer.\sidenote{Eftersom uppgiften skall vara datorskriven, och lämnas in digitalt, kan det vara bra om varje grupp försöker se till att ha åtminstone en medlem som har sett \LaTeX\ innan, eller i alla fall känner sig duktig på datorer.} Indelningen i grupper och tilldelningen av grupper till föreläsningar gör vi redan första tillfället.
+
+\subsection{Skriva anteckningar-delen}
+
+I denna del av inlämningsuppgiften ombeds ni förbättra de föreläsningsanteckningar som fanns för föreläsningen innan den gavs. Förslagsvis kan ni använda era egna anteckningar från föreläsningen, de gamla anteckningarna från tidigare år \textcolor{red}{kolla med Colin att det är okej med honom}, kursboken, eller er favorit-resurs att plugga från. Kom ihåg att om ni använder något annat än just kursboken och anteckningar, era eller de gamla, måste det antingen vara era egna ord eller källhänvisas till var ni fick det från.\sidenote{Om ni har frågor om eller behöver hjälp med hur man får in källhänvisningar, fråga gärna.} Samma regler om plagiat gäller så klart för detta som för allt annat på universitetet.
+
+Denna del kan ge upp till tre poäng, och betygssätts som följer:
+\begin{itemize}
+	\item 1 poäng: Fixat skrivfel i matematiken och stavfel i texten. Smärre förbättringar som visar att man har läst och förstått innehållet.
+	\item 2 poäng: Förtydligat bitar i resonemangen som var kortfattade eller otydliga. Förbättringar som visar att man förstått och förmår resonera om innehållet.
+	\item 3 poäng: Substantiella förbättringar, till exempel lagt till fler exempel i texten, förbättrat bevisen, eller lagt in figurer som illustrerar bevis eller exempel.\sidenote{På föreläsningarna ritar vi ju ofta bilder på tavlan -- om du är händig med att rita grafiker på datorn kan du knipa tre billiga poäng på att ta dem och rita upp dem och lägga in i föreläsningsanteckningarna.}
+\end{itemize}
+
+\subsection{Skriva lösningar till uppgifter-delen}
+
+I denna del av inlämningsuppgiften ombeds ni, mer traditionellt, att lösa några matteuppgifter. Kom dock ihåg att poängen med det hela är att era kamrater i kursen skall kunna läsa vad ni skrivit och lära sig hur man löser uppgiften av er. Det är alltså inte bara att skriva minsta möjliga mängd ord för att jag skall förstå vad ni menar när jag rättar\sidenote{Vilket ju tyvärr tenderar att vara hur många skriver sina lösningar på en tenta. Att ha fler ord och mer förklaring ger dig aldrig färre poäng på en uppgift...}, utan målet är att din vän i en annan grupp skall kunna läsa vad du skrivit och dra nytta av det.
+
+Denna del kan också ge upp till tre poäng, och betygssätts som följer:
+\begin{itemize}
+	\item 1 poäng: Löst åtminstone hälften av uppgifterna, med lösningar som är begripliga för mig som rättare.
+	\item 2 poäng: Löst merparten av uppgifterna, med lösningar som är tydliga och kan förstås också av andra studenter.
+	\item 3 poäng: Löst alla uppgifterna, med tydliga lösningar, och tips för hur man skall tänka om man stöter på en snarlik uppgift inkluderade där det är relevant.
+\end{itemize}
+
+\subsection{Hur man lämnar in uppgiften}
+
+Föreläsningsanteckningarna är skrivna i \LaTeX\, så era förändringar av dem måste också vara skrivna i detta system -- det är standard för att typsätta matematik, så förr eller senare behöver man lära sig det om man sysslar med matematik. Eftersom ni inte skall göra något avancerat, utan bara redigera en text som redan finns lite grann, är nog den bästa metoden att lära sig \LaTeX\ att pröva sig fram och googla. \textcolor{red}{Lägg till diskussion om mjukvara här.}
+
+Såsom ni sett ligger föreläsningsanteckningarna på GitHub, och just git är ett utmärkt verktyg för den sortens kollaborativa redigering av textfiler (vilket TeX trots allt är) som vi skall syssla med -- både för samarbete mellan er i gruppen och mellan er och mig. Git är dessutom ett annat verktyg som alla som sysslar med något tekniskt eller matematiskt förr eller senare tjänar på att lära sig vad det är. Inlämningen av uppgiften sker alltså genom en Pull Request på GitHub. \textcolor{red}{Lägg till diskussion om git här.}
 
 \bibliography{references}
 \bibliographystyle{plainnat}
