@@ -1,4 +1,4 @@
-# Kombinatorik (1MA020), Vårterminen 2023
+# ![UUs logotyp](./graphics/UU_logo_color.png "UUs logotyp") Kombinatorik (1MA020), Vårterminen 2023
 
 Välkommen till kursen i kombinatorik på kandidatnivå vid Uppsala Universitet. För allmän information om kursen - tenta, inlämningsuppgift, och planering av föreläsningarna, [se detta dokumentet](https://vagdur.github.io/Kombinatorik-1MA020/kursinformation.pdf).
 
