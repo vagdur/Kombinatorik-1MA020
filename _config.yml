@@ -9,6 +9,7 @@ description: >
   Hemsida för kursen Kombinatorik 1MA020 vid Uppsala Universitet, år 2023.
 # Build settings
 
+markdown: kramdown
 theme: minima
 
 plugins:
