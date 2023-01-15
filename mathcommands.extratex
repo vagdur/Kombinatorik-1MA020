@@ -1,0 +1,106 @@
+
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+\microtypecontext{spacing=nonfrench}
+\usepackage{amsmath}%
+\usepackage{amsfonts}%
+\usepackage{amssymb}%
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Teorem}%[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Korollarium}
+\newtheorem{conjecture}[theorem]{Hypotes}
+\newtheorem{claim}[theorem]{Påstående}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Exempel}
+\newtheorem{xca}[theorem]{Övning}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Kommentar}
+
+% Absolutbelopp
+\newcommand{\abs}[1]{{\left\lvert#1\right\rvert}}
+
+% Avrunda uppåt och nedåt
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+
+% Nyttiga mängder:
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+%\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\F}{\mathcal{F}}
+
+%Fouriertransform:
+\newcommand{\Fou}{\mathscr{F}}
+\newcommand{\Hatf}{\mathscr{H}}
+
+% Punkt som placeholder i funktioner:
+\newcommand{\vardot}{\ \cdot\ }
+
+% Väntevärde, varians, sannolikhet, kovarians, indikatorfunktion
+\newcommand{\E}[1]{\mathbb{E}\left[ #1 \right]}
+\newcommand{\Var}[1]{\operatorname{Var}\left(#1\right)}
+\newcommand{\Prob}[1]{\mathbb{P}\left( #1 \right)}
+\newcommand{\ProbP}{\mathbb{P}}
+\newcommand{\Cov}[2]{\operatorname{Cov}\left(#1,#2\right)}
+\newcommand{\ind}[1]{\mathds{1}_{\left\{#1\right\}}}
+\newcommand{\given}{\ \middle|\ }
+
+\newcommand{\e}{\mathfrak{e}}
+\newcommand{\Pset}{\mathcal{P}}
+
+\DeclareMathOperator{\Piv}{Piv}
+
+%% Följande kod gör att \Re och \Im inte skrivs med gotiska kapitaler:
+
+\renewcommand{\Re}[1]{\operatorname{Re}(#1)}
+\renewcommand{\Im}[1]{\operatorname{Im}(#1)}
+
+%% Skapar ett kommando för komplexa konjugatet och slutna höljet:
+
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\close}[1]{\overline{#1}}
+
+%% Skapar ett kommando \grad för graden av ett polynom
+
+\newcommand{\grad}[1]{\operatorname{grad}#1}
+
+%% Massor av olika differentialer
+\newcommand{\df}{\mathrm{d}f}
+\newcommand{\dx}{\mathrm{d}x}
+\newcommand{\dy}{\mathrm{d}y}
+\newcommand{\dt}{\mathrm{d}t}
+\newcommand{\du}{\mathrm{d}u}
+\newcommand{\ds}{\mathrm{d}s}
+\newcommand{\dmu}{\mathrm{d}\mu} 
+\newcommand{\dnu}{\mathrm{d}\nu}
+
+% Samt för när man vill integrera dgamma eller något
+\newcommand{\intd}{\mathrm{d}}
+
+% Svag och vag konvergens av slumpvariabler:
+\newcommand{\weakly}{\xrightarrow[]{\text{w.}}}
+\newcommand{\vaguely}{\xrightarrow[]{\text{v.}}}
+
+%Inre produkt och norm
+\newcommand{\inpr}[2]{\langle#1,#2\rangle}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+% Automorfigrupp, identitet, spår av en matris, signum, bild, och spann
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\lspan}{span}
+\DeclareMathOperator{\Vol}{Vol}
+
+% Mängddifferens
+\newcommand{\symdiff}{\mathbin{\triangle}}
