@@ -115,7 +115,50 @@ För generella $X$ kallar vi en sträng $s: [n] \to X$ för en $X$-sträng.
 
 \section{Permutationer}
 
-Detta avsnitt kommer skrivas snart.
+\begin{definition}
+En sträng $s: [k] \to X$ kallas för en \emph{permutation} av längd $k$ av elementen i $X$ om alla bokstäverna i $s$ är olika, det vill säga om $s(i) \neq s(j)$ ifall $i \neq j$.
+\end{definition}
+
+Självklart måste $\abs{X} \geq k$ för att det skall existera några permutationer av längd $k$ av $X$.\sidenote{Hur hade du bevisat det?}
+
+\begin{example}
+Låt $X = [3]$. Det finns $6$ permutationer av längd $2$ av $X$\sidenote{Dessa är, specifikt, $$12, 13, 21, 23, 31, 32.$$} -- vi kan se detta med hjälp av multiplikationsprincipen: Vi har tre val av första bokstav, men när vi valt den har vi bara två val kvar av andra bokstav, eftersom vi inte får ha två av samma. Alltså är det totala antalet $3\times 2 = 6$.
+\end{example}
+
+\begin{definition}
+För $n = 1, 2,\ldots$, definiera $n! = n\times(n-1)\times\ldots\times2\times1$. Definiera $0! = 1$.\sidenote{Att vi låter $0!$ vara lika med ett är för att vi ser det som produkten av inga tal alls, vilket är bekvämt att se som att det blir $1$. Varför detta är så kommer vi kanske att återkomma till när vi pratar om rekursioner.}
+
+För $k \leq n$, definiera $P(n,k) = \frac{n!}{(n-k)!}$. Lägg märke till att $P(n,n) = \frac{n!}{(n-n)!} = \frac{n!}{0!} = n!$.
+\end{definition}
+
+\begin{proposition}
+Om $\abs{X}=n$ och $0 \leq k \leq n$ så finns det $P(n,k)$ permutationer av längd $k$ från $X$.
+\begin{proof}
+Vi bevisar detta med hjälp av multiplikationsprincipen -- så vi skall räkna hur många sätt vi kan välja vår permutation $x_1x_2\ldots x_k$ på. Det finns så klart $\abs{X} = n$ sätt att välja första bokstaven $x_1$ i vår permutation. När vi sedan skall välja $x_2$ får den inte vara lika med $x_1$, så vi väljer ett element ur $X \setminus \{x_1\}$, och $\abs{X\setminus\{x_1\}} = n-1$. Likaledes för $x_3$ så får den varken vara lika med $x_1$ eller $x_2$, så vi väljer från $X\setminus \{x_1, x_2\}$, och har $n-2$ val.
+
+Den här processen fortsätter tills vi skall välja $x_k$, och i det skedet har vi tagit bort $k-1$ val, och har alltså $\abs{X \setminus \{x_1, x_2, \ldots, x_{k-1}\}} = n - (k-1)$ val.
+
+Multiplikationsregeln säger oss att det totala antalet permutationer är lika med produkten av antalet val vi hade i varje steg, det vill säga
+\begin{align*}
+	n\cdot(n-1)\cdot(n-2)\cdot\ldots\cdot(n-(k-1)) &= \frac{n\cdot(n-1)\cdot(n-2)\cdot\ldots\cdot2\cdot1}{(n-k)\cdot\ldots\cdot2\cdot1}\\
+	&= \frac{n!}{(n-k)!} = P(n,k).
+\end{align*}
+\end{proof}
+\end{proposition}
+
+\begin{example}
+	På hur många olika sätt kan $n$ personer sitta runt ett runt bord?\sidenote{Det finns en liten ritning av detta i anteckningarna från föregående år, och jag lär rita den på den faktiska föreläsningen.}
+
+	Det finns två olika sätt vi kan se på frågan\sidenote{Detta är ett exempel av skillnaden mellan problem med etiketter och utan, vilket är ett generellt fenomen som kommer återkomma gång på gång. Här är det platserna runt bordet som kan ha etiketter eller inte. Var noggrann med att fundera kring vilken typ av } -- antingen är det skillnad på de olika stolarna runt bordet (vissa kan se ut genom fönstret, andra inte), så att vi får olika sätt att placera folk runt bordet genom att rotera hela placeringen, eller så är det enda som spelar roll ordningen de sitter i, och vi ser olika rotationer av samma ordning som samma sätt att sitta runt bordet.
+
+	Om platserna har etiketter, så att det inte bara är ordningen som spelar roll, så kan vi numrera platserna från plats $1$ till plats $n$. Om vi kallar mängden med gäster för $X$ blir alltså varje placering ett $X$-ord -- vi kan skriva den som ``gäst ett, gäst två, etc.''. Och eftersom varje person bara kan sitta på en stol blir detta alltså en permutation -- och vi vet att det finns $n!$ permutationer av längd $n$ ur ett alfabete med $n$ bokstäver.
+
+	Om platserna är oetiketterade, det vill säga att det enda vi bryr oss om är ordningen folk sitter i, får vi räkna på ett annat sätt. Givet en placering kan vi godtyckligt välja en person som ``först'', och sedan numrera platserna i medurs ordning. För varje av de $n$ sätten att välja vem som är först får vi alltså en placering där platserna har etiketter.
+
+	Detta ger oss ett annat sätt att räkna antalet placeringar med etiketter -- vi räknar antalet utan etiketter, kallar det $m$, och får alltså att antalet med etiketter är $nm$.
+
+	Men eftersom vi redan vet att antalet när platserna har etiketter är $n!$ så får vi alltså av detta att $n! = nm$, eller $m = \frac{n!}{n} = (n-1)!$.\sidenote{Detta är ett vanligt sätt att resonera inom kombinatorik -- vi hittade två olika sätt att räkna samma sak, och fick på så sätt ut en likhet ($nm = n!$) som vi kunde använda för att räkna en annan sak.}
+\end{example}
 
 \section{Kombinationer}
 

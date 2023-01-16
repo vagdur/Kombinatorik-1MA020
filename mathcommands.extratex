@@ -8,7 +8,7 @@
 
 \newtheorem{theorem}{Teorem}%[subsection]
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{cor}[theorem]{Korollarium}
 \newtheorem{conjecture}[theorem]{Hypotes}
 \newtheorem{claim}[theorem]{Påstående}
