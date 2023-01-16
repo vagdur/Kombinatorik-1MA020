@@ -6,6 +6,8 @@
 \usepackage{amssymb}%
 \usepackage{amsthm}
 
+\usepackage[swedish]{babel}
+
 \newtheorem{theorem}{Teorem}%[subsection]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
