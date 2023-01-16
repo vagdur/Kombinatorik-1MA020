@@ -131,7 +131,7 @@ För $n = 1, 2,\ldots$, definiera $n! = n\times(n-1)\times\ldots\times2\times1$.
 För $k \leq n$, definiera $P(n,k) = \frac{n!}{(n-k)!}$. Lägg märke till att $P(n,n) = \frac{n!}{(n-n)!} = \frac{n!}{0!} = n!$.
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}\label{prop_Pnk_counts_permutations}
 Om $\abs{X}=n$ och $0 \leq k \leq n$ så finns det $P(n,k)$ permutationer av längd $k$ från $X$.
 \begin{proof}
 Vi bevisar detta med hjälp av multiplikationsprincipen -- så vi skall räkna hur många sätt vi kan välja vår permutation $x_1x_2\ldots x_k$ på. Det finns så klart $\abs{X} = n$ sätt att välja första bokstaven $x_1$ i vår permutation. När vi sedan skall välja $x_2$ får den inte vara lika med $x_1$, så vi väljer ett element ur $X \setminus \{x_1\}$, och $\abs{X\setminus\{x_1\}} = n-1$. Likaledes för $x_3$ så får den varken vara lika med $x_1$ eller $x_2$, så vi väljer från $X\setminus \{x_1, x_2\}$, och har $n-2$ val.
@@ -157,12 +157,67 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
 
 	Detta ger oss ett annat sätt att räkna antalet placeringar med etiketter -- vi räknar antalet utan etiketter, kallar det $m$, och får alltså att antalet med etiketter är $nm$.
 
-	Men eftersom vi redan vet att antalet när platserna har etiketter är $n!$ så får vi alltså av detta att $n! = nm$, eller $m = \frac{n!}{n} = (n-1)!$.\sidenote{Detta är ett vanligt sätt att resonera inom kombinatorik -- vi hittade två olika sätt att räkna samma sak, och fick på så sätt ut en likhet ($nm = n!$) som vi kunde använda för att räkna en annan sak.}
+	Men eftersom vi redan vet att antalet när platserna har etiketter är $n!$ så får vi alltså av detta att $n! = nm$, eller $m = \frac{n!}{n} = (n-1)!$, och vi har räknat antalet utan etiketter till $(n-1)!$.\sidenote{Detta är ett vanligt sätt att resonera inom kombinatorik -- vi hittade två olika sätt att räkna samma sak, och fick på så sätt ut en likhet ($nm = n!$) som vi kunde använda för att räkna en annan sak.}
 \end{example}
 
 \section{Kombinationer}
 
-Detta avsnitt kommer skrivas snart.
+\begin{definition}
+	För en mängd $X$ så är en \emph{kombination} av element ur $X$ en delmängd $A \subseteq X$.\sidenote{Vi talade innan om etiketter och inte. Man kan se en kombination som en permutation utan etiketter -- vi vet bara vilka element som är med, inte i vilken ordning de kommer.}
+\end{definition}
+
+\begin{example}
+	Det finns $6$ kombinationer av storlek $2$ från $X = \{a,b,c,d\}$, nämligen
+	$$\{a,b\}, \{a,c\},\{a,d\},\{b,c\},\{b,d\},\{c,d\}.$$
+\end{example}
+
+\begin{definition}
+	För $0 \leq k \leq n$, låt $\binom{n}{k} = \frac{P(n,k)}{k!} = \frac{n!}{k!(n-k)!}$. Man ser också notationerna $C(n,k)$, $nCk$, eller $C^n_k$ för detta, men vi håller oss till $\binom{n}{k}$. 
+\end{definition}
+
+\begin{proposition}
+	Om $\abs{X} = n$ och $0 \leq k \leq n$ så finns det $\binom{n}{k}$ kombinationer av storlek $k$ från $X$.
+	\begin{proof}
+		Även detta bevisar vi med ``räkna på två olika sätt''-metoden. Låt oss börja med att räkna antalet \emph{permutationer} igen, på ett annat sätt än vi gjorde i beviset av Proposition \ref{prop_Pnk_counts_permutations}.
+
+		Istället för att tänka oss att vi väljer en bokstav i taget, kan vi tänka oss att vi först väljer en mängd $A$ av bokstaver som skall vara med -- och då måste ju $\abs{A} = k$ eftersom varje bokstav skall dyka upp exakt en gång -- och sedan väljer en ordning i vilken bokstäverna skall dyka upp.
+
+		Antalet sätt att välja en ordning för våra $k$ bokstäver är precis antalet permutationer av längd $k$ från alfabetet $A$, vilket vi vet är $P(k,k)$. Så om vi betecknar antalet sätt att välja mängden $A$ med $m$, så säger oss multiplikationsregeln att antalet permutationer av längd $k$ från $X$ måste vara $m\cdot P(k,k)$.
+
+		Men vi vet ju också, från hur vi räknade antalet permutationer innan, att $P(n,k) = \frac{n!}{(n-k)!}$ och $P(k,k) = k!$. Så vad vi har visat är att
+		$$\frac{n!}{(n-k)!} = P(n,k) = m P(k,k) = m k!$$
+		eller, om vi löser för $m$, att
+		$$m = \frac{n!}{k!(n-k)!}$$
+		vilket är vad vi ville bevisa.
+	\end{proof}
+\end{proposition}
+
+\begin{proposition}
+	För alla $n \geq 0$ och alla $0 \leq k \leq n$ gäller det att
+	$$\binom{n}{k} = \binom{n}{n-k}.$$
+\end{proposition}
+
+Vi ger två olika bevisa av denna proposition. Det första är algebraiskt:
+\begin{proof}
+	\begin{align*}
+		\binom{n}{k} &= \frac{n!}{k!(n-k)!}\\
+		&= \frac{n!}{(n-(n-k))!(n-k)!}\\
+		&= \frac{n!}{(n-k)!(n-(n-k))!} = \binom{n}{n-k}.
+	\end{align*}
+\end{proof}
+
+Det andra är kombinatoriskt:\sidenote{Vad menar vi när vi säger att det här beviset är ``kombinatoriskt'', till skillnad från det andra beviset? Nyckeln är att vi här visade att de två mängderna -- mängden av delmängder av storlek $k$ och mängden av delmängder av storlek $n-k$ -- har lika många medlemmar genom att uppvisa en bijektion mellan dem, emedan vi i det algebraiska beviset bara manipulerade våra formler för att visa att de var lika.
+
+Bijektionen vi hittade här är själv ett \emph{kombinatoriskt} objekt, och det berättar mer för oss än bara att mängderna har lika många medlemmar. Man kan se det som att den är en \emph{anledning} till varför de har lika många mängder.
+
+Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- och likaså att bijektionerna ger oss mer förståelse för objekten vi studerar än vad ett algebraiskt bevis gör.}
+\begin{proof}
+	Låt $X$ vara en mängd med $n$ element. $\binom{n}{k}$ räknar antalet sätt att välja en delmängd $A \subseteq X$ av storlek $k$. Men varje sådan delmängd $A$ har ett komplement $X\setminus A$ av storlek $n-k$, och för varje delmängd av storlek $n-k$ kan vi få en av storlek $k$ genom att ta dess komplement.
+
+	Delmängder av storlek $k$ och delmängder av storlek $n-k$ står alltså i ett-till-ett-korrespondens med varandra, det finns en bijektion mellan dem, så det måste finnas lika många av storlek $k$ som av storlek $n-k$.
+
+	Men vi vet att antalet delmängder av storlek $n-$ är $\binom{n}{n-k}$, och alltså måste $\binom{n}{k} = \binom{n}{n-k}$.
+\end{proof}
 
 \bibliography{references}
 \bibliographystyle{plainnat}
