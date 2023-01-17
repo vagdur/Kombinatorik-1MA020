@@ -8,6 +8,8 @@
 
 \usepackage[swedish]{babel}
 
+\usepackage{tabularx}
+
 \newtheorem{theorem}{Teorem}%[subsection]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}

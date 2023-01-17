@@ -33,6 +33,8 @@
 \newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
 \newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
 
+\include{mathcommands.extratex}
+
 \begin{document}
 
 \maketitle% this prints the handout title, author, and date
@@ -52,9 +54,10 @@ Vi skall totalt ha femton schemalagda tillfällen, varav elva kommer vara förel
 Innehållet i de senare föreläsningarna kan fortfarande komma att flyttas runt eller ändras.
 
 \begin{table}[h]
-\begin{tabular}{lll}
-Tillfälle \# & Datum \& Tid      & Planerat innehåll \\ \hline
-1            & Tis 17 Jan, 15:15 & F1: Additions- och multiplikationsregeln, strängar, permutationer och kombinationer\\
+\begin{tabularx}{\textwidth}{llX}
+F\# & Datum \& Tid      & Planerat innehåll \\ 
+\midrule
+1            & Tis 17 Jan, 15:15 & F1: Additions- och multiplikationsregeln, strängar,\, permutationer och kombinationer\\
 2            & Ons 18 Jan, 10:15 & F2: Kombinatoriska bevis, binomialsatsen\\
 3            & Tis 24 Jan, 13:15 & F3: Multinomialkoefficienter, distributioner, och gitterstigar\\
 4            & Tor 26 Jan, 08:15 & Övning/komma ikapp\\
@@ -67,11 +70,10 @@ Tillfälle \# & Datum \& Tid      & Planerat innehåll \\ \hline
 11            & Tis 21 Feb, 13:15 & F9: Fler exempel\\
 12           & Ons 22 Feb, 10:15 & Övning/komma ikapp\\
 13           & Tis 28 Feb, 08:15 & F10: Diskret sannolikhetsteori\\
-14           & Tor 2 Mar, 10:15  & F11: Diskret sannolikhetsteori, fortsättning\footnotemark{}\\
+14           & Tor 2 Mar, 10:15  & F11: Diskret sannolikhetsteori, fortsättning (Också näst sista dag att registrera sig för tentan)\\
 15           & Mån 6 Mar, 08:15 & Repetition
-\end{tabular}
+\end{tabularx}
 \end{table}
-\footnotetext{Detta är också näst sista dagen att registrera sig för tentan -- glöm inte!}
 
 \section{Tentan}
 
@@ -124,6 +126,7 @@ För uppgifterna skall ni, för varje uppgift, svara på följande frågor:
 	\item Är lösningen lätt att förstå, eller behöver du anstränga dig för att förstå vad de menar?
 	\item Är lösningen användbar för dig när du skall ta dig an snarlika problem?
 \end{itemize}
+
 
 \subsection{Hur man jobbar på uppgiften}
 
