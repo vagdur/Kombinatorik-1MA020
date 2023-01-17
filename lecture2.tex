@@ -82,6 +82,34 @@ I slutet av förra föreläsningen diskuterade vi kombinatoriska bevis, och bevi
   \end{proof}
 \end{example}
 
+\begin{proposition}[Pascals Identitet]
+  För $1 \leq k \leq n$ gäller det att\sidenote[][]{Den här likheten säger exakt att Pascals triangel faktiskt innehåller binomialkoefficienterna.}
+  
+  \begin{marginfigure}
+    \includegraphics{graphics/pascals_triangle.png}
+  \end{marginfigure}
+  $$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}.$$
+
+  \begin{proof}[Algebraiskt bevis]
+    \begin{align*}
+      \binom{n-1}{k-1} + \binom{n-1}{k} &= \frac{(n-1)!}{(k-1)!((n-1)-(k-1))!} + \frac{(n-1)!}{k!((n-1)-k)!}\\
+      &= (n-1)!\left(\frac{k}{k!(n-k)!} + \frac{(n-k)}{k!(n-k)!}\right)\\
+      &= (n-1)!\frac{k + (n - k)}{k!(n-k)!}\\
+      &= \frac{n!}{k!(n-k)!} = \binom{n}{k}.
+    \end{align*}    
+  \end{proof}
+
+  \begin{proof}[Kombinatoriskt bevis]
+    Låt $X$ vara en mängd av storlek $n$. Vi vet att $\binom{n}{k}$ räknar antalet delmängder av storlek $k$ till $X$. Låt oss komma på ett annat sätt att räkna antalet delmängder av storlek $k$, och se att det ger oss höger led.
+
+    Välj ett godtyckligt element $x \in X$. För varje delmängd $A$ till $X$ så innehåller den antingen $x$, eller så gör den inte det. För att skapa oss en delmängd $A$ av storlek $k$ som innehåller $x$ lägger vi först in $x$ i $A$, och sedan lägger vi till ytterligare $k-1$ element från de återstående $n-1$ elementen. Antalet sätt att göra det vet vi är precis $\binom{n-1}{k-1}$
+
+    Om vi i stället vill ha en delmängd $A$ som \emph{inte} innehåller $x$ så kan vi fritt välja $k$ element av de återstående $n-1$ elementen. Antalet sätt att göra det på vet vi är $\binom{n-1}{k}$.
+
+    Så additionsprincipen säger oss att antalet sätt att välja en delmängd som innehåller $x$ eller inte innehåller $x$ -- vilket ju är alla delmängder -- måste vara summan, alltså $\binom{n-1}{k-1} + \binom{n-1}{k}$, såsom önskat.
+  \end{proof}
+\end{proposition}
+
 \section{Binomialsatsen}
 
 \section{Övningar}
