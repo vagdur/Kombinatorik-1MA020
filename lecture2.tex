@@ -112,6 +112,24 @@ I slutet av förra föreläsningen diskuterade vi kombinatoriska bevis, och bevi
 
 \section{Binomialsatsen}
 
+\begin{theorem}[Binomialsatsen]
+  För varje heltal $n\geq 0$ gäller det att\sidenote[][]{Lägg märke till att vi inte är så precisa kring vad $x$ och $y$ är. I versionen ni lärde er i gymnasiet är de två reella tal, men egentligen är det här en likhet mellan polynom, som gäller mycket mer allmänt. Vi använder ju inte några specifika egenskaper hos de reella talen i det här beviset, bara räkneregler för polynom. När ni läser en kurs i algebra kommer ni se hur generellt den sortens räkningar fungerar.}
+  $$(x + y)^n = \sum_{k=0}^n \binom{n}{k}x^{n-k}y^k$$
+  \begin{proof}
+    Studera uttrycket
+    $$(x + y)^n = (x + y)(x + y)\ldots(x + y).$$
+
+    Vad är det vi gör när vi expanderar ut detta uttrycket? Jo, vi väljer för varje parentes om vi tar ett $x$ eller ett $y$ -- eller uttryckt i kombinatoriska termer, vi bildar ett ord ur alfabetet $\{x, y\}$. Så för $n = 3$ får vi till exempel att
+    $$(x+y)(x+y)(x+y) = xxx + xxy + xyy + yxx + yxy + yyy.$$
+
+    Sedan kommer vi ihåg att multiplikation är kommutativt, så $xyy = yxy$. Alltså spelar det ingen roll i vilken ordning vi gjorde valen, bara hur många gånger vi valde $x$ och hur många gånger vi valde $y$.\sidenote[][]{Alltså, formulerat på ett annat sätt, etiketterna av ``när valdes vilken'' spelar ingen roll.}
+
+    Så antalet gånger vi får en term som är lika med $x^{n-k}y^k$ kommer alltså vara antalet $\{x, y\}$-strängar med $k$ stycken $y$. Det antalet är så klart samma som antalet sätt att välja $k$ platser att skriva $y$ ur den totala mängden av $n$ platser -- det vill säga $\binom{n}{k}$.
+
+    Vi har alltså sett att koefficienten framför $x^{n-k}y^k$ när vi förenklat uttrycket kommer att vara $\binom{n}{k}$. Eftersom detta argument fungerar för varje $k$ har vi bevisat satsen.
+  \end{proof}
+\end{theorem}
+
 \section{Övningar}
 
 \begin{xca}
@@ -126,6 +144,10 @@ I slutet av förra föreläsningen diskuterade vi kombinatoriska bevis, och bevi
   I en sidnot till Exempel \ref{example_counting_all_subsets} nämnde vi att det också går att se problemet som att räkna binära strängar av längd $n$, via en bijektion mellan sådana och delmängder till en mängd.
 
   Kan du skriva ett kombinatoriskt bevis för att $\sum_{k=0}^n \binom{n}{k} = 2^n$ som resonerar om binära strängar istället för om delmängder till en mängd?
+\end{xca}
+
+\begin{xca}
+  
 \end{xca}
 
 %\bibliography{references}
