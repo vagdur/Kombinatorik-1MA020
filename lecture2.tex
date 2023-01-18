@@ -1,6 +1,6 @@
 \documentclass[nobib]{tufte-handout}
 
-\title{Föreläsning 2: Kombinatoriska bevis, binomialsatsen $\cdot$ 1MA020}
+\title{Föreläsning 2: Kombinatoriska bevis, binomialsatsen, kompositioner, och multinomialsatsen $\cdot$ 1MA020}
 
 \author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
 
@@ -40,7 +40,7 @@
 
 \begin{abstract}
 \noindent
-Vi fortsätter på förra föreläsningens idéer om kombinatoriska bevis och att räkna saker på två olika sätt. Sedan tillämpar vi detta på att bevisa binomialsatsen.
+Vi fortsätter på förra föreläsningens idéer om kombinatoriska bevis och att räkna saker på två olika sätt. Sedan tillämpar vi detta på att bevisa binomialsatsen. Vi fortsätter med att diskutera omordningar och kompositioner, från vilket vi härleder \emph{multi}nomialsatsen.
 \end{abstract}
 
 \section{Kombinatoriska bevis}
@@ -66,6 +66,17 @@ I slutet av förra föreläsningen diskuterade vi kombinatoriska bevis, och bevi
   Alltså måste det totala antalet punkter i kvadraten vara $2S(n) + (n+1)$ -- men vi vet också, så klart, att det är $(n+1)^2$. Så om vi löser detta för $S(n)$ får vi att
     $$S(n) = \frac{(n+1)^2 - (n+1)}{2} = \frac{(n+1)((n+1)-1)}{2} = \frac{n(n+1)}{2}$$
   precis som vi önskade.
+\end{example}
+
+\begin{example}
+  Vad är summan av de första $n$ udda talen, det vill säga $\sum_{k=1}^n 2k-1$?
+
+  Svaret är $n^2$, som kan ses av nedanstående figur.
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{graphics/sum_of_odd_integers.png}
+    \caption{Bevis att summan av de första $n$ udda talen är $n^2$. Bilden är tagen ur vår kursbok.}
+  \end{figure}
 \end{example}
 
 \begin{example}\label{example_counting_all_subsets}
@@ -130,6 +141,155 @@ I slutet av förra föreläsningen diskuterade vi kombinatoriska bevis, och bevi
   \end{proof}
 \end{theorem}
 
+\begin{example}
+  Ge ett algebraiskt och ett kombinatoriskt bevis för att
+  $$3^n = \sum_{k=0}^n \binom{n}{k}2^k.$$
+
+  \begin{proof}[Kombinatoriskt bevis]
+    Låt oss räkna antalet ternära strängar\sidenote[][]{Det vill säga strängar med alfabetet $\{0,1,2\}$.} av längd $n$ på två olika sätt. Det enkla sättet är att använda multiplikationsprincipen -- för varje bokstav har vi tre val, och vi behöver välja $n$ gånger, alltså blir produkten av antalet val för varje gång $3^n$.
+
+    Ett annat sätt att räkna detta är att dela upp efter hur många ettor ordet innehåller. Först väljer vi antalet ettor, sedan väljer vi var ettorna skall stå, och till sist väljer vi vad resten av bokstäverna skall vara för något.
+
+    Givet att vi vet att vi skall ha $k$ stycken ettor, och vi vet var de skall stå, så har vi $n-k$ bokstäver kvar att göra ett val för -- och nu har vi bara två val, eftersom vi inte får välja ettor utan bara nollor och treor. Så enligt multiplikationsprincipen multiplicerar vi antalet val vi har i varje fall och får att det finns $2^{n-k}$ sätt att fylla i resten av ordet med nollor och treor.
+
+    Givet att vi vet att vi skall ha $k$ stycken ettor, hur många olika strängar kan vi skapa? Antalet sätt att välja var ettorna skall stå är precis antalet kombinationer av $k$ element från mängden av platser, $[n]$, och vi vet att det är $\binom{n}{k}$. När vi väl valt var ettorna skall stå kan vi fylla i resten på $2^{n-k}$ sätt, som vi såg i föregående stycket, så multiplikationsprincipen ger oss att det måste finnas $\binom{n}{k}2^{n-k}$ strängar av längd $n$ med $k$ stycken ettor.
+
+    Till slut vet vi att det totala antalet ternära strängar måste vara summan av detta över alla $k$, enligt additionsprincipen. Så om vi summerar detta får vi att det finns
+    $$\sum_{k=0}^n \binom{n}{k}2^{n-k}$$
+    ternära strängar. Efter att ha tillämpat likheten $\binom{n}{k} = \binom{n}{n-k}$ och vänt på indexeringen i summan ser vi att detta är precis höger led i ekvationen vi gav.
+  \end{proof}
+
+  \begin{proof}[Algebraiskt bevis]
+    Vi använder binomialsatsen och ser att
+    \begin{align*}
+      3^n &= (1+2)^n\\
+      &= \sum_{k=0}^n \binom{n}{k}1^{n-k}2^k = \sum_{k=0}^n \binom{n}{k}2^k.
+    \end{align*}
+  \end{proof}
+\end{example}
+
+\section{Omordningar}
+
+\begin{definition}
+  En omordning\sidenote[][]{Engelska \emph{rearrangement}, det verkar inte finnas ett helt inarbetat svenskt ord för detta, så omordning får fungera, om än klumpigt.} av en $X$-sträng $s$ är en annan $X$-sträng $s'$ där varje element i $X$ förekommer lika många gånger i $s'$ som i $s$. Specifikt måste alltså $s$ och $s'$ vara av samma längd.
+\end{definition}
+
+\begin{example}
+  Det finns sex omordningar av $ABBA$:
+  $$ABBA, ABAB, AABB, BAAB, BABA, BBAA.$$
+\end{example}
+
+\begin{proposition}\label{proposition_count_binary_rearrangements}
+  Om $s$ är en binär sträng av längd $n$ med $k$ stycken ettor finns det $\binom{n}{k}$ stycken omordningar av $s$.
+  \begin{proof}
+    Vi behöver helt enkelt räkna antalet binära strängar av längd $n$ som har $k$ stycken ettor. För att konstruera en sådan behöver vi helt enkelt välja på vilka platser det skall stå en etta -- alltså välja en delmängd av $k$ platser av de totalt $n$ platserna. Detta vet vi att vi kan göra på $\binom{n}{k}$ sätt.
+  \end{proof}
+\end{proposition}
+
+\section{Kompositioner}
+
+Antag att vi vill fördela ut $n$ stycken osärskiljbara objekt bland $k$ särskiljbara människor.
+
+\begin{example}
+  Tre stycken lärare konkurrerar om två stycken äpplen de har fått av sina elever. På hur många olika sätt kan äpplena fördelas ut?
+
+  Här är $n=3$ och $k=2$. Det finns sex olika sätt:
+  \begin{table}[h]
+    \begin{tabularx}{0.7\textwidth}{ccc}
+    Äpplen för A & Äpplen för B      & Äpplen för C \\ 
+    \midrule
+    2 & 0 & 0\\
+    1 & 1 & 0\\
+    1 & 0 & 1\\
+    0 & 2 & 0\\
+    0 & 1 & 1\\
+    0 & 0 & 2
+    \end{tabularx}
+    \end{table}
+\end{example}
+
+\begin{proposition}\label{proposition_indist_objs_dist_persons}
+  Det finns $\binom{n+k-1}{k-1} = \binom{n+k-1}{n}$ sätt att fördela $n$ osärskiljbara föremål mellan $k$ särskiljbara personer.
+
+  \begin{proof}
+    Metoden för det här beviset brukar kallas för ett pinnar-och-stjärnor-argument.\sidenote[][]{Engelska \emph{stars and bars argument}.}
+
+    Vi studerar ord ur alfabetet $\{*,|\}$ med $k-1$ stycken pinnar och $n$ stycken stjärnor. Till exempel om $n=6$ och $k=5$
+    $$**||*|*|**.$$
+
+    Vi tolkar detta ordet som en fördelning av föremål till personer såsom följer: Person ett får alla  stjärnor innan första strecket, person två alla mellan första och andra strecket, och så vidare, tills person $k$ får alla stjärnor efter det sista strecket. I vårt exempel får alltså person ett två föremål, person två inga, person tre och fyra ett var, och person fem får två.
+
+    Detta etablerar en bijektion mellan våra ord och fördelningarna till personer. Vi vet från Proposition \ref{proposition_count_binary_rearrangements}\sidenote[][]{Den propositionen handlar om binära strängar, men vi har alfabetet $\{*,|\}$ -- det spelar så klart ingen roll för antalet vad vi kallar våra bokstäver.} hur man räknar antalet sådana ord -- våra ord har längd $n + k -1$ (de innehåller $n$ stjärnor och $k-1$ streck) och $k-1$ av dem är av ena typen, så det måste finnas totalt $\binom{n + k - 1}{k - 1}$ ord, och alltså lika många fördelningar.
+  \end{proof}
+\end{proposition}
+
+\begin{example}
+  Hur många lösningar har ekvationen $x + y + z = 15$, ifall vi kräver att $x$, $y$, och $z$ alla skall vara positiva heltal?
+
+  Vi kan se det här som en variant av problemet med att fördela osärskiljbara objekt mellan särskiljbara personer, där objekten är ettor och personerna är våra tre variabler. 
+  
+  Vi börjar med att ge varje variabel en etta, eftersom alla måste vara större än noll. Sedan har vi tolv ettor kvar att fördela mellan tre variabler, så Proposition \ref{proposition_indist_objs_dist_persons} säger oss att det finns $\binom{12 + 3 -1}{3 - 1} = \binom{14}{2} = 91$ lösningar.
+\end{example}
+
+\begin{definition}
+  I allmänhet är antalet sätt att skriva $n$ som en summa av ett godtyckligt antal positiva heltal, där ordningen vi skrivar summan i spelar roll\sidenote[][]{$1+4$ och $4+1$ är alltså olika kompositioner av $5$.}, antalet \emph{kompositioner}\sidenote[][]{Inte att blanda ihop med \emph{kombinationer}, trots ordens snarlikhet.} av $n$. Vi studerade alltså just antalet kompositioner av längd $3$ av $15$.
+\end{definition}
+
+\section{Multinomialkoefficienter}
+
+\begin{example}
+  Hur många omordningar finns det av ordet $SPAPASTA$?\sidenote[][]{Ursprungligen ville jag ha det rimligare ordet \emph{pastasås}, men \LaTeX\ gillar visst inte \emph{Å} i ekvationer.}
+
+  Det har $2$ stycken $S$ och $P$, $3$ stycken $A$, och ett $T$. Vi kan skapa en omordning av detta ordet genom att först välja var vi placerar $A$na -- det kan vi göra på $\binom{8}{3}$ sätt, eftersom vi har åtta platser och tre $A$n. När vi placerat ut dem har vi $8 - 3 = 5$ sätt att placera ut våra två $S$, så vi har $\binom{5}{2}$ val för hur vi gör det.
+
+  Likaledes har vi $\binom{3}{2}$ sätt att placera ut våra $P$n, och till slut $\binom{1}{1}$ enda sätt att placera ut vårt $T$. Sammantaget blir det alltså
+  \begin{align*}
+    \binom{8}{3}\binom{5}{2}\binom{3}{2}\binom{1}{1} &= \frac{8!}{3!5!}\frac{5!}{2!3!}\frac{3!}{2!1!}\frac{1!}{1!0!}\\
+    &= \frac{8!}{3!2!2!1!}
+  \end{align*}
+\end{example}
+
+\begin{definition}
+  För varje heltal $n$ och varje samling av heltal $k_1, k_2, \ldots, k_r$ sådana att $k_1 + k_2 + \ldots + k_r = n$ betecknar vi \emph{multinomialkoefficienten} med
+  $$\binom{n}{k_1, k_2, \ldots, k_r} = \frac{n!}{k_1!k_2!\ldots k_r!}.$$
+
+  Notera att våra vanliga binomialkoefficienter är specialfallet när $r=2$,
+  $$\binom{n}{k} = \binom{n}{k, n-k} = \binom{n}{n-k}.$$
+\end{definition}
+
+\begin{proposition}
+  Antag att $s$ är en $X$-sträng av längd $n$, som innehåller $k_1$ stycken $x_1$, $k_2$ stycken $x_2$, och så vidare, upp till $k_r$ stycken $x_r$ -- så $k_1 + k_2 + \ldots k_r = n$. Antalet omordningar av $s$ ges av multinomialkoefficienten $\binom{n}{k_1, k_2, \ldots, k_r}$.
+
+  \begin{proof}
+    Låt $R$ vara antalet omordningar av $s$. Vi använder återigen ``räkna samma sak på två olika sätt''-metoden. Den här gången är vad vi vill räkna antalet permutationer av längd $n$ ur alfabetet\sidenote[][]{Så i fallet där vårt ord är $SPAPASTA$ blir $$X' = \{S^1, S^2, P^1, P^2, A^1, A^2, A^3, T^1\}.$$
+    
+    Vi tar helt enkelt varje bokstav och ger den en etikett, så att bokstäverna blir särskiljbara.}
+    \begin{align*}
+      X' = \{&x_1^1, x_1^2, \ldots, x_1^{k_1},\\
+             &x_2^1, x_2^2, \ldots, x_2^{k_2},\\
+             &\qquad\vdots\\
+             &x_r^1, x_r^2, \ldots, x_r^{k_3}\}.
+    \end{align*}
+
+    Eftersom $X'$ har exakt $n$ bokstäver vet vi att antalet permutationer av det alfabetet är precis $n!$.
+
+    Låt oss nu räkna på ett mer komplicerat sätt. Vi kan också skapa oss en permutation av $X'$ genom att först välja en omordning av $s$, och sedan välja ett sätt att sätta etiketter på bokstäverna i den omordningen.\sidenote[][]{Så vi väljer en omordning av $SPAPASTA$, till exempel $ASPTAPAS$, och sätter sedan etiketter på bokstäverna för att få till exempel $A^2S^1P^2T^1A^1P^1A^3S^2$, vilket är en permutation av $X'$.}
+
+    Om vi bara studerar våra $x_1$ i omordningen av $s$ så har vi $k_1$ stycken, och vi skall sätta etiketter mellan $1$ och $k_1$ på dem. Det kan vi göra på $k_1!$ sätt. Det samma gäller för varje annan bokstav, så multiplikationsprincipen säger oss att det totala antalet sätt att sätta etiketter måste vara $k_1!k_2!\ldots k_r!$. Det totala antalet permutationer av $X'$ måste alltså vara $R$, antalet omordningar, gånger detta, så vi har sett att 
+    $$n! = Rk_1!k_2!\ldots k_r!$$
+    och om vi löser detta för $R$ får vi precis den sökta satsen.
+  \end{proof}
+\end{proposition}
+
+\begin{theorem}[Multinomialsatsen]
+  Det gäller att
+  $$(x_1 + x_2 + \ldots + x_r)^n = \sum_{\substack{k_1, k_2, \ldots, k_r \geq 0\\k_1 + k_2 + \ldots + k_r = n}} \binom{n}{k_1, k_2, \ldots, k_r} x_1^{k_1} x_2^{k_2} \ldots x_r^{k_r}$$
+
+  \begin{proof}
+    Precis samma argument som för binomialsatsen fungerar här.
+  \end{proof}
+\end{theorem}
+
 \section{Övningar}
 
 \begin{xca}
@@ -147,7 +307,22 @@ I slutet av förra föreläsningen diskuterade vi kombinatoriska bevis, och bevi
 \end{xca}
 
 \begin{xca}
-  
+  Hur många heltalslösningar finns det till $x + y + z = 43$, om vi kräver att $x \geq 1$, $y \geq 17$, och $z \geq 5$?
+\end{xca}
+
+\begin{xca}
+  Hur många omordningar finns det av ordet $54240244$?
+
+  Hur många omordningar finns det av det ordet som inte börjar med en nolla?
+\end{xca}
+
+\begin{xca}
+  Hur många ternära strängar av längd $2n$ finns det, där ettorna bara får dyka upp på udda positioner?
+\end{xca}
+
+\begin{xca}
+  Låt $m$ och $w$ vara positiva heltal. Ge ett kombinatoriskt bevis för att det, för varje $0 \leq k \leq m + w$, gäller att
+  $$\sum_{j=0}^k \binom{m}{j}\binom{w}{k-j} = \binom{m + w}{k}.$$
 \end{xca}
 
 %\bibliography{references}

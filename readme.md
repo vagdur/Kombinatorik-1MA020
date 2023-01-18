@@ -9,4 +9,4 @@ Föreläsningsanteckningar för våra föreläsningar kommer också att länkas 
 # Föreläsningsanteckningar
 
 1. [Föreläsning ett: Additions- och multiplikationsregeln, strängar, permutationer och kombinationer](https://vagdur.github.io/Kombinatorik-1MA020/lecture1.pdf)
-2. [Föreläsning två: Kombinatoriska bevis, binomialsatsen](https://vagdur.github.io/Kombinatorik-1MA020/lecture2.pdf) (Work in progress)
+2. [Föreläsning två: Kombinatoriska bevis, binomialsatsen, kompositioner, och multinomialsatsen](https://vagdur.github.io/Kombinatorik-1MA020/lecture2.pdf)
