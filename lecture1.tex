@@ -119,10 +119,17 @@ För generella $X$ kallar vi en sträng $s: [n] \to X$ för en $X$-sträng.
 En sträng $s: [k] \to X$ kallas för en \emph{permutation} av längd $k$ av elementen i $X$ om alla bokstäverna i $s$ är olika, det vill säga om $s(i) \neq s(j)$ ifall $i \neq j$.
 \end{definition}
 
-Självklart måste $\abs{X} \geq k$ för att det skall existera några permutationer av längd $k$ av $X$.\sidenote{Hur hade du bevisat det?}
+Självklart måste $\abs{X} \geq k$ för att det skall existera några permutationer av längd $k$ av $X$.\sidenote{Hur hade du bevisat det?\\
+Om vi antar att $\abs{X} < k$ men vi ska välja ut en permutation av längd k. Då börjar vi att välja ut första bokstaven $i_1$, sedan nästa bokstav $i_2$, och så vidare. Detta går bra tills vi har valt bokstav i X, låt oss kalla den $j$. Efter det har vi valt varje bokstav i alfabetet och kommer då behöva återanvända bokstäver i X. Men detta är inte tillåtet eftersom $s(i) \neq s(j) $ ifall $i \neq j$. Alltså kan vi inte skapa en perumatation av längd k om $\abs{X} < k$. Så $\abs{x} \geq k$}}
 
 \begin{example}
 Låt $X = [3]$. Det finns $6$ permutationer av längd $2$ av $X$\sidenote{Dessa är, specifikt, $$12, 13, 21, 23, 31, 32.$$} -- vi kan se detta med hjälp av multiplikationsprincipen: Vi har tre val av första bokstav, men när vi valt den har vi bara två val kvar av andra bokstav, eftersom vi inte får ha två av samma. Alltså är det totala antalet $3\times 2 = 6$.
+
+
+\begin{figure}[h]    \includegraphics{graphics/bildpresentation.png}
+\end{figure}
+
+I bilden ser vi en representation av exempel 9. Tänk att de olika färgerna representerar olika bokstäver. Vi har från början tre bokstäver. Vi väljer först en bokstav och då har vi tre val, när vi valt en har vi två bokstäver kvar att välja på. 
 \end{example}
 
 \begin{definition}
@@ -136,7 +143,7 @@ Om $\abs{X}=n$ och $0 \leq k \leq n$ så finns det $P(n,k)$ permutationer av lä
 \begin{proof}
 Vi bevisar detta med hjälp av multiplikationsprincipen -- så vi skall räkna hur många sätt vi kan välja vår permutation $x_1x_2\ldots x_k$ på. Det finns så klart $\abs{X} = n$ sätt att välja första bokstaven $x_1$ i vår permutation. När vi sedan skall välja $x_2$ får den inte vara lika med $x_1$, så vi väljer ett element ur $X \setminus \{x_1\}$, och $\abs{X\setminus\{x_1\}} = n-1$. Likaledes för $x_3$ så får den varken vara lika med $x_1$ eller $x_2$, så vi väljer från $X\setminus \{x_1, x_2\}$, och har $n-2$ val.
 
-Den här processen fortsätter tills vi skall välja $x_k$, och i det skedet har vi tagit bort $k-1$ val, och har alltså $\abs{X \setminus \{x_1, x_2, \ldots, x_{k-1}\}} = n - (k-1)$ val.
+Den här processen fortsätter tills vi skall välja $x_k$, och i det skedet har vi tagit bort $k-1$ val, och har alltså $\abs{X \setminus \{x_1, x_2, \ldots, x_{k-1}\}} = n - (k-1)$ bokstäver kvar att välja på.
 
 Multiplikationsregeln säger oss att det totala antalet permutationer är lika med produkten av antalet val vi hade i varje steg, det vill säga
 \begin{align*}
