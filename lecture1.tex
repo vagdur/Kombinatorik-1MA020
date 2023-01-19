@@ -75,6 +75,14 @@ Merparten av alla pussel-spel av typen sudoku, eller ``flytta bilarna för att f
 För det allra mesta behöver man inte vara så här rigorös, men det kan vara bra att ha i bakhuvudet att summa-regeln inte räknar antalet element i $A\cup B$ om $A$ och $B$ kan tänkas ha gemensamma element. Vad vi gör i det fallet kommer vi återkomma till senare, när vi diskuterar inklusion-exklusion.}
 \end{definition}
 
+\begin{example}\label{example_addition_rule_with_cans}
+    Vi har två burkar med olikfärgade kulor. Om vi ska plocka ut en kula från en av brukarna, på hur många sätt kan vi göra det?
+    \includegraphics{graphics/Burkar med kulor.png}
+	%\caption{Två separata burkar med kulor i}
+
+    Vi kan använda additionsregeln för att beräkna det och det ges av $9+6=15$, vilket summerar antalet kulor totalt vi har att välja bland.
+\end{example}
+
 \begin{example}\label{example_addition_rule}
 En restaurang har en meny med fyra drinkar, fem förrätter, tio huvudrätter, och tre desserter. Hur många saker har de på menyn?
 
@@ -85,6 +93,11 @@ Additions-regeln säger oss att svaret är $4+5+10+3 = 22$.
 	Om $A$ är en mängd av $n$ objekt och $B$ är en mängd av $m$ objekt så finns det $nm$ sätt att välja ett objekt från $A$ \emph{och} ett objekt från $B$. Eller ekvivalent, det finns $nm$ sätt att välja ett par av ett objekt ur $A$ och ett objekt ur $B$. Eller uttryckt i symboler
 $$\abs{A\times B} = \abs{\{(a,b) \given a \in A, b \in B\}} = nm.$$
 \end{definition}
+
+\begin{example}
+    Om vi har samma två burkar som i Exempel \ref{example_addition_rule_with_cans}, på hur många sätt kan välja en kula från den blå burken och en kula från den gula burken?\\
+    Med hjälp av bilden från Exempel\ref{example_addition_rule_with_cans} och multiplikationsregeln ger det oss att antalet olika sätt att välja två kulor, från en burk vardera, till $9\times 6 = 54$   
+\end{example}
 
 \begin{example}
 	Om du besöker restaurangen i Exempel \ref{example_addition_rule}, hur många olika sätt finns det att beställa en trerätters middag med en drink till?
