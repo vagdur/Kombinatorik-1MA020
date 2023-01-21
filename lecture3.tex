@@ -1,0 +1,210 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Föreläsning 3: Induktion, lådprincipen, och inklusion-exklusion $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
+
+%\date{15 januari 2023}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+\include{mathcommands.extratex}
+
+\begin{document}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+Vi börjar med att diskutera induktion och induktionsbevis. Sedan nämner vi lådprincipen och ger några tillämpningar av den. Till slut påbörjar vi vår diskussion av inklusion-exklusion.
+\end{abstract}
+
+\section{Induktion}
+
+\begin{axiom}[Induktion för heltalen]
+  \sidenote[][]{Är detta en sats eller ett axiom? Det beror på vilka axiom du väljer att ta, och hur exakt du definierar vad du menar med ``heltalen''.
+  
+  Precis vilka axiom vi antar är inte något som vi skall gå in på i denna kursen, det hör snarare hemma i en kurs i logik. Vi nöjer oss att säga, i en sidnot för den intresserade, att enligt Peano är detta ett axiom, men om man resonerar i Zermelo-Fraenkel kan man bevisa att heltalen finns och har denna egenskap.}Antag att $A \subseteq \N$ är någon mängd av heltal. Ifall
+  \begin{enumerate}
+    \item $1 \in A$, och
+    \item för varje $n$, om $n \in A$, så är också $n + 1 \in A$,
+  \end{enumerate}
+  så är $A = \N$, det vill säga, alla heltal ligger i $A$.
+\end{axiom}
+
+Man brukar ofta föredra att tänka på induktion som att det handlar om egenskaper hos eller påståenden om tal -- då säger vi att vi har en egenskap $\phi$, och om vi kan bevisa $\phi(1)$ och kan bevisa att $\phi(n) \rightarrow \phi(n+1)$, så följer det att $\forall n \phi(n)$.
+
+Detta perspektiv är helt ekvivalent med det axiom vi just gav -- om vi låter $A$ vara mängden av tal med egenskapen $\phi$, eller låter $\phi$ vara egenskapen ``talet ligger i $A$''.
+
+\begin{example}
+  Bevisa att, för varje $n\geq 1$, $\sum_{i=0}^{n-1} 2^i = 2^n - 1$.
+
+  \begin{proof}
+    Låt $A$ vara mängden av alla $n$ sådana att $\sum_{i=0}^{n-1} 2^i = 2^n - 1$.
+
+    Vi ser enkelt att $1 \in A$, eftersom påståendet då blir att $2^0 = 2^1 - 1$, vilket ju är sant.
+
+    Låt oss visa att om $n \in A$ så är också $n+1$ i $A$. Så vi antar likheten för $n$, och vill visa att $\sum_{i=0}^{n} 2^i = 2^{n+1} - 1$. Så om vi skriver vänster led i denna likheten och manipulerar den så ser vi att
+    \begin{align*}
+      \sum_{i=0}^{n} 2^i &= \sum_{i=0}^{n-1} 2^i + 2^n\\
+      &= \left(2^n - 1\right) + 2^n = 2\cdot 2^n - 1 = 2^{n+1} - 1
+    \end{align*}
+    precis som önskat. Så induktionsprincipen ger oss att likheten håller för alla $n$.
+  \end{proof}
+\end{example}
+
+\begin{example}
+  Bevisa att det finns $n!$ permutationer av längd $n$ från ett alfabete med $n$ bokstäver.
+  
+  \begin{proof}
+    Att det finns exakt en permutation av längd ett från ett alfabete med en bokstav är uppenbart.
+
+    För induktionssteget, antag att vi vet att det finns $n!$ permutationer av längd $n$ från alfabetet $X$, där $\abs{X} = n$. Hur kan vi konstruera en permutation av längd $n+1$ från alfabetet $X\cup\{a\}$? Jo, vi börjar med att välja en permutation av $X$ -- vilket vi per induktionshypotesen kan göra på $n!$ sätt -- och väljer sedan var vi skall stoppa in $a$. Vi har $n+1$ alternativ för plats för $a$, så enligt multiplikationsprincipen har vi $(n+1)n! = (n+1)!$ sätt att skapa en permutation av vårt nya längre alfabete.
+  \end{proof}
+\end{example}
+
+\begin{remark}[Stark induktion]
+  I själva verket kan vi ta som induktionshypotes inte bara att $n \in A$, utan att $[n] \subseteq A$, det vill säga att alla heltal från $1$ till $n$ ligger i $A$. (Eller ``har egenskapen $\phi$'', om vi föredrar den formuleringen.) 
+  
+  Att göra det antagandet kallas för \emph{stark induktion} -- vilket egentligen är ett missvisande namn, eftersom det är ekvivalent med vanlig induktion, och alltså kan bevisa precis samma saker. Den är alltså inte ett dugg starkare i logisk mening -- men ibland ger den snyggare formuleringar av bevisen.
+\end{remark}
+
+\begin{theorem}[Välordningsprincipen]
+  För varje mängd $A \subseteq \N$ är antingen $A$ tom, eller så har $A$ ett minsta element.\sidenote[][]{Vi väljer att formulera det här som en sats som följer av induktionsprincipen -- i kursboken är de två separata påståenden, och förra årets anteckningar går i motsatt riktning och bevisar induktion baserat på välordning.S}
+
+  \begin{proof}
+    Antag att $A$ är en mängd av heltal utan minsta element -- vi bevisar med (stark) induktion att $A = \emptyset$, genom att bevisa att $A^c = \N$.
+
+    Att $1 \in A^c$ är uppenbart -- ett är det minsta heltalet, så vore ett i $A$ vore det trivialt ett minsta element i $A$.
+
+    Antag nu att $1, 2, \ldots, n \in A^c$. Alltså är inga av heltalen innan $n+1$ med i $A$, så om $n+1$ vore i $A$ skulle det vara $A$s minsta element. Så eftersom $A$ inte har ett minsta element kan inte $n+1$ ligga i $A$.
+
+    Alltså ger oss nu induktionsprincipen att $A^c = \N$, det vill säga $A = \emptyset$, såsom önskat.
+  \end{proof}
+\end{theorem}
+
+\begin{remark}
+  Detta ger upphov till en vanlig bevisteknik.\sidenote[][]{På engelska kallad \emph{proof by infinite descent}.} Antag att vi vill bevisa att alla heltal har en viss egenskap $\phi$. Vi antar då, för motsägelse, att det inte är så -- då måste det finnas ett minsta motexempel, enligt välordningsprincipen. 
+  
+  Sedan använder vi detta minsta motexempel för att konstruera ett ännu mindre motexempel, och får en motsägelse därur. Att vi kunde skapa ett mindre motexempel motsäger ju nämligen att det vi började med var det minsta exemplet.
+\end{remark}
+
+\section{Lådprincipen}
+
+\section{Inklusion-exklusion}
+
+I matematiska institutionens fikarum för de anställda brukar det finnas äpplen, klementiner, och bananer i fruktlådorna. Om någon säger dig att det för tillfället finns femton runda frukter och tio frukter som inte går att odla i Sverige i lådorna, kan du räkna ut hur många frukter det finns?
+
+Det kan du förstås inte -- problemet är att en klementin tillhör båda kategorierna, så om det finns tio klementiner finns det totalt femton frukter (tio klementiner och fem äpplen), men om det finns noll klementiner finns det totalt tjugofem frukter (femton äpplen och tio bananer). Utan informationen om hur många klementiner det finns kan svaret på frågan variera.
+
+Om vi låter $A$ vara mängden av runda frukter och $B$ vara mängden av frukter som inte kan odlas i Sverige är vad vi har observerat att\sidenote[][]{Jämför detta med additionsprincipen, som i en formulering säger att $\abs{A \coprod B} = \abs{A} + \abs{B}$. När vi introducerade den var vi noggranna med skillnaden mellan $\coprod$ och $\cup$, och sade att vi skulle återkomma till vad som händer om $A$ och $B$ kan dela element.
+
+Detta är vår återkomst.}
+$$\abs{A \cup B} = \abs{A} + \abs{B} - \abs{A \cap B}.$$
+
+En dag kommer en administratör på idén att citroner faktiskt också är en frukt, och berättar för dig att idag finns det tio runda frukter, elva som inte kan odlas i Sverige, och sju \emph{gula frukter}. Du blir förvirrad och går hem och ritar ett Venndiagram över frukter.\sidenote[][]{Nästa morgon får du reda på att det nu dessutom finns gula äpplen, päron, stjärnfrukt, och Xoconostler. Du skriver en arg insändare i UNT om vad universitetet egentligen lägger sin budget på.}
+
+Formeln du kommer på efter att ha studerat ditt Venndiagram är att
+\begin{align*}
+  \abs{A \cup B \cup C} &= \abs{A} + \abs{B} + \abs{C}\\
+  &\qquad - \abs{A \cap B} - \abs{A \cap C} - \abs{B \cap C}\\
+  &\qquad + \abs{A \cap B \cap C}.
+\end{align*}
+
+Innan den fruktgalna administratören hinner lägga till ännu en absurd kategori av frukt undsätter dig din kombinatoriklärare med följande sats:
+\begin{theorem}[Inklusion-exklusion]\label{theorem_inclusion_exclusion}
+  För varje samling av mängder $A_1, \ldots, A_n$ gäller det att
+  $$\abs{\bigcup_{i=1}^n A_i} = \sum_{k=1}^{n} (-1)^{k-1}\left(\sum_{\substack{I \subseteq [n]\\\abs{I} = k}} \abs{\bigcap_{i \in I} A_i}\right),$$
+  eller, uttryckt mindre kompakt, att
+  \begin{align*}
+    \abs{\bigcup_{i=1}^n A_i} = \sum_{i=1}^n &\abs{A_i}\\
+    & - \sum_{\{i,j\} \in [n]} \abs{A_i \cap A_j}\\
+    & + \sum_{ \{i, j, k\} \in [n] } \abs{A_i \cap A_j \cap A_k}\\
+    & - \ldots\\
+    & + (-1)^{n-1}\abs{A_1\cap A_2\cap\ldots\cap A_n}.
+  \end{align*}
+\end{theorem}
+
+Innan vi bevisar detta behöver vi definiera ett väldigt nyttigt verktyg som vi kommer använda i beviset.
+
+\begin{definition}
+  Antag att $A \subseteq X$ är två mängder. Vi definierar \emph{indikatorfunktionen} $\indSet{A}: X \to \{0,1\}$ \emph{för mängden $A$} som
+  $$\indSet{A}(x) = \begin{cases}
+    1  & x \in A \\
+    0 & x \not\in A.
+  \end{cases}$$
+
+  Den är alltså ett om och endast om dess argument ligger i $A$. Vi kan observera några grundläggande egenskaper hos dessa funktioner:
+  \begin{itemize}
+    \item $\indSet{A}(x)\indSet{B}(x) = \indSet{A\cap B}(x)$
+    \item $1 - \indSet{A}(x) = \indSet{X \setminus A}(x)$
+    \item $\abs{A} = \sum_{x \in A} \indSet{A}(x)$
+    \item $(\indSet{A}(x))^n = \indSet{A}(x)$ för alla $n \neq 0$.
+  \end{itemize}
+\end{definition}
+
+Med denna definition gjord kan vi nu resonera algebraiskt om mängder och deras kardinalitet, och kan alltså ge ett algebraiskt bevis av inklusion-exklusion-principen.
+
+\begin{proof}[Algebraiskt bevis av Teorem \ref{theorem_inclusion_exclusion}]
+  Låt $X = \cup_{i=1}^n A_i$. Vi ser att
+  $$\abs{\bigcup_{i=1}^n A_i} = \sum_{x \in X} \indSet{X}(x)$$
+  så vi kan fokusera på varje punkt i taget, och visa att den räknas rätt antal gånger.
+
+  Studera nu uttrycket
+  $$(\indSet{X}(x) - \indSet{A_1}(x))(\indSet{X}(x) - \indSet{A_2}(x))\ldots(\indSet{X}(x) - \indSet{A_n}(x))$$
+  och observera att det måste vara identiskt noll. För varje element $x\in X$ ligger ju i något $A_i$, så produkten innehåller en term $\indSet{X}(x) - \indSet{A_i}(x) = 1 - 1 = 0$.
+
+  Vad får vi om vi multiplicerar ut detta uttrycket? Jo, vi får en term per mängd $I \subseteq [n]$, där vi valt sidan $\indSet{X}(x)$ för $i\not\in I$ och valt sidan $-\indSet{A_i}(x)$ för $i \in I$.\sidenote[][]{Jämför med hur vi resonerade om att multiplicera ut en produkt när vi bevisade binomialsatsen.} Vi vet att uttrycket är noll, så vad vi får är likheten
+  $$\sum_{I \subseteq [n]} \left(\indSet{X}(x)\right)^{n - \abs{I}}\prod_{i\in I}\left(-\indSet{A_i}(x)\right) = 0$$
+  och om vi skriver termerna för $I = \emptyset$ och $I = [n]$ separat har vi likheten
+  $$\prod_{i=1}^{n} (-\indSet{A_i}(x)) + \left(\sum_{\substack{I \subset [n]\\\emptyset \neq I \neq [n]}} \left(\indSet{X}(x)\right)^{n - \abs{I}}\prod_{i\in I}\left(-\indSet{A_i}(x)\right)\right) + \left(\indSet{X}(x)\right)^n = 0$$
+
+  Vi vet av våra räkneregler för indikatorfunktioner att $\indSet{X}(x)^{n-\abs{I}} = \indSet{X}(x)$, eftersom vi plockat ut termen där exponentn blir noll. Den återstående $\indSet{X}(x)$ kan vi bli av med via en annan räkneregel -- vi vet att $\indSet{X}(x)\indSet{A_i}(x) = \indSet{X \cap A_i}(x) = \indSet{A_i}(x)$, eftersom $A_i \subseteq X$, och vi kan göra detta eftersom vi plockat ut termen där vi inte har någon $A_i$ att absorbera in den i. 
+  
+  Om vi tillämpar dessa förenklingar, flyttar ut minustecknet ur produkten och ser att $\indSet{X}(x)^n = \indSet{X}$, blir vad som återstår
+  $$(-1)^n\prod_{i=1}^{n} \indSet{A_i}(x) + \sum_{\substack{I \subset [n]\\\emptyset \neq I \neq [n]}} (-1)^{\abs{I}}\prod_{i\in I}\left(\indSet{A_i}(x)\right) + \indSet{X}(x) = 0.$$
+  
+  Nu kan vi flytta ihop första och andra termen under en summa, eftersom bägge inte innehåller någon $\indSet{X}(x)$. Om vi gör det, och flyttar över den summan på andra sidan, så får vi att
+  $$\indSet{X}(x) = \sum_{\substack{I \subseteq [n]\\I \neq \emptyset}} (-1)^{\abs{I} + 1}\left(\prod_{i\in I} \indSet{A_i}(x)\right).$$
+
+  Om vi använder räkneregeln att $\indSet{A}(x)\indSet{B}(x) = \indSet{A\cap B}(x)$ på produkten här och sedan summerar likheten över alla $x\in X$ så får vi att
+  $$\sum_{x\in X} \indSet{X}(x) = \sum_{\substack{I \subseteq [n]\\I \neq \emptyset}} (-1)^{\abs{I} + 1}\left(\sum_{x\in X} \indSet{\bigcap_{i\in I} A_i}(x)\right)$$
+  vilket, om vi använder oss av att $\sum_{x\in X} \indSet{A}(x) = \abs{A}$, blir
+  $$\abs{X} = \sum_{\substack{I \subseteq [n]\\I \neq \emptyset}} (-1)^{\abs{I} + 1}\abs{\bigcap_{i\in I} A_i}$$
+  vilket vi någorlunda enkelt ser är ett annat sätt att skriva formeln vi var ute efter.
+\end{proof}
+
+\section{Övningar}
+
+\begin{xca}
+  Ge ett induktionsbevis av Teorem \ref{theorem_inclusion_exclusion}, teoremet där vi bevisar inklusion-exklusion-principen.
+\end{xca}
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}
