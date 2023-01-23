@@ -304,6 +304,42 @@ Med denna definition gjord kan vi nu resonera algebraiskt om mängder och deras 
   \end{align*}
 \end{example}
 
+\subsection{Derangemang}
+
+\begin{definition}
+  Ett \emph{derangemang}\sidenote[][]{På engelska \emph{derangement}.} av längd $n$ är en permutation $\sigma$ av längd $n$ ur alfabetet $[n]$, sådan att $\sigma(k) \neq k$ för alla $k$.
+\end{definition}
+
+\begin{theorem}
+  Det finns
+  $$n!\sum_{i=0}^{n} \frac{(-1)^i}{i!}$$
+  derangemang av längd $n$.\sidenote[][]{Ni kanske känner igen summan här som en partialsumma av Taylorexpansionen av $e^x$ då $x = -1$ -- så antalet derangemang är mycket nära $\frac{n!}{e}$ för stora $n$.}
+
+  \begin{proof}
+    Låt $S_n$ vara mängden av alla permutationer av $[n]$ av längd $n$, och för varje $i$,
+    $$A_i = \left\{\sigma \in S_n \given \sigma(i) = i\right\}$$
+    så att vi vill räkna antalet element i $S_n \setminus \bigcup_{i=1}^n A_i$.
+
+    Att $\abs{S_n} = n!$ lärde vi oss redan första föreläsningen, och inklusion-exklusion ger oss att
+    $$\abs{\bigcup_{i=1}^n A_i} = \sum_{k=1}^{n} (-1)^{k-1}\left(\sum_{\substack{I \subseteq [n]\\\abs{I} = k}} \abs{\bigcap_{i \in I} A_i}\right).$$
+
+    Så vad vi behöver göra är att lista ut vad $\abs{\bigcap_{i \in I} A_i}$ är för varje givet $I \subseteq [n]$. Detta snittet blir precis mängden av permutationer sådana att $\sigma(i) = i$ för varje $i\in I$. Så för att skapa en sådan måste vi först sätta $\sigma(i) = i$ för dem, och sedan kan vi välja en ordning fritt för de återstående $n-k$ platserna. Detta kan vi alltså göra på $(n-k)!$ sätt.
+
+    För varje $k$ finns det $\binom{n}{k}$ stycken mängder $I$, så sammantaget måste vi ha att 
+    \begin{align*}
+      \sum_{k=1}^{n} (-1)^{k-1}\left(\sum_{\substack{I \subseteq [n]\\\abs{I} = k}} \abs{\bigcap_{i \in I} A_i}\right) &= \sum_{k=1}^{n} (-1)^{k-1}\binom{n}{k} (n-k)!\\
+      &= \sum_{k=1}^{n} (-1)^{k-1}\frac{n!}{k!(n-k)!}(n-k)!\\
+      &= \sum_{k=1}^{n} (-1)^{k-1}\frac{n!}{k!}
+    \end{align*}
+    så att
+    \begin{align*}
+      \abs{S_n \setminus \bigcup_{i=1}^n A_i} &= \abs{S_n} - \abs{\bigcup_{i=1}^n A_i}\\
+      &= n! - \sum_{k=1}^{n} (-1)^{k-1}\frac{n!}{k!} = n!\sum_{i=0}^{n} \frac{(-1)^i}{i!}
+    \end{align*}
+    såsom vi önskade visa.
+  \end{proof}
+\end{theorem}
+
 \section{Övningar}
 
 \begin{xca}
