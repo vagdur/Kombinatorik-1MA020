@@ -276,6 +276,19 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 	Deras kombinatoriklärare bestämmer att dessa tio studenter måste sitta på platser med udda nummer, så att de inte kan hamna bredvid varandra och fuska.
 
 	Hur många sätt finns det att placera studenterna vid bordet?
+\addlinespace
+    \noindent\textbf{Lösning} 
+    Vi börjar med att rita upp en bild för situationen.
+\begin{center}
+    \includegraphics{bordmedstolar.png}
+\end{center}
+    Enligt uppgiften behöver vi placera ut de fuskande eleverna på udda stolsplatser, alltså ska vi placera ut 10 elever på 12 platser. Detta kan göras på $P(12,10)$ sätt. Därefter har vi 14 elever kvar att placeras ut på de kvarvarande 14 platserna. Det kan göras på $P(14,14)$ sätt. Det totala antalet sättet att placera ut alla elever blir därmed:\\
+    $P(12,10)*P(14,14)=\frac{12!\cdot14!}{2!}$\\
+    \noindent Anledningen till att vi använder permutationer i lösningen är för att vi ser stolsplatserna som unika.\\
+    \noindent\textbf{Tips}
+    Viktigt i liknande uppgifter är att identifiera ifall platserna, stolarna i det här fallet, är unika eller inte. Om det är unika, som i det här fallet, så använder vi oss av permutationer. Är det inte unika så får vi använda oss av kombinationer istället. Detta försöktes tydliggöras genom att numrerar stolsplatserna. 
+    Ett sätt att enklare förstå uppgiften är att vi ska dela ut stolsnummer till eleverna, istället för att placera ut eleverna på stolarna. Då kan det bli enklare att förstå varför det går att placera ut de 10 fuskande eleverna på de 12 udda platserna blir $P(12,10)$. 12 stolsnummer ska delas ut till 10 personer
+\end{xca}
 \end{xca}
 
 \begin{xca}
