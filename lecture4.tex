@@ -58,7 +58,7 @@ Vi fortsätter studera inklusion-exklusion, och ger fler tillämpningar.
   $$\stirlingPart{n}{m} = \frac{1}{m!}\sum_{k=0}^{m}(-1)^k\binom{m}{k}(m-k)^n.$$
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}\label{theorem_count_surjections}
   Låt $A$ och $B$ vara ändliga mängder med $\abs{A} = n$, $\abs{B} = m$, och $n \geq m$. Antalet surjektioner från $A$ till $B$ ges av
   $$S(n,m) = m!\stirlingPart{n}{m} = \sum_{k=0}^{m} (-1)^k \binom{m}{k}(m-k)^n.$$
 
@@ -85,6 +85,25 @@ Vi fortsätter studera inklusion-exklusion, och ger fler tillämpningar.
 
   Vår sats säger oss att svaret är $3!\stirlingPart{5}{3} = 150$.
 \end{example}
+
+\section{Mängdpartitioner}
+
+Hur många sätt finns det att fördela $n$ objekt i $k$ stycken olika högar? Här har vi en ny variant på räkneproblem -- istället för att vi har objekt som är särskiljbara eller inte så har vi nu osärskiljbara \emph{lådor}.
+
+\begin{theorem}
+  Antag att vi har en mängd $X$ med $\abs{X} = n$. Ett sätt att dela upp denna mängd i $k$ osärskiljbara högar\sidenote[][]{Alltså, för den som vill vara formell, ett sätt att skriva $X = A_1 \cup A_2 \cup \ldots \cup A_k$ där $A_i \cap A_j = \emptyset$ för $i \neq j$, där etiketterna på våra $A_i$ inte spelar roll. Eller så kan man se det som en ekvivalensrelation på $X$ med $k$ delar.} kallas för en \emph{mängdpartition} av $X$ i $k$ delar.
+
+  Antalet sådana ges av
+  $$\stirlingPart{n}{k}.$$
+
+  \begin{proof}
+    Vi bevisar detta genom att räkna antalet surjektioner från $X$ till $[k]$ på två olika sätt.
+
+    Beteckna antalet mängdpartitioner av $X$ i $k$ delar med $m$. Vi kan skapa oss en surjektion från $X$ till $[k]$ genom att först dela upp $X$ i $k$ delar, och sedan ge etiketter från $1$ till $k$ till delarna. Vår surjektion blir då att vi skickar del $i$ till talet $i \in [k]$. Eftersom det finns $k!$ sätt att tilldela etiketterna (etiketteringen är en permutation av längd $k$ från $[k]$) säger oss Multiplikationsprincipen att det måste finnas $k!m$ surjektioner från $X$ till $[k]$.
+
+    Men vi vet också av Teorem \ref{theorem_count_surjections} att antalet surjektioner ges av $k!\stirlingPart{n}{k}$. Alltså måste $m = \stirlingPart{n}{k}$, som önskat.
+  \end{proof}
+\end{theorem}
 
 \section{Övningar}
 
