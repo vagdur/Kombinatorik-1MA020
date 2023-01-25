@@ -36,6 +36,8 @@
 
 \begin{document}
 
+\definecolor{darkgreen}{rgb}{0.0627, 0.4588, 0.1451}
+
 \maketitle% this prints the handout title, author, and date
 
 \begin{abstract}
@@ -104,6 +106,43 @@ Hur många sätt finns det att fördela $n$ objekt i $k$ stycken olika högar? H
     Men vi vet också av Teorem \ref{theorem_count_surjections} att antalet surjektioner ges av $k!\stirlingPart{n}{k}$. Alltså måste $m = \stirlingPart{n}{k}$, som önskat.
   \end{proof}
 \end{theorem}
+
+\section{Den tolvfaldiga vägen}
+
+När vi talade om kompositioner fördelade vi alltså osärskiljbara objekt i särskiljbara lådor -- och studerade både fallet där lådor fick vara tomma, och när de inte fick det. För surjektioner fördelar vi särskiljbara objekt i särskiljbara lådor, och kräver att varje låda får ett objekt.
+
+Vi börjar ana ett mönster här i hur våra problem kan se ut. Vi kan ha
+\begin{enumerate}
+  \item Särskiljbara objekt och särskiljbara lådor
+  \item Osärskiljbara objekt och särskiljbara lådor
+  \item Särskiljbara objekt och osärskiljbara lådor
+  \item Osärskiljbara objekt och osärskiljbara lådor
+\end{enumerate}
+och vi kan ha olika krav på hur objekten fördelas i lådorna
+\begin{enumerate}
+  \item Generell -- lådor får vara tomma och får innehålla hur många objekt som helst
+  \item Surjektiv -- varje låda måste innehålla något objekt
+  \item Injektiv -- ingen låda får innehålla mer än ett objekt
+\end{enumerate}
+så sammanfattningsvis har vi en tabell med tolv stycken tänkbara kombinatorikproblem. Det kommer visa sig att vi i själva verket redan studerat sju av dem.
+
+
+Under föreläsning två pratade vi om fördelningar av osärskiljbara objekt mellan särskiljbara personer, och gav en formel för deras antal i Proposition 11, men vi gav aldrig ett kort namn åt detta problem. Låt oss kalla en sådan fördelning för en \emph{multi-delmängd} till mängden av personer.
+
+En \emph{multi-mängd} är som en vanlig mängd, fast den får innehålla ett och samma objekt mer än en gång. Så vi betraktar alltså fördelningen av objekt mellan personer som en multi-delmängd genom att tänka att varje person är med i multidelmängden lika många gånger som antalet objekt den fick.
+
+Så låt oss rita denna tabell -- problem vi redan studerat är i svart text, problem vi inte sett innan är i \textcolor{darkgreen}{grön text}. Låt $N$ vara en mängd av $n$ \emph{objekt}, och $X$ vara en mängd av $x$ \emph{lådor}. Vi ser fördelningarna av objekt i lådor som en funktion $f: N \to X$.
+
+\begin{fullwidth}
+  \begin{tabularx}{\linewidth}{l|ccc}
+      & Generellt $f$ & Injektivt $f$ & Surjektivt $f$\\
+      \midrule
+    Bägge särskiljbara & \specialcell{Ord ur $X$ av längd $n$\\ $x^n$} & \specialcell{Permutation ur $X$ av längd $n$\\ $\frac{x!}{(x-n)!}$} & \specialcell{Surjektion från $N$ till $X$\\$x!\stirlingPart{n}{x}$} \\
+    Osärskiljbara objekt & \specialcell{Multi-delmängd av $X$\\ av storlek $n$\\$\binom{n + x - 1}{n}$} & \specialcell{Delmängd av $X$ av storlek $n$\\$\binom{x}{n}$} & \specialcell{Kompositioner av $n$\\av längd $x$\\$\binom{n - 1}{n - x}$} \\
+    Osärskiljbara lådor & \specialcell{\textcolor{darkgreen}{Mängdpartition av $X$}\\ \textcolor{darkgreen}{ i $\leq x$ delar} \\\textcolor{darkgreen}{$\sum_{k=1}^{x} \stirlingPart{n}{k}$}} & \specialcell{\textcolor{darkgreen}{Mängdpartition av $X$}\\ \textcolor{darkgreen}{i $\leq x$ delar av storlek $1$}\\\textcolor{darkgreen}{$1$ om $n \leq x$, $0$ annars}} & \specialcell{Mängdpartition av $N$\\i $x$ delar\\$\stirlingPart{n}{x}$} \\
+    Bägge osärskiljbara & \specialcell{\textcolor{darkgreen}{Heltalspartition av $n$ i $\leq x$ delar}\\\textcolor{darkgreen}{$p_x(n + x)$}} & \specialcell{\textcolor{darkgreen}{Sätt att skriva $n$ som}\\\textcolor{darkgreen}{summan av $\leq x$ ettor}\\\textcolor{darkgreen}{$1$ om $n \leq x$, $0$ annars}} & \specialcell{\textcolor{darkgreen}{Heltalspartitioner av $n$}\\ \textcolor{darkgreen}{i $x$ delar} \\\textcolor{darkgreen}{$p_x(n)$}} 
+  \end{tabularx}
+\end{fullwidth}
 
 \section{Övningar}
 
