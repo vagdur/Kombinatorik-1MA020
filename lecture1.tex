@@ -77,10 +77,8 @@ För det allra mesta behöver man inte vara så här rigorös, men det kan vara 
 
 \begin{example}\label{example_addition_rule_with_cans}
     Vi har två burkar med olikfärgade kulor. Om vi ska plocka ut en kula från en av brukarna, på hur många sätt kan vi göra det?
-\begin{center}[h]   
-    \includegraphics{graphics/burkar med kulor.png}
+    \includegraphics{graphics/Burkar med kulor.png}
 	%\caption{Två separata burkar med kulor i}
-\end{center}
 
     Vi kan använda additionsregeln för att beräkna det och det ges av $9+6=15$, vilket summerar antalet kulor totalt vi har att välja bland.
 \end{example}
@@ -199,7 +197,7 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
 \section{Kombinationer}
 
 \begin{definition}
-	För en mängd $X$ så är en \emph{kombination} av element ur $X$ en delmängd $A \subseteq X$.\sidenote{Vi talade innan om etiketter och inte. Man kan se en kombination som en permutation utan etiketter -- vi vet bara vilka element som är med, inte i vilken ordning de kommer.}
+	För en mängd $X$ så är en \emph{kombination} av element ur $X$ en delmängd $A \subseteq X$.\sidenote{Vi talade innan om etiketter och inte. Man kan se en kombination som en permutation där ordningen av platserna inte spelar roll -- vi vet bara vilka element som är med, inte i vilken ordning de kommer.}
 \end{definition}
 
 \begin{example}
@@ -218,7 +216,7 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
 
 		Istället för att tänka oss att vi väljer en bokstav i taget, kan vi tänka oss att vi först väljer en mängd $A$ av bokstaver som skall vara med -- och då måste ju $\abs{A} = k$ eftersom varje bokstav skall dyka upp exakt en gång -- och sedan väljer en ordning i vilken bokstäverna skall dyka upp.
 
-		Antalet sätt att välja en ordning för våra $k$ bokstäver är precis antalet permutationer av längd $k$ från alfabetet $A$, vilket vi vet är $P(k,k)$. Så om vi betecknar antalet sätt att välja mängden $A$ med $m$, så säger oss multiplikationsregeln att antalet permutationer av längd $k$ från $X$ måste vara $m\cdot P(k,k)$.
+		Antalet sätt att välja en ordning för våra $k$ bokstäver är precis antalet permutationer av längd $k$ från alfabetet $A$, vilket vi vet är $P(k,k)$. Så om vi betecknar antalet sätt att välja mängden $A$ med antalet kombinationer $m$, så säger oss multiplikationsregeln att antalet permutationer av längd $k$ från $X$ måste vara $m\cdot P(k,k)$.
 
 		Men vi vet ju också, från hur vi räknade antalet permutationer innan, att $P(n,k) = \frac{n!}{(n-k)!}$ och $P(k,k) = k!$. Så vad vi har visat är att
 		$$\frac{n!}{(n-k)!} = P(n,k) = m P(k,k) = m k!$$
