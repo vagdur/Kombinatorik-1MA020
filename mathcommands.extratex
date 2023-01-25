@@ -112,3 +112,6 @@
 
 % Mängddifferens
 \newcommand{\symdiff}{\mathbin{\triangle}}
+
+% Stirlingtal
+\DeclareRobustCommand{\stirlingPart}{\genfrac\{\}{0pt}{}}
