@@ -77,8 +77,10 @@ För det allra mesta behöver man inte vara så här rigorös, men det kan vara 
 
 \begin{example}\label{example_addition_rule_with_cans}
     Vi har två burkar med olikfärgade kulor. Om vi ska plocka ut en kula från en av brukarna, på hur många sätt kan vi göra det?
-    \includegraphics{graphics/Burkar med kulor.png}
+\begin{figure}[h]   
+    \includegraphics{graphics/burkar med kulor.png}
 	%\caption{Två separata burkar med kulor i}
+\end{figure}
 
     Vi kan använda additionsregeln för att beräkna det och det ges av $9+6=15$, vilket summerar antalet kulor totalt vi har att välja bland.
 \end{example}
@@ -139,8 +141,9 @@ Om vi antar att $\abs{X} < k$ men vi ska välja ut en permutation av längd k. D
 Låt $X = [3]$. Det finns $6$ permutationer av längd $2$ av $X$\sidenote{Dessa är, specifikt, $$12, 13, 21, 23, 31, 32.$$} -- vi kan se detta med hjälp av multiplikationsprincipen: Vi har tre val av första bokstav, men när vi valt den har vi bara två val kvar av andra bokstav, eftersom vi inte får ha två av samma. Alltså är det totala antalet $3\times 2 = 6$.
 
 
-\begin{figure}[h]    \includegraphics{graphics/bildpresentation.png}
-\end{figure}
+\begin{center}
+     \includegraphics{graphics/bildpresentation.png}
+\end{center}  
 
 I bilden ser vi en representation av exempel 9. Tänk att de olika färgerna representerar olika bokstäver. Vi har från början tre bokstäver. Vi väljer först en bokstav och då har vi tre val, när vi valt en har vi två bokstäver kvar att välja på. 
 \end{example}
@@ -173,13 +176,12 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
 
 	Om platserna har etiketter, så att det inte bara är ordningen som spelar roll, så kan vi numrera platserna från plats $1$ till plats $n$. Om vi kallar mängden med gäster för $X$ blir alltså varje placering ett $X$-ord -- vi kan skriva den som ``gäst ett, gäst två, etc.''. Och eftersom varje person bara kan sitta på en stol blir detta alltså en permutation -- och vi vet att det finns $n!$ permutationer av längd $n$ ur ett alfabete med $n$ bokstäver.
  
-\begin{figure}[h]
-\includegraphics[width=0.7\textwidth]{graphics/bordmedfarg1.png}
-\label{fig:3}
-\end{figure}
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{graphics/bordmedfarg1.png}
+\end{center}
 
 
-        Bilden visar de olika platserna, se figur \ref{fig:3}. , och de olika platserna har olika färger. Vi kan då se det som att det inte är samma sak att sitta på en blå pall som att sitta på en orange pall tillexempel. Alltså kommer då spela roll vilken stol man sitter på och vem man sitter brevid. \sidenote{De svmå svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.}
+        Bilden ovan visar de olika platserna och de olika platserna har olika färger. Vi kan då se det som att det inte är samma sak att sitta på en blå pall som att sitta på en orange pall tillexempel. Alltså kommer då spela roll vilken stol man sitter på och vem man sitter brevid. \sidenote{De svmå svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.}
 
 	Om platserna är oetiketterade, det vill säga att det enda vi bryr oss om är ordningen folk sitter i, får vi räkna på ett annat sätt. Givet en placering kan vi godtyckligt välja en person som ``först'', och sedan numrera platserna i medurs ordning. För varje av de $n$ sätten att välja vem som är först får vi alltså en placering där platserna har etiketter.
 
@@ -187,17 +189,16 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
 
 	Men eftersom vi redan vet att antalet när platserna har etiketter är $n!$ så får vi alltså av detta att $n! = nm$, eller $m = \frac{n!}{n} = (n-1)!$, och vi har räknat antalet utan etiketter till $(n-1)!$.\sidenote{Detta är ett vanligt sätt att resonera inom kombinatorik -- vi hittade två olika sätt att räkna samma sak, och fick på så sätt ut en likhet ($nm = n!$) som vi kunde använda för att räkna en annan sak.}
  
- \begin{figure}[h] 
- \includegraphics[width=0.9\textwidth]{graphics/bordutanfarg1.png}
- \label{fig:4}
-\end{figure}
+ \begin{center}
+      \includegraphics[width=0.9\textwidth]{graphics/bordutanfarg1.png}
+ \end{center}
 
        Här är alltså varje plats likadan och det kommer endast spela roll vem man sitter brevid, till skillnad från vid förra bordet. Se figur \ref{fig:4}. \sidenote{De svmå svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.} 
 \end{example}
 \section{Kombinationer}
 
 \begin{definition}
-	För en mängd $X$ så är en \emph{kombination} av element ur $X$ en delmängd $A \subseteq X$.\sidenote{Vi talade innan om etiketter och inte. Man kan se en kombination som en permutation där ordningen av platserna inte spelar roll -- vi vet bara vilka element som är med, inte i vilken ordning de kommer.}
+	För en mängd $X$ så är en \emph{kombination} av element ur $X$ en delmängd $A \subseteq X$.\sidenote{Vi talade innan om etiketter och inte. Man kan se en kombination som en permutation utan etiketter -- vi vet bara vilka element som är med, inte i vilken ordning de kommer.}
 \end{definition}
 
 \begin{example}
@@ -216,7 +217,7 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
 
 		Istället för att tänka oss att vi väljer en bokstav i taget, kan vi tänka oss att vi först väljer en mängd $A$ av bokstaver som skall vara med -- och då måste ju $\abs{A} = k$ eftersom varje bokstav skall dyka upp exakt en gång -- och sedan väljer en ordning i vilken bokstäverna skall dyka upp.
 
-		Antalet sätt att välja en ordning för våra $k$ bokstäver är precis antalet permutationer av längd $k$ från alfabetet $A$, vilket vi vet är $P(k,k)$. Så om vi betecknar antalet sätt att välja mängden $A$ med antalet kombinationer $m$, så säger oss multiplikationsregeln att antalet permutationer av längd $k$ från $X$ måste vara $m\cdot P(k,k)$.
+		Antalet sätt att välja en ordning för våra $k$ bokstäver är precis antalet permutationer av längd $k$ från alfabetet $A$, vilket vi vet är $P(k,k)$. Så om vi betecknar antalet sätt att välja mängden $A$ med $m$, så säger oss multiplikationsregeln att antalet permutationer av längd $k$ från $X$ måste vara $m\cdot P(k,k)$.
 
 		Men vi vet ju också, från hur vi räknade antalet permutationer innan, att $P(n,k) = \frac{n!}{(n-k)!}$ och $P(k,k) = k!$. Så vad vi har visat är att
 		$$\frac{n!}{(n-k)!} = P(n,k) = m P(k,k) = m k!$$
@@ -251,17 +252,21 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 	Delmängder av storlek $k$ och delmängder av storlek $n-k$ står alltså i ett-till-ett-korrespondens med varandra, det finns en bijektion mellan dem, så det måste finnas lika många av storlek $k$ som av storlek $n-k$.
 
 	Men vi vet att antalet delmängder av storlek $n-$ är $\binom{n}{n-k}$, och alltså måste $\binom{n}{k} = \binom{n}{n-k}$.
- På bilderna nedan kan vi se två olika representationer av komplementet för k och k. 
-\begin{figure}[h]
-\includegraphics[width=0.7\textwidth]{graphics/komplementbild1.png}
 
-\end{figure}
-
-\begin{figure}[h]
-\includegraphics[width=0.7\textwidth]{graphics/komplementbild2.png}
-
-\end{figure}
 \end{proof}
+
+ På bilderna nedan kan vi se två olika representationer av komplementet för k och k. 
+ 
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{graphics/komplementbild1.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{graphics/komplementbild2.png}
+ \end{center}
+
+\bibliography{references}
+\bibliographystyle{plainnat}
 
 \section{Övningar}
 
@@ -281,6 +286,16 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 \begin{xca}
 	Ge ett kombinatoriskt bevis för att\sidenote[][]{Ledtråd: Tänk på att välja grupper med ledare för ett projekt.}
 	$$k\binom{n}{k} = n \binom{n-1}{k-1}.$$
+
+    Från fotnoten får vi tipset att tänka på det som att välja en grupp med ledare. Vi försöker nu studera vänsterledet för sig och högerledet för sig för att kombinatoriskt bevisa likheten. 
+        Vi kollar på vänsterledet först: Vi vill välja en grupp med k personer i och vi har totalt n stycken personer att välja på. För att få antalet sätt vi kan skapa denna gruppen tar vi $$\binom{n}{k}.$$. Nu har vi alltså beräknat antalet sätt att skapa en grupp med k personer. Nu vill vi välja en ledare bland dessa personer. Vi har då k potentiella ledare. Så För att beräkna antalet sätt vi kan skapa en grupp med k personer varav en person är ledare får vi då $$k\binom{n}{k}$$
+        Nu tittar vi på högerledet: Vi vill visa att högerledet också beräknar antalet sätt att skapa en grupp med k personer varav en person är ledare. Vi har n personer att välja på och vi ska ha en grupp på k personer och en av de ska vara ledare. Nu börjar vi med att välja en person som ska vara vår ledare, vi har då n personer att välja på för att vara ledare. Nu vill vi välja en grupp till den här ledaren. Vi har n-1 personer kvar att välja på och k-1 platser kvar att fylla upp i gruppen. Antalet sätt att skapa gruppen av resterande personer blir då $$\binom{n-1}{k-1}.$$. Så antalet sätt att skapa en grupp med en ledare och k-1 medlemmar (alltså totalt k medlemmar) är då $$n \binom{n-1}{k-1}.$$. 
+\end{proof}
+\noindent\textbf{Tips}
+
+         1. I denna uppgiften använde vi oss av att vi ska skapa grupper. Ett bra sätt att lösa liknande uppgifter är att se det som att vi ska skapa grupper med personer av olika slag. Det kan vara en grupp med en eller flera ledare, grupper av olika storlekar med olika många personer som ska väljas ut eller plockas bort med mera. Försök att skapa ett sammanhang.
+         
+         2. Är det svårt att hitta ett sammanhang så försök att identifiera variablerna en efter en, så i detta fallet försök först att identifiera vad k skulle kunna innebära och vad $$\binom{n}{k}$$ skulle kunna innebära. Försök också att starta med en sida, så antigen vänsterled eller högerled. Identifiera de olika variablerna (tillexdempel i ett sammanhang) på den sidan och försök sedan ska en matchning med andra sidan.
 \end{xca}
 
 \begin{xca}
@@ -298,6 +313,52 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 		\item Vad är det största och minsta värde som $A \cup B$ kan ta?
 		\item Vad är det största och minsta värde som $A \cap B$ kan ta?
 	\end{enumerate}
+
+ \noindent\textbf{Lösning}
+
+ \addlinespace 
+ 
+ 1. Det finns $\abs{A} + \abs{B} = 15 + 7 = 22$. stycken sätt att välja ett objekt från A eller ett objekt från B. Detta gäller från additionsregeln.
+ 
+\addlinespace
+
+ 2. Det finns $\abs{A}\abs{B}  = 15 \cdot 7= 105$ sätt att välja ett objekt från A och ett objekt från B. Detta gäller från multiplikationsregeln. 
+ 
+ \addlinespace
+
+ 3. Det är antalet sätt vi kan välja ett objekt ur A och ett objekt ur B, alltså $15 \cdot 7=105$. 
+
+ \addlinespace
+
+ 4. Det är antalet sätt att välja ett objekt ur A eller ett objekt ur B, alltså $15 + 7 = 22$.
+
+\addlinespace
+
+ 5. Det största värdet $A \cup B$ kan anta är $15+7=22$. I detta fallet (största möjliga unionen) kommer alla element i B vara olika från alla element i A, vilket gör att vår nya mängd kommer innehålla alla 7 element i B och alla 15 element i A. 
+ \begin{center}
+    \includegraphics[width=0.7\textwidth]{graphics/mangButanformangdA.png}
+ \end{center}
+ 
+ Det minsta värdet $A \cup B$ kan anta är 15. I detta fallet (minsta möjliga unionen) kommer alla element i B vara närvarande i A. Alltså kommer vår nya mängd vara lika med mängden A, eftersom B också är närvarande i den mängden. 
+ \begin{center}
+    \includegraphics[width=0.7\textwidth]{graphics/mangimangdA.png}
+ \end{center}
+
+ \addlinespace
+
+ 6. Det största värdet som $A \cap B$ kan anta är 7. I detta faller kommer alla element i B vara närvarande i A. Då får vi vår nya mängd som innehåller alla element som finns i både A och i B. 
+ Här kan vi visualisera problemet på samma sätt som andra bilden i övning 5.5 (bilden precis ovan).
+
+ Det minsta värdet som $A \cap B$ kan anta är 0. I detta fallet så kommer alla element i B vara skilda från alla element i A och vårt snitt kommer då bli en tom mängd. 
+ Här kan vi visualisera problemet på samma sätt som första bilden i övning 5.5 (två bilder upp).
+\addlinespace
+
+\noindent\textbf{Tips}
+
+1. I sådana uppgifter är det bra att fundera över hur additionsregeln och multiplikationsregeln kan appliceras. 
+
+2. Rita upp mängderna och de olika fallen, ligger mängderna i varandra (innehåller samma element), ligger de utanför varandra (innehåller inte samma element) eller ligger de delvis i varandra/utanförvarandra?
+
 \end{xca}
 
 \begin{xca}
