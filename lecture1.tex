@@ -314,6 +314,21 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 \begin{xca}
 	Ge ett kombinatoriskt bevis för att
 	$$\binom{n}{2}\binom{n-2}{k-2} = \binom{n}{k}\binom{k}{2}.$$
+	
+\noindent\textbf{Lösning}
+\begin{proof}
+Här kan vi tänka på ungefär samma sätt som uppgift 3, men nu är skillnaden att vi ska välja 2 ledare istället för en. 
+Vi Har en grupp på en personer och vi vill välja ut en liten grupp med k personer i varav 2 av de kommer utses till ledare. 
+Vi börjar med vänsterledet: Vi har alltså n personer och vi vill välja två stycken ledare av alla de n personerna. Detta kan vi göra på $$\binom{n}{2}$$ sätt. När det är gjort så har vi n-2 personer kvar som inte blivit valda och av de n-2 personerna vill vi välja ut k-2 stycken för att skapa en grupp med k-2 personer och som tillsammans med ledarna skapar en grupp på k personer. Gruppen på k-2 personer kan vi skapa på $\binom{n-2}{k-2}$ sätt, eftersom vi har n-2 personer kvar. När vi då multiplicerar $$\binom{n}{2}\binom{n-2}{k-2}$$ får vi alltså antalet sätt att forma en grupp med k personer varav 2 stycken är ledare. 
+
+Vi kollar på högerledet: I högerledet tänker vi först att vi vill skapa en grupp med k personer av de n stycken möjliga personerna. Antalet sätt att göra detta på är $\binom{n}{k}$. Så när vi har skapat en grupp med k personer i så vill vi välja två stycken ledare. Detta kan vi göra på $$\binom{k}{2}.$$ sätt eftersom vi har k stycken möjliga ledare och vi ska välja ut två stycken. 
+
+Nu har vi visat att både vänsterledet och högerledet båda beräknar antalet sätt att forma en grupp med k personer i varav två personer är ledare. 
+\end{proof}
+\noindent\textbf{Tips}
+
+Tipsen i denna uppgiften är samma som för uppgift 3. 
+
 \end{xca}
 
 \begin{xca}
