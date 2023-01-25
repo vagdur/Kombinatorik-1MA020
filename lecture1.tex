@@ -296,6 +296,17 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 	$$k\binom{n}{k} = n \binom{n-1}{k-1}.$$
 \end{xca}
 
+\noindent\textbf{Lösning}
+    $$HL = n \binom{n-1}{k-1} = \frac{n(n-1)!}{(k-1)!(n-1-(k-1))!}$$ $$= \frac{n(n-1)!}{(k-1)!(n-k)!} = \frac{k\cdot n!}{k!(n-k)!} = k\binom{n}{k} = VL$$
+    
+\noindent\textbf{Tips}
+    Expandera utrycket genom att använda definitionen av binomialkoefficienter
+    $$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
+    Tänk på att n-fakultet kan skrivas som
+    $$n! = n(n-1)(n-2)...2\cdot 1$$ 
+    och att
+    $$\frac{n}{n!} = \frac{1}{(n-1)!}$$
+
 \begin{xca}
 	Ge ett kombinatoriskt bevis för att\sidenote[][]{Ledtråd: Tänk på att välja grupper med ledare för ett projekt.}
 	$$k\binom{n}{k} = n \binom{n-1}{k-1}.$$
