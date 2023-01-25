@@ -1,0 +1,63 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Extra övningar $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
+
+%\date{15 januari 2023}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+\include{mathcommands.extratex}
+
+\begin{document}
+
+\definecolor{darkgreen}{rgb}{0.0627, 0.4588, 0.1451}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+När jag skriver föreläsningsanteckningar och övningar till dessa hittar jag ibland extra övningar som hade platsat bland de i slutet av föreläsningsanteckningarna. Jag kan så klart inte lägga till alla övningarna till anteckningarna, för att inte inlämningsuppgifterna skall bli allt för betyngande. Dessa extra övningar hamnar i stället i denna fil.
+
+Uppgifterna kommer inte i någon särskild ordning, utan bara efter ordningen jag hittat dem. Nya uppgifter kommer alltid att läggas till sist i filen, så att numreringen av tidigare uppgifter inte ändras.
+\end{abstract}
+
+\begin{xca}
+    Ge ett kombinatoriskt bevis\sidenote[][]{Ledtråd: Vänster led räknar antalet sätt att välja en delmängd av storlek $n$ \emph{och} en av storlek $m$. Varför räknar också höger led detta?} för att
+    $$\binom{z}{n}\binom{z}{m} = \sum_{k=0}^{n} \binom{n + m - k}{k,\,n-k,\,m-k}\binom{z}{m + n -k},$$
+    där $\binom{n + m - k}{k,\,n-k,\,m-k}$ är en multinomialkoefficient.
+\end{xca}
+
+\begin{xca}
+    Hur många heltal mellan $1$ och $100$ är delbara med $2$, $3$, eller $5$?\sidenote[][]{Använd inklusion-exklusion -- till exempel $30$ är ju delbart med alla tre.}
+\end{xca}
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}
