@@ -172,11 +172,14 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
 	Det finns två olika sätt vi kan se på frågan\sidenote{Detta är ett exempel av skillnaden mellan problem med etiketter och utan, vilket är ett generellt fenomen som kommer återkomma gång på gång. Här är det platserna runt bordet som kan ha etiketter eller inte. Var noggrann med att fundera kring vilken typ av } -- antingen är det skillnad på de olika stolarna runt bordet (vissa kan se ut genom fönstret, andra inte), så att vi får olika sätt att placera folk runt bordet genom att rotera hela placeringen, eller så är det enda som spelar roll ordningen de sitter i, och vi ser olika rotationer av samma ordning som samma sätt att sitta runt bordet.
 
 	Om platserna har etiketter, så att det inte bara är ordningen som spelar roll, så kan vi numrera platserna från plats $1$ till plats $n$. Om vi kallar mängden med gäster för $X$ blir alltså varje placering ett $X$-ord -- vi kan skriva den som ``gäst ett, gäst två, etc.''. Och eftersom varje person bara kan sitta på en stol blir detta alltså en permutation -- och vi vet att det finns $n!$ permutationer av längd $n$ ur ett alfabete med $n$ bokstäver.
-
-	 \begin{figure}[h]    \includegraphics{graphics/bordmedfarg1.png}
+ 
+\begin{figure}[h]
+\includegraphics[width=0.7\textwidth]{graphics/bordmedfarg1.png}
+\label{fig:3}
 \end{figure}
 
-        Bilden visar de olika platserna, och de olika platserna har olika färger. Vi kan då se det som att det inte är samma sak att sitta på en blå pall som att sitta på en orange pall tillexempel. Alltså kommer då spela roll vilken stol man sitter på och vem man sitter brevid. \sidenote{De svmå svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.}
+
+        Bilden visar de olika platserna, se figur \ref{fig:3}. , och de olika platserna har olika färger. Vi kan då se det som att det inte är samma sak att sitta på en blå pall som att sitta på en orange pall tillexempel. Alltså kommer då spela roll vilken stol man sitter på och vem man sitter brevid. \sidenote{De svmå svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.}
 
 	Om platserna är oetiketterade, det vill säga att det enda vi bryr oss om är ordningen folk sitter i, får vi räkna på ett annat sätt. Givet en placering kan vi godtyckligt välja en person som ``först'', och sedan numrera platserna i medurs ordning. För varje av de $n$ sätten att välja vem som är först får vi alltså en placering där platserna har etiketter.
 
@@ -184,12 +187,13 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
 
 	Men eftersom vi redan vet att antalet när platserna har etiketter är $n!$ så får vi alltså av detta att $n! = nm$, eller $m = \frac{n!}{n} = (n-1)!$, och vi har räknat antalet utan etiketter till $(n-1)!$.\sidenote{Detta är ett vanligt sätt att resonera inom kombinatorik -- vi hittade två olika sätt att räkna samma sak, och fick på så sätt ut en likhet ($nm = n!$) som vi kunde använda för att räkna en annan sak.}
  
- \begin{figure}[h]    \includegraphics{graphics/bordutanfarg1.png}
+ \begin{figure}[h] 
+ \includegraphics[width=0.9\textwidth]{graphics/bordutanfarg1.png}
+ \label{fig:4}
 \end{figure}
 
-       Här är alltså varje plats likadan och det kommer endast spela roll vem man sitter med, till skillnad från vid förra bordet.\sidenote{De svmå svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.} 
+       Här är alltså varje plats likadan och det kommer endast spela roll vem man sitter brevid, till skillnad från vid förra bordet. Se figur \ref{fig:4}. \sidenote{De svmå svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.} 
 \end{example}
-
 \section{Kombinationer}
 
 \begin{definition}
