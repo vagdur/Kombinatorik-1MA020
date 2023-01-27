@@ -144,6 +144,41 @@ Så låt oss rita denna tabell -- problem vi redan studerat är i svart text, pr
   \end{tabularx}
 \end{fullwidth}
 
+Låt oss ge argument för varför varje av cellerna i denna tabell faktiskt är vad som påstås.
+
+Raden med bägge särskiljbara är den enklaste att fundera på. Om vi tar ett generellt $f$ räknar vi \emph{alla} funktioner från $N$ till $X$, utan begränsningar och utan att bekymra oss om särskiljbarhet. Ett annat ord för ``funktion från $N$ till $X$'' kan vara ``ord ur $X$ av längd $n$'' ifall vi tänker oss $N = [n]$. Att kräva att funktionen är injektiv är samma sak som att kräva att ingen bokstav dyker upp två gånger i ordet, vilket ju var vår definition av en permutation. Om det enda vi kräver är att funktionen är surjektiv är så klart vad vi räknar just surjektioner.
+
+I raden med osärskiljbara objekt så kan vi tänka oss objekten som bollar vi lägger i lådorna. Om vi kan acceptera varje fördelning av bollar -- lådor får vara tomma eller innehålla mer än en boll -- är ju detta precis vårt scenario med att fördela mynt bland personer, vilket vi just gett namnet multi-delmängder. Om varje låda bara får innehålla noll eller en boll, och vi inte kan se skillnad på bollarna, bestäms varje fördelning av bollar bara av vilka lådor som har en boll och vilka som inte har en -- alltså av en delmängd av lådorna, och delmängden måste ha samma storlek som antalet bollar. Kräver vi att varje låda måste få en boll är vi i fallet med kompositioner, som vi definierade kort i slutet av biten om multi-delmängder -- vi kan få en sådan genom att först ge varje person ett mynt och sedan fördela ut resten av mynten fritt, så vi härleder lätt den formeln ur formeln för multi-delmängder.
+
+I raden med osärskiljbara lådor får vi i stället tänka oss att objekten är distinkta, men vi lägger dem i högar (och tillåter oss högst $x$ olika högar) istället för i lådor -- så vi kan inte se skillnad på olika högar annat än på deras innehåll. Ett av fallen, där vi kräver en surjektion, har vi just behandlat -- att varje av våra $x$ högar måste innehålla ett objekt gör bara att vi begränsar oss till att dela upp våra objekt i exakt $x$ högar, alltså att vi gör en mängdpartition av dem i $x$ delar. Om vi inte kräver att funktionen är surjektiv tillåter vi ``tomma högar'', vilka ju resulterar i att vi har en uppdelning i ett mindre antal faktiska högar. Så formeln är bara att vi summerar den tidigare formeln över varje möjligt antal högar.
+
+Fallet med injektiva $f$ och osärskiljbara lådor är korkat. Vi vill alltså dela upp våra objekt i högst $x$ stycken högar, men kräver att varje hög har som mest ett objekt. Så om $n \leq x$ är detta möjligt -- varje objekt får sin egen hög -- annars är det omöjligt. Så det finns alltid noll eller ett sätt att göra detta på.
+
+I sista raden, när både objekten och lådorna är osärskiljbara, får vi tänka oss att vi har identiska bollar som vi lägger i högar. Vi kan varken fråga ``vilka bollar ligger i den högen'' eller ``vilken av högarna är det där'', vi kan bara se hur många högar av varje storlek det finns. Så låt oss definiera det räkningsproblem detta motsvarar:
+
+\begin{definition}
+  En \emph{heltalspartition} av ett heltal $n$ i $k$ delar är ett sätt att skriva $n$ som summan av $k$ stycken heltal större än noll. Ordningen vi skriver heltalen i i summan spelar ingen roll. 
+  
+  Vi betecknar antalet heltalspartitioner av $n$ i $k$ delar med $p_k(n)$.
+\end{definition}
+
+Till skillnad från varje annat räkneproblem vi studerat hittills finns det ingen enkel formel för $p_k(n)$ i termer av $k$ och $n$. Men det betyder inte att vi inte kommer kunna säga intressanta kombinatoriska saker om heltalspartitioner.
+
+\begin{example}
+  Det finns fem heltalspartitioner av $8$ i $4$ delar. Dessa är:
+  \begin{align*}
+    5 + 1 + 1 + 1 &= 8\\
+    4 + 2 + 1 + 1 &= 8\\
+    3 + 3 + 1 + 1 &= 8\\
+    3 + 2 + 2 + 1 &= 8\\
+    2 + 2 + 2 + 1 &= 8
+  \end{align*}
+\end{example}
+
+Så i sista raden, när vi kräver att funktionen är surjektiv, alltså att vi har exakt $x$ högar, ges antalet sådana funktioner av $p_x(n)$. Om vi inte kräver att funktionen är surjektiv så räknar vi istället alla heltalspartitioner av $n$ i högst $x$ delar. Antalet sådana ges av $p_x(n+x)$ -- tänk att vi ger en etta till varje av de $x$ lådorna, och sedan fördelar resten fritt, för att motivera formeln.
+
+Slutligen är sista radens mellersta cell, när vi kräver att funktionen är injektiv, korkad av ungefär samma skäl som varför cellen ovanför var det. Vad vi kräver är alltså att ingen hög får ha mer än ett objekt -- så vi skall skriva $n$ som summan av högst $x$ stycken ettor! Om $n \leq x$ kan vi göra det på ett enda sätt -- vi skriver $n$ som summan av $n$ stycken ettor -- annars går det inte.
+
 \section{Stirlingtalen av första sorten}
 
 I början av denna föreläsningen introducerade vi Stirlingtalen av \emph{andra} sorten, vilket ju leder en till att fråga vad den första sorten är. Så låt oss introducera ett problem till vilket dem är lösningen:
