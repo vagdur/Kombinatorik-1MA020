@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="125.7346mm"
+   height="65.259476mm"
+   viewBox="0 0 125.7346 65.259476"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="cycles_of_permutation.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.50646226"
+     inkscape:cx="-208.30772"
+     inkscape:cy="275.44007"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-72.207176,-73.023706)">
+    <g
+       id="g453"
+       transform="translate(0,3.656903)">
+      <circle
+         style="fill:#007aff;stroke:#000000;stroke-width:0.252942;stroke-linejoin:round"
+         id="path234"
+         cx="97.522392"
+         cy="108.60447"
+         r="22.164179" />
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;font-family:'Lucida Handwriting';-inkscape-font-specification:'Lucida Handwriting, Normal';fill:#007aff;stroke:#000000;stroke-width:0.252942;stroke-linejoin:round"
+         x="95.490677"
+         y="83.300377"
+         id="text370"><tspan
+           sodipodi:role="line"
+           id="tspan368"
+           style="stroke-width:0.252942"
+           x="95.490677"
+           y="83.300377">1</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;font-family:'Lucida Handwriting';-inkscape-font-specification:'Lucida Handwriting, Normal';fill:#007aff;stroke:#000000;stroke-width:0.252942;stroke-linejoin:round"
+         x="120.24067"
+         y="101.95523"
+         id="text374"><tspan
+           sodipodi:role="line"
+           id="tspan372"
+           style="stroke-width:0.252942"
+           x="120.24067"
+           y="101.95523">5</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;font-family:'Lucida Handwriting';-inkscape-font-specification:'Lucida Handwriting, Normal';fill:#007aff;stroke:#000000;stroke-width:0.252942;stroke-linejoin:round"
+         x="115.06903"
+         y="128.73694"
+         id="text378"><tspan
+           sodipodi:role="line"
+           id="tspan376"
+           style="stroke-width:0.252942"
+           x="115.06903"
+           y="128.73694">3</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;font-family:'Lucida Handwriting';-inkscape-font-specification:'Lucida Handwriting, Normal';fill:#007aff;stroke:#000000;stroke-width:0.252942;stroke-linejoin:round"
+         x="72.402985"
+         y="129.29105"
+         id="text382"><tspan
+           sodipodi:role="line"
+           id="tspan380"
+           style="stroke-width:0.252942"
+           x="72.402985"
+           y="129.29105">2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;font-family:'Lucida Handwriting';-inkscape-font-specification:'Lucida Handwriting, Normal';fill:#007aff;stroke:#000000;stroke-width:0.252942;stroke-linejoin:round"
+         x="70.555977"
+         y="99.184692"
+         id="text386"><tspan
+           sodipodi:role="line"
+           id="tspan384"
+           style="stroke-width:0.252942"
+           x="70.555977"
+           y="99.184692">7</tspan></text>
+    </g>
+    <g
+       id="g468"
+       transform="translate(-6.0951493,-6.6492537)">
+      <circle
+         style="fill:#007aff;stroke:#000000;stroke-width:0.252942;stroke-linejoin:round"
+         id="path236"
+         cx="156.99626"
+         cy="100.84702"
+         r="13.298508" />
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;font-family:'Lucida Handwriting';-inkscape-font-specification:'Lucida Handwriting, Normal';fill:#007aff;stroke:#000000;stroke-width:0.252942;stroke-linejoin:round"
+         x="153.48694"
+         y="86.070885"
+         id="text457"><tspan
+           sodipodi:role="line"
+           id="tspan455"
+           style="stroke-width:0.252942"
+           x="153.48694"
+           y="86.070885">6</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;font-family:'Lucida Handwriting';-inkscape-font-specification:'Lucida Handwriting, Normal';fill:#007aff;stroke:#000000;stroke-width:0.252942;stroke-linejoin:round"
+         x="152.37872"
+         y="121.90298"
+         id="text461"><tspan
+           sodipodi:role="line"
+           id="tspan459"
+           style="stroke-width:0.252942"
+           x="152.37872"
+           y="121.90298">8</tspan></text>
+    </g>
+    <g
+       id="g531"
+       transform="translate(29.552239,-23.641791)">
+      <circle
+         style="fill:#007aff;stroke:#000000;stroke-width:0.252942;stroke-linejoin:round"
+         id="path238"
+         cx="143.69775"
+         cy="152.93283"
+         r="8.8656712" />
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;font-family:'Lucida Handwriting';-inkscape-font-specification:'Lucida Handwriting, Normal';fill:#007aff;stroke:#000000;stroke-width:0.252942;stroke-linejoin:round"
+         x="140.55783"
+         y="142.22015"
+         id="text472"><tspan
+           sodipodi:role="line"
+           id="tspan470"
+           style="stroke-width:0.252942"
+           x="140.55783"
+           y="142.22015">4</tspan></text>
+    </g>
+    <g
+       id="g536"
+       transform="translate(-6.4645526,-65.938433)">
+      <circle
+         style="fill:#007aff;stroke:#000000;stroke-width:0.252942;stroke-linejoin:round"
+         id="path238-8"
+         cx="195.41418"
+         cy="166.23134"
+         r="8.8656712" />
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;font-family:'Lucida Handwriting';-inkscape-font-specification:'Lucida Handwriting, Normal';fill:#007aff;stroke:#000000;stroke-width:0.252942;stroke-linejoin:round"
+         x="191.53543"
+         y="155.70337"
+         id="text526"><tspan
+           sodipodi:role="line"
+           id="tspan524"
+           style="stroke-width:0.252942"
+           x="191.53543"
+           y="155.70337">9</tspan></text>
+    </g>
+  </g>
+</svg>

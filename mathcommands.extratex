@@ -115,6 +115,7 @@
 
 % Stirlingtal
 \DeclareRobustCommand{\stirlingPart}{\genfrac\{\}{0pt}{}}
+\DeclareRobustCommand{\stirlingCycle}{\genfrac{[}{]}{0pt}{}}
 
 % Specialcell i tabell:
 \newcommand{\specialcell}[2][c]{%

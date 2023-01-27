@@ -144,6 +144,46 @@ Så låt oss rita denna tabell -- problem vi redan studerat är i svart text, pr
   \end{tabularx}
 \end{fullwidth}
 
+\section{Stirlingtalen av första sorten}
+
+I början av denna föreläsningen introducerade vi Stirlingtalen av \emph{andra} sorten, vilket ju leder en till att fråga vad den första sorten är. Så låt oss introducera ett problem till vilket dem är lösningen:
+
+\begin{definition}
+  Antag att $n$ personer skall sitta runt $k$ stycken osärskiljbara runda bord, och varje bord måste ha minst en person som sitter vid det. Då ges antalet sätt att placera personerna runt borden av $\stirlingCycle{n}{k}$, \emph{Stirlings cykeltal}. Stirlings cykeltal kallas också för \emph{Stirlingtalen av första sorten}.
+\end{definition}
+
+Till skillnad från Stirlings partitionstal finns det inte någon enkel formel för cykeltalen. Vi kan däremot bevisa följande resultat:
+
+\begin{theorem}
+  Det gäller, för alla $n \geq 1$, att
+  $$\sum_{k=1}^{n} \stirlingCycle{n}{k} = n!.$$
+
+  \begin{proof}
+    Vi bevisar detta genom att uppvisa en bijektion mellan mängden av permutationer av längd $n$ ur $[n]$, vilka vi vet att det finns $n!$ av, och samlingen av sätt att placera personer runt ett godtyckligt antal runda bord, vilka vi vet per definition räknas av $\sum_{k=1}^{n} \stirlingCycle{n}{k}$.
+
+    \begin{marginfigure}\label{fig_cycles_of_permutation}
+      \includegraphics{graphics/cycles_of_permutation.pdf}
+      \caption{Ett exempel på ett sätt placera nio personer vid runda bord. Den motsvarande permutationen till detta sätt att placera personer är $572438169$. Det vanliga sättet att skriva detta sätt att placera personer vid bord i text är $(15327)(4)(68)(9)$.}
+    \end{marginfigure}
+
+    Givet ett sätt att placera $n$ personer runt något antal runda bord kan vi definiera en permutation $\sigma$ genom att, på plats $i$ i permutationen, skriva den person som sitter till vänster om person $i$ runt deras bord. (En person som sitter ensam anser vi sitta till vänster om sig själv.) Detta kommer ge oss en permutation eftersom varje person bara har en person till höger om sig, så ingen person kommer dyka upp två gånger, och varje person har bara en person till vänster om sig, så $\sigma(i)$ är väldefinierat för varje $i$.
+
+    Givet en permutation $\sigma$ kan vi placera ut personer runt runda bord som följer: Vi börjar med att ställa fram ett bord, och sätta person ett vid det bordet. Sedan sätter vi person $\sigma(1)$ till vänster om person ett, och person $\sigma(\sigma(1))$ till vänster om person $\sigma(1)$, och så vidare. Förr eller senare måste vi komma tillbaka till person $1$, eftersom det bara finns ändligt många personer. Om vi placerat alla personerna runt vårt första bord är vi klara.
+
+    Om vi har några personer kvar att placera plockar vi fram ett till bord, och sätter den person med lägst nummer som inte redan har en sittplats vid det bordet -- säg att det är person $j$. Sedan upprepar vi processen från innan, och placerar person $\sigma(j)$ till vänster om henne, person $\sigma(\sigma(j))$ till vänster om person $\sigma(j)$, och så vidare. Återigen kommer vi förr eller senare komma tillbaka till person $k$, och ha gått full cirkel.
+
+    Vi upprepar denna process med fler bord ända tills varje person har fått ett bord, och vi har fått oss ett sätt att placera $n$ personer runt något antal bord mellan $1$ och $n$.
+
+    Det är någorlunda enkelt att se, efter att man funderat en stund, att vi alltid kommer komma tillbaka till samma permutation vi började med om vi först skapar en bordsplacering av permutationen, och sedan skapar en permutation av den bordsplaceringen. Alltså är detta en bijektion, och vi har bevisat vår formel.
+  \end{proof}
+\end{theorem}
+
+\begin{remark}
+  Vi har introducerat detta som ``personer runt runda bord'', men den vanliga matematiska terminologin runt detta är ``cykler i en permutation''. Hittills har vi bara sett permutationer som en lista av tal i någon ordning, där varje tal mellan $1$ och $n$ dyker upp exakt en gång, men detta är bara ett perspektiv på vad en permutation är.
+
+  Perspektivet med cykler är ett minst lika vanligt perspektiv på permutationer, och framhäver andra saker man kan använda dem för. För att representera dessa i text skriver vi vanligen i formatet $(15327)(4)(68)(9)$, såsom i Figur \ref{fig_cycles_of_permutation}, i stället för att rita cirklar med tal runt dem.
+\end{remark}
+
 \section{Övningar}
 
 
