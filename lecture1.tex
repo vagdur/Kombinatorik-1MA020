@@ -123,7 +123,7 @@ Hur vet vi detta? Det finns två val för varje bokstav, så multiplikationsrege
 \end{example}
 
 \begin{example}[$m$-ära strängar]
-Låt $X = \{0,1,\ldots,m-1\}$. Strängar med detta alfabetet kallas för $m$-ära strängar. Om $m = 2$ är de binära, om $m = 3$ är de ternära. 
+Låt $X = \{0,1,\ldots,m-1\}$. Strängar med detta alfabetet kallas för $m$-ära strängar. Om $m = 2$ är de binära, om $m = 3$ är de ternära. Här kan vi även se en koppling till hur många strängar det finns av en viss längd n av ett alfabet med x antal bokstäver. När vi pratade om binära strängar var det strängar av längd n på ett alfabet av längd 2. Detta gav $2^n$ sådanna möjliga strängar eftersom det finns 2 alternativ per plats och det finns n platser. Samma resonemang kan göras med alla alfabet, oavsett längd. En ternär sträng har tre möjliga alternativ per plats och n platser, alltså $3^n$ möjliga strängar. Man kan generalisera detta till att en sträng av längd n med ett alfabet av storlek x har $x^n$ antal möjlig strängar.
 \end{example}
 
 För generella $X$ kallar vi en sträng $s: [n] \to X$ för en $X$-sträng.
@@ -181,7 +181,7 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
 \end{center}
 
 
-        Bilden ovan visar de olika platserna och de olika platserna har olika färger. Vi kan då se det som att det inte är samma sak att sitta på en blå pall som att sitta på en orange pall tillexempel. Alltså kommer då spela roll vilken stol man sitter på och vem man sitter brevid. \sidenote{De svmå svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.}
+        Bilden ovan visar de olika platserna och de olika platserna har olika färger. Vi kan då se det som att det inte är samma sak att sitta på en blå pall som att sitta på en orange pall till exempel. Alltså kommer då spela roll vilken stol man sitter på och vem man sitter brevid. \sidenote{De små svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.}
 
 	Om platserna är oetiketterade, det vill säga att det enda vi bryr oss om är ordningen folk sitter i, får vi räkna på ett annat sätt. Givet en placering kan vi godtyckligt välja en person som ``först'', och sedan numrera platserna i medurs ordning. För varje av de $n$ sätten att välja vem som är först får vi alltså en placering där platserna har etiketter.
 
@@ -193,7 +193,7 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
       \includegraphics[width=0.9\textwidth]{graphics/bordutanfarg1.png}
  \end{center}
 
-       Här är alltså varje plats likadan och det kommer endast spela roll vem man sitter brevid, till skillnad från vid förra bordet. Se figur \ref{fig:4}. \sidenote{De svmå svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.} 
+       Här är alltså varje plats likadan och det kommer endast spela roll vem man sitter brevid, till skillnad från vid förra bordet. Se figur \ref{fig:4}. Man kan se detta som att vi, när alla satt sig vid bordet, kan flytta oss ett steg åt höger exempelvis runt bordet. Då har vi en likadan placering igen, fast den är identiskt till den förra eftersom vilken specifik stol vi sitter på inte spelar roll. Varje sådan förflyttning, där varje person hoppar ett steg, är alltså en kopia av samma sätt att sitta som vi satte oss först. Det är en annan stol men det är samma grannar och samma aplcering jämfört med alla andra runt bordet. Det gör att det finns totalt n olika sätt att sitta på samma sätt vilket gör att vi måste dividera bort alla dessa dubbletter genom att dividera antalet sätt att sitta på med n. \sidenote{De små svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.} 
 \end{example}
 \section{Kombinationer}
 
@@ -320,7 +320,7 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 
          1. I denna uppgiften använde vi oss av att vi ska skapa grupper. Ett bra sätt att lösa liknande uppgifter är att se det som att vi ska skapa grupper med personer av olika slag. Det kan vara en grupp med en eller flera ledare, grupper av olika storlekar med olika många personer som ska väljas ut eller plockas bort med mera. Försök att skapa ett sammanhang.
          
-         2. Är det svårt att hitta ett sammanhang så försök att identifiera variablerna en efter en, så i detta fallet försök först att identifiera vad k skulle kunna innebära och vad $$\binom{n}{k}$$ skulle kunna innebära. Försök också att starta med en sida, så antigen vänsterled eller högerled. Identifiera de olika variablerna (tillexdempel i ett sammanhang) på den sidan och försök sedan ska en matchning med andra sidan.
+         2. Är det svårt att hitta ett sammanhang så försök att identifiera variablerna en efter en, så i detta fallet försök först att identifiera vad k skulle kunna innebära och vad $$\binom{n}{k}$$ skulle kunna innebära. Försök också att starta med en sida, så antingen vänsterled eller högerled. Identifiera de olika variablerna (till exempel i ett sammanhang) på den sidan och försök sedan skapa en matchning med andra sidan.
 \end{xca}
 
 \begin{xca}
@@ -330,16 +330,16 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 \noindent\textbf{Lösning}
 \begin{proof}
 Här kan vi tänka på ungefär samma sätt som uppgift 3, men nu är skillnaden att vi ska välja 2 ledare istället för en. 
-Vi Har en grupp på en personer och vi vill välja ut en liten grupp med k personer i varav 2 av de kommer utses till ledare. 
+Vi har en grupp på n personer och vi vill välja ut en liten grupp med k personer i varav 2 av de kommer utses till ledare. 
 Vi börjar med vänsterledet: Vi har alltså n personer och vi vill välja två stycken ledare av alla de n personerna. Detta kan vi göra på $$\binom{n}{2}$$ sätt. När det är gjort så har vi n-2 personer kvar som inte blivit valda och av de n-2 personerna vill vi välja ut k-2 stycken för att skapa en grupp med k-2 personer och som tillsammans med ledarna skapar en grupp på k personer. Gruppen på k-2 personer kan vi skapa på $\binom{n-2}{k-2}$ sätt, eftersom vi har n-2 personer kvar. När vi då multiplicerar $$\binom{n}{2}\binom{n-2}{k-2}$$ får vi alltså antalet sätt att forma en grupp med k personer varav 2 stycken är ledare. 
 
-Vi kollar på högerledet: I högerledet tänker vi först att vi vill skapa en grupp med k personer av de n stycken möjliga personerna. Antalet sätt att göra detta på är $\binom{n}{k}$. Så när vi har skapat en grupp med k personer i så vill vi välja två stycken ledare. Detta kan vi göra på $$\binom{k}{2}.$$ sätt eftersom vi har k stycken möjliga ledare och vi ska välja ut två stycken. 
+Vi kollar på högerledet: I högerledet tänker vi först att vi vill skapa en grupp med k personer av de n stycken möjliga personerna. Antalet sätt att göra detta på är $\binom{n}{k}$. Så när vi har skapat en grupp med k personer i så vill vi välja två stycken ledare. Detta kan vi göra på $$\binom{k}{2}.$$ sätt eftersom vi har k stycken möjliga ledare och vi ska välja ut två stycken.  
 
-Nu har vi visat att både vänsterledet och högerledet båda beräknar antalet sätt att forma en grupp med k personer i varav två personer är ledare. 
+Poängen är alltså att HL och VL bara gör saker i olika ordning. VL väljer ledarna först och gruppen sedan medans HL väljer gruppen först och sedan väljer ledarna i gruppen. Nu har vi visat att både vänsterledet och högerledet båda beräknar antalet sätt att forma en grupp med k personer i varav två personer är ledare. 
 \end{proof}
 \noindent\textbf{Tips}
 
-Tipsen i denna uppgiften är samma som för uppgift 3. 
+	1. Ett tips som funkar både för denna uppgift och uppgiften innan är att se det som står som ett händelseförlopp. Först händer en sak, till exemple att vi väljer två av totalt n stycken saker, som i denna uppgift i VL. Sedan, efter att vi gjort det "sker" andra parentesen som säger att vi nu väljer k-2 saker av en hög som nu är 2 färren än den var förrut. Genom detta kan vi försöka skapa oss en bild av ett händelseförlopp som dessa parenteser representerar. Det är ett bra sätt att sätta matematiken i ett sammanhang. 
 
 \end{xca}
 
@@ -416,7 +416,7 @@ Tipsen i denna uppgiften är samma som för uppgift 3.
     \newline Additionsregeln ger att det finns 5+7 = 12 sätt att välja en slips att ha på sig på intervjun.
     \newline b) På hur många sätt kan du välja två slipsar att ha på dig på samma gång?
     Vi kan välja fritt mellan de seriösa slipsarna och de med komiskt tryck.
-    Alltså hur många sätt kan man välja två slipsar från tolv stycken slipar.
+    Alltså hur många sätt kan man välja två slipsar från tolv stycken slipsar.
     Det blir antalet kombinationer $$\binom{12}{2} = \frac{12!}{2!(12-2)!} = \frac{12!}{2!\cdot 10!} = \frac{12\cdot 11}{2} = 66$$
     \newline c) Hur många sätt kan du välja en seriös slips och en med ett komiskt tryck på?
     \newline Svaret ges av multiplikationsreglen, då vi vill veta hur många sätt vi kan välja en slips från mängden av seriösa slipsar och en slips från mängden av komiska slipsar.
