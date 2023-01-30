@@ -12,6 +12,7 @@ Föreläsningsanteckningar för våra föreläsningar kommer också att länkas 
 2. [Föreläsning två: Kombinatoriska bevis, binomialsatsen, kompositioner, och multinomialsatsen](https://vagdur.github.io/Kombinatorik-1MA020/lecture2.pdf)
 3. [Föreläsning tre: Induktion, lådprincipen, och inklusion-exklusion](https://vagdur.github.io/Kombinatorik-1MA020/lecture3.pdf)
 4. [Föreläsning fyra: Sammanfattning av alla räkneproblem, samt cykler](https://vagdur.github.io/Kombinatorik-1MA020/lecture4.pdf)
+5. [Föreläsning fem: Genererande funktioner](https://vagdur.github.io/Kombinatorik-1MA020/lecture5.pdf) (Work In Progress)
 
 # Annat material för kursen
 

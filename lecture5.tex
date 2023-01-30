@@ -1,0 +1,164 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Föreläsning 5: Genererande funktioner $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
+
+%\date{15 januari 2023}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+\include{mathcommands.extratex}
+
+\begin{document}
+
+\definecolor{darkgreen}{rgb}{0.0627, 0.4588, 0.1451}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+Vi går vidare från våra grundläggande tekniker till en lite mer avancerad metod inom kombinatoriken -- genererande funktioner.
+\end{abstract}
+
+Hittills har vi bevisat våra resultat huvudsakligen med hjälp av smarta insikter i strukturen hos problemen -- med kombinatoriska argument som ser på samma objekt ur två vinklar, eller ser en bijektion. Det enda större verktyget vi introducerat hittills är inklusion-exklusion.
+
+Det är dags att introducera ett mer systematiskt verktyg som kan användas för många olika problem, och som låter oss använda våra färdigheter i algebra för att uttrycka och lösa kombinatoriska problem.
+
+\section{Genererande funktioner}
+
+\begin{definition}
+    Antag att vi har en talföljd $a_0, a_1, a_2, \ldots$. Beteckna denna som $\{a_k\}_{k=0}^\infty$. Den \emph{genererande funktionen} för denna talföljd ges av
+    $$F_{a}(x) = \sum_{k=0}^{\infty} a_k x^k.$$
+\end{definition}
+
+I den här kursen betraktar vi dessa funktioner som helt och hållet \emph{kombinatoriska} objekt -- vi bryr oss inte ett dugg om ifall dessa uttryck faktiskt konvergerar eller inte.\sidenote[][]{Det finns intressanta tillämpningar av att räkna ut konvergensradien för dessa uttryck -- det kan säga oss något om hur stort $a_k$ är asymptotiskt, alltså för väldigt stora $k$. Men det är överkurs för oss.} Vi bryr oss för det mesta inte ens om att evaluera dem i någon punkt. De är helt och hållet formella objekt som vi bara manipulerar enligt algebrans räkneregler.\sidenote[][]{Det här går att göra rigoröst med en bunt algebra-hokuspokus och termer som ``polynomring i oändligt många variabler''. Vi skippar det.}
+
+\begin{example}
+    Välj ett fixt heltal $n$, och låt $a_k = \binom{n}{k}$ för varje $k$.\sidenote[][]{Specifikt blir alltså $a_k = 0$ för $k > n$, eftersom en mängd har noll delmängder större än sig själv.} Den genererande funktionen för denna följd blir då
+    $$F_a(x) = \sum_{k=0}^{n}\binom{n}{k}x^k.$$
+
+    Om vi använder binomialsatsen kan vi få ett enklare uttryck för denna genererande funktion, eftersom den ger oss att
+    $$(1+x)^n = \sum_{k= 0}^{n}1^{n-k}x^k = F_a(x).$$
+\end{example}
+
+\begin{example}
+    Välj ett fixt heltal $n$, och låt följden $a_k$ ges av att $a_k = 1$ om $k \leq n$ och $0$ annars. Dess genererande funktion ges då av
+    $$\sum_{k=0}^{n} x^k = 1 + x + \ldots + x^n.$$
+
+    Vi kan få den på en enklare form genom att observera att
+    \begin{align*}
+        1 - x^{n+1} &= (1 + x + x^2 + \ldots + x^n) - (x  + x^2 + \ldots + x^{n+1})\\
+        &= (1 - x)(1 + x + x^2 + \ldots + x^n) = (1 - x)F_a(x)
+    \end{align*}
+    och lösa detta uttryck för $F_a(x)$ och få
+    $$F_a(x) = \frac{1 - x^{n+1}}{1 - x}.$$
+\end{example}
+
+\begin{example}
+    Låt $a_k = 1$ för alla $k$. Dess genererande funktion är då
+    $$F_a(x) = \sum_{k=0}^{\infty} x^k$$
+    vilket vi kan känna igen som en oändlig geometrisk summa, för vilka vi vet att formeln är\sidenote[][]{Eller så hade vi kunnat använda samma räkning som i förra exemplet, även om den är lite svårare att rättfärdiga. Eller så känner vi igen det som Taylorserien för $\frac{1}{1-x}$.}
+    $$F_a(x) = \frac{1}{1-x}.$$
+\end{example}
+
+\section{Rekursioner}
+
+En fråga ni bör ställa er i det här läget är denna: Vad är allt det här bra för? Vi har tagit följder, definierat serier för dem, och hittat uttryck för serierna. Än sen då?
+
+Nyttan med genererande funktioner är till stor del att information från den ``kombinatoriska'' sidan återspeglas i de genererande funktionerna -- så vi kan ta information på ena sidan, manipulera på den sidan, och sedan gå tillbaka till andra sidan och ha lärt oss något nytt. Ofta går vi i riktningen kombinatorik till genererande funktion till kombinatorik, eftersom vi har så mycket mer kunskap om hur man resonerar om funktioner och algebra.
+
+Som ett första exempel på detta, låt oss använda genererande funktioner för att studera rekursioner och rekurrensrelationer.
+
+\begin{example}
+    Låt oss studera Fibonacciföljden $\{f_k\}_{k=0}^\infty$, som ges av att $f_0 = f_1 = 1$ och
+    $$f_{k+1} = f_k + f_{k-1}$$
+    för alla $k \geq 1$.
+
+    Vad är dess genererande funktion? Vi tar vår rekursion för den och multiplicerar med $x^k$, och får att
+    $$f_{k+1} x^k = f_k x^k + f_{k-1} x^k$$
+    så om vi summerar detta över alla $k \geq 1$ (eftersom dessa är de $k$ för vilka likheten är giltig) får vi att
+    $$\sum_{k=1}^{\infty} f_{k+1}x^k = \sum_{k=1}^{\infty} f_k x^k + \sum_{k=1}^{\infty} f_{k-1}x^k.$$
+
+    Vi ser att alla uttrycken här ser väldigt snarlika ut genererande funktionen för Fibonacciföljden, men ingen av dem är exakt den genererande funktionen. Så om vi manipulerar uttrycken lite får vi att
+    $$\frac{1}{x}\sum_{k=1}^{\infty} f_{k+1}x^{k+1} = \sum_{k=1}^{\infty} f_k x^k + x\sum_{k=1}^{\infty} f_{k-1}x^{k-1}$$
+    vilket är ännu närmre. Sista termen är nu precis den genererande funktionen, men de andra startar summan för högt -- de skippar de första termerna. Så om vi justerar för detta genom att lägga till noll på ett par ställen får vi att
+    $$\frac{1}{x}\left(\sum_{k=1}^{\infty} f_{k+1}x^{k+1} + (f_0 - f_0 + f_1x - f_1x)\right) = \left(\sum_{k=1}^{\infty} f_k x^k + (f_0 - f_0)\right) + xF_f(x)$$
+    och nu, när vi flyttar in de extra $f_0$ och $f_1x$ vi har köpt oss är uttrycken faktiskt precis den genererande funktionen, och vad vi har är att
+    $$\frac{1}{x}\left(F_f(x) - f_0 - f_1x\right) = F_f(x) - f_0 + xF_f(x)$$
+    vilket, om vi kommer ihåg våra initialförutsättningar att $f_0 = f_1 = 1$, blir till att
+    $$\frac{F_f(x) - x - 1}{x} = F_f(x) - 1 + xF_f(x).$$
+
+    Vi har alltså omvandlat det kombinatoriska påståendet om vår rekursion till ett algebraiskt påstående om vår genererande funktion. Och till skillnad från rekursionen kan vi ju enkelt lösa ekvationen för vår genererande funktion och få att
+    $$F_f(x) = \frac{1}{1 - x^2 - x}.$$
+\end{example}
+
+Det här tar oss alltså halvvägs till att ha gjort något intressant -- vi har gått från kombinatorik till genererande funktion, och manipulerat den kombinatoriska informationen algebraiskt för att få fram ny information om den genererande funktionen. Men vi är ju intresserade av den kombinatoriska sidan, så vi vill ju översätta den här informationen tillbaka till att säga något intressant om Fibonacciföljden.
+
+Vi återkommer till det, först formulerar vi de manipulationer vi just genomförde lite mer allmänt, plus ett par extra som dyker upp ofta, så de blir enklare att komma ihåg.
+
+\begin{lemma}[Räkneregler för genererande funktioner]\label{lemma_generating_function_calc_rules}
+    Antag att vi har en följd $\{a_k\}_{k=0}^\infty$, med genererande funktion $F_a$. Då gäller det att
+    \begin{enumerate}
+        \item För varje $j \geq 1$ är
+        $$\sum_{k = j}^{\infty} a_k x^k = \left(\sum_{k=0}^{\infty}a_k x^k\right) - \left(\sum_{k=0}^{k=j-1} a_kx^k\right) = F_a(x) - \sum_{k=0}^{k=j-1} a_kx^k$$
+        \item För alla $m \geq 0$, $l \geq -m$ gäller det att
+        $$\sum_{k=m}^{\infty} a_k x^{k + l} = x^l\left(\sum_{k=m}^{\infty} a_k x^{k}\right) = x^l\left(F_a(x) - \sum_{k=0}^{m-1} a_k x^k\right)$$
+        \item Det gäller att
+        $$\sum_{k=0}^{\infty} (k + 1) a_k x^k = F_a(x) + F_a'(x).$$
+        
+    \end{enumerate}
+    \begin{proof}
+        De första två är tydliga -- mellersta uttrycket är närmast ett bevis av påståendet -- så vi ger enbart ett bevis av det tredje.
+
+        Vi kommer ihåg att $\frac{\intd}{\dx} x^{k+1} = (k+1)x^k$, så att
+        $$\sum_{k=0}^{\infty} (k + 1) a_k x^k = \sum_{k=0}^{\infty}a_k\left(\frac{\intd}{\dx} x^{k+1}\right)$$
+        och vi minns att derivatan är en linjär operator -- alltså att 
+        $$\frac{\intd}{\dx}\left(f(x) + g(x)\right) = \frac{\intd}{\dx}f(x) + \frac{\intd}{\dx} g(x),$$ 
+        så att vi kan skriva
+        $$\sum_{k=0}^{\infty}a_k\left(\frac{\intd}{\dx} x^{k+1}\right) = \frac{\intd}{\dx}\left(\sum_{k=0}^{\infty} a_k x^{k+1}\right)$$
+        och för uttrycket inne i derivatan kan vi bryta ut ett $x$ och få att den kvarvarande summan är den genererande funktionen\sidenote[][]{Detta är så klart precis vad räkneregel två också säger oss, men i detta fall är det ju så enkelt.}, så vad vi får är att
+        $$\frac{\intd}{\dx}\left(\sum_{k=0}^{\infty} a_k x^{k+1}\right) = \frac{\intd}{\dx} xF_a(x)$$
+        och om vi använder produktregeln på detta uttrycket får vi vad vi sökte.
+    \end{proof}
+\end{lemma}
+
+\section{Övningar}
+
+\begin{xca}
+    Antag att en följd $\{a_k\}_{k=0}^\infty$ lyder en rekurrensrelation
+    $$a_{k+1} = \sum_{i = k - l}^{k} w_i a_i$$
+    för alla $k \geq l$.
+
+    Använd våra räkneregler i Lemma \ref{lemma_generating_function_calc_rules} för att finna ett uttryck för den genererande funktionen $F_a$.\sidenote[][]{Det här är alltså generaliseringen av vad vi gjorde för Fibonnaciföljden. Ni kommer finna att ni kan skriva svaret som en rationell funktion med koefficienter som ges av de första termerna i $a_k$ och av vikterna $w_i$.}
+\end{xca}
+
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}
