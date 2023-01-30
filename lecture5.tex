@@ -128,14 +128,14 @@ Vi återkommer till det, först formulerar vi de manipulationer vi just genomfö
         $$\sum_{k = j}^{\infty} a_k x^k = \left(\sum_{k=0}^{\infty}a_k x^k\right) - \left(\sum_{k=0}^{k=j-1} a_kx^k\right) = F_a(x) - \sum_{k=0}^{k=j-1} a_kx^k$$
         \item För alla $m \geq 0$, $l \geq -m$ gäller det att
         $$\sum_{k=m}^{\infty} a_k x^{k + l} = x^l\left(\sum_{k=m}^{\infty} a_k x^{k}\right) = x^l\left(F_a(x) - \sum_{k=0}^{m-1} a_k x^k\right)$$
-        \item Det gäller att
-        $$\sum_{k=0}^{\infty} (k + 1) a_k x^k = F_a(x) + F_a'(x).$$
+        \item Det gäller att\sidenote[][]{Denna räkneregel kan förstås generealiseras till att högre potenser av $k$ motsvarar högre derivator -- och om vi istället delar med någon potens av $k$ får vi primitiva funktioner till den genererande funktionen.}
+        $$\sum_{k=0}^{\infty} k a_k x^k = F_a'(x).$$
         
     \end{enumerate}
     \begin{proof}
         De första två är tydliga -- mellersta uttrycket är närmast ett bevis av påståendet -- så vi ger enbart ett bevis av det tredje.
 
-        Vi kommer ihåg att $\frac{\intd}{\dx} x^{k+1} = (k+1)x^k$, så att
+        Vi kommer ihåg att $\frac{\intd}{\dx} x^{k+1} = (k+1)x^k$, vilket vi tillämpar på ett uttryck som nästan är det vi sökte, och vi får
         $$\sum_{k=0}^{\infty} (k + 1) a_k x^k = \sum_{k=0}^{\infty}a_k\left(\frac{\intd}{\dx} x^{k+1}\right)$$
         och vi minns att derivatan är en linjär operator -- alltså att 
         $$\frac{\intd}{\dx}\left(f(x) + g(x)\right) = \frac{\intd}{\dx}f(x) + \frac{\intd}{\dx} g(x),$$ 
@@ -143,7 +143,10 @@ Vi återkommer till det, först formulerar vi de manipulationer vi just genomfö
         $$\sum_{k=0}^{\infty}a_k\left(\frac{\intd}{\dx} x^{k+1}\right) = \frac{\intd}{\dx}\left(\sum_{k=0}^{\infty} a_k x^{k+1}\right)$$
         och för uttrycket inne i derivatan kan vi bryta ut ett $x$ och få att den kvarvarande summan är den genererande funktionen\sidenote[][]{Detta är så klart precis vad räkneregel två också säger oss, men i detta fall är det ju så enkelt.}, så vad vi får är att
         $$\frac{\intd}{\dx}\left(\sum_{k=0}^{\infty} a_k x^{k+1}\right) = \frac{\intd}{\dx} xF_a(x)$$
-        och om vi använder produktregeln på detta uttrycket får vi vad vi sökte.
+        och om vi använder produktregeln på detta uttrycket får vi att
+        $$\sum_{k=0}^{\infty} (k + 1) a_k x^k = F_a(x) + F_a'(x).$$
+
+        Om vi nu multiplicerar ut parantesen $(k+1)$ i vänster led ser vi att vänster led är precis $F_a(x) + \sum_{k=0}^{\infty} k a_k x^k$, så om vi subtraherar ut $F_a(x)$ på bägge sidor får vi resultatet.
     \end{proof}
 \end{lemma}
 
