@@ -242,6 +242,22 @@ Till skillnad från Stirlings partitionstal finns det inte någon enkel formel f
   $$\stirlingCycle{n+1}{k} = \stirlingCycle{n}{k-1} + n\stirlingCycle{n}{k}.$$
 \end{xca}
 
+\begin{xca}
+  I slutet av förra föreläsningen talade vi om \emph{derangemang} -- alltså permutationer $\sigma$ sådana att $\sigma(i) \neq i$ för alla $i$. Om vi i stället tänker på permutationer som sätt att placera personer runt runda bord, hur kan vi se på vår bordsplacering om vår permutation är ett derangemang?
+\end{xca}
+
+\begin{xca}
+  Bevisa att\sidenote[][]{Här ber vi alltså inte specifikt om ett \emph{kombinatoriskt} bevis, även om beviset jag spontant kommer på är sådant. Om ni hittar ett induktionsbevis vore det också intressant.
+  
+  Ledtråd för det kombinatoriska beviset: Tänk att vi har ett speciellt objekt som är det $n+1$te, och det får hamna i sin speciella del. Så vi väljer hur stor den delen är och sedan fördelar vi ut resten av objekten.}
+  $$\stirlingPart{n+1}{k+1} = \sum_{j=k}^{n} \binom{n}{j}\stirlingPart{j}{k}.$$
+\end{xca}
+
+\begin{xca}
+  Skriv följande permutation av $[10]$ i cykelform
+  $$8, 9, 4, 10, 5, 7, 3, 2, 6, 1.$$
+\end{xca}
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
