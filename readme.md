@@ -17,3 +17,4 @@ Föreläsningsanteckningar för våra föreläsningar kommer också att länkas 
 # Annat material för kursen
 
 1. [Extra övningar](https://vagdur.github.io/Kombinatorik-1MA020/extra_exercises.pdf)
+2. [Formel- och räkneregelssamling](https://vagdur.github.io/Kombinatorik-1MA020/formulae.pdf)
