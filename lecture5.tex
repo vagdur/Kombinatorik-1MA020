@@ -315,6 +315,30 @@ Vi hade så klart gärna haft en explicit formel för antalet lösningar på den
     det vill säga att faltning distribuerar över addition.\sidenote[][]{Ledtråd: Använd genererande funktioner, specifikt vad ni bevisade i första halvan av uppgiften och Teorem \ref{convolution_is_product_of_gen_funcs}.}
 \end{xca}
 
+\begin{xca}
+    Låt $f_k$ vara följden av Fibonaccital, såsom vi definierat dem. Låt följden $g_k$ vara $(1, -1, -1, 0, 0, 0,\ldots)$.
+
+    \begin{enumerate}
+        \item Vad är den genererande funktionen för $\{g_k\}_{k=0}^\infty$?
+        \item Vad är faltningen $f * g$? Räkna ut detta som om ni inte visste vad den genererande funktionen till $f$ är, alltså utan att använda er av Teorem \ref{convolution_is_product_of_gen_funcs}.
+        \item Använd vad ni gjorde i de första två delfrågorna och Teorem \ref{convolution_is_product_of_gen_funcs} för att ge ett alternativt bevis för att
+        $$F_f(x) = \frac{1}{1 - x - x^2}.$$
+    \end{enumerate}
+\end{xca}
+
+\begin{xca}
+    Använd genererande funktioner\sidenote[][-1cm]{Ledtråd: Betrakta den här summan som en faltning av två följder -- en av dem kan vi redan den genererande funktionen för, den andra är enkel att finna den genererande funktionen för givet vad vi redan kan. Använd sedan Teorem \ref{convolution_is_product_of_gen_funcs} för att få ut likheten.} för att bevisa att
+    $$\sum_{i=0}^{k} (-1)^i \binom{n}{i}\binom{n + k - i - 1}{k - i} = 0$$
+    för alla $k \geq 1$.\sidenote[][]{Frivillig bonus om ni har tråkigt någon dag: Kan ni komma på ett kombinatoriskt bevis för den här likheten? Jag funderade på det en kort stund och fann inget.}
+\end{xca}
+
+\begin{xca}
+    Finn enkla uttryck för de genererande funktionerna för följderna
+    $$a_k = 3^k, \qquad b_k = \left(\frac{1}{4}\right)^k$$
+    och
+    $$c_k = \frac{5}{k!}.$$
+\end{xca}
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
