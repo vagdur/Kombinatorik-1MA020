@@ -215,7 +215,7 @@ Låt oss nu berätta vad som händer på den algebraiska sidan när vi faltar p�
 
 Låt oss formulera detta resultat också för fler än två följder -- beviset är det samma men med mer notation, så vi utelämnar det.
 
-\begin{lemma}
+\begin{lemma}\label{lemma_convolution_many_seqs}
     Antag att $\{a^1_k\}_{k=0}^\infty, \{a^2_k\}_{k=0}^\infty, \ldots, \{a^d_k\}_{k=0}^\infty$ är en samling av $d$ stycken följder. Då gäller det att\sidenote[][]{Den uppmärksamma av er, som läst en kurs i algebra, kanske anmärker här på att vi bara definierat $a * b$, så ett uttryck som $a^1 * a^2 * \ldots * a^d$ bara är väldefinierat om faltning är en associativ operation.
     
     Hav förtröstan, frukta icke, faltningen är inte bara associativ utan också kommutativ. Den till och med distribuerar över addition.}
@@ -224,6 +224,78 @@ Låt oss formulera detta resultat också för fler än två följder -- beviset 
     $$F_{a^1 * a^2 * \ldots * a^d}(x) = \prod_{i=1}^{d} F_{a^i}(x).$$
 \end{lemma}
 
+Vi tar nu och tillämpar detta maskineri vi byggt upp på ett faktiskt kombinatoriskt problem.
+
+\begin{example}
+    Låt $a_k$ vara antalet lösningar till
+    $$x_1 + x_2 + x_3 + x_4 + x_5 = k$$
+    om vi kräver att alla $x_i$ är ickenegativa heltal. Finn den genererande funktionen till denna följd.
+
+    Låt, för $i = 1,2,\ldots,5$, $a^i$ vara följden av bara ettor, så $a_k^i = 1$ för alla $i$ och $k$.
+    
+    Vi betraktar nu faltningen $a^1*a^2*a^3*a^4*a^5$. Enligt Lemma \ref{lemma_convolution_many_seqs} är
+    $$(a^1*a^2*a^3*a^4*a^5)_k = \sum_{\substack{k_1, k_2, k_3, k_4, k_5 \geq 0\\k_1 + k_2 + k_3 + k_4 + k_5 = k}} a^1_{k_1}a^2_{k_2} a^3_{k_3} a^4_{k_4} a^5_{k_5},$$
+    men summanden här är ju så klart alltid bara en produkt av fem ettor, alltså ett. Så
+    \begin{align*}
+        \sum_{\substack{k_1, k_2, k_3, k_4, k_5 \geq 0\\k_1 + k_2 + k_3 + k_4 + k_5 = k}} a^1_{k_1}a^2_{k_2} a^3_{k_3} a^4_{k_4} a^5_{k_5} &= \sum_{\substack{k_1, k_2, k_3, k_4, k_5 \geq 0\\k_1 + k_2 + k_3 + k_4 + k_5 = k}} 1\\
+        &= \abs{\left\{k_1, \ldots, k_5 \geq 0 \given k_1 + \ldots + k_5 = k \right\}}
+    \end{align*}
+    och denna faltningen är alltså precis lika med $a$, följden vi var ute efter.
+
+    Om vi nu tar likheten $a = a^1*a^2*\ldots*a^5$ och tar genererande funktionen av bägge sidorna får vi likheten $F_a(x) = F_{a^1*a^2*\ldots*a^5}(x)$, och tillämpar vi nu åter Lemma \ref{lemma_convolution_many_seqs} får vi att
+    $$F_a(x) = F_{a^1}(x)F_{a^2}(x)\ldots F_{a^5}(x) = \Big(F_{a^1}(x)\Big)^5$$
+    där vi i sista steget använde att $a^1 = a^2 = \ldots = a^5$, så de alla har samma genererande funktion.
+
+    Vi såg i början av föreläsningen att den genererande funktionen för en följd av enbart ettor är $\frac{1}{1-x}$, så vad vi fått ut är att
+    $$F_a(x) = \left(\frac{1}{1-x}\right)^5.$$
+\end{example}
+
+Vi hade så klart gärna haft en explicit formel för antalet lösningar på den här ekvationen. Vi fuskar genom att redan veta vad svaret borde bli, och bevisa att den följden har samma genererande funktion som följden vi just studerade -- detta bevisar alltså att följderna är lika med varandra.
+
+\begin{lemma}
+    Fixera något heltal $n\geq 1$, och låt följden $\{a_k\}_{k=0}^\infty$ ges av
+    $$a_k = \binom{n+k-1}{k}.$$
+
+    Den genererande funktionen för denna följden är\sidenote[][]{Så när vi visat detta exemplet kommer vi alltså att veta att antalet lösningar till
+    $$x_1 + x_2 + x_3 + x_4 + x_5 = k$$
+    i ickenegativa heltal är precis
+    $$\binom{k+4}{k}$$
+    eftersom vi vet att den genererande funktionen för antalet lösningar till den ekvationen var $\frac{1}{(1-x)^5}$.
+    
+    I just detta fallet visste vi ju dock redan det tack vare vår formel för antalet multi-delmängder.}
+    $$F_a(x) = \frac{1}{(1-x)^n}.$$
+
+    \begin{proof}
+        Vi bevisar detta med induktion i $n$. För basfallet $n=1$ blir $\binom{n+k-1}{k} = \binom{k}{k} = 1$, så följden är konstant ett, och vi vet sedan innan att genererande funktionen för följden av bara ettor är $\frac{1}{1 - x}$, så basfallet håller.
+
+        För induktionssteget, antag att $n \geq 1$, och vi vill visa att likheten gäller för $n+1$. Vår induktionshypotes är nu att
+        $$F_a(x) = \sum_{k=0}^{n} \binom{n+k-1}{k}x^k = \frac{1}{(1 - x)^n}.$$
+        
+        Alltså har vi att
+        $$\frac{\intd}{\dx} F_a(x) = \frac{n}{(1-x)^{n+1}},$$
+        så att
+        \begin{align*}
+            \frac{1}{(1-x)^{n+1}} &= \frac{1}{n}\frac{\intd}{\dx} F_a(x)\\
+            &= \frac{1}{n} \frac{\intd}{\dx}\left(\sum_{k=0}^{n} \binom{n+k-1}{k}x^k\right)\\
+            &= \frac{1}{n}\sum_{k=0}^{n} \binom{n+k-1}{k}\frac{\intd}{\dx}x^k\\
+            &= \frac{1}{n}\sum_{k=1}^{n} \binom{n+k-1}{k}k x^{k-1}.
+        \end{align*}
+        Notera att vi i sista steget ser att derivatan av $x^0$ är noll, så termen för $k=0$ försvinner. Justerar vi summeringsindex lite grann så ser vi att
+        \begin{align*}
+            \frac{1}{n}\sum_{k=1}^{n} \binom{n+k-1}{k}k x^{k-1} &= \frac{1}{n}\sum_{k=0}^{n} \binom{n+k}{k+1}(k+1) x^{k}.
+        \end{align*}
+
+        Så låt oss studera summanden i det här uttrycket. Vi ser att
+        \begin{align*}
+            \binom{n+k}{k+1}\frac{k+1}{n} &= \frac{(n+k)!}{(k+1)!(n-1)!}\frac{k+1}{n}\\
+            &= \frac{(n+k)!}{k!n!}\\
+            &= \binom{n+k}{k} = \binom{(n+1) + k - 1}{k}
+        \end{align*}
+        så om vi sätter tillbaka detta i vår summa ser vi att vad vi fått är att
+        $$\frac{1}{(1-x)^{n+1}} = \sum_{k=0}^{\infty} \binom{(n+1) + k - 1}{k} x^k$$
+        vilket är precis vad vi ville bevisa.
+    \end{proof}
+\end{lemma}
 
 \section{Övningar}
 
