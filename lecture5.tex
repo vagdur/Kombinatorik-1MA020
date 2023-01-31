@@ -158,6 +158,73 @@ Ifall man faktiskt genomför den räkningen kommer man att få följande resulta
     \end{proof}
 \end{lemma}
 
+\section{Produkter av genererande funktioner}
+
+Nästa sak vi skall diskutera är vad som händer om vi multiplicerar två genererande funktioner -- alltså vad det motsvarar på den kombinatoriska sidan.
+
+\begin{definition}
+    Låt $\{a_k\}_{k=0}^\infty$ och $\{b_k\}_{k=0}^\infty$ vara två följder. \emph{Faltningen} av $a$ och $b$ betecknar vi med $a*b$, och $\{(a * b)_k\}_{k=0}^\infty$ ges av
+    $$(a*b)_k = \sum_{i=0}^{k} a_i b_{k-i}.$$
+\end{definition}
+
+\begin{example}
+    Låt $\{a_k\}_{k=0}^\infty$ vara någon följd, och låt $\{b_k\}_{k=0}^\infty$ vara följden av bara ettor, alltså $b_k = 1$ för alla $k$. Vad blir $a*b$?
+
+    Enligt definitionen är
+    $$(a*b)_k = \sum_{i=0}^{k} a_i b_{k-i} = \sum_{i=0}^{k} a_i$$
+    så följden $a*b$ är helt enkelt $(a_0, a_0 + a_1, a_0 + a_1 + a_2, \ldots)$, alltså de kumulativa summorna av följden.
+\end{example}
+
+\begin{example}
+    Låt $\{a_k\}_{k=0}^\infty$ vara någon följd, och låt $\{b_k\}_{k=0}^\infty$ vara följden som börjar med $n$ stycken ettor, och sedan är noll. Alltså $b_k = 1$ om $k \leq n$, $0$ annars. Vad blir $a*b$?
+
+    Enligt definitionen är
+    $$(a*b)_k = \sum_{i=0}^{k} a_i b_{k-i} = \sum_{i=k-n}^{k} a_i$$
+    så vad vi gör för att räkna ut $(a*b)_k$ är att vi tar summan av de senaste $n$ termerna i $a_k$.
+\end{example}
+
+Låt oss nu berätta vad som händer på den algebraiska sidan när vi faltar på den kombinatoriska sidan.
+
+\begin{theorem}\label{convolution_is_product_of_gen_funcs}
+    Låt $\{a_k\}_{k=0}^\infty$ och $\{b_k\}_{k=0}^\infty$ vara två följder med generande funktioner $F_a$ och $F_b$. Den genererande funktionen för $a*b$ är då $F_a(x)F_b(x)$. Vi har alltså att
+    $$F_{a*b}(x) = F_a(x)F_b(x)$$
+    så generande funktioner omvandlar faltningar till produkter.
+
+    \begin{proof}
+        Vi bevisar detta algebraiskt, genom att helt enkelt skriva upp vad $F_a(x)F_b(x)$ är för något och manipulera uttrycket tills det blir $F_{a*b}(x)$. Så
+        \begin{align*}
+            F_a(x)F_b(x) &= \left(\sum_{k=0}^{\infty} a_k x^k\right)\left(\sum_{l=0}^{\infty} b_l x^l\right)\\
+            &= \sum_{k, l = 0}^{\infty} a_k b_l x^{k+l}
+        \end{align*}
+        om vi multiplicerar ut de två stora summorna.\sidenote[][]{Vore det här en kurs i analys hade vi behövt fundera långt och väl på om det faktiskt är tillåtet att multiplicera ut en produkt av oändliga summor på detta viset, och om koefficienterna vi fick verkligen är dessa. Men vi bryr oss inte om vad analytikerna tycker, och bryr oss inte om konvergens -- för oss är dessa formella objekt, så de multiplicerar ut enligt de algebraiska regler vi förväntar oss. Vad detta gör med konvergensen är en fråga för någon annan.}
+
+        Som nästa steg grupperar vi termerna efter exponenten på $x$, och skriver att
+        \begin{align*}
+            \sum_{k, l = 0}^{\infty} a_k b_l x^{k+l} &= \sum_{j=0}^{\infty} \sum_{\substack{k, l \geq 0\\k + l = j}} a_k b_l x^j\\
+            &= \sum_{j=0}^{\infty} \left(\sum_{\substack{k, l \geq 0\\k + l = j}} a_k b_l\right) x^j.
+        \end{align*}
+
+        Det här ser ju väldigt mycket ut som en genererande funktion -- specifikt en generande funktion för följden $\{c_j\}_{j=0}^\infty$ där
+        $$c_j = \sum_{\substack{k, l \geq 0\\k + l = j}} a_k b_l.$$
+
+        Men denna kan vi ju skriva på ett lite annat sätt -- nämligen
+        $$\sum_{\substack{k, l \geq 0\\k + l = j}} a_k b_l = \sum_{i=0}^{j}a_{i} b_{j-i}$$
+        och vi ser att detta är faltningen av $a$ och $b$, så vi har bevisat resultatet.
+    \end{proof}
+\end{theorem}
+
+Låt oss formulera detta resultat också för fler än två följder -- beviset är det samma men med mer notation, så vi utelämnar det.
+
+\begin{lemma}
+    Antag att $\{a^1_k\}_{k=0}^\infty, \{a^2_k\}_{k=0}^\infty, \ldots, \{a^d_k\}_{k=0}^\infty$ är en samling av $d$ stycken följder. Då gäller det att\sidenote[][]{Den uppmärksamma av er, som läst en kurs i algebra, kanske anmärker här på att vi bara definierat $a * b$, så ett uttryck som $a^1 * a^2 * \ldots * a^d$ bara är väldefinierat om faltning är en associativ operation.
+    
+    Hav förtröstan, frukta icke, faltningen är inte bara associativ utan också kommutativ. Den till och med distribuerar över addition.}
+    $$(a^1*a^2*\ldots*a^d)_k = \sum_{\substack{k_1, k_2, \ldots, k_d \geq 0\\k_1 + k_2 + \ldots + k_d = k}} a^1_{k_1}a^2_{k_2}\ldots a^d_{k_d}$$
+    och
+    $$F_{a^1 * a^2 * \ldots * a^d}(x) = \prod_{i=1}^{d} F_{a^i}(x).$$
+\end{lemma}
+
+
 \section{Övningar}
 
 \begin{xca}
