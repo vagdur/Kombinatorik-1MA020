@@ -78,9 +78,10 @@ Till slut disktuerar vi en jobbigare variant av problemet med människor som sit
     och vad vi behöver räkna är antalet funktioner från $A$ till $B$ som undviker att träffa en viss mängd $I$. Ett specialfall ser vi omedelbart -- om $I = B$ måste snittet vara tomt, eftersom elementen i $A$ måste skickas \emph{någonstans}.
 
     Att räkna dem är relativt enkelt -- en funktion från $A$ till $B$ som inte träffar en viss mängd $I \subset B$ är ju precis en funktion från $A$ till $B \setminus I$, och vi vet att det finns $\abs{B \setminus I}^{\abs{A}} = (m - \abs{I})^n$ sådana. Så vad vi får är att
-    $$\abs{\bigcup_{b\in B} X_b} = \sum_{I \subset B, I \neq B} (-1)^{\abs{I} + 1}(m - \abs{I})^n.$$
+    $$\abs{\bigcup_{b\in B} X_b} = \sum_{I \subset B, I \neq B} (-1)^{\abs{I} + 1}(m - \abs{I})^n,$$
+    där summan är över delmängder \emph{inte lika med $B$} eftersom vi redan observerat att då $I = B$ blir det hela noll.
 
-    Så om vi grupperar den här summan efter storleken på $I$ vet vi att det finns $\binom{m}{k}$ stycken val av $I$ av storlek $k$, så 
+    Så om vi grupperar den här summan efter storleken på $I$ vet vi att det finns $\binom{m}{k}$ stycken val av $I$ av storlek $k$ (och nu vet vi att $I \neq B$, så storlek $m$ är utesluten och summan går bara upp till $m-1$), så 
     $$\abs{\bigcup_{b\in B} X_b} = \sum_{k=0}^{m-1} (-1)^{k + 1}\binom{m}{k}(m - k)^n$$
     vilket ger oss resultatet, när vi stoppar in detta i $S(n,m) = \abs{X} - \abs{\bigcup_{b\in B} X_b}$.
   \end{proof}
