@@ -119,7 +119,15 @@ Som ett första exempel på detta, låt oss använda genererande funktioner för
 
 Det här tar oss alltså halvvägs till att ha gjort något intressant -- vi har gått från kombinatorik till genererande funktion, och manipulerat den kombinatoriska informationen algebraiskt för att få fram ny information om den genererande funktionen. Men vi är ju intresserade av den kombinatoriska sidan, så vi vill ju översätta den här informationen tillbaka till att säga något intressant om Fibonacciföljden.
 
-Vi återkommer till det, först formulerar vi de manipulationer vi just genomförde lite mer allmänt, plus ett par extra som dyker upp ofta, så de blir enklare att komma ihåg.
+En sak man kan göra, men som vi inte skall lägga tid på\sidenote[][]{Vad man får göra är ofta att partialbråksuppdela den genererande funktionen, och att partialbråksuppdela är ju ungefär det tråkigaste man kan göra i matematiken, alltså varför vi skippar att faktiskt göra det.} i denna föreläsningen, är att räkna ut Taylorutvecklingen av denna genererande funktionen, och på så vis få fram en formel för det $n$te Fibonaccitalet.
+
+Ifall man faktiskt genomför den räkningen kommer man att få följande resultat:
+
+\begin{proposition}[Binets formel]
+    Det gäller för Fibonaccitalen att
+    $$f_n = \frac{\phi^n - \phi^{-n}}{\phi - \frac{1}{\phi}}$$
+    där $\phi = \frac{1 + \sqrt{5}}{2}$ är det gyllene snittet.
+\end{proposition}
 
 \begin{lemma}[Räkneregler för genererande funktioner]\label{lemma_generating_function_calc_rules}
     Antag att vi har en följd $\{a_k\}_{k=0}^\infty$, med genererande funktion $F_a$. Då gäller det att
