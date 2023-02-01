@@ -18,3 +18,8 @@ Föreläsningsanteckningar för våra föreläsningar kommer också att länkas 
 
 1. [Extra övningar](https://vagdur.github.io/Kombinatorik-1MA020/extra_exercises.pdf)
 2. [Formel- och räkneregelssamling](https://vagdur.github.io/Kombinatorik-1MA020/formulae.pdf)
+
+Övningar med lösningsförslag: 
+1. Ett ställe att hitta sådana på är [anteckningarna från förra årets version av kursen](https://vagdur.github.io/Kombinatorik-1MA020/CombinatoricsCourse.pdf). Dessa innehåller inte bara övningar, utan också en del exempel som vi inte går igenom på föreläsningarna detta året - så de exemplen kan ju också användas som övningar, om ni försöker lösa exemplet själva innan ni läser hur han gjorde. 
+2. [Den här sidan](https://www.math.wichita.edu/~hammond/math321/section-counting-binomial.html) innehåller en del övningar med lösningsförslag, men den överlappar bara med vår kurs i de första av våra föreläsningar.
+3. [Den här boken](https://discrete.openmathbooks.org/dmoi2/frontmatter.html) överlappar mer med vår kurs, och har "lösningar" på uppgifterna. Tyvärr verkar dessa ofta vara väldigt knapphändiga, men det är i alla fall något.
