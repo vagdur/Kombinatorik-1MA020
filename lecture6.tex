@@ -1,0 +1,106 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Föreläsning 6: Fortsättning på genererande funktioner $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
+
+%\date{15 januari 2023}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+\include{mathcommands.extratex}
+
+\begin{document}
+
+\definecolor{darkgreen}{rgb}{0.0627, 0.4588, 0.1451}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+Vi fortsätter förra föreläsningens diskussion om genererande funktioner, och ger fler exempel och sätt att använda sådana för att lösa kombinatoriska problem.
+\end{abstract}
+
+\section{Antal lösningar till en ekvation, med begränsningar}
+
+I slutet på förra föreläsningen studerade vi antalet lösningar till ekvationen
+$$x_1 + x_2 + x_3 + x_4 + x_5 = k$$
+om vi kräver att alla $x_i$ är ickenegativa heltal. Det var ett första exempel på en mer generell kategori av problem med att räkna lösningar på ekvationer. Låt oss börja med ett lite mer invecklat problem:
+
+\begin{example}
+    Hur många lösningar finns det till
+    $$x_1 + x_2 + x_3 + x_4 = k$$
+    om vi kräver att alla $x_i$ är ickenegativa heltal, men också kräver att $x_2$ är jämnt, att $x_3 \leq 10$, och $x_4$ är udda?
+
+    Låt, för varje $k$, $a_k$ vara antalet sådana lösningar.
+    Låt sedan $a_k^1$ vara antalet lösningar till $x_1 = k$ i ickenegativa heltal $x_1$,
+    $a_k^2$ vara antalet lösningar till $x_2=k$ i ickenegativa jämna heltal,
+    $a_k^3$ vara antalet lösningar till $x_3=k$ i heltal mellan $0$ och $10$,
+    och $a_k^4$ vara antalet lösningar till $x_4 = k$ i udda heltal.
+
+    Precis som i förra exemplet studerar vi nu faltningen av dessa fyra följder, och ser att
+    $$(a^1 * a^2 * a^3 * a^4)_k = \sum_{\substack{k_1, k_2, k_3, k_4\geq 0\\k_1 + k_2 + k_3 + k_4 = k}} a_{k_1}^1a_{k_2}^2a_{k_3}^3a_{k_4}^4 = a_k.$$
+
+    Så precis som i förra exemplet kan vi få fram genererande funktionen för $a_k$, följden vi faktiskt är intresserade av, genom att plocka fram den genererande funktionen för de enklare följderna.
+
+    Vad genererande funktionen för $a^1$ är vet vi sedan innan -- den är bara en följd av ettor, så dess genererande funktion blir $\frac{1}{1-x}$. Likaledes vet vi sedan innan att följden av $n$ stycken ettor och sedan nollor har genererande funktion $\frac{1 - x^{n+1}}{1-x}$, så genererande funktionen för $a^3$ blir $\frac{1 - x^{11}}{1-x}$.
+
+    Däremot för $a^2$ behöver vi räkna ut något nytt, nämligen den genererande funktionen för följden $1,0,1,0,1,\ldots$, indikatorfunktionen av de jämna talen. Så vi får skriva att
+    \begin{align*}
+        F_{a^2}(x) &= \sum_{k=0}^{\infty} a^2_k x^k\\
+        &= \sum_{\substack{k \geq 0\\k \in 2\Z}} x^k\\
+        &= \sum_{i=0}^{\infty} x^{2k}\\
+        &= \sum_{i=0}^{\infty} (x^2)^k
+    \end{align*}
+    och sista raden här kan vi känna igen som genererande funktionen av följden $(1,1,1,1,\ldots)$, \emph{utvärderad i} $x^2$. Så detta är lika med $\frac{1}{1-x^2}$.
+
+    Så vad som återstår är alltså $a^4$, indikatorfunktionen för de udda talen. För att få fram dess genererande funktion kan vi använda vad vi just gjorde för de jämna talen:
+    \begin{align*}
+        F_{a^4}(x) &= \sum_{k=0}^{\infty} a_k x^k\\
+        &= \sum_{\substack{k \geq 1\\k\text{ udda}}} x^k\\
+        &= x\sum_{\substack{k \geq 1\\k\text{ udda}}} x^{k-1}\\
+        &= x\sum_{\substack{k \geq 0\\k \in 2\Z}} x^k\\
+        &= \frac{x}{1 - x^2}.
+    \end{align*}
+
+    Så, om vi använder att genererande produkten av en faltning är produkten av de genererande funktionerna, ser vi att
+    \begin{align*}
+        F_a(x) &= \left(\frac{1}{1-x}\right)\left(\frac{1-x^{11}}{1-x}\right)\left(\frac{1}{1-x^2}\right)\left(\frac{x}{1-x^2}\right)\\
+        &= \frac{x(1 - x^{11})}{(1-x)^2(1-x^2)^2}
+    \end{align*}
+    och ber vi vårt favorit-CAS\sidenote[][]{\emph{Computer Algebra System}, alltså till exempel \emph{WolframAlpha} eller något av dess öppna alternativ.} att Taylorutvidga detta uttryck så får vi att
+    $$F_a(x) = x + 2x^2 + 5x^3 + 8x^4 + 14x^5 + 20x^6 + 30x^7 + 40x^8 + \ldots$$
+    så att följden av antalet lösningar är
+    $$0,1,2,5,8,14,20,30,40,55,70,91,111,138,163,\ldots$$
+\end{example}
+
+\section{Övningar}
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}
