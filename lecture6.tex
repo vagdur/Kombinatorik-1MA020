@@ -198,6 +198,43 @@ Så allt vi faktiskt har gjort är att skala ner vår följd så att den inte v�
   där vi i sista ledet kände igen en \emph{ordinär} genererande funktion för binomialkoefficienterna.
 \end{example}
 
+\begin{example}
+  Låt oss återvända till exemplet med schackbrädena. Vi hade en följd som gavs av rekursionen\sidenote[][]{Notera att vi har ändrat om i rekursionen så att vi har plustecken i index istället för minus -- det är fortfarande precis samma rekursion, men vi får finare uttryck senare.}
+  $$t_0 = 0, t_1 = 1, t_2 = 2, \quad t_{k+2} = t_{k+1} + t_{k} \, \forall k \geq 1.$$
+
+  Vad är den exponentiella genererande funktionen för denna följden? Analogt med det ordinära fallet tar vi vår rekursion, multiplicerar den med $\frac{x^k}{k!}$, och summerar över alla $k \geq 1$, för att få att
+  $$\sum_{k=1}^{\infty} t_{k+2} \frac{x^k}{k!} = \sum_{k=1}^{\infty} t_{k+1}\frac{x^k}{k!} + \sum_{k=1}^{\infty} t_{k}\frac{x^k}{k!}.$$
+
+  Nu kan vi komma ihåg att
+  $$\frac{\intd}{\dx} \frac{x^k}{k!} = \frac{x^{k-1}}{(k-1)!}$$
+  så att
+  $$t_{k+1}\frac{x^k}{k!} = t_{k+1}\left(\frac{\intd}{\dx} \frac{x^{k+1}}{(k+1)!}\right)$$
+  och
+  $$t_{k+2}\frac{x^k}{k!} = t_{k+2}\left(\frac{\intd^2}{\intd x^2} \frac{x^{k+2}}{(k+2)!}\right).$$
+
+  Om vi använder dessa likheter i vad vi hade innan, och bryter ut derivatorna ur summorna, får vi alltså att
+  $$\frac{\intd^2}{\intd x^2}\left(\sum_{k=1}^{\infty} t_{k+2} \frac{x^{k+2}}{(k+2)!}\right) = \frac{\intd}{\dx}\left(\sum_{k=1}^{\infty} t_{k+1}\frac{x^{k+1}}{(k+1)!}\right) + \left(\sum_{k=1}^{\infty} t_{k}\frac{x^k}{k!}\right).$$
+
+  Precis som i vårt exempel med Fibonaccitalen ser vi nu att vi nästan har de exponentiella genererande funktionerna, förutom att det saknas några av de första termerna i summorna. Så om vi justerar för detta får vi att
+  \begin{align*}
+    \frac{\intd^2}{\intd x^2}\left(EG_t(x) - t_0\frac{x^0}{0!} - t_1\frac{x^1}{1!} - t_2\frac{x^2}{2!}\right) &=\\
+    = \frac{\intd}{\dx}\left(EG_t(x) - t_0\frac{x^0}{0!} - t_1\frac{x^1}{1!}\right)& + \left(EG_t(x) - t_0\frac{x^0}{0!}\right)
+  \end{align*}
+  så om vi substituerar in $t_0 = 0, t_1 = 1, t_2 = 2$ och flyttar in derivatorna i parenteserna så får vi att
+  $$EG_t''(x) - 2 = EG_t'(x) - 1 + EG_t(x)$$
+  vilket ju är en helt vanlig andra gradens linjär ordinär differentialekvation med konstanta koefficienter. Randvillkoren för den ges av $EG_t(0) = t_0$ och $EG_t'(0) = t_1$.\sidenote[][]{Detta kommer ju alltid gälla för alla exponentiella genererande funktioner, av hur de är definierade.}
+  
+  Så vi kan antingen lösa den för hand eller med hjälp av vårt favorit-CAS, och finna lösningen
+  $$\frac{1}{10} \left(\sqrt{5} e^{\left(\frac{\sqrt{5}}{2}+\frac{1}{2}\right) x}-\sqrt{5} e^{\left(\frac{1}{2}-\frac{\sqrt{5}}{2}\right) x}+5 e^{\left(\frac{\sqrt{5}}{2}+\frac{1}{2}\right) x}+5 e^{\left(\frac{1}{2}-\frac{\sqrt{5}}{2}\right) x}-10\right)$$
+  vilket vår CAS\sidenote[][]{Eller vi, för hand, om vi inte är lata. Den enda funktionen som är involverad är ju $e^x$, så det är inget svårt att expandera, bara många termer att hålla ordning på.} låter oss se kan Taylorutvidgas till
+  $$\sum_{n=1}^{\infty} \frac{\left(5 - \sqrt{5}\right) \left(\frac{1 - \sqrt{5}}{2}\right)^n + \left(5 + \sqrt{5}\right) \left(\frac{1 + \sqrt{5}}{2}\right)^n}{10} \frac{x^n}{n!}$$
+  vilket alltså ger oss en direkt formel för varje term i följden, i samma still som för Fibonaccitalen.
+\end{example}
+
+Vad vi sett i detta exemplet är alltså att vi, när vi har en felmatchning mellan index i vår följd och index i $\frac{x^k}{k!}$, plockar på oss derivator -- till skillnad från i fallet med ordinära genererande funktioner, då detta gav oss faktorer av $x$.
+
+Vi har också sett att de exponentiella genererande funktioner vi hittar för linjära rekursioner kommer ha en bunt olika $e^{Cx}$ för konstanter $C$,\sidenote[][]{Precis som vi såg för följden $(1,1,1,\ldots)$, där $C = 1$ -- detta beror, i alla fall andligen, på att våra följder som ges av linjära rekursioner också kommer växa ungefär så långsamt, så vi får samma sorts funktion.} vilket är mycket enklare att Taylorutvidga. Så om man vill lösa linjära rekursioner i praktiken är exponentiella genererande funktioner ofta ett bättre val än ordinära. 
+
 \section{Övningar}
 
 \begin{xca}
