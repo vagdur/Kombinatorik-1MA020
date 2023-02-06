@@ -96,6 +96,38 @@ om vi kräver att alla $x_i$ är ickenegativa heltal. Det var ett första exempe
     $$F_a(x) = x + 2x^2 + 5x^3 + 8x^4 + 14x^5 + 20x^6 + 30x^7 + 40x^8 + \ldots$$
     så att följden av antalet lösningar är
     $$0,1,2,5,8,14,20,30,40,55,70,91,111,138,163,\ldots$$
+\begin{example}
+  Vi vill räkna antalet lösningar $a_k$ till ekvationen
+  $$2x_1 + x_2 + x_3 = k$$
+  där alla $x_i$ är heltal, $x_2$ är en multipel av $6$, och talet $x_3$ kan vara antingen rött eller blått.\sidenote[][]{Vi ser alltså, för $k = 6$, alla dessa som godtagbara distinkta lösningar:
+  $$x_1 = 1, x_2 = 0, x_3 = \textcolor{blue}{4}, \qquad x_1 = 1, x_2 = 0, x_3 = \textcolor{red}{4},$$
+  $$x_1 = 2, x_2 = 0, x_3 = \textcolor{blue}{2}, \qquad x_1 = 0, x_2 = 6, x_3 = \textcolor{red}{0}.$$}
+
+  Vi börjar med att göra variabelbytet $y_1 = 2x_1$, och vill alltså nu ha lösningar till $y_1 + x_2 + x_3 = k$, med begränsningen att $y_1$ är jämnt. Det här förändrar så klart inte antalet lösningar, bara gör det lättare för oss att tillämpa vår metod.
+
+  Vi tillämpar samma metod som i förra exemplet, och låter $a^1_k$ vara antalet lösningar till $y_1 = k$ med $y_1$ jämnt, $a^2_k$ vara antalet lösningar till $x_2 = k$ med $x_2$ delbart med $6$, och $a^3_k$ vara antalet lösningar till $x_3 = k$ med $x_3$ färgat antingen rött eller blått. Faltningen blir då 
+  $$(a^1 * a^2 * a^3)_k = \sum_{\substack{k_1, k_2, k_3 \geq 0\\k_1+k_2+k_3 = k}} a^1_{k_1}a^2_{k_2}a^3_{k_3} = a_k.$$
+
+  Vi fortsätter precis som innan med att räkna ut den genererande funktionen för varje av våra följder. För $a^1$ vet vi redan vad genererande funktionen för indikatorfunktionen av de jämna talen är, nämligen $\frac{1}{1-x^2}$. 
+  
+  För $a^2$ kan vi använda samma metod som vi använde för de jämna talen för att se att
+  \begin{align*}
+    F_{a^2}(x) &= \sum_{k=0}^{\infty} a^2_k x^k = \sum_{\substack{k \geq 0\\k \in 6\Z}} x^k\\
+    &= \sum_{i=0}^{\infty} x^{6i} = \sum_{i=0}^{\infty} (x^6)^i
+  \end{align*}
+  så att $F_{a^2}(x) = \frac{1}{1-x^6}$.
+
+  För $a^3$ så blir denna helt enkelt en följd av bara tvåor, eftersom vi har två val för färg för varje tal, och kan välja vilket tal som helst. Så vi ser att
+  $$F_{a^3}(x) = \sum_{k=0}^{\infty} 2x^k = 2\frac{1}{1-x}.$$
+
+  Sammantaget har vi alltså att
+  $$F_a(x) = \left(\frac{1}{1-x^2}\right)\left(\frac{1}{1-x^6}\right)\left(\frac{2}{1-x}\right) = \frac{2}{(1-x)(1-x^2)(1-x^6)}$$
+  vilket vi kan Taylorutvidga i vårt favoritprogram och få att\sidenote[][]{Vi ser ju ett tydligt mönster här av att $a_{2k} = a_{2k+1}$. Kan du förklara varför detta måste vara fallet, baserat på våra begränsningar av variablerna?}
+  \begin{align*}
+    F_a(x) &= 2 + 2 x + 4 x^2 + 4 x^3 + 6 x^4 + 6 x^5 + 10 x^6 + 10 x^7\\
+    & + 14 x^8 + 14 x^9 + 18 x^{10} + 18 x^{11} + 24 x^{12} + 24 x^{13}\\
+    & + 30 x^{14} + 30 x^{15} + 36 x^{16} + 36 x^{17} + 44 x^{18} + \ldots.
+  \end{align*}
 \end{example}
 
 \section{Övningar}
