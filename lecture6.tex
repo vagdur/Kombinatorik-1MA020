@@ -135,6 +135,19 @@ om vi kräver att alla $x_i$ är ickenegativa heltal. Det var ett första exempe
 
 \section{Övningar}
 
+\begin{xca}
+  Hur många heltalslösningar till ekvationen
+  $$x_1 + x_2 + x_3 = 578$$
+  finns det,\sidenote[][-2cm]{Om ni väl har hittat genererande funktionen för antalet lösningar när vi ersatt $578$ med $k$, så kan ni enkelt få fram svaret med följande kod till \emph{WolframAlpha}:
+  $$\mathtt{SeriesCoefficient}[f, \{x,0,578\}]$$
+  där $f$ då är genererande funktionen ni funnit. Att ange den genererande funktionen och säga att ni sedan plockade fram rätt koefficient ur den med hjälp av ett CAS är den förväntade metoden här.} om vi kräver att
+  \begin{itemize}
+    \item $x_1 \geq -7$,\sidenote[][]{Ledtråd: Gör ett variabelbyte till $y_1$ för att få den vanliga begränsningen att $y_1 \geq 0$.}
+    \item $x_2 \geq 0$ är ett jämnt tal,
+    \item och $x_3 \geq 0$ kan vara vilket tal som helst, men om det är jämnt kan det vara rött eller blått, och om det är udda kan det vara gult, grönt, eller lila. 
+  \end{itemize}
+\end{xca}
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
