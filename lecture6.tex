@@ -161,6 +161,43 @@ om vi kräver att alla $x_i$ är ickenegativa heltal. Det var ett första exempe
   som ju är extremt lik den vi har för Fibonaccitalen, så vi kan finna en genererande funktion och sluten form på precis samma vis som i det fallet.
 \end{example}
 
+\section{Exponentiella genererande funktioner}
+
+Ibland får vi problem med att hitta enkla uttryck för våra genererande funktioner, eftersom vår följd växer för snabbt. Hittills har vi bara studerat följder som växer långsamt nog, men om vi till exempel hade velat studera följden $0!, 1!, 2!,\ldots$ hade dess vanliga genererande funktion varit 
+$$\sum_{k=0}^{\infty} k!x^k$$
+för vilken det inte finns något enkelt uttryck.\sidenote[][]{Om vi sätter på oss våra analytiker-glasögon kan vi dessutom se att detta uttryck inte konvergerar för något $x > 0$, så vad hade vi ens kunna ha för uttryck för en funktion som är oändlig överallt?}
+
+Ett annat exempel på detta är om vi räknar permutationer -- dessa kommer vara ungefär $k!$ stycken, i de flesta av våra exempel. Så vi hade haft samma problem. Det finns en anledning att vi hittills bara studerat binomialkoefficienter, som ju är betydligt mindre.
+
+Så, låt oss definiera en variant på genererande funktioner som kan hantera dessa snabbväxande följder.
+
+\begin{definition}
+  Om $\{a_k\}_{k=0}^\infty$ är någon följd ges dess \emph{exponentiella genererande funktion} av
+  $$EG_a(x) = \sum_{k=0}^{\infty} a_k \frac{x^k}{k!}.$$
+\end{definition}
+
+Så allt vi faktiskt har gjort är att skala ner vår följd så att den inte växer så kraftigt. Som tur är fungerar detta enkla trick väldigt väl -- låt oss räkna några exempel för att se hur.
+
+\begin{example}
+  Den exponentiella genererande funktionen för följden $(1,1,1,1,\ldots)$ ges av
+  $$\sum_{k=0}^{\infty} \frac{x^k}{k!} = e^x.$$
+\end{example}
+
+\begin{example}
+  Den exponentiella genererande funktionen för följden $(0!, 1!, 2!, 3!, \ldots)$ ges av
+  $$\sum_{k=0}^{\infty} k!\frac{x^k}{k!} = \sum_{k=0}^{\infty} x^k = \frac{1}{1-x}.$$
+\end{example}
+
+\begin{example}
+  Fixera något heltal $n$, och låt $a_k$ vara antalet permutationer av längd $k$ ur ett alfabete med $n$ bokstäver, så att $a_k = \frac{n!}{(n-k)!}$. Då ges den exponentiella genererande funktionen för $a$ av
+  \begin{align*}
+    EG_a(x) &= \sum_{k=0}^{\infty} \frac{n!}{(n-k)!}\frac{x^k}{k!}\\
+    &= \sum_{k=0}^{\infty} \frac{n!}{k!(n-k)!}x^k\\
+    &= \sum_{k=0}^{\infty} \binom{n}{k} x^k = (1 + x)^n
+  \end{align*}
+  där vi i sista ledet kände igen en \emph{ordinär} genererande funktion för binomialkoefficienterna.
+\end{example}
+
 \section{Övningar}
 
 \begin{xca}
