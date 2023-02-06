@@ -63,7 +63,8 @@ om vi kräver att alla $x_i$ är ickenegativa heltal. Det var ett första exempe
     och $a_k^4$ vara antalet lösningar till $x_4 = k$ i udda heltal.
 
     Precis som i förra exemplet studerar vi nu faltningen av dessa fyra följder, och ser att
-    $$(a^1 * a^2 * a^3 * a^4)_k = \sum_{\substack{k_1, k_2, k_3, k_4\geq 0\\k_1 + k_2 + k_3 + k_4 = k}} a_{k_1}^1a_{k_2}^2a_{k_3}^3a_{k_4}^4 = a_k.$$
+    $$(a^1 * a^2 * a^3 * a^4)_k = \sum_{\substack{k_1, k_2, k_3, k_4\geq 0\\k_1 + k_2 + k_3 + k_4 = k}} a_{k_1}^1a_{k_2}^2a_{k_3}^3a_{k_4}^4 = a_k$$
+    eftersom $a_{k_1}^1a_{k_2}^2a_{k_3}^3a_{k_4}^4$ är en produkt av ettor och nollor -- att $k_1 + k_2 + k_3 + k_4 = k$ garanteras av definitionen av faltning, och sedan är varje term i produkten ett om värdet på $k_i$ är tillåtet av våra begränsningar, och noll annars. Så produkten är ett om summan är korrekt och varje enskild begränsning är uppfylld.
 
     Så precis som i förra exemplet kan vi få fram genererande funktionen för $a_k$, följden vi faktiskt är intresserade av, genom att plocka fram den genererande funktionen för de enklare följderna.
 
@@ -73,8 +74,8 @@ om vi kräver att alla $x_i$ är ickenegativa heltal. Det var ett första exempe
     \begin{align*}
         F_{a^2}(x) &= \sum_{k=0}^{\infty} a^2_k x^k\\
         &= \sum_{\substack{k \geq 0\\k \in 2\Z}} x^k\\
-        &= \sum_{i=0}^{\infty} x^{2k}\\
-        &= \sum_{i=0}^{\infty} (x^2)^k
+        &= \sum_{i=0}^{\infty} x^{2i}\\
+        &= \sum_{i=0}^{\infty} (x^2)^i
     \end{align*}
     och sista raden här kan vi känna igen som genererande funktionen av följden $(1,1,1,1,\ldots)$, \emph{utvärderad i} $x^2$. Så detta är lika med $\frac{1}{1-x^2}$.
 
@@ -92,10 +93,12 @@ om vi kräver att alla $x_i$ är ickenegativa heltal. Det var ett första exempe
         F_a(x) &= \left(\frac{1}{1-x}\right)\left(\frac{1-x^{11}}{1-x}\right)\left(\frac{1}{1-x^2}\right)\left(\frac{x}{1-x^2}\right)\\
         &= \frac{x(1 - x^{11})}{(1-x)^2(1-x^2)^2}
     \end{align*}
-    och ber vi vårt favorit-CAS\sidenote[][]{\emph{Computer Algebra System}, alltså till exempel \emph{WolframAlpha} eller något av dess öppna alternativ.} att Taylorutvidga detta uttryck så får vi att
+    och ber vi vårt favorit-CAS\sidenote[][]{\emph{Computer Algebra System}, alltså till exempel \emph{WolframAlpha} eller något av dess öppna alternativ, såsom \emph{Sage}.} att Taylorutvidga detta uttryck så får vi att
     $$F_a(x) = x + 2x^2 + 5x^3 + 8x^4 + 14x^5 + 20x^6 + 30x^7 + 40x^8 + \ldots$$
     så att följden av antalet lösningar är
-    $$0,1,2,5,8,14,20,30,40,55,70,91,111,138,163,\ldots$$
+    $$0,1,2,5,8,14,20,30,40,55,70,91,111,138,163,\ldots.$$
+\end{example}
+
 \begin{example}
   Vi vill räkna antalet lösningar $a_k$ till ekvationen
   $$2x_1 + x_2 + x_3 = k$$
