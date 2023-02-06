@@ -133,6 +133,34 @@ om vi kräver att alla $x_i$ är ickenegativa heltal. Det var ett första exempe
   \end{align*}
 \end{example}
 
+\begin{example}
+  Antag att vi har ett schackbräde med $2\times n$ rutor, och vi vill täcka det med brickor av formen $2\times 1$ eller $1\times 2$. Hur många sätt kan vi göra detta på?
+
+  \begin{marginfigure}
+    \includegraphics{graphics/checkerboard_tiling.png}
+    \caption{Ett sätt att göra detta då $n=8$. Figur tagen ur förra årets anteckningar.}
+  \end{marginfigure}
+
+  Låt $t_n$ vara antalet sätt vi kan täcka vårt schackbräde. Vi vill hitta en rekursion för detta antal. Vi ser enkelt att det finns ett enda sätt att göra det för $n=1$ -- bara en bricka får plats -- så $t_1 = 1$. För $n=2$ finns det två sätt, antingen lägger vi dem horisontellt eller vertikalt, så $t_2 = 2$.
+
+  \begin{marginfigure}
+    \includegraphics{graphics/checkerboard_tiling_n_2.png}
+    \caption{De två sätten att göra det på då $n=2$. Figur från förra årets föreläsningsanteckningar.}
+  \end{marginfigure}
+
+  Om vi vill skapa oss en täckning av en $2\times n$-bräda, för något $n > 2$, kan vi göra på två sätt:
+  \begin{itemize}
+    \item Vi börjar med en täckning av en $2\times(n-1)$-bräda, och lägger till en till bricka vertikalt.
+    \item Vi börjar med en täckning av en $2\times(n-2)$-bräda, och lägger till två till brickor horisontellt.
+  \end{itemize}
+
+  Att varje täckning av en $2\times n$-bräda kan skapas på detta vis är enkelt att se -- antingen är den sista kolumnen täckt av en vertikal bricka, i vilket fall vi skapade täckningen på första viset, eller så är den täckt av två horisontella brickor, i vilket fall vi skapade den på det andra sättet.
+
+  Alltså har vi funnit följande rekursion för antalet täckningar
+  $$t_0 = 0, t_1 = 1, t_2 = 2, \quad t_n = t_{n-1} + t_{n-2} \, \forall n > 2$$
+  som ju är extremt lik den vi har för Fibonaccitalen, så vi kan finna en genererande funktion och sluten form på precis samma vis som i det fallet.
+\end{example}
+
 \section{Övningar}
 
 \begin{xca}
