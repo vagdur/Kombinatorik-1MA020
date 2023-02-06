@@ -234,6 +234,85 @@ Så allt vi faktiskt har gjort är att skala ner vår följd så att den inte v�
 Vad vi sett i detta exemplet är alltså att vi, när vi har en felmatchning mellan index i vår följd och index i $\frac{x^k}{k!}$, plockar på oss derivator -- till skillnad från i fallet med ordinära genererande funktioner, då detta gav oss faktorer av $x$.
 
 Vi har också sett att de exponentiella genererande funktioner vi hittar för linjära rekursioner kommer ha en bunt olika $e^{Cx}$ för konstanter $C$,\sidenote[][]{Precis som vi såg för följden $(1,1,1,\ldots)$, där $C = 1$ -- detta beror, i alla fall andligen, på att våra följder som ges av linjära rekursioner också kommer växa ungefär så långsamt, så vi får samma sorts funktion.} vilket är mycket enklare att Taylorutvidga. Så om man vill lösa linjära rekursioner i praktiken är exponentiella genererande funktioner ofta ett bättre val än ordinära. 
+\section{Binomial-faltningar och EGFer}
+
+Vi har lärt oss att motsvarigheten till en faltning på den kombinatoriska sidan är en produkt av genererande funktioner. Vad händer om vi i stället tar \emph{exponentiella} genererande funktioner? Situationen blir lite mer komplicerad.\sidenote[][-0.7cm]{Det verkar som att både kursboken och förra årets föreläsningsanteckningar sveper denna komplikation under mattan, på ett sätt som jag upplever som väldigt förvirrande. Det tog mig minst en timme att lista ut varför vad de gör inte är direkt felaktigt.
+\begin{center}\includegraphics[width=0.2\textwidth]{graphics/warning_sign.png}\end{center}}
+
+\begin{definition}
+  Antag att $\{a_k\}_{k=0}^\infty$ och $\{b_k\}_{k=0}^\infty$ är två följder. Då ges deras \emph{binomial-faltning} $a \ostar b$ av
+  $$(a \ostar b)_k = \sum_{i=0}^{k} \binom{k}{i} a_i b_{k_i}.$$
+\end{definition}
+
+\begin{lemma}
+  Antag att $\{a_k\}_{k=0}^\infty$ och $\{b_k\}_{k=0}^\infty$ är två följder, vars exponentiella genererande funktioner är $EG_a(x)$ och $EG_b(x)$. Då ges den genererande funktionen för binomial-faltningen $a \ostar b$ av
+  $$EG_{a \ostar b}(x) = EG_a(x)EG_b(x)$$
+
+  \begin{proof}
+    Lägg märke till att $EG_a$ inte bara är den exponentiella genererande funktionen för $a$, utan också är den ordinära genererande funktionen för $A_k = \frac{a_k}{k!}$, och likaledes för $b$. Alltså måste, enligt vad vi redan vet om ordinära genererande funktioner,
+    $$EG_a(x)EG_b(x) = G_{A}(x)G_{B}(x) = G_{A * B}(x).$$
+
+    Så vad vi studerar är den vanliga faltningen av $A$ med $B$ -- vi ser att denna är
+    \begin{align*}
+      \left(A * B\right)_k &= \sum_{i=0}^{k} A_{i}B_{k-i}\\
+      &= \sum_{i=0}^{k} \frac{a_i}{i!}\frac{b_{k-i}}{(k-i)!}\\
+      &= \sum_{i=0}^{k} \frac{k!}{i!(k-i)!}\frac{a_i b_{k-i}}{k!}\\
+      &= \sum_{i=0}^{k} \binom{k}{i}a_i b_{k-i}\frac{1}{k!} = (a \ostar b)_k \frac{1}{k!}
+    \end{align*}
+    så alltså måste vi ha
+    \begin{align*}
+      G_{A * B}(x) &= \sum_{k=0}^\infty (A*B)_k x^k\\
+      &= \sum_{k=0}^{\infty}(a\ostar b)_k \frac{x^k}{k!}\\
+      &= EG_{a \ostar b}(x)
+    \end{align*}
+    och vårt lemma är bevisat.
+  \end{proof}
+\end{lemma}
+
+På ett fullkomligt analogt sätt, användandes resultatet för ordinära genererande funktioner, fast med fler index, kan vi bevisa följande resultat:
+\begin{lemma}
+  Antag att $\{a^1_k\}_{k=0}^\infty, \{a^2_k\}_{k=0}^\infty, \ldots, \{a^d_k\}_{k=0}^\infty$ är följder. Då gäller det att\sidenote[][]{Kom ihåg att notationen $\binom{k}{k_1, k_2, \ldots, k_d}$ betecknar en \emph{multinomialkoefficient}.}
+  $$(a^1 \ostar a^2 \ostar \ldots \ostar a^d)_k = \sum_{\substack{k_1, k_2, \ldots, k_d\\k_1 + k_2 + \ldots + k_d = k}} \left(\binom{k}{k_1, k_2, \ldots, k_d} \prod_{j=1}^{d} a^j_{k_j}\right)$$
+  och
+  $$EG_{a^1 \ostar a^2 \ostar \ldots \ostar a^d}(x) = \prod_{j=1}^{d} EG_{a^j}(x).$$
+\end{lemma}
+
+Som vårt sista exempel för denna föreläsning tar vi motsvarigheten för exponentiella genererande funktioner till våra problem med antal lösningar på en ekvation.
+
+\begin{example}
+  Hur många strängar ur alfabetet $\{a, b, c, d\}$ finns det av längd $k$, med åtminstone ett $b$, högst tre $c$, och ett jämnt antal $d$?
+
+  Precis som i fallet med att räkna lösningar till ekvationer låter vi $l_k$ vara antalet sådana strängar, och låter sedan
+  \begin{itemize}
+    \item $a_k$ vara antalet strängar ur alfabetet $\{a\}$ av längd $k$,
+    \item $b_k$ vara antalet strängar ur alfabetet $\{b\}$ av längd $k$ med åtminstone ett $b$,
+    \item $c_k$ vara antalet strängar ur alfabetet $\{c\}$ av längd $k$ med högst tre $c$, och
+    \item $d_k$ vara antalet strängar ur alfabetet $\{d\}$ av längd $k$ med ett jämnt antal $d$.
+  \end{itemize}
+
+  Om vi nu betraktar binomialfaltningen av dessa fyra följder ser vi att
+  $$(a \ostar b \ostar c \ostar d)_k = \sum_{\substack{k_1, k_2, k_3, k_4\\k_1 + k_2 + k_3 + k_4 = k}} \binom{k}{k_1, k_2, k_3, k_4} a_{k_1}b_{k_2}c_{k_3}d_{k_4} = l_k$$
+  eftersom vad vi räknar med multinomialkoefficienten $\binom{k}{k_1, k_2, k_3, k_4}$ är precis antalet strängar av längd $k$ med $k_1$ stycken $a$, $k_2$ stycken $b$, och så vidare.
+
+  Vad som återstår är alltså att finna de exponentiella genererande funktionerna för våra fyra följder.
+  \begin{itemize}
+    \item Följden $a$ är helt enkelt $(1,1,1,\ldots)$, så dess exponentiella genererande funktion har vi redan sett är $e^x$.
+    \item Följden $b$ är $(0,1,1,\ldots)$, så vi kan räkna att 
+    $$EG_b(x) = \sum_{k=1}^{\infty} \frac{x^k}{k!} = \sum_{k=0}^{\infty} \frac{x^k}{k!} - 1 = e^x - 1.$$
+    \item Följden $c$ är $(1,1,1,1,0,0,\ldots)$, så 
+    $$EG_c(x) = 1 + x + \frac{x^2}{2} + \frac{x^3}{6}.$$
+    \item För följden $d$ får vi använda oss av ett litet trick, och skriva att 
+    \begin{align*}
+      EG_d(x) &= \sum_{k \in 2\Z^{\geq 0}} \frac{x^k}{k!}\\
+      &= \frac{1}{2}\left(\sum_{k=0}^{\infty} \frac{x^k}{k!} - \sum_{k=0}^{\infty} \frac{(-x)^k}{k!}\right)\\
+      &= \frac{e^x - e^{-x}}{2}.
+    \end{align*}
+    Multiplicerar vi ihop dessa får vi att 
+    $$EG_l(x) = e^x\left(e^x - 1\right)\left(1 + x + \frac{x^2}{2} + \frac{x^3}{3}\right)\left(\frac{e^x - e^{-x}}{2}\right).$$
+    
+    Om vi vill ha en explicit formel är ett bra nog CAS\sidenote[][]{Mathematica kan det, men inte WolframAlpha.} kapabelt att ge en explicit formel för den $n$te termen i serieexpansionen av detta, men den är inte vacker.
+  \end{itemize}
+\end{example}
 
 \section{Övningar}
 
