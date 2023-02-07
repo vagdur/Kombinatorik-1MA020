@@ -13,7 +13,7 @@ Föreläsningsanteckningar för våra föreläsningar kommer också att länkas 
 3. [Föreläsning tre: Induktion, lådprincipen, och inklusion-exklusion](https://vagdur.github.io/Kombinatorik-1MA020/lecture3.pdf)
 4. [Föreläsning fyra: Sammanfattning av alla räkneproblem, samt cykler](https://vagdur.github.io/Kombinatorik-1MA020/lecture4.pdf)
 5. [Föreläsning fem: Genererande funktioner](https://vagdur.github.io/Kombinatorik-1MA020/lecture5.pdf)
-6. [Föreläsning sex: Fortsättning på genererande funktioner](https://vagdur.github.io/Kombinatorik-1MA020/lecture6.pdf) (Work In Progress)
+6. [Föreläsning sex: Fortsättning på genererande funktioner](https://vagdur.github.io/Kombinatorik-1MA020/lecture6.pdf)
 
 # Annat material för kursen
 
