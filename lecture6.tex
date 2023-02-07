@@ -339,6 +339,61 @@ Som vårt sista exempel för denna föreläsning tar vi motsvarigheten för expo
   Antag att vi vet att följden $\{a_k\}_{k=0}^\infty$ har exponentiell generande funktion $F$. Finn ett enkelt uttryck för den exponentiella genererande funktionen för följden $b_k = k a_k$, i termer av $F$.
 \end{xca}
 
+\begin{xca}
+  I denna övning använder vi ett lite mer abstrakt språk. Låt $\mathfrak{F}$ vara mängden av alla följder, och $\mathfrak{G}$ vara mängden av alla genererande funktioner. Då kan vi alltså låta $G: \mathfrak{F} \to \mathfrak{G}$ vara funktionen som skickar en följd till dess ordinära genererande funktion, och $EG: \mathfrak{F} \to \mathfrak{G}$ funktionen som skickar en följd till dess exponentiella genererande funktion.
+
+  Vi kan också definiera operatorn (funktionen) $A: \mathfrak{F} \to \mathfrak{F}$ som att $(Aa)_k = a_{k+1}$. Vi förskjuter alltså index ett steg, och slänger bort första termen i vår följd.\sidenote[][]{Så till exempel har vi att $A(1,0,1,0,1,0,\ldots) = (0,1,0,1,0,1,\ldots)$.} Likaledes kan vi definiera operatorn $D: \mathfrak{G} \to \mathfrak{G}$ som funktionen som skickar en genererande funktion på dess derivata.\sidenote[][]{Vi har ju egentligen inte \emph{definierat} vad vi menar med derivatan av en genererande funktion, utan bara låtsats att vi får behandla dem som vilken funktion som helst, och ignorerat alla konvergensfrågor och allt krångel om att summorna har oändligt med termer. Vi fortsätter att göra så.}
+
+  Slutligen kan vi, för varje heltal $n$, definiera operatorn $T_n: \mathfrak{F} \to \R$ som att $Ta = a_n$. Den plockar alltså helt enkelt ut den $n$te termen i följden.
+
+  Låt oss nu plocka ner all denna abstraktionen på en lite mer konkret nivå. Övertyga er själva, genom att skriva ut konkret vad påståendena betyder, om att vi redan visat i föreläsningarna att
+  \begin{itemize}
+    \item $G(A(a)) = \frac{1}{x}\left(G(a) - T_0(a)\right)$ och
+    \item $EG(A(a)) = D(EG(a))$. Vill man vara oerhört förfinad och abstrakt kan man formulera detta som att följande diagram kommuterar:
+    
+    \begin{center}
+      \includegraphics[width=0.4\textwidth]{graphics/abstract_exercise_comm_diag.png}
+    \end{center}
+  \end{itemize}
+\end{xca}
+
+\begin{xca}
+  Låt oss nu se varför detta abstrakta språk faktiskt är användbart ibland.\sidenote[][]{I det här fallet ger det oss ett mycket koncisare sätt att uttrycka räkningen för att hitta genererande funktionen för indikatorföljden för talen delbara med tre. Dessutom blir det tydligt hur man hade gjort om vi hade sju istället för tre.
+  
+  Kanske att man till och med kan göra räkningen för godtyckliga $n\Z$, men det kräver nog mer differentialekvationsteori än jag kan, eller kan förvänta mig att ni skall kunna. (Jag försökte i ungefär en minut med Laplacetransformer, men det blev svårt och kändes invecklat.)} Låt $a = (1,0,0,1,0,0,1,\ldots)$, och låt $\overrightarrow{1} = (1,1,1,\ldots)$.
+
+  Visa att
+  $$a = \overrightarrow{1} - Aa - AAa,$$
+  använd vad vi just gjorde i förra övningen för att omvandla detta till en differentialekvation för $EG(a)$, och lös differentialekvationen\sidenote[][]{Det här steget vill jag inte ha några räkningar på -- bara ange vad lösningen blir. Ni får använda vilket verktyg ni vill för att faktiskt lösa den.} för att få fram ett uttryck för exponentiella genererande funktionen för $a$.
+\end{xca}
+
+\begin{xca}
+  Hur många strängar finns det ur alfabetet $\{a,b,c\}$, om vi kräver att
+  \begin{itemize}
+    \item det omedelbart efter varje $a$ följer ett $b$,\sidenote[][]{Ledtråd: För att hantera denna begränsning behöver vi göra ett ``variabelbyte''. Vad kan det tänkas betyda i denna kontext?}
+    \item det finns ett jämnt antal $c$,
+    \item och antalet $a$ är delbart med tre?
+  \end{itemize}
+\end{xca}
+
+\begin{xca}
+  För varje $n$ ges det $n$te \emph{Bell-talet} av
+  $$B_n = \sum_{k=1}^{n} \stirlingPart{n}{k},$$
+  så det räknar alltså det totala antalet mängdpartitioner av en mängd av $n$ element, oavsett antal delar. Man kan visa att\sidenote[][]{Detta är en av övningarna i vår samling med extra övningar.}
+  \begin{equation}\label{bell_recursion}
+    B_{n+1} = \sum_{k=0}^{n} \binom{n}{k} B_k.
+  \end{equation}
+
+  Låt $EG_B(x)$ vara den genererande funktionen för Bell-talen, och visa att
+  \begin{equation}\label{bell_egf_derivative}
+    \frac{\intd}{\dx} EG_B(x) = \sum_{n=0}^{\infty} B_{n+1}\frac{x^n}{n!}.
+  \end{equation}
+
+  Substituera sedan in vår rekursion \eqref{bell_recursion} i \eqref{bell_egf_derivative}, och observera att det ni får ser väldigt mycket ut som exponentiella genererande funktionen för binomialfaltningen mellan Bell-talen och någon annan följd.
+
+  Använd detta för att få fram en differentialekvation för $EG_B$ -- lös den för att få fram ett uttryck för exponentiella genererande funktionen för Bell-talen.\sidenote[][]{Som vanligt behöver ni inte faktiskt ange hur ni löser den -- bara skriv vad lösningen är.}\sidenote[][]{Ni har härmed lyckats plocka fram en EGF för en följd där vi faktiskt inte har något enkelt uttryck för vad varje enskild term blir -- det finns inget fint uttryck för $B_n$ i termer av $n$. Hade vi kunnat mer komplexanalys hade vi kunnat använda detta för att få fram skattningar för hur snabbt Belltalen växer, till exempel. (Svaret är: ``väldigt väldigt snabbt'', men vi hade kunnat vara precisare än så.)}
+\end{xca}
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
