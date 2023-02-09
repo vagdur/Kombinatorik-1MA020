@@ -65,14 +65,14 @@ I detta dokument ligger en samling av viktiga resultat och räkneregler, sammanf
 
 \begin{lemma}[Räkneregler för genererande funktioner]
   Antag att vi har en följd $\{a_k\}_{k=0}^\infty$, med genererande funktion $F_a$. Då gäller det att
-  \begin{enumerate}
-      \item För varje $j \geq 1$ är
-      $$\sum_{k = j}^{\infty} a_k x^k = \left(\sum_{k=0}^{\infty}a_k x^k\right) - \left(\sum_{k=0}^{k=j-1} a_kx^k\right) = F_a(x) - \sum_{k=0}^{k=j-1} a_kx^k$$
-      \item För alla $m \geq 0$, $l \geq -m$ gäller det att
-      $$\sum_{k=m}^{\infty} a_k x^{k + l} = x^l\left(\sum_{k=m}^{\infty} a_k x^{k}\right) = x^l\left(F_a(x) - \sum_{k=0}^{m-1} a_k x^k\right)$$
-      \item Det gäller att\sidenote[][]{Denna räkneregel kan förstås generealiseras till att högre potenser av $k$ motsvarar högre derivator -- och om vi istället delar med någon potens av $k$ får vi primitiva funktioner till den genererande funktionen.}
-      $$\sum_{k=0}^{\infty} k a_k x^k = F_a'(x).$$
-  \end{enumerate}
+    \begin{enumerate}
+        \item För varje $j \geq 1$ är
+        $$\sum_{k = j}^{\infty} a_k x^k = \left(\sum_{k=0}^{\infty}a_k x^k\right) - \left(\sum_{k=0}^{k=j-1} a_kx^k\right) = F_a(x) - \sum_{k=0}^{k=j-1} a_kx^k$$
+        \item För alla $m \geq 0$, $l \geq -m$ gäller det att
+        $$\sum_{k=m}^{\infty} a_k x^{k + l} = x^l\left(\sum_{k=m}^{\infty} a_k x^{k}\right) = x^l\left(F_a(x) - \sum_{k=0}^{m-1} a_k x^k\right)$$
+        \item Det gäller att\sidenote[][]{Denna räkneregel kan förstås generealiseras till att högre potenser av $k$ motsvarar högre derivator -- och om vi istället delar med någon potens av $k$ får vi primitiva funktioner till den genererande funktionen.}
+        $$\sum_{k=0}^{\infty} k a_k x^k = \frac{F_a'(x)}{x}.$$
+    \end{enumerate}
 \end{lemma}
 
 \section{Vanliga genererande funktioner}
