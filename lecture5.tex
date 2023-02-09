@@ -309,6 +309,16 @@ Vi hade så klart gärna haft en explicit formel för antalet lösningar på den
 \end{xca}
 
 \begin{xca}
+    Antag att vi har en summa
+    \begin{equation}\label{exercise_annoying_double_sum}
+        \sum_{k=\ell}^{\infty} \sum_{i=k-\ell}^{k} f(k,i)
+    \end{equation}
+    för någon funktion $f: \N^2\to \R$. Byt ordningen på summeringen,\sidenote[][]{Det här är väl egentligen bara en övning i att manipulera summor, inte i kombinatorik per se. Men det är användbart att kunna trick som det här för att arbeta med genererande funktioner. Ibland kan ``byt ordningen i en summa'' till och med vara en bevisteknik i sig.} alltså fyll i frågetecknen i uttrycket
+    $$\sum_{i = 0}^{\infty} \sum_{k = ?}^{?} f(?,?)$$
+    så att det blir lika med vad vi hade i \eqref{exercise_annoying_double_sum}.\sidenote[][]{Tips: För varje par av $(k,i)$, hur många gånger dyker $f(k,i)$ upp i summan i \eqref{exercise_annoying_double_sum}? Det hjälper att rita upp en tabell över par av $i$ och $k$, och fylla i varje ruta om det paret dyker upp. Om vi har värden på $k$ som rader och värden på $i$ som kolumner räknar \eqref{exercise_annoying_double_sum} ``radvis'', och när vi byter ordning på summan vill vi i stället räkna ``kolumnvis''.}
+\end{xca}
+
+\begin{xca}
     Låt, om $\{a_k\}_{k=0}^\infty$ och $\{b_k\}_{k=0}^\infty$ är två följder, $a+b$ vara följden som ges av $(a+b)_k = a_k + b_k$. Bevisa att $F_{a+b}(x) = F_a(x) + F_b(x)$, så att addition på den kombinatoriska sidan motsvarar addition också på den algebraiska sidan.
     
     Bevisa sedan, om $\{c_k\}_{k=0}^\infty$ är en tredje följd, att
