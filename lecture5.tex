@@ -302,8 +302,8 @@ Vi hade så klart gärna haft en explicit formel för antalet lösningar på den
 
 \begin{xca}
     Antag att en följd $\{a_k\}_{k=0}^\infty$ lyder en rekurrensrelation
-    $$a_{k+1} = \sum_{i = k - l}^{k} w_i a_i$$
-    för alla $k \geq l$.
+    $$a_{k+1} = \sum_{i = 0}^{\ell} w_i a_{k-i}$$
+    för alla $k \geq \ell$, där $(w_0, w_1, w_2, \ldots, w_\ell)$ är en följd med koefficienter.\sidenote[][]{Om det hjälper kan ni anta att $w_i = 0$ för $i \not \in 0,1,\ldots,\ell$.}
 
     Använd våra räkneregler i Lemma \ref{lemma_generating_function_calc_rules} för att finna ett uttryck för den genererande funktionen $F_a$.\sidenote[][]{Det här är alltså generaliseringen av vad vi gjorde för Fibonnaciföljden. Ni kommer finna att ni kan skriva svaret som en rationell funktion med koefficienter som ges av de första termerna i $a_k$ och av vikterna $w_i$.}
 \end{xca}
