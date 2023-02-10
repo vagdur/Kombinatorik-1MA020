@@ -14,6 +14,7 @@ Föreläsningsanteckningar för våra föreläsningar kommer också att länkas 
 4. [Föreläsning fyra: Sammanfattning av alla räkneproblem, samt cykler](https://vagdur.github.io/Kombinatorik-1MA020/lecture4.pdf)
 5. [Föreläsning fem: Genererande funktioner](https://vagdur.github.io/Kombinatorik-1MA020/lecture5.pdf)
 6. [Föreläsning sex: Fortsättning på genererande funktioner](https://vagdur.github.io/Kombinatorik-1MA020/lecture6.pdf)
+7. [Föreläsning sju: Dyck-stigar och Catalantal](https://vagdur.github.io/Kombinatorik-1MA020/lecture7.pdf) (Work In Progress)
 
 # Annat material för kursen
 
