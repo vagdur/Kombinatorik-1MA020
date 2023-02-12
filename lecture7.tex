@@ -1,4 +1,4 @@
-\documentclass[nobib]{tufte-handout}
+\documentclass{tufte-handout}
 
 \title{Föreläsning 7: Dyck-stigar och Catalantal $\cdot$ 1MA020}
 
@@ -141,13 +141,101 @@ vilket ser ut som något vi borde kunna använda för att räkna ut genererande 
     \end{proof}
 \end{proposition}
 
+Så, hittills har vi definierat våra Dyck-stigar, listat ut en rekursion för deras antal, och använt denna rekursion för att härleda en genererande funktion. Kan vi använda denna genererande funktion för att härleda en explicit formel för antalet Dyck-stigar?
+
+Svaret på den frågan är ja, men det kräver ett lemma vi inte sett ännu.
+
+\section{Newtons binomialsats, och en explicit formel för $d_n$}
+
+\begin{definition}
+    För varje $x\in \R$ och varje $k \in \Z^{\geq 0}$ ges den \emph{fallande fakulteten} $x^{\underline{k}}$ av\sidenote[][]{Så produkten har $k$ termer. I fallet med $k=0$ får vi en tom produkt, vilket vi konventionellt anser är ett, så $x^{\underline{0}} = x^{\overline{0}} = 1$ för alla $x$.}
+    $$x^{\underline{k}} = x(x-1)(x-2)\ldots(x-k-1)$$
+    och den \emph{stigande fakulteten} $x^{\overline{k}}$ av
+    $$x^{\overline{k}} = x(x+1)(x+2)\ldots(x+k-1).$$
+
+    Om $x$ är ett heltal ges alltså $x^{\underline{k}}$ av $\frac{x!}{k!}$ och $x^{\overline{k}}$ av $\frac{(x+k-1)!}{(x-1)!}$.
+\end{definition}
+
+Vi kan särskilt notera att när $x$ är ett heltal ges antalet permutationer av längd $k$ ur ett alfabete med $x$ bokstäver alltså av $x^{\underline{k}}$, och således har vi också att
+$$\binom{x}{k} = \frac{x^{\underline{k}}}{k!}$$
+för alla heltal $x$ och $k$. Men detta uttrycket är ju helt väldefinierat även om $x$ inte är ett heltal, vilket motiverar oss att göra följande definition:
+
+\begin{definition}
+    För alla $x \in \R$ och $k \in \Z^{\geq 0}$ säger vi att
+    $$\binom{x}{k} = \frac{x^{\underline{k}}}{k!}.$$
+\end{definition}
+
+Anledningen att vi gör allt detta arbetet är att det låter oss generalisera binomialsatsen även till potenser som inte är heltal, såsom Newton upptäckte.
+
+\begin{theorem}[Newtons binomialsats]
+    För alla $x$ och $y$ och $r \in \R$ gäller det att
+    $$(x + y)^r = \sum_{k=0}^{\infty} \binom{x}{k} x^{r-k} y^k$$
+
+    \begin{proof}
+        Taylorutveckla.\sidenote[][]{Ett bevis återfinns lätt med google, men eftersom det inte egentligen har något med kombinatorik att göra utelämnar vi det i denna kursen.}
+    \end{proof}
+\end{theorem}
+
+Låt oss nu tillämpa vår nya kunskap på Dyckstigarna. Eftersom den genererande funktionen vi fann för deras antal involverade en kvadratrot kommer vi ju vilja tillämpa Newtons binomialsats i fallet med $r = \frac{1}{2}$, så låt oss börja med ett lemma om vad som händer i just det fallet.
+
+\begin{proposition}\label{ugly_dyck_path_formula}
+    Antalet Dyck-stigar av längd $2n$, $d_n$, ges av
+    $$d_n = 2 (-1)^{n+1}\binom{1/2}{n+1} 4^n.$$
+
+    \begin{proof}
+        Vi vet att den genererande funktionen för denna följd ges av
+        $$F_d(x) = \sum_{k=0}^{\infty} d_k x^k = \frac{1 - \sqrt{1 - 4x}}{2x}$$
+        så vi behöver serieutveckla detta uttryck.
+
+        Newtons binomialsats säger oss att
+        $$\sqrt{1 + y} = \sum_{k=0}^{\infty} \binom{1/2}{k} y^k$$
+        så om vi sätter in $y = -4x$ får vi att
+        $$\sqrt{1 - 4x} = \sum_{k=0}^{\infty} (-1)^k \binom{1/2}{k} 4^k x^k.$$
+        
+        När $k=0$ så blir $\binom{1/2}{0} = \frac{(1/2)^{\underline{0}}}{0!} = \frac{1}{1}$, och alltså är hela nollte termen lika med ett. Så alltså gäller det att
+        \begin{align*}
+            \frac{1 - \sqrt{1 - 4x}}{2x} &= \frac{\sum_{k=1}^{\infty} (-1)^k \binom{1/2}{k} 4^k x^k}{2x}\\
+            &= \sum_{k=1}^{\infty} 2(-1)^k \binom{1/2}{k} 4^{k-1} x^{k-1}\\
+            &= \sum_{k=0}^{\infty} 2 (-1)^{k+1}\binom{1/2}{k+1} 4^k x^k
+        \end{align*}
+        vilket genom att jämföra koefficienter ger oss resultatet.
+    \end{proof}
+\end{proposition}
+
+Så vi har hittat \emph{en} formel, men den är inte särskilt vacker. Även om vi intellektuellt vet att den borde ge oss heltal är det inte alls uppenbart, med den fraktionella binomialkoefficienten och allt.
+
+Kan vi hitta en vackrare formel? Svaret är ja, och det finns flera sätt för oss att göra det. Om vi hade haft mer uthållighet med krångliga räkningar hade vi kunna bevisa följande lemma, vilket låter oss förenkla uttrycket vi fick i Proposition \ref{ugly_dyck_path_formula}:
+
+\begin{lemma}\label{lemma_onehalf_binom_coeff}
+    Det gäller att
+    $$\binom{1/2}{n} = \frac{(-1)^{n+1}}{4^n(2n-1)}\binom{2n}{n}.$$
+    \begin{proof}
+        Utelämnas. Om du verkligen vill se en räkning för detta finns det ett bevis för något snarlikt, som borde gå att förenkla till detta, på stackexchange.\cite{dyck_path_stackexchange}
+    \end{proof}
+\end{lemma}
+
+När vi tagit detta Lemma \ref{lemma_onehalf_binom_coeff} och stoppat in det i Proposition \ref{ugly_dyck_path_formula} får vi följande mycket vackrare formel:
+
+\begin{theorem}
+    Antalet Dyck-stigar $d_n$ ges av
+    $$d_n = \frac{1}{n + 1}\binom{2n}{n}.$$
+
+    I själva verket är dessa tal så viktiga att de har sitt egna namn -- de kallas för \emph{Catalan-talen}.
+\end{theorem}
+
+Så vi har till slut hittat en fin formel för antalet Dyck-stigar, och alltså för Catalantalen. Tyvärr var vägen vi tog dit väldigt lerig, i botten på en hopväxt och snårig dal. Finns det ett mindre kladdigt sätt att hitta denna formel?\sidenote[][]{Vårt arbete med att ta fram denna formel för antalet Dyck-stigar illustrerar både för- och nackdelarna med metoden med genererande funktioner. Det är en pålitlig metod, med tydliga steg för vad vi vill göra -- efter att vi hittade rekursionen vi började med behövde vi aldrig egentligen vara kreativa, utan vi kom fram till målet genom att bara följa vårt recept.
+
+Å andra sidan kan räkningarna man behöver göra för att tillämpa metoden vara väldigt fula. Vad man köper i standardisering får man betala för i begriplighet -- det är nog svårt att säga att man begriper \emph{varför} den formeln ger Catalantalen efter att ha sett vårt bevis.}
+
+\section{Ett kombinatoriskt bevis för formeln för Catalantalen}
+
 \section{Övningar}
 
 \begin{xca}
     Hur många gitterstigar av längd $n$ från $(0,0)$ till $(a,b)$ finns det?
 \end{xca}
 
-%\bibliography{references}
-%\bibliographystyle{plainnat}
+\bibliography{references}
+\bibliographystyle{plainnat}
 
 \end{document}
