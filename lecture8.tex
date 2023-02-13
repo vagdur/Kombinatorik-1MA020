@@ -1,0 +1,92 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Föreläsning 8: Träd och heltalspartitioner $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
+
+%\date{7 februari 2023}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+\include{mathcommands.extratex}
+
+\begin{document}
+
+\definecolor{darkgreen}{rgb}{0.0627, 0.4588, 0.1451}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+Vi introducerar grafer och träd, och bevisar att antalet rotade ordnade binära oetiketterade träd också räknas av Catalantalen.
+
+Sedan introducerar vi heltalspartitioner, och härleder en genererande funktion för dessa, som vi använder för några exempel.
+\end{abstract}
+
+\section{Grafer och träd}
+
+Låt oss börja med att ge en hög med definitioner, som kommer vara väldigt bekanta för de av er som läst en kurs i grafteori innan.\sidenote[][]{Vilket som jag förstått det är ungefär en tredjedel av er -- så för resten behövs definitionerna.}
+
+\begin{definition}
+    En \emph{graf} består av en mängd $V$ av \emph{noder} och en mängd $E \subseteq \binom{V}{2}$ av kanter.\sidenote[][]{Med notationen $\binom{A}{k}$ där $A$ är en mängd och $k$ ett heltal menar vi \emph{mängden} av delmängder av storlek $k$ till $n$. Alltså har vi att
+    $$\abs{\binom{[n]}{k}} = \binom{n}{k}.$$} Om det finns en kant $\{u,v\}$ säger vi att $u$ och $v$ är \emph{grannar}. En graf är \emph{etiketterad} om noderna är särskiljbara, annars är den oetiktterad.\sidenote[][]{Det här är precis samma koncept som med våra lådor som var särskiljbara eller inte. Antingen har noderna namn, så vi kan prata om nod nummer tre, eller så kan vi bara se vilka andra noder de har kanter till.} Vi säger att en graf är \emph{sammanhängande} om det går att nå varje nod från varje annan nod genom att vandra längs kanterna. Ett sätt att vandra från en nod tillbaka till sig själv kallar vi för en \emph{cykel}.
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.4\textwidth]{graphics/example_graph.png}
+        \caption[][2cm]{Ett exempel på en graf. Den är inte sammanhängande, eftersom de övre två noderna inte kan nås från de undre fem. Triangeln utgör en cykel, som är grafens enda.}
+    \end{figure}
+\end{definition}
+
+\begin{definition}
+    Ett \emph{träd} är en sammanhängande graf utan cykler. Ett \emph{rotat} träd är ett träd med en specifik nod utpekad som dess rot.\sidenote[][]{Så om trädet är oetiketterat kan vi alltså se vilken nod som är roten, men resten av noderna kan vi inte se skillnad på, bara vilka som hänger ihop med vilka med kanter.} I ett rotat träd har varje nod utom roten själv en granne som är närmre roten än sig\sidenote[][]{Eller är roten.}, vilken vi kallar dess \emph{förälder}. Alla dess andra grannar kallar vi dess \emph{barn}. En nod utan barn kallar vi för ett \emph{löv}.
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.4\textwidth]{graphics/example_tree.png}
+        \caption{Ett träd med sju noder och sex kanter.}
+    \end{figure}
+
+    Ifall det spelar roll i vilken ordning vi ritat noderna kallar vi trädet \emph{ordnat}.
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\textwidth]{graphics/ordered_versus_unordered_trees.png}
+        \caption{Två träd som är olika varandra som ordnade träd, men samma träd som oordnade träd.}
+    \end{figure}
+\end{definition}
+
+\section{Övningar}
+
+\begin{xca}
+    Bevisa att ett träd alltid har $\abs{E} = \abs{V} - 1$.
+\end{xca}
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}
