@@ -216,7 +216,7 @@ Kan vi hitta en vackrare formel? Svaret är ja, och det finns flera sätt för o
 
 När vi tagit detta Lemma \ref{lemma_onehalf_binom_coeff} och stoppat in det i Proposition \ref{ugly_dyck_path_formula} får vi följande mycket vackrare formel:
 
-\begin{theorem}
+\begin{theorem}\label{theorem_dyck_paths_counted_by_catalan}
     Antalet Dyck-stigar $d_n$ ges av
     $$d_n = \frac{1}{n + 1}\binom{2n}{n}.$$
 
@@ -228,6 +228,52 @@ Så vi har till slut hittat en fin formel för antalet Dyck-stigar, och alltså 
 Å andra sidan kan räkningarna man behöver göra för att tillämpa metoden vara väldigt fula. Vad man köper i standardisering får man betala för i begriplighet -- det är nog svårt att säga att man begriper \emph{varför} den formeln ger Catalantalen efter att ha sett vårt bevis.}
 
 \section{Ett kombinatoriskt bevis för formeln för Catalantalen}
+
+\begin{proof}[Ett kombinatoriskt bevis av Teorem \ref{theorem_dyck_paths_counted_by_catalan}]
+    Låt oss överväga samlingen av alla uppåt-höger-stigar från $(0,0)$ till $(n,n)$. Vi kallar varje stig som passerar under diagonalen för en \emph{dålig} stig -- mängden av sådana är uppenbarligen komplementet till mängden av Dyck-stigar. Så om vi kan räkna de dåliga stigarna får vi också antalet Dyck-stigar, eftersom vi vet att det totala antalet uppåt-höger-stigar från $(0,0)$ till $(n,n)$ är precis $\binom{2n}{n}$.
+
+    Sättet vi räknar antalet dåliga stigar är att påvisa en bijektion mellan dem och mängden av uppåt-höger-stigar från $(0,0)$ till $(n+1,n-1)$.
+
+    \begin{figure}\label{fig:dyck_comb_proof_path}
+        \centering
+        \includegraphics[width=0.6\textwidth]{graphics/dyck_combinatorial_proof_path.png}
+        \caption{En av våra dåliga stigar, med huvuddiagonalen i blått och första diagonalen under huvuddiagonalen i rött. Punkten där stigen träffar den första underdiagonalen markeras med en cirkel.}
+    \end{figure}
+
+    Givet en dålig stig markerar vi första punkten på vilken den träffar första underdiagonalen, alltså diagonalen under huvuddiagonalen. Att det måste finnas en sådan punkt följer av att stigen är dålig -- om den aldrig träffade den underdiagonalen vore stigen en Dyckstig.
+
+    Sedan speglar vi resten av stigen, efter punkten vi markerade, i första underdiagonalen. Vi ersätter alltså varje steg uppåt med ett steg till höger, och varje steg till höger med ett steg uppåt. 
+
+    \begin{figure}\label{fig:dyck_comb_proof_reflected_path}
+        \centering
+        \includegraphics[width = 0.6\textwidth]{graphics/dyck_combinatorial_proof_reflected_path.png}
+        \caption{Den uppåt-höger-stig från $(0,0)$ till $(n+1,n-1)$ som motsvarar vår dåliga stig i förra figuren. Stigen är grå fram tills punkten där vi började spegla den, och fortsätter sedan i blått. Originalstigen fortsätter i grått.}
+    \end{figure}
+
+    Eftersom vi i punkten vi började spegla just träffat första underdiagonalen så måste vi i den punkten ha haft ett steg mer åt höger än uppåt. Totalt har vi, i originalstigen, lika många steg uppåt som åt höger, så återstoden av den efter den punkten måste ha ett steg mer uppåt än åt höger.
+
+    När vi speglar blir varje steg uppåt ett åt höger, och vice versa, så vår speglade stig måste ha ett steg mer åt höger än uppåt också i biten efter speglingen. Alltså måste den resulterande stigen efter speglingen ha två steg fler åt höger än uppåt, och alltså hamna i $(n+1,n-1)$.\sidenote[][-1cm]{I symboler har vi $u_i$ steg \emph{u}ppåt i stigen \emph{i}nnan punkten vi speglar efter, och $h_i$ steg åt \emph{h}öger. Efter punkten vi speglar \emph{e}fter har vi $u_e$ steg uppåt och $h_e$ steg åt höger. Så i Figur \ref{fig:dyck_comb_proof_path} så har vi $u_i = 3$, $h_i = 4$, $u_e = 5$, och $h_e = 4$.
+    
+    Så för stigen vi börjar med har vi $h_i = u_i + 1$, och $h_i + h_e = n$ samt $u_i + u_e = n$ för att den skall sluta i $(n,n)$. Stigen efter speglingen kommer att ha $h_i + u_e$ steg åt höger och $u_i + h_e$ steg uppåt. Om man arbetar sig igenom dessa ekvationer kommer man att se att vi verkligen har $n+1$ steg åt höger och $n-1$ steg uppåt i den reflekterade stigen.}
+
+    Så vi har hittat ett sätt att skicka en dålig stig på en stig från $(0,0)$ till $(n+1,n-1)$. För att detta skall vara en bijektion måste processen vara reversibel - givet en stig från $(0,0)$ till $(n+1,n-1)$ måste vi kunna återskapa den motsvarande dåliga stigen.
+
+    Sättet vi gör det på är samma som innan -- vi hittar första punkten i vilken vår stig träffar första underdiagonalen, och speglar efter den. Att en sådan punkt måste finnas är uppenbart, eftersom $(0,0)$ ligger ovanför den underdiagonalen, och $(n+1,n-1)$ ligger under den. Så för att ta oss från ena sidan av den till andra måste vi passera den.
+
+    Att denna spegling kommer ge oss rätt dåliga stig är enkelt att se -- allt vi gjort är att spegla två gånger, vilket så klart inte gör någonting.
+
+    Alltså har vi bevisat att antalet dåliga stigar är lika med antalet stigar från $(0,0)$ till $(n+1,n-1)$. Vi vet att det finns $\binom{(n + 1) + (n - 1)}{n+1}$ sådana stigar, så vi kan räkna att
+    \begin{align*}
+        d_n &= \abs{\text{stigar }(0,0)\to(n,n)} - \abs{\text{dåliga stigar}}\\
+        &= \binom{2n}{n} - \binom{2n}{n+1}\\
+        &= \frac{(2n)!}{n!n!} - \frac{(2n)!}{(n+1)!(n-1)!}\\
+        &= (2n)!\left(\frac{(n+1)}{(n+1)!n!} - \frac{n}{(n+1)!n!}\right)\\
+        &= \frac{(2n)!}{(n+1)!n!} = \frac{1}{n+1}\frac{(2n)!}{n!n!} = \frac{1}{n+1}\binom{2n}{n}
+    \end{align*}
+    vilket bevisar satsen.
+\end{proof}
+
+Så vårt kombinatoriska bevis undvek helt att behöva fundera på rekursioner och genererande funktioner. Det är en mycket mer direkt rutt till vårt mål, men vi missade några sevärdheter längs vägen.\sidenote[][]{Hur man hade härlett vår rekursion eller den genererande funktionen givet bara vad vi lärde oss i det kombinatoriska beviset är långt ifrån uppenbart.}
 
 \section{Övningar}
 
