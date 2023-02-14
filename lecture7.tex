@@ -19,6 +19,21 @@
 \usepackage{lipsum}   % filler text
 \usepackage{fancyvrb} % extended verbatim environments
   \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{hyperref}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usetikzlibrary{automata, positioning, arrows}
+\usetikzlibrary{arrows.meta}
 
 \usepackage{color,soul} % Highlights for text
 
@@ -30,6 +45,11 @@
 \newcommand{\docpkg}[1]{\texttt{#1}}% package name
 \newcommand{\doccls}[1]{\texttt{#1}}% document class name
 \newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\def\gring{\mathbb{G}}
+\def\H{\mathbb{H}}
+\def\ora{\overrightarrow}
+\def\Lrarr{\Leftrightarrow}
+\def\Ln#1{\text{Ln}\left(#1\right)}
 \newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
 
 \include{mathcommands.extratex}
@@ -49,16 +69,39 @@ Efter det ger vi ett kombinatoriskt bevis för vår formel för antalet Dyck-sti
 Slutligen ger vi två till exempel på saker som räknas av Catalantalen.
 \end{abstract}
 
-\section{Dyck-stigar}
+\section{Dyck-stigarr}
 
 \begin{definition}
     En \emph{gitterstig} på $\Z^2$ av längd $n$ mellan $a$ och $b$ börjar i punkten $a$ och tar sig sedan till punkten $b$ med $n$ stycken steg, som kan vara upp, ner, höger, eller vänster.\sidenote[][-0.3cm]{Vi kan betrakta en sådan stig som ett ord av längd $n$ ur alfabetet $\{U,N,H,V\}$, tillsammans med en startpunkt.}
+
     \begin{figure}
         \centering
-        \includegraphics[width=0.5\textwidth]{graphics/general_lattice_path.png}
+        \begin{tikzpicture}
+          \draw[step=.75cm] (0,0) grid (6cm,6cm);
+          \draw[red, very thick] (0,0) -- (.75cm,0);
+          \draw[red, very thick] (.75cm,0) -- (.75cm,.75cm);
+          \draw[red, very thick] (.75cm,.75cm) -- (2*.75cm,.75cm);
+          \draw[red, very thick] (2*.75cm,.75cm) -- (2*.75cm,0);
+          \draw[red, very thick] (2*.75cm,0) -- (3*.75cm,0);
+          \draw[red, very thick] (3*.75cm,0) -- (3*.75cm,.75cm);
+          \draw[red, very thick] (3*.75cm,.75cm) -- (3*.75cm,2*.75cm);
+          \draw[red, very thick] (3*.75cm,2*.75cm) -- (2*.75cm,2*.75cm);
+          \draw[red, very thick] (2*.75cm,2*.75cm) -- (2*.75cm,4*.75cm);
+          \draw[red, very thick] (2*.75cm,4*.75cm) -- (4*.75cm,4*.75cm);
+          \draw[red, very thick] (4*.75cm,4*.75cm) -- (4*.75cm,5*.75cm);
+          \draw[red, very thick] (4*.75cm,5*.75cm) -- (5*.75cm,5*.75cm);
+          \draw[red, very thick] (5*.75cm,5*.75cm) -- (5*.75cm,2*.75cm);
+          \draw[red, very thick] (5*.75cm,2*.75cm) -- (4*.75cm,2*.75cm);
+          \draw[red, very thick] (4*.75cm,2*.75cm) -- (4*.75cm,3*.75cm);
+          \draw[red, very thick] (4*.75cm,3*.75cm) -- (3*.75cm,3*.75cm);
+          \draw[red, very thick] (3*.75cm,3*.75cm) -- (3*.75cm,7*.75cm);
+          \draw[red, very thick] (3*.75cm,7*.75cm) -- (2*.75cm,7*.75cm);
+          \draw[red, very thick] (2*.75cm,7*.75cm) -- (2*.75cm,8*.75cm);
+        \end{tikzpicture}
         \caption{En gitterstig av längd $28$ från $(0,0)$ till $(2,8)$.}
     \end{figure} 
 \end{definition}
+
 
 Det finns uppenbarligen $4^n$ gitterstigar av längd $n$ med en given startpunkt, om vi inte kräver att den skall sluta i någon given punkt.
 
@@ -66,7 +109,20 @@ Det finns uppenbarligen $4^n$ gitterstigar av längd $n$ med en given startpunkt
     En \emph{uppåt-höger-stig} på $\Z^2$ från $a$ till $b$ är en gitterstig mellan $a$ och $b$ som enbart tar steg uppåt och åt höger.\sidenote[][]{I tolkningen av stigar som ord är alltså dessa ord ur det mindre alfabetet $\{U,H\}$.}
     \begin{figure}[h]
         \centering
-        \includegraphics[width=0.5\textwidth]{graphics/right_up_lattice_path.png}
+        \begin{tikzpicture}
+          \draw[step=.75cm] (0,0) grid (6cm,6cm);
+          \draw[red, very thick] (0,0) -- (2*.75cm,0);
+          \draw[red, very thick] (2*.75cm,0) -- (2*.75cm,2*.75cm);
+          \draw[red, very thick] (2*.75cm,2*.75cm) -- (4*.75cm,2*.75cm);
+          \draw[red, very thick] (4*.75cm,2*.75cm) -- (4*.75cm,3*.75cm);
+          \draw[red, very thick] (4*.75cm,3*.75cm) -- (5*.75cm,3*.75cm);
+          \draw[red, very thick] (5*.75cm,3*.75cm) -- (5*.75cm,6*.75cm);
+          \draw[red, very thick] (5*.75cm,6*.75cm) -- (6*.75cm,6*.75cm);
+          \draw[red, very thick] (6*.75cm,6*.75cm) -- (6*.75cm,7*.75cm);
+          \draw[red, very thick] (6*.75cm,7*.75cm) -- (7*.75cm,7*.75cm);
+          \draw[red, very thick] (7*.75cm,7*.75cm) -- (7*.75cm,8*.75cm);
+          \draw[red, very thick] (7*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
+        \end{tikzpicture}
         \caption{En uppåt-höger-stig från $(0,0)$ till $(8,8)$ av längd sexton.}
     \end{figure}
 \end{definition}
@@ -79,7 +135,20 @@ Alltså ges det totala antalet uppåt-höger-stigar från $(0,0)$ till $(a,b)$ a
     En Dyck-stig av längd $2n$ är en uppåt-höger-stig från $(0,0)$ till $(n,n)$ som aldrig går under diagonalen.
     \begin{figure}
         \centering
-        \includegraphics*[width=0.5\textwidth]{graphics/Dyck_path.png}
+        \begin{tikzpicture}
+          \draw[step=.75cm] (0,0) grid (6cm,6cm);
+          \draw[blue, very thick] (0,0) -- (6cm,6cm);
+          \draw[red, very thick] (0,0) -- (0,2*.75cm);
+          \draw[red, very thick] (0,2*.75cm) -- (1*.75cm,2*.75cm);
+          \draw[red, very thick] (1*.75cm,2*.75cm) -- (1*.75cm,4*.75cm);
+          \draw[red, very thick] (1*.75cm,4*.75cm) -- (4*.75cm,4*.75cm);
+          \draw[red, very thick] (4*.75cm,4*.75cm) -- (4*.75cm,5*.75cm);
+          \draw[red, very thick] (4*.75cm,5*.75cm) -- (5*.75cm,5*.75cm);
+          \draw[red, very thick] (5*.75cm,5*.75cm) -- (5*.75cm,7*.75cm);
+          \draw[red, very thick] (5*.75cm,7*.75cm) -- (6*.75cm,7*.75cm);
+          \draw[red, very thick] (6*.75cm,7*.75cm) -- (6*.75cm,8*.75cm);
+          \draw[red, very thick] (6*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
+        \end{tikzpicture}
         \caption{En Dyck-stig av längd sexton.}
     \end{figure}
 \end{definition}
@@ -98,7 +167,23 @@ Hur många Dyck-stigar finns det av varje given längd? Vi kan använda vår obs
 
         \begin{figure}
             \centering
-            \includegraphics[width = 0.6\textwidth]{graphics/Dyck_path_recursion.png}
+            \begin{tikzpicture}
+              \draw[step=.75cm] (0,0) grid (6cm,6cm);
+              \draw[black,very thick,dashed] (0,0) -- (6cm,6cm);
+              \draw[gray,very thick] (0,0) -- (0,.75cm);
+              \draw[gray,thick,dashed] (0,.75cm) -- (2*.75cm, 3*.75cm);
+              \draw[gray,very thick] (2*.75cm, 3*.75cm) -- (3*.75cm, 3*.75cm);
+              \draw[blue, very thick] (0,.75cm) -- (0,2*.75cm);
+              \draw[blue, very thick] (0,2*.75cm) -- (.75cm,2*.75cm);
+              \draw[blue, very thick] (.75cm,2*.75cm) -- (.75cm,3*.75cm);
+              \draw[blue, very thick] (.75cm,3*.75cm) -- (2*.75cm,3*.75cm);
+              \draw[red, very thick] (3*.75cm,3*.75cm) -- (3*.75cm,5*.75cm);
+              \draw[red, very thick] (3*.75cm,5*.75cm) -- (5*.75cm,5*.75cm);
+              \draw[red, very thick] (5*.75cm,5*.75cm) -- (5*.75cm,7*.75cm);
+              \draw[red, very thick] (5*.75cm,7*.75cm) -- (7*.75cm,7*.75cm);
+              \draw[red, very thick] (7*.75cm,7*.75cm) -- (7*.75cm,8*.75cm);
+              \draw[red, very thick] (7*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
+            \end{tikzpicture}
             \caption{En illustration av vår uppdelning av en Dyck-stig i gråa, blåa, och röda steg.}
         \end{figure}
 
@@ -240,7 +325,22 @@ Så vi har till slut hittat en fin formel för antalet Dyck-stigar, och alltså 
 
     \begin{figure}\label{fig:dyck_comb_proof_path}
         \centering
-        \includegraphics[width=0.6\textwidth]{graphics/dyck_combinatorial_proof_path.png}
+        \begin{tikzpicture}[every plot/.style={mark=*, mark size=1.5mm, only marks}]
+          \draw[step=.75cm, gray] (0,0) grid (6cm,6cm);
+          \draw[blue,thick] (0,0) -- (6cm,6cm);
+          \draw[red,thick] (.75cm,0) -- (6cm, 7*.75cm);
+          \draw[gray,ultra thick] (0,0) -- (0,2*.75cm);
+          \draw[gray,ultra thick] (0,2*.75cm) -- (2*.75cm,2*.75cm);
+          \draw[gray,ultra thick] (2*.75cm,2*.75cm) -- (2*.75cm,3*.75cm);
+          \draw[gray,ultra thick] (2*.75cm,3*.75cm) -- (5*.75cm,3*.75cm);
+          \draw[gray,ultra thick] (5*.75cm,3*.75cm) -- (5*.75cm,5*.75cm);
+          \draw[gray,ultra thick] (5*.75cm,5*.75cm) -- (6*.75cm,5*.75cm);
+          \draw[gray,ultra thick] (6*.75cm,5*.75cm) -- (6*.75cm,6*.75cm);
+          \draw[gray,ultra thick] (6*.75cm,6*.75cm) -- (7*.75cm,6*.75cm);
+          \draw[gray,ultra thick] (7*.75cm,6*.75cm) -- (7*.75cm,8*.75cm);
+          \draw[gray,ultra thick] (7*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
+          \draw plot coordinates{(4*.75cm,3*.75cm)};
+        \end{tikzpicture}
         \caption{En av våra dåliga stigar, med huvuddiagonalen i blått och första diagonalen under huvuddiagonalen i rött. Punkten där stigen träffar den första underdiagonalen markeras med en cirkel.}
     \end{figure}
 
@@ -250,7 +350,31 @@ Så vi har till slut hittat en fin formel för antalet Dyck-stigar, och alltså 
 
     \begin{figure}\label{fig:dyck_comb_proof_reflected_path}
         \centering
-        \includegraphics[width = 0.6\textwidth]{graphics/dyck_combinatorial_proof_reflected_path.png}
+        \begin{tikzpicture}[every plot/.style={mark=*, mark size=1.5mm, only marks}]
+          \draw[step=6cm, thick] (0,0) grid (6cm,6cm);
+          \draw[step=.75cm, gray] (0,0) grid (6.75cm,6cm);
+          \draw[blue,thick] (0,0) -- (6cm,6cm);
+          \draw[red,thick] (.75cm,0) -- (6cm, 7*.75cm);
+          \draw[gray,ultra thick] (0,0) -- (0,2*.75cm);
+          \draw[gray,ultra thick] (0,2*.75cm) -- (2*.75cm,2*.75cm);
+          \draw[gray,ultra thick] (2*.75cm,2*.75cm) -- (2*.75cm,3*.75cm);
+          \draw[gray,ultra thick] (2*.75cm,3*.75cm) -- (4*.75cm,3*.75cm);
+          \draw[gray,thick] (2*.75cm,3*.75cm) -- (5*.75cm,3*.75cm);
+          \draw[gray,thick] (5*.75cm,3*.75cm) -- (5*.75cm,5*.75cm);
+          \draw[gray,thick] (5*.75cm,5*.75cm) -- (6*.75cm,5*.75cm);
+          \draw[gray,thick] (6*.75cm,5*.75cm) -- (6*.75cm,6*.75cm);
+          \draw[gray,thick] (6*.75cm,6*.75cm) -- (7*.75cm,6*.75cm);
+          \draw[gray,thick] (7*.75cm,6*.75cm) -- (7*.75cm,8*.75cm);
+          \draw[gray,thick] (7*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
+          \draw[blue,very thick] (4*.75cm,3*.75cm) -- (4*.75cm,4*.75cm);
+          \draw[blue,very thick] (4*.75cm,4*.75cm) -- (6*.75cm,4*.75cm);
+          \draw[blue,very thick] (6*.75cm,4*.75cm) -- (6*.75cm,5*.75cm);
+          \draw[blue,very thick] (6*.75cm,5*.75cm) -- (7*.75cm,5*.75cm);
+          \draw[blue,very thick] (7*.75cm,5*.75cm) -- (7*.75cm,6*.75cm);
+          \draw[blue,very thick] (7*.75cm,6*.75cm) -- (9*.75cm,6*.75cm);
+          \draw[blue,very thick] (9*.75cm,6*.75cm) -- (9*.75cm,7*.75cm);
+          \draw plot coordinates{(4*.75cm,3*.75cm)};
+        \end{tikzpicture}
         \caption{Den uppåt-höger-stig från $(0,0)$ till $(n+1,n-1)$ som motsvarar vår dåliga stig i förra figuren. Stigen är grå fram tills punkten där vi började spegla den, och fortsätter sedan i blått. Originalstigen fortsätter i grått.}
     \end{figure}
 
