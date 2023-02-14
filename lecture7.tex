@@ -277,6 +277,33 @@ Så vi har till slut hittat en fin formel för antalet Dyck-stigar, och alltså 
 
 Så vårt kombinatoriska bevis undvek helt att behöva fundera på rekursioner och genererande funktioner. Det är en mycket mer direkt rutt till vårt mål, men vi missade några sevärdheter längs vägen.\sidenote[][]{Hur man hade härlett vår rekursion eller den genererande funktionen givet bara vad vi lärde oss i det kombinatoriska beviset är långt ifrån uppenbart.}
 
+\section{Fler saker som räknas av Catalantalen}
+
+Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker än bara just Dyck-stigar. I nästa föreläsning kommer vi se ett viktigt exempel. Nu, i slutet på denna, tar vi några mindre exempel.
+
+\begin{example}
+    Antalet sätt att skriva $2n$ matchande parenteser räknas av Catalantalen. Med matchande parenteser menar vi alltså ett uttryck som $(()(()))()(())$ -- och i ett uttryck som $)((()$ matchar de inte. Varje $($ måste ha en motsvarande $)$ senare i ordet, och varje $)$ måste ha ett matchande $($ senare i ordet.
+
+    Hur bevisar vi att detta räknas av Catalantalen? Jo, vi ser att detta lyder samma rekursion som Dyck-stigarna gjorde. Varje uttryck med matchande parenteser måste börja med $($, och denna första startparentes måste matcha en slutparentes. Det som står inom dessa parenteser måste också vara ett matchande uttryck, och likaså det som står efter slutparentesen som matchar första parentesen.
+
+    Alltså kan vi skriva varje uttryck med matchande parenteser på formen $(w_1)w_2$, med $w_1$ och $w_2$ två kortare matchande uttryck. Det här är precis samma uppdelning som vi hade för våra Dyckstigar, så det kommer ge samma rekursion, och alltså är det samma följd.\sidenote[][-2cm]{Vi hade också, vilket kanske vore enklare, helt enkelt kunnat se att det finns en bijektion mellan matchande uttryck med parenteser och Dyck-stigar, genom att tolka $($ som ``steg uppåt'' och $)$ som ``steg till höger''.}
+\end{example}
+
+\begin{example}\label{example_polygons}
+    Det problem som ursprungligen fick upp matematikers intresse i väst\sidenote[][-0.6cm]{De studerades först av en matematiker i Kina på 1700-talet vid namn Minggatu, som använde dem för att ge identiteter för sinus-funktionen, i stil med
+    $$\sin(2\alpha) = 2\sin(\alpha) - \sum_{n=1}^{\infty} \frac{C_{n-1}}{4^{n-1}}\sin^{2n+1}(\alpha).$$} för Catalantalen var att dela upp en konvex polygon med $n+2$ sidor i trianglar, genom att rita streck mellan hörnen som inte korsar varandra.
+
+    \begin{figure}
+        \centering
+        \includegraphics[width = 0.5\textwidth]{graphics/Catalan-Hexagons-example.pdf}
+        \caption{Fallet med hexagoner.}
+    \end{figure}
+
+    Det här problemet studerades först av Euler\sidenote[][]{Som ju redan har mer än tillräckligt med saker namngivna efter sig, så det är tur att vi inte döpte talen efter honom.}, och beviset att de räknas av Catalantalen utvecklades av Segner, Goldbach, och Lamé. Vår rekursion för Catalantalen brukar kallas för Segnerrekursionen.
+
+    Senare studerades problemet med parentetiseringar av Eugène Charles Catalan, efter vilken talen fick sitt namn på femtiotalet.
+\end{example}
+
 \section{Övningar}
 
 \begin{xca}
