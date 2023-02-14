@@ -28,7 +28,7 @@
 \usepackage{mathtools}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage{hyperref}
-\usepackage{pgfplots}
+%\usepackage{pgfplots}
 \usepackage{tikz}
 \usepackage{bbm}
 \usepackage{mathrsfs}
@@ -107,54 +107,72 @@ Det finns uppenbarligen $4^n$ gitterstigar av längd $n$ med en given startpunkt
 
 \begin{definition}
     En \emph{uppåt-höger-stig} på $\Z^2$ från $a$ till $b$ är en gitterstig mellan $a$ och $b$ som enbart tar steg uppåt och åt höger.\sidenote[][]{I tolkningen av stigar som ord är alltså dessa ord ur det mindre alfabetet $\{U,H\}$.}
-    \begin{figure}[h]
-        \centering
-        \begin{tikzpicture}
-          \draw[step=.75cm] (0,0) grid (6cm,6cm);
-          \draw[red, very thick] (0,0) -- (2*.75cm,0);
-          \draw[red, very thick] (2*.75cm,0) -- (2*.75cm,2*.75cm);
-          \draw[red, very thick] (2*.75cm,2*.75cm) -- (4*.75cm,2*.75cm);
-          \draw[red, very thick] (4*.75cm,2*.75cm) -- (4*.75cm,3*.75cm);
-          \draw[red, very thick] (4*.75cm,3*.75cm) -- (5*.75cm,3*.75cm);
-          \draw[red, very thick] (5*.75cm,3*.75cm) -- (5*.75cm,6*.75cm);
-          \draw[red, very thick] (5*.75cm,6*.75cm) -- (6*.75cm,6*.75cm);
-          \draw[red, very thick] (6*.75cm,6*.75cm) -- (6*.75cm,7*.75cm);
-          \draw[red, very thick] (6*.75cm,7*.75cm) -- (7*.75cm,7*.75cm);
-          \draw[red, very thick] (7*.75cm,7*.75cm) -- (7*.75cm,8*.75cm);
-          \draw[red, very thick] (7*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
-        \end{tikzpicture}
-        \caption{En uppåt-höger-stig från $(0,0)$ till $(8,8)$ av längd sexton.}
-    \end{figure}
 \end{definition}
+\begin{figure}[hbt!]
+    \centering
+    \begin{tikzpicture}
+      \draw[step=.75cm] (0,0) grid (6cm,6cm);
+      \draw[red, very thick] (0,0) -- (2*.75cm,0);
+      \draw[red, very thick] (2*.75cm,0) -- (2*.75cm,2*.75cm);
+      \draw[red, very thick] (2*.75cm,2*.75cm) -- (4*.75cm,2*.75cm);
+      \draw[red, very thick] (4*.75cm,2*.75cm) -- (4*.75cm,3*.75cm);
+      \draw[red, very thick] (4*.75cm,3*.75cm) -- (5*.75cm,3*.75cm);
+      \draw[red, very thick] (5*.75cm,3*.75cm) -- (5*.75cm,6*.75cm);
+      \draw[red, very thick] (5*.75cm,6*.75cm) -- (6*.75cm,6*.75cm);
+      \draw[red, very thick] (6*.75cm,6*.75cm) -- (6*.75cm,7*.75cm);
+      \draw[red, very thick] (6*.75cm,7*.75cm) -- (7*.75cm,7*.75cm);
+      \draw[red, very thick] (7*.75cm,7*.75cm) -- (7*.75cm,8*.75cm);
+      \draw[red, very thick] (7*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
+    \end{tikzpicture}
+    \caption{En uppåt-höger-stig från $(0,0)$ till $(8,8)$ av längd sexton.}
+\end{figure}
 
 Notera att till skillnad från allmänna gitterstigar bestäms en uppåt-höger-stigs längd av dess start och slutpunkt, eftersom den inte kan ta några omvägar eller gå baklänges. En stig från $(0,0)$ till $(a,b)$ kommer alltid att ta precis $a$ steg uppåt och $b$ steg till höger, det enda som kan variera är i vilken ording stegen tas.
 
 Alltså ges det totala antalet uppåt-höger-stigar från $(0,0)$ till $(a,b)$ av $\binom{a+b}{a}$, eftersom det är antalet sätt att välja de $a$ ställen vi tar ett steg höger av totalt $a+b$ steg.
 
 \begin{definition}
-    En Dyck-stig av längd $2n$ är en uppåt-höger-stig från $(0,0)$ till $(n,n)$ som aldrig går under diagonalen.
-    \begin{figure}
-        \centering
-        \begin{tikzpicture}
-          \draw[step=.75cm] (0,0) grid (6cm,6cm);
-          \draw[blue, very thick] (0,0) -- (6cm,6cm);
-          \draw[red, very thick] (0,0) -- (0,2*.75cm);
-          \draw[red, very thick] (0,2*.75cm) -- (1*.75cm,2*.75cm);
-          \draw[red, very thick] (1*.75cm,2*.75cm) -- (1*.75cm,4*.75cm);
-          \draw[red, very thick] (1*.75cm,4*.75cm) -- (4*.75cm,4*.75cm);
-          \draw[red, very thick] (4*.75cm,4*.75cm) -- (4*.75cm,5*.75cm);
-          \draw[red, very thick] (4*.75cm,5*.75cm) -- (5*.75cm,5*.75cm);
-          \draw[red, very thick] (5*.75cm,5*.75cm) -- (5*.75cm,7*.75cm);
-          \draw[red, very thick] (5*.75cm,7*.75cm) -- (6*.75cm,7*.75cm);
-          \draw[red, very thick] (6*.75cm,7*.75cm) -- (6*.75cm,8*.75cm);
-          \draw[red, very thick] (6*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
-        \end{tikzpicture}
-        \caption{En Dyck-stig av längd sexton.}
-    \end{figure}
+    En Dyck-stig av längd $2n$ är en uppåt-höger-stig från $(0,0)$ till $(n,n)$ som aldrig går under diagonalen.\par
 \end{definition}
+\begin{figure}[hbt!]
+    \centering
+    \begin{tikzpicture}
+      \draw[step=.75cm] (0,0) grid (6cm,6cm);
+      \draw[blue, very thick] (0,0) -- (6cm,6cm);
+      \draw[red, very thick] (0,0) -- (0,2*.75cm);
+      \draw[red, very thick] (0,2*.75cm) -- (1*.75cm,2*.75cm);
+      \draw[red, very thick] (1*.75cm,2*.75cm) -- (1*.75cm,4*.75cm);
+      \draw[red, very thick] (1*.75cm,4*.75cm) -- (4*.75cm,4*.75cm);
+      \draw[red, very thick] (4*.75cm,4*.75cm) -- (4*.75cm,5*.75cm);
+      \draw[red, very thick] (4*.75cm,5*.75cm) -- (5*.75cm,5*.75cm);
+      \draw[red, very thick] (5*.75cm,5*.75cm) -- (5*.75cm,7*.75cm);
+      \draw[red, very thick] (5*.75cm,7*.75cm) -- (6*.75cm,7*.75cm);
+      \draw[red, very thick] (6*.75cm,7*.75cm) -- (6*.75cm,8*.75cm);
+      \draw[red, very thick] (6*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
+    \end{tikzpicture}
+    \caption{En Dyck-stig av längd sexton.}
+\end{figure}
 
-Notera att en Dyck-stig alltid måste börja med ett steg uppåt och sluta med ett steg åt höger, eftersom den annars ju hade varit under diagonalen.
-
+Notera att en Dyck-stig alltid måste börja med ett steg uppåt och sluta med ett steg åt höger, eftersom den annars ju hade varit under diagonalen.\par
+ Om vi roterar figuren 45 grader medurs noterar vi att vi får något som ser ut som bergskedjor. Detta är ett vanligt sätt att se Dyck-stigar\par
+ \begin{figure}[hbt!]
+    \centering
+    \begin{tikzpicture}[rotate=-45]
+      \draw[step=.75cm] (0,0) grid (6cm,6cm);
+      \draw[blue, very thick] (0,0) -- (6cm,6cm);
+      \draw[red, very thick] (0,0) -- (0,2*.75cm);
+      \draw[red, very thick] (0,2*.75cm) -- (1*.75cm,2*.75cm);
+      \draw[red, very thick] (1*.75cm,2*.75cm) -- (1*.75cm,4*.75cm);
+      \draw[red, very thick] (1*.75cm,4*.75cm) -- (4*.75cm,4*.75cm);
+      \draw[red, very thick] (4*.75cm,4*.75cm) -- (4*.75cm,5*.75cm);
+      \draw[red, very thick] (4*.75cm,5*.75cm) -- (5*.75cm,5*.75cm);
+      \draw[red, very thick] (5*.75cm,5*.75cm) -- (5*.75cm,7*.75cm);
+      \draw[red, very thick] (5*.75cm,7*.75cm) -- (6*.75cm,7*.75cm);
+      \draw[red, very thick] (6*.75cm,7*.75cm) -- (6*.75cm,8*.75cm);
+      \draw[red, very thick] (6*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
+    \end{tikzpicture}
+    \caption{Roterad Dyck-stig ser ut som bergskedjor.}
+  \end{figure}
 Hur många Dyck-stigar finns det av varje given längd? Vi kan använda vår observation om att de alltid börjar med ett upp-steg för att ge en rekursion för detta antal:
 
 \begin{lemma}\label{dyck_path_recursion_lemma}
@@ -326,6 +344,7 @@ Så vi har till slut hittat en fin formel för antalet Dyck-stigar, och alltså 
     \begin{figure}\label{fig:dyck_comb_proof_path}
         \centering
         \begin{tikzpicture}[every plot/.style={mark=*, mark size=1.5mm, only marks}]
+          \draw[step=6cm, thick] (0,0) grid (6cm,6cm);
           \draw[step=.75cm, gray] (0,0) grid (6cm,6cm);
           \draw[blue,thick] (0,0) -- (6cm,6cm);
           \draw[red,thick] (.75cm,0) -- (6cm, 7*.75cm);
