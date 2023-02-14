@@ -57,19 +57,31 @@ Till slut disktuerar vi en jobbigare variant av problemet med människor som sit
   det vill säga alla element i $B$ som träffas av något element i $A$ under $f$.
 
   Funktionen $f$ är en \emph{surjektion} om $f(A) = B$. Om det finns en surjektion från $A$ till $B$ gäller det att $\abs{A} \geq \abs{B}$.\sidenote[][]{Detta är uppenbart för ändliga mängder $A$ och $B$ -- för oändliga mängder är detta definitionen av ordningen mellan kardinaltal.}
+
+\begin{figure}[h]
+\includegraphics[width=50mm]{surjektioner.png}
+	%\caption{Tre typer av olösta matematikproblem}
+\end{figure}
+Ett exempel på en surejektion skulle kunna vara att vi ska dela in A personer i B grupper.
+  
 \end{definition}
 
 \begin{definition}
   För $n \geq m \geq 1$ ges \emph{Stirlings partitionstal}, också kallat \emph{Stirlingtalet av andra sorten}, av
   $$\stirlingPart{n}{m} = \frac{1}{m!}\sum_{k=0}^{m}(-1)^k\binom{m}{k}(m-k)^n.$$
 \end{definition}
+(Stirlingtalet av första sorten förklaras på sida 6)
 
 \begin{theorem}\label{theorem_count_surjections}
   Låt $A$ och $B$ vara ändliga mängder med $\abs{A} = n$, $\abs{B} = m$, och $n \geq m$. Antalet surjektioner från $A$ till $B$ ges av
   $$S(n,m) = m!\stirlingPart{n}{m} = \sum_{k=0}^{m} (-1)^k \binom{m}{k}(m-k)^n.$$
 
   \begin{proof}
-    Låt $X$ vara mängden av alla funktioner från $A$ till $B$, och för varje $b \in B$, låt $X_b$ vara mängden av funktioner från $A$ till $B$ som inte träffar $b$. Vi vill, som vanligt, räkna ut $\abs{X \setminus \bigcup_{b\in B} X_b} = \abs{X} - \abs{\bigcup_{b\in B} X_b}$.
+    Låt $X$ vara mängden av alla funktioner från $A$ till $B$, och för varje $b \in B$, låt $X_b$ vara mängden av funktioner från $A$ till $B$ som inte träffar $b$, alltså:
+
+$$ X_{b} = \left\{ f \in x : f(a) \neq b 	\:\: \forall a \in A \right\}$$
+    
+    Vi vill, som vanligt, räkna ut $\abs{X \setminus \bigcup_{b\in B} X_b} = \abs{X} - \abs{\bigcup_{b\in B} X_b}$.
 
     Multiplikationsprincipen ger oss enkelt att $\abs{X} = m^n$ -- varje element i $A$ har $m$ val för var det skall skickas, och vi har $n$ stycken element att göra det valet för.
 
@@ -88,7 +100,7 @@ Till slut disktuerar vi en jobbigare variant av problemet med människor som sit
 \end{theorem}
 
 \begin{example}
-  Antag att en farmor stickat fem filtar åt sina tre barnbarn. På hur många sätt kan hon fördela filtarna, så att varje barn får åtminstone en filt? Eftersom de är handstickade är så klart filtarna \emph{särskiljbara}, så det här är inte ett exempel på de kompositioner vi såg i föreläsning två, utan ett exempel på surjektioner.
+  Antag att en farmor stickat fem filtar åt sina tre barnbarn.\sidenote[][]{Kom igen farmor, sticka en sjätte, eller nöj dig med 3...}  På hur många sätt kan hon fördela filtarna, så att varje barn får åtminstone en filt? Eftersom de är handstickade är så klart filtarna \emph{särskiljbara}, så det här är inte ett exempel på de kompositioner vi såg i föreläsning två, utan ett exempel på surjektioner.
 
   Vår sats säger oss att svaret är $3!\stirlingPart{5}{3} = 150$.
 \end{example}
@@ -98,7 +110,7 @@ Till slut disktuerar vi en jobbigare variant av problemet med människor som sit
 Hur många sätt finns det att fördela $n$ objekt i $k$ stycken olika högar? Här har vi en ny variant på räkneproblem -- istället för att vi har objekt som är särskiljbara eller inte så har vi nu osärskiljbara \emph{lådor}.
 
 \begin{theorem}
-  Antag att vi har en mängd $X$ med $\abs{X} = n$. Ett sätt att dela upp denna mängd i $k$ osärskiljbara högar\sidenote[][]{Alltså, för den som vill vara formell, ett sätt att skriva $X = A_1 \cup A_2 \cup \ldots \cup A_k$ där $A_i \cap A_j = \emptyset$ för $i \neq j$, där etiketterna på våra $A_i$ inte spelar roll. Eller så kan man se det som en ekvivalensrelation på $X$ med $k$ delar.} kallas för en \emph{mängdpartition} av $X$ i $k$ delar.
+  Antag att vi har en mängd $X$ med $\abs{X} = n$. Ett sätt att dela upp denna mängd i $k$ osärskiljbara högar \sidenote[][]{Alltså, för den som vill vara formell, ett sätt att skriva $X = A_1 \cup A_2 \cup \ldots \cup A_k$ där $A_i \cap A_j = \emptyset$ för $i \neq j$, där etiketterna på våra $A_i$ inte spelar roll. Eller så kan man se det som en ekvivalensrelation på $X$ med $k$ delar.} kallas för en \emph{mängdpartition} av $X$ i $k$ delar.
 
   Antalet sådana ges av
   $$\stirlingPart{n}{k}.$$
@@ -116,20 +128,24 @@ Hur många sätt finns det att fördela $n$ objekt i $k$ stycken olika högar? H
 
 När vi talade om kompositioner fördelade vi alltså osärskiljbara objekt i särskiljbara lådor -- och studerade både fallet där lådor fick vara tomma, och när de inte fick det. För surjektioner fördelar vi särskiljbara objekt i särskiljbara lådor, och kräver att varje låda får ett objekt.
 
-Vi börjar ana ett mönster här i hur våra problem kan se ut. Vi kan ha
+Vi börjar ana ett mönster här i hur våra problem kan se ut. Vi kan ha:
 \begin{enumerate}
   \item Särskiljbara objekt och särskiljbara lådor
   \item Osärskiljbara objekt och särskiljbara lådor
   \item Särskiljbara objekt och osärskiljbara lådor
   \item Osärskiljbara objekt och osärskiljbara lådor
 \end{enumerate}
-och vi kan ha olika krav på hur objekten fördelas i lådorna
+Och vi kan ha olika krav på hur objekten fördelas i lådorna:
 \begin{enumerate}
   \item Generell -- lådor får vara tomma och får innehålla hur många objekt som helst
   \item Surjektiv -- varje låda måste innehålla något objekt
   \item Injektiv -- ingen låda får innehålla mer än ett objekt
 \end{enumerate}
-så sammanfattningsvis har vi en tabell med tolv stycken tänkbara kombinatorikproblem. Det kommer visa sig att vi i själva verket redan studerat sju av dem.
+\begin{figure}[h]
+\includegraphics[width=130mm]{bild.png}
+	%\caption{Tre typer av olösta matematikproblem}
+\end{figure}
+Så sammanfattningsvis har vi en tabell med tolv stycken tänkbara kombinatorikproblem. Det kommer visa sig att vi i själva verket redan studerat sju av dem.
 
 
 Under föreläsning två pratade vi om fördelningar av osärskiljbara objekt mellan särskiljbara personer, och gav en formel för deras antal i Proposition 11, men vi gav aldrig ett kort namn åt detta problem. Låt oss kalla en sådan fördelning för en \emph{multi-delmängd} till mängden av personer.
@@ -138,20 +154,38 @@ En \emph{multi-mängd} är som en vanlig mängd, fast den får innehålla ett oc
 
 Så låt oss rita denna tabell -- problem vi redan studerat är i svart text, problem vi inte sett innan är i \textcolor{darkgreen}{grön text}. Låt $N$ vara en mängd av $n$ \emph{objekt}, och $X$ vara en mängd av $x$ \emph{lådor}. Vi ser fördelningarna av objekt i lådor som en funktion $f: N \to X$.
 
+\hfill \break
+
 \begin{fullwidth}
   \begin{tabularx}{\linewidth}{l|ccc}
       & Generellt $f$ & Injektivt $f$ & Surjektivt $f$\\
       \midrule
-    Bägge särskiljbara & \specialcell{Ord ur $X$ av längd $n$\\ $x^n$} & \specialcell{Permutation ur $X$ av längd $n$\\ $\frac{x!}{(x-n)!}$} & \specialcell{Surjektion från $N$ till $X$\\$x!\stirlingPart{n}{x}$} \\
-    Osärskiljbara objekt & \specialcell{Multi-delmängd av $X$\\ av storlek $n$\\$\binom{n + x - 1}{n}$} & \specialcell{Delmängd av $X$ av storlek $n$\\$\binom{x}{n}$} & \specialcell{Kompositioner av $n$\\av längd $x$\\$\binom{n - 1}{n - x}$} \\
-    Osärskiljbara lådor & \specialcell{\textcolor{darkgreen}{Mängdpartition av $N$}\\ \textcolor{darkgreen}{ i $\leq x$ delar} \\\textcolor{darkgreen}{$\sum_{k=1}^{x} \stirlingPart{n}{k}$}} & \specialcell{\textcolor{darkgreen}{Mängdpartition av $X$}\\ \textcolor{darkgreen}{i $\leq x$ delar av storlek $1$}\\\textcolor{darkgreen}{$1$ om $n \leq x$, $0$ annars}} & \specialcell{Mängdpartition av $N$\\i $x$ delar\\$\stirlingPart{n}{x}$} \\
-    Bägge osärskiljbara & \specialcell{\textcolor{darkgreen}{Heltalspartition av $n$ i $\leq x$ delar}\\\textcolor{darkgreen}{$p_x(n + x)$}} & \specialcell{\textcolor{darkgreen}{Sätt att skriva $n$ som}\\\textcolor{darkgreen}{summan av $\leq x$ ettor}\\\textcolor{darkgreen}{$1$ om $n \leq x$, $0$ annars}} & \specialcell{\textcolor{darkgreen}{Heltalspartitioner av $n$}\\ \textcolor{darkgreen}{i $x$ delar} \\\textcolor{darkgreen}{$p_x(n)$}} 
-  \end{tabularx}
+      
+    &  &  & \\
+    
+       \specialcell{Både objekt och lådor\\ är särskiljbara} & \specialcell{Ord ur $X$ av längd $n$\\ $x^n$} & \specialcell{Permutation ur $X$ \\ av längd $n$\\ $\frac{x!}{(x-n)!}$} & \specialcell{Surjektion från $N$ till $X$\\$x!\stirlingPart{n}{x}$} \\
+    
+    &  &  & \\
+    
+    \specialcell{Osärskiljbara objekt \\ (men särskiljbara lådor)}  & \specialcell{Multi-delmängd av $X$\\ av storlek $n$\\$\binom{n + x - 1}{n}$} & \specialcell{Delmängd av $X$ \\ av storlek $n$\\$\binom{x}{n}$} & \specialcell{Kompositioner av $n$\\av längd $x$\\$\binom{n - 1}{n - x}$} \\
+    
+    &  &  & \\
+    
+       \specialcell{Osärskiljbara lådor\\ (men särskiljbara objekt)} & \specialcell{\textcolor{darkgreen}{Mängdpartition av $N$}\\ \textcolor{darkgreen}{ i $\leq x$ delar} \\\textcolor{darkgreen}{$\sum_{k=1}^{x} \stirlingPart{n}{k}$}} & \specialcell{\textcolor{darkgreen}{Mängdpartition av $X$}\\ \textcolor{darkgreen}{i $\leq x$ delar av storlek $1$}\\\textcolor{darkgreen}{$1$ om $n \leq x$, $0$ annars}} & \specialcell{Mängdpartition \\ av $N$ i $x$ delar\\$\stirlingPart{n}{x}$} \\
+   
+    &  &  & \\
+
+     \specialcell{Både lådor och objekt\\ är osärskiljbara} & \specialcell{\textcolor{darkgreen}{Heltalspartition av $n$} \\ {\textcolor{darkgreen}{i $\leq x$ delar}}\\\textcolor{darkgreen}{$p_x(n + x)$}} & \specialcell{\textcolor{darkgreen}{Sätt att skriva $n$ som}\\\textcolor{darkgreen}{summan av $\leq x$ ettor}\\\textcolor{darkgreen}{$1$ om $n \leq x$, $0$ annars}} & \specialcell{\textcolor{darkgreen}{Heltalspartitioner}\\ \textcolor{darkgreen}{ av $n$ i $x$ delar} \\\textcolor{darkgreen}{$p_x(n)$}}
+    
+    &  &  & \\
+\end{tabularx}
 \end{fullwidth}
+
+\hfill \break
 
 Låt oss ge argument för varför varje av cellerna i denna tabell faktiskt är vad som påstås.
 
-Raden med bägge särskiljbara är den enklaste att fundera på. Om vi tar ett generellt $f$ räknar vi \emph{alla} funktioner från $N$ till $X$, utan begränsningar och utan att bekymra oss om särskiljbarhet. Ett annat ord för ``funktion från $N$ till $X$'' kan vara ``ord ur $X$ av längd $n$'' ifall vi tänker oss $N = [n]$. Att kräva att funktionen är injektiv är samma sak som att kräva att ingen bokstav dyker upp två gånger i ordet, vilket ju var vår definition av en permutation. Om det enda vi kräver är att funktionen är surjektiv är så klart vad vi räknar just surjektioner.
+Raden med bägge särskiljbara är den enklaste att fundera på. Om vi tar ett generellt $f$ räknar vi \emph{alla} funktioner från $N$ till $X$, utan begränsningar och utan att bekymra oss om särskiljbarhet. Ett annat ord för ``funktion från $N$ till $X$'' kan vara ``ord ur $X$ av längd $n$'' ifall vi tänker oss $N = [n]$. Att kräva att funktionen är injektiv är samma sak som att kräva att ingen bokstav dyker upp två gånger i ordet, vilket ju var vår definition av en permutation. Om det enda vi kräver är att funktionen är surjektiv är så klart vad vi räknar just surjektioner. 
 
 I raden med osärskiljbara objekt så kan vi tänka oss objekten som bollar vi lägger i lådorna. Om vi kan acceptera varje fördelning av bollar -- lådor får vara tomma eller innehålla mer än en boll -- är ju detta precis vårt scenario med att fördela mynt bland personer, vilket vi just gett namnet multi-delmängder. Om varje låda bara får innehålla noll eller en boll, och vi inte kan se skillnad på bollarna, bestäms varje fördelning av bollar bara av vilka lådor som har en boll och vilka som inte har en -- alltså av en delmängd av lådorna, och delmängden måste ha samma storlek som antalet bollar. Kräver vi att varje låda måste få en boll är vi i fallet med kompositioner, som vi definierade kort i slutet av biten om multi-delmängder -- vi kan få en sådan genom att först ge varje person ett mynt och sedan fördela ut resten av mynten fritt, så vi härleder lätt den formeln ur formeln för multi-delmängder.
 
@@ -169,6 +203,8 @@ I sista raden, när både objekten och lådorna är osärskiljbara, får vi tän
 
 Till skillnad från varje annat räkneproblem vi studerat hittills finns det ingen enkel formel för $p_k(n)$ i termer av $k$ och $n$. Men det betyder inte att vi inte kommer kunna säga intressanta kombinatoriska saker om heltalspartitioner.
 
+
+    
 \begin{example}
   Det finns fem heltalspartitioner av $8$ i $4$ delar. Dessa är:
   \begin{align*}
@@ -186,25 +222,29 @@ Slutligen är sista radens mellersta cell, när vi kräver att funktionen är in
 
 \section{Stirlingtalen av första sorten}
 
+\begin{marginfigure}\label{fig_cycles_of_permutation}
+      \includegraphics{graphics/cycles_of_permutation.png}
+      \caption{Ett exempel på ett sätt placera nio personer vid runda bord. Den motsvarande permutationen till detta sätt att placera personer är $572438169$. Det vanliga sättet att skriva detta sätt att placera personer vid bord i text är $(15327)(4)(68)(9)$. Detta kallas cykelnotationen av ovanstående permutation.}
+    \end{marginfigure}
+
+
 I början av denna föreläsningen introducerade vi Stirlingtalen av \emph{andra} sorten, vilket ju leder en till att fråga vad den första sorten är. Så låt oss introducera ett problem till vilket dem är lösningen:
 
 \begin{definition}
-  Antag att $n$ personer skall sitta runt $k$ stycken osärskiljbara runda bord, och varje bord måste ha minst en person som sitter vid det. Då ges antalet sätt att placera personerna runt borden av $\stirlingCycle{n}{k}$, \emph{Stirlings cykeltal}. Stirlings cykeltal kallas också för \emph{Stirlingtalen av första sorten}.
+  Antag att $n$ personer skall sitta runt $k$ stycken osärskiljbara runda bord, och varje bord måste ha minst en person som sitter vid det. Vi kan anta att borden är obegränsade i storlek. Då ges antalet sätt att placera personerna runt borden av $\stirlingCycle{n}{k}$, \emph{Stirlings cykeltal}. Stirlings cykeltal kallas också för \emph{Stirlingtalen av första sorten}.
 \end{definition}
 
 Till skillnad från Stirlings partitionstal finns det inte någon enkel formel för cykeltalen. Vi kan däremot bevisa följande resultat:
 
 \begin{theorem}
-  Det gäller, för alla $n \geq 1$, att
+  Det gäller, för alla $n \geq 1$, att: 
   $$\sum_{k=1}^{n} \stirlingCycle{n}{k} = n!.$$
+\sidenote[][]{Vänsterledet i detta uttryck räknar bordsplaceringar oavsett antal bord, det vill säga vi räknar alla möjliga borsdsplaceringar även där vissa bord lämnas tomma. Så om vi har k bord, så summerar vi antalet borsplaceringar om alla sitter vid 1 bord, 2 bord, 3, och så vidare upp till k. Högerledet räknar antalet permutationer.}
 
   \begin{proof}
     Vi bevisar detta genom att uppvisa en bijektion mellan mängden av permutationer av längd $n$ ur $[n]$, vilka vi vet att det finns $n!$ av, och samlingen av sätt att placera personer runt ett godtyckligt antal runda bord, vilka vi vet per definition räknas av $\sum_{k=1}^{n} \stirlingCycle{n}{k}$.
 
-    \begin{marginfigure}\label{fig_cycles_of_permutation}
-      \includegraphics{graphics/cycles_of_permutation.pdf}
-      \caption{Ett exempel på ett sätt placera nio personer vid runda bord. Den motsvarande permutationen till detta sätt att placera personer är $572438169$. Det vanliga sättet att skriva detta sätt att placera personer vid bord i text är $(15327)(4)(68)(9)$.}
-    \end{marginfigure}
+
 
     Givet ett sätt att placera $n$ personer runt något antal runda bord kan vi definiera en permutation $\sigma$ genom att, på plats $i$ i permutationen, skriva den person som sitter till vänster om person $i$ runt deras bord. (En person som sitter ensam anser vi sitta till vänster om sig själv.) Detta kommer ge oss en permutation eftersom varje person bara har en person till höger om sig, så ingen person kommer dyka upp två gånger, och varje person har bara en person till vänster om sig, så $\sigma(i)$ är väldefinierat för varje $i$.
 
@@ -222,6 +262,15 @@ Till skillnad från Stirlings partitionstal finns det inte någon enkel formel f
   Vi har introducerat detta som ``personer runt runda bord'', men den vanliga matematiska terminologin runt detta är ``cykler i en permutation''. Hittills har vi bara sett permutationer som en lista av tal i någon ordning, där varje tal mellan $1$ och $n$ dyker upp exakt en gång, men detta är bara ett perspektiv på vad en permutation är.
 
   Perspektivet med cykler är ett minst lika vanligt perspektiv på permutationer, och framhäver andra saker man kan använda dem för. För att representera dessa i text skriver vi vanligen i formatet $(15327)(4)(68)(9)$, såsom i Figur \ref{fig_cycles_of_permutation}, i stället för att rita cirklar med tal runt dem.
+\end{remark}
+
+\begin{remark}
+    \begin{figure}[h]
+\includegraphics[width=70mm]{cycles_of_permutation.png}
+	%\caption{Tre typer av olösta matematikproblem}
+\end{figure}
+Om vi har en viss bordsplacering, så kan vi även återskapa permutationen för denna. Vi tar exemplet i bilden ovan. För att hitta den första siffran i permutationen så kollar vi på det lägsta talet, d.v.s. 1. Den person som sitter till vänster om person 1 (från person 1:s perspektiv), kommer att representera den första siffran i permutationen. Alltså börjar vi med 5.\\
+När vi vill hitta den andra siffran så kollar vi till vänster om nästa tal i talordningen, det vill säga 2. I exemplet ovan sitter person 7 till vänster om person 2, så det andra talet i permutationen blir 7. Vi har alltså hittills 5 7, och fortsätter på liknande sätt med alla personer. När vi kommer till nummer 4 så ser vi att den inte har någon person till vänster om sig eftersom den sitter själv. Då skriver vi helt enkelt 4 på den fjärde positionen, eftersom person 4 ''sitter till vänster om sig själv''.
 \end{remark}
 
 \section{Övningar}
