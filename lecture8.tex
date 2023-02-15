@@ -235,7 +235,53 @@ För att kunna ge detta bevis behöver vi definiera några till koncept.
 
 \begin{definition}
     En \emph{skog} är en graf sådan att varje sammanhängande komponent är ett träd. Eller ekvivalent kan vi säga att det är en graf utan cykler.
+
+    En \emph{rotad} skog är en skog med ett val av rot för varje träd i skogen.
 \end{definition}
+
+\begin{proof}[Alternativt bevis av Cayleys sats]
+    Låt $\mathcal{F}_{n,k}$ beteckna mängden av rotade skogar med $n$ noder, som består av $k$ träd. Alltså är $\mathcal{F}_{n,1}$ antalet rotade träd -- om vi kan räkna dem är vi klara, eftersom vi vet att det finns precis $n$ val av rot, så $\frac{\abs{T_{n,1}}}{n}$ är talet vi söker.
+
+    Vi säger att en skog $F'$ \emph{ligger i} en annan skog $F$ om $F'$ är en delgraf till $F$ när vi betraktar dem som riktade träd.\sidenote[][-0.3cm]{Vi har ju inte definierat vad vi menar med att ett \emph{rotat} träd skulle vara en delgraf till ett annat. För att vara tydliga betyder detta att vi \emph{inte} kräver att roten till ett träd i $F'$ också är rot till det större träd det ligger i i $F$.}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.95\textwidth]{graphics/rooted_forest_subforest.png}
+        \caption[][1.2cm]{Två rotade skogar $F_2$ och $F_3$, betraktade som riktade träd. Notera att $F_3$ ligger i $F_2$.}
+        \label{fig:two_rooted_forests}
+    \end{figure}
+
+    Nyckelidén i vårt bevis är \emph{klyvande följder} av rotade skogar. Vi säger att en följd $F_1, F_2,\ldots, F_k$ av rotade skogar på $n$ noder är \emph{klyvande} om varje $F_i$ består av $i$ stycken träd, och $F_{i}$ innehåller $F_{i+1}$ för varje $i$.
+
+    Låt nu $F_k \in \mathcal{F}_{n,k}$ vara en fix skog, och beteckna
+    \begin{itemize}
+        \item antalet rotade \emph{träd} som innehåller $F_k$ med $N(F_k)$, och
+        \item antalet klyvande följder som slutar med $F_k$ med $N^*(F_k)$.
+    \end{itemize}
+
+    Notera nu att om vi tar $k = n$ finns det bara ett val för $F_k$, nämligen skogen av $n$ stycken träd, där varje träd bara är en enda nod -- och \emph{varje} rotat träd på $n$ noder innehåller denna skog. Alltså är $N(F_n)$ helt enkelt antalet rotade träd, vilket ju är vad vi vill räkna.
+
+    Så om vi kan hitta en formel för $N(F_k)$ är vi klara. Vi gör detta genom att räkna $N^*(F_k)$ på två olika sätt. Först går vi från $F_k$ till $F_1$, och sedan i motsatt riktning.
+
+    Givet ett $F_k$, hur många val har vi av av $F_{k-1}$? Eftersom $F_{k-1}$ ska ha ett träd färre, måste vi foga ihop två träd med en kant. Den här kanten kan utgå från vilken nod som helst, och skall träffa en av de $k-1$ rötterna till andra träd än det träd noden själv är i.\sidenote[][]{Den måste träffa en rot för att riktningen på kanterna skall förbli konsekvent -- om den träffade en ickerot hade vi fått en nod som är slutnod för två kanter, och alltså har två föräldrar, vilket vi inte tillåter.} I figur \ref{fig:two_rooted_forests} kan vi till exempel få $F_2$ från $F_3$ genom att rita dit en kant från $3$ till $7$, som är roten för sitt träd.
+
+    Vi kan alltså välja $F_{k-1}$ givet $F_k$ på $n(k-1)$ sätt. Precis samma argument ger att vi kan välja $F_{k-2}$ givet $F_{k-1}$ på $n(k-2)$ sätt, och så vidare. Så totalt kan vi välja vår följd $F_k, F_{k-1}, \ldots, F_1$ på
+    $$N^*(F_k) = n^{k-1}(k-1)!$$
+    sätt.
+
+    Så till den andra riktningen -- givet $F_k$ finns det, per definition, precis $N(F_k)$ val av $F_1$, eftersom $F_1$ skall vara något rotat träd som innehåller $F_k$. Vi ser enkelt att det är precis $k-1$ kanter som ligger i $F_1$ men inte i $F_k$ -- när vi räknade i motsatta riktningen är det dessa vi lade till.
+
+    Tar vi bort en av dessa kanter klyver vi $F_1$ och får en skog $F_2$, tar vi bort en till klyver vi ytterligare ett träd och får $F_3$, och så vidare -- och varje klyvande följd $F_1, F_2, \ldots, F_k$ med fixt $F_1$ och $F_k$ kan fås på detta vis.
+
+    Uppenbarligen är antalet sätt att välja en ordning att ta bort de $k-1$ kanterna i precis $(k-1)!$, så vad vi har visat är att
+    $$N^*(F_k) = N(F_k)(k-1)!$$
+    vilket tillsammans med vårt andra sätt att räkna $N^*(F_k)$ ger oss att
+    $$N(F_k) = n^{k-1}.$$
+
+    Vi observerade innan att $N(F_n)$ är lika med det totala antalet rotade träd, och eftersom det finns $n$ sätt att välja roten till ett träd är talet vi letar efter alltså
+    $$\frac{N(F_n)}{n} = \frac{n^{n-1}}{n} = n^{n-2}$$
+    såsom önskat.
+\end{proof}
 
 \section{Övningar}
 
