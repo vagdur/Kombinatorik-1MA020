@@ -49,11 +49,13 @@ Sedan introducerar vi heltalspartitioner, och härleder en genererande funktion 
 
 \section{Grafer och träd}
 
-Låt oss börja med att ge en hög med definitioner, som kommer vara väldigt bekanta för de av er som läst en kurs i grafteori innan.\sidenote[][]{Vilket som jag förstått det är ungefär en tredjedel av er -- så för resten behövs definitionerna.}
+Vårt första ämne i denna föreläsning är grafer och träd, som kommer dyka upp igen och igen också i senare föreläsningar -- det är ju till och med den preliminära titeln på vår sista föreläsning. Vi börjar med att ge en samling definitioner av vad vi menar med dessa ord, och sedan börjar vi räkna hur många av olika typer av graf det finns i olika klasser.
 
 \begin{definition}
     En \emph{graf} består av en mängd $V$ av \emph{noder} och en mängd $E \subseteq \binom{V}{2}$ av kanter.\sidenote[][]{Med notationen $\binom{A}{k}$ där $A$ är en mängd och $k$ ett heltal menar vi \emph{mängden} av delmängder av storlek $k$ till $n$. Alltså har vi att
-    $$\abs{\binom{[n]}{k}} = \binom{n}{k}.$$} Om det finns en kant $\{u,v\}$ säger vi att $u$ och $v$ är \emph{grannar}. En graf är \emph{etiketterad} om noderna är särskiljbara, annars är den oetiktterad.\sidenote[][]{Det här är precis samma koncept som med våra lådor som var särskiljbara eller inte. Antingen har noderna namn, så vi kan prata om nod nummer tre, eller så kan vi bara se vilka andra noder de har kanter till.} Vi säger att en graf är \emph{sammanhängande} om det går att nå varje nod från varje annan nod genom att vandra längs kanterna. Ett sätt att vandra från en nod tillbaka till sig själv kallar vi för en \emph{cykel}.
+    $$\abs{\binom{[n]}{k}} = \binom{n}{k}.$$} Om det finns en kant $\{u,v\}$ säger vi att $u$ och $v$ är \emph{grannar}. En graf är \emph{etiketterad} om noderna är särskiljbara, annars är den oetiketterad.
+    \sidenote[][]{Det här är precis samma koncept som med våra lådor som var särskiljbara eller inte. Antingen har noderna namn, så vi kan prata om nod nummer tre, eller så kan vi bara se vilka andra noder de har kanter till.} 
+    Vi säger att en graf är \emph{sammanhängande} om det går att nå varje nod från varje annan nod genom att vandra längs kanterna. Ett sätt att vandra från en nod tillbaka till sig själv kallar vi för en \emph{cykel}.
 
     \begin{figure}
         \centering
@@ -62,22 +64,40 @@ Låt oss börja med att ge en hög med definitioner, som kommer vara väldigt be
     \end{figure}
 \end{definition}
 
+\begin{example}
+    Det finns $2^{\binom{n}{2}}$ stycken etiketterade grafer på $n$ noder, eftersom det finns $\binom{n}{2}$ möjliga kanter, och vi får en graf per val av vilka kanter som skall vara med.
+
+    Problemet med att räkna antalet oetiketterade grafer på $n$ noder är betydligt mer komplicerat. Den första idén man hade haft är kanske att det borde vara
+    $$\frac{2^{\binom{n}{2}}}{n!}$$
+    eftersom det borde finnas $n!$ olika sätt att sätta dit etiketterna. Problemet är att vissa grafer har symmetrier som gör att till synes olika sätt att skriva dit etiketter i själva verket ger samma etiketterade graf.
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\textwidth]{graphics/counting_labelled_graphs.png}
+        \caption{Två till synes olika etiketteringar av samma graf, som i själva verket är samma etikettering på grund av grafens rotationssymmetri.}
+    \end{figure}
+
+    Som tur är visar det sig att nästan alla grafer inte har någon symmetri alls, så svaret är \emph{nästan} $\frac{2^{\binom{n}{2}}}{n!}$.\sidenote[][-1.5cm]{Det här påståendet låter kanske löst i kanten, men det är faktiskt helt rigoröst. I alla fall om man ersätter ``nästan'' med att skriva att antalet är
+    $$(1 + o(1))\frac{2^{\binom{n}{2}}}{n!}.$$}
+\end{example}
+
 \begin{definition}
-    Ett \emph{träd} är en sammanhängande graf utan cykler. Ett \emph{rotat} träd är ett träd med en specifik nod utpekad som dess rot.\sidenote[][]{Så om trädet är oetiketterat kan vi alltså se vilken nod som är roten, men resten av noderna kan vi inte se skillnad på, bara vilka som hänger ihop med vilka med kanter.} I ett rotat träd har varje nod utom roten själv en granne som är närmre roten än sig\sidenote[][]{Eller är roten.}, vilken vi kallar dess \emph{förälder}. Alla dess andra grannar kallar vi dess \emph{barn}. En nod utan barn kallar vi för ett \emph{löv}.
-
-    \begin{figure}
+    \begin{marginfigure}
         \centering
-        \includegraphics[width=0.4\textwidth]{graphics/example_tree.png}
+        \includegraphics[width=0.6\textwidth]{graphics/example_tree.png}
         \caption{Ett träd med sju noder och sex kanter.}
-    \end{figure}
+    \end{marginfigure}
 
-    Ifall det spelar roll i vilken ordning vi ritat noderna kallar vi trädet \emph{ordnat}.
+    Ett \emph{träd} är en sammanhängande graf utan cykler. Ett \emph{rotat} träd är ett träd med en specifik nod utpekad som dess rot.\sidenote[][]{Så om trädet är oetiketterat kan vi alltså se vilken nod som är roten, men resten av noderna kan vi inte se skillnad på, bara vilka som hänger ihop med vilka med kanter.} I ett rotat träd har varje nod utom roten själv en granne som är närmre roten än sig\sidenote[][]{Eller är roten.}, vilken vi kallar dess \emph{förälder}. Alla dess andra grannar kallar vi dess \emph{barn}. En nod utan barn kallar vi för ett \emph{löv}, och en nod som inte är ett löv kallar vi för \emph{intern}.
 
-    \begin{figure}
+    Ifall det spelar roll i vilken ordning vi ritat noderna kallar vi trädet \emph{ordnat}, se figur \ref{fig:distinct_only_as_ordered}.
+
+    \begin{marginfigure}
         \centering
-        \includegraphics[width=0.5\textwidth]{graphics/ordered_versus_unordered_trees.png}
+        \includegraphics[width=0.8\textwidth]{graphics/ordered_versus_unordered_trees.png}
         \caption{Två träd som är olika varandra som ordnade träd, men samma träd som oordnade träd.}
-    \end{figure}
+        \label{fig:distinct_only_as_ordered}
+    \end{marginfigure}
 \end{definition}
 
 \section{Övningar}
