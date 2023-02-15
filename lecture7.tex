@@ -154,7 +154,9 @@ Alltså ges det totala antalet uppåt-höger-stigar från $(0,0)$ till $(a,b)$ a
 \end{figure}
 
 Notera att en Dyck-stig alltid måste börja med ett steg uppåt och sluta med ett steg åt höger, eftersom den annars ju hade varit under diagonalen.\par
- Om vi roterar figuren 45 grader medurs noterar vi att vi får något som ser ut som bergskedjor. Detta är ett vanligt sätt att se Dyck-stigar\par
+\vspace{.2cm}
+ Om vi roterar figuren 45 grader medurs noterar vi att vi får något som ser ut som bergskedjor. Detta är ett vanligt sätt att se Dyck-stigar.\par
+\vspace{.2cm}
  \begin{figure}[hbt!]
     \centering
     \begin{tikzpicture}[rotate=-45]
@@ -171,8 +173,18 @@ Notera att en Dyck-stig alltid måste börja med ett steg uppåt och sluta med e
       \draw[red, very thick] (6*.75cm,7*.75cm) -- (6*.75cm,8*.75cm);
       \draw[red, very thick] (6*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
     \end{tikzpicture}
-    \caption{Roterad Dyck-stig ser ut som bergskedjor.}
-  \end{figure}
+    \caption{Roterad Dyck-stig ser ut som bergskedjor.\par\noindent Denna skulle ha sträng $uuduuddduduududd$.}
+  \end{figure}\par
+  \vspace{.2cm}
+ Ett användbart trick att använda sig av är att uppåt-höger-stigar (eller uppåt-neråt, om man tittar på bergskedjorna) kan översättas till strängar.\par
+ \noindent Om vi låter $u$ signalera ``uppåt'' och $h$ signalera ``höger'', blir exempelvis Figur 3 följande:
+ \begin{equation*}
+   \begin{gathered}
+     uuhuuhhhuhuuhuhh
+   \end{gathered}
+ \end{equation*}
+  \par
+  \vspace{.2cm}
 Hur många Dyck-stigar finns det av varje given längd? Vi kan använda vår observation om att de alltid börjar med ett upp-steg för att ge en rekursion för detta antal:
 
 \begin{lemma}\label{dyck_path_recursion_lemma}
@@ -181,32 +193,33 @@ Hur många Dyck-stigar finns det av varje given längd? Vi kan använda vår obs
     och $d_0 = 1$.\sidenote[][]{Antalet ord av längd noll anser vi vara ett, eftersom det bara finns ett sätt att välja ett sådant.}
 
     \begin{proof}
-        Överväg en Dyck-stig av längd $2(n+1)$. Vi kan dela upp den i två kortare Dyck-stigar som följer: Den börjar med ett upp-steg, som vi färgar grått. Sedan fortsätter den i ett tag tills den träffar diagonalen för första gången. Vi färgar alla steg innan det steg i vilken den träffar diagonalen röda, och steget i vilken den träffar diagonalen grått. Sedan färgar vi resten av stegen blåa.
-
-        \begin{figure}
-            \centering
-            \begin{tikzpicture}
-              \draw[step=.75cm] (0,0) grid (6cm,6cm);
-              \draw[black,very thick,dashed] (0,0) -- (6cm,6cm);
-              \draw[gray,very thick] (0,0) -- (0,.75cm);
-              \draw[gray,thick,dashed] (0,.75cm) -- (2*.75cm, 3*.75cm);
-              \draw[gray,very thick] (2*.75cm, 3*.75cm) -- (3*.75cm, 3*.75cm);
-              \draw[blue, very thick] (0,.75cm) -- (0,2*.75cm);
-              \draw[blue, very thick] (0,2*.75cm) -- (.75cm,2*.75cm);
-              \draw[blue, very thick] (.75cm,2*.75cm) -- (.75cm,3*.75cm);
-              \draw[blue, very thick] (.75cm,3*.75cm) -- (2*.75cm,3*.75cm);
-              \draw[red, very thick] (3*.75cm,3*.75cm) -- (3*.75cm,5*.75cm);
-              \draw[red, very thick] (3*.75cm,5*.75cm) -- (5*.75cm,5*.75cm);
-              \draw[red, very thick] (5*.75cm,5*.75cm) -- (5*.75cm,7*.75cm);
-              \draw[red, very thick] (5*.75cm,7*.75cm) -- (7*.75cm,7*.75cm);
-              \draw[red, very thick] (7*.75cm,7*.75cm) -- (7*.75cm,8*.75cm);
-              \draw[red, very thick] (7*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
-            \end{tikzpicture}
-            \caption{En illustration av vår uppdelning av en Dyck-stig i gråa, blåa, och röda steg.}
-        \end{figure}
+     Om vi låtsas vara stigen i punkten $(0,0)$ som ska gå till $(n,n)$ kanske vi kan klura ut vilka verktyg vi ska använda som vi lärt oss i kursen.\par
+     \noindent I varje steg har vi 2 val, upp eller höger. Samtidigt beror vårat val på föregående val, eftersom vi måste hålla oss över diagonalen. Det låter rekursivt! Hittar vi ett rekursivt förhållande så har vi de kraftfulla verktygen \emph{genererande funktioner} som kan ge oss något mer konkret.\clearpage
+     \begin{figure}[hbt!]
+          \centering
+          \begin{tikzpicture}
+            \draw[step=.75cm] (0,0) grid (6cm,6cm);
+            \draw[black,very thick,dashed] (0,0) -- (6cm,6cm);
+            \draw[gray,very thick] (0,0) -- (0,.75cm);
+            \draw[gray,thick,dashed] (0,.75cm) -- (2*.75cm, 3*.75cm);
+            \draw[gray,very thick] (2*.75cm, 3*.75cm) -- (3*.75cm, 3*.75cm);
+            \draw[blue, very thick] (0,.75cm) -- (0,2*.75cm);
+            \draw[blue, very thick] (0,2*.75cm) -- (.75cm,2*.75cm);
+            \draw[blue, very thick] (.75cm,2*.75cm) -- (.75cm,3*.75cm);
+            \draw[blue, very thick] (.75cm,3*.75cm) -- (2*.75cm,3*.75cm);
+            \draw[red, very thick] (3*.75cm,3*.75cm) -- (3*.75cm,5*.75cm);
+            \draw[red, very thick] (3*.75cm,5*.75cm) -- (5*.75cm,5*.75cm);
+            \draw[red, very thick] (5*.75cm,5*.75cm) -- (5*.75cm,7*.75cm);
+            \draw[red, very thick] (5*.75cm,7*.75cm) -- (7*.75cm,7*.75cm);
+            \draw[red, very thick] (7*.75cm,7*.75cm) -- (7*.75cm,8*.75cm);
+            \draw[red, very thick] (7*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
+          \end{tikzpicture}
+          \caption{En illustration av vår uppdelning av en Dyck-stig i gråa, blåa, och röda steg.}
+      \end{figure}
+        Överväg en Dyck-stig av längd $2(n+1)$. Vi kan dela upp den i två kortare Dyck-stigar som följer: Den börjar med ett upp-steg, som vi färgar grått. Sedan fortsätter den i ett tag tills den träffar diagonalen för första gången. Vi färgar alla steg innan det steg i vilken den träffar diagonalen blåa, och steget i vilken den träffar diagonalen grått. Sedan färgar vi resten av stegen röda.
 
         Vi hävdar att de blå stegen utgör en Dyck-stig av längd $2k$ för något $0 \leq k \leq n$, och de röda stegen utgör en Dyck-stig av längd $2(n-k)$, så att vi tillsammans med de två gråa stegen har totalt $2k + 2(n-k) + 2 = 2(n+1)$ steg. Ekvivalent, i tolkningen av stigar som ord, så säger vi att ordet för stigen vi började med kan skrivas som
-        $$Uw_1Hw_2$$
+        $$\underbrace{U}_{\text{Start}}\overbrace{w_1}^{\text{Blå}}\underbrace{H}_{\text{Grå}}\overbrace{w_2}^{\text{Röd}}$$
         för två kortare\sidenote[][]{Det är tillåtet att de är av längd noll.} Dyck-stigar $w_1$ och $w_2$.
 
         Vi kan välja $k$ fritt mellan $0$ och $n$, och vi kan sedan välja våra två kortare Dyck-stigar helt fritt så länge de har rätt längd, så multiplikations- och additionsprincipen ger oss att vi kan totalt välja på
@@ -227,22 +240,28 @@ vilket ser ut som något vi borde kunna använda för att räkna ut genererande 
         Vi observerar att Lemma \ref{dyck_path_recursion_lemma} ger oss att för alla $n \geq 0$
         $$d_{n+1} = (d*d)_n,$$
         så om vi tar genererande funktioner av bägge sidorna ser vi att vänster led blir
-        $$\sum_{n=0}^{\infty}d_{n+1}x^n = \frac{1}{x}\sum_{n=1}^{\infty} d_n x^n = \frac{F_d(x) - 1}{x}$$
+        $$\sum_{n=0}^{\infty}d_{n+1}x^n = \frac{1}{x}\sum_{n=0}^{\infty} d_n x^{n+1} = \frac{F_d(x) - 1}{x}$$ %även fast n=0 ger 0, kan det vara pedagogiskt att behålla 0:te indexet
         och höger led blir
         $$F_{d * d}(x) = F_d(x)^2$$
         så att vi har att
-        $$F_d(x) = x F_d(x)^2 + 1.$$
+        \begin{equation*}
+          \begin{gathered}
+            F_d(x)^2 = \dfrac{F_d(x)-1}{x}\\
+            \Lrarr xF_d(x)^2 = F_d(x)-1\\
+            \Lrarr F_d(x) = x F_d(x)^2 + 1.
+          \end{gathered}
+        \end{equation*}
 
         Det här är ju bara en vanlig andragradsekvation som vi kan lösa för $F_d$, och få att
         $$F_d(x) = \frac{1 \pm \sqrt{1 - 4x}}{2x}.$$
 
-        Det enda som återstår är att se om den rätta lösningen har ett plus- eller minustecken. Sättet vi ser detta på är att vi vet vad den skall ta för värde i en specifik punkt -- vi kan ju nämligen räkna att
+        Det enda som återstår är att se om den rätta lösningen har ett plus- eller minustecken. Sättet vi ser detta på är att vi vet vad den skall ta för värde i en specifik punkt -- vi vet nämligen att antalet stigar mellan $(0,0)$ och $(0,0)$ är 1
         $$F_d(0) = \sum_{k=0}^{\infty} d_k 0^k = d_0 = 1$$
         så funktionen måste vara ett i noll.
 
-        En snabb räkning ger oss att
+        Vi undersöker vad som händer i $+$ resp. $-$ fallen:
         $$\lim_{x \to 0} \frac{1 - \sqrt{1 - 4x}}{2x} = 1$$
-        emedan gränsvärdet
+        medan gränsvärdet
         $$\lim_{x \to 0} \frac{1 + \sqrt{1 - 4x}}{2x}$$
         inte existerar. Alltså måste den korrekta lösningen vara med minustecknet, såsom önskat.
     \end{proof}
@@ -256,11 +275,13 @@ Svaret på den frågan är ja, men det kräver ett lemma vi inte sett ännu.
 
 \begin{definition}
     För varje $x\in \R$ och varje $k \in \Z^{\geq 0}$ ges den \emph{fallande fakulteten} $x^{\underline{k}}$ av\sidenote[][]{Så produkten har $k$ termer. I fallet med $k=0$ får vi en tom produkt, vilket vi konventionellt anser är ett, så $x^{\underline{0}} = x^{\overline{0}} = 1$ för alla $x$.}
-    $$x^{\underline{k}} = x(x-1)(x-2)\ldots(x-k-1)$$
+    $$x^{\underline{k}} = x(x-1)(x-2)\ldots(x-k+1)$$
     och den \emph{stigande fakulteten} $x^{\overline{k}}$ av
     $$x^{\overline{k}} = x(x+1)(x+2)\ldots(x+k-1).$$
 
-    Om $x$ är ett heltal ges alltså $x^{\underline{k}}$ av $\frac{x!}{k!}$ och $x^{\overline{k}}$ av $\frac{(x+k-1)!}{(x-1)!}$.
+    Om $x$ är ett heltal ges alltså $x^{\underline{k}}$ av $\frac{x!}{(x-k)!}$ och $x^{\overline{k}}$ av $\frac{(x+k-1)!}{(x-1)!}$.\par
+    \vspace{.2cm}
+    Notera att $x^{\underline{k}} = (x-k+1)^{\overline{k}}$
 \end{definition}
 
 Vi kan särskilt notera att när $x$ är ett heltal ges antalet permutationer av längd $k$ ur ett alfabete med $x$ bokstäver alltså av $x^{\underline{k}}$, och således har vi också att
