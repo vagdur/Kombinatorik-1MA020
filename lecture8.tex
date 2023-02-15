@@ -100,6 +100,30 @@ Vårt första ämne i denna föreläsning är grafer och träd, som kommer dyka 
     \end{marginfigure}
 \end{definition}
 
+\begin{definition}
+    Ett träd i vilket alla noder antingen har två eller noll barn kallas för ett \emph{binärt} träd.
+\end{definition}
+
+Låt oss nu återse en gammal vän, Catalantalen.
+
+\begin{proposition}
+    Antalet rotade ordnade binära oetiketterade träd med $n$ stycken interna noder ges av Catalantalen.
+
+    \begin{proof}
+        Vi kan dela upp ett sådant träd i två mindre träd genom att helt enkelt ta bort roten, och låta dess två barn vara rötter i två mindre träd.
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{graphics/RUBOTree_division.png}
+            \caption[][1.5cm]{Ett rotat ordnat binärt oetiketterat träd, med uppdelningen av det i två mindre träd av samma typ, ett rött och ett blått.}
+        \end{figure}
+
+        Alltså gäller det, om $t_n$ betecknar antalet sådana träd, att
+        $$t_{n+1} = \sum_{k=0}^{n} t_k t_{n-k},$$
+        eftersom vi kan skapa oss ett sådant träd med $n+1$ noder genom att först rita roten, och sedan fästa ett träd med $k$ interna noder till vänster och ett med $n-k$ interna noder till höger. Eftersom roten själv är intern har vi då $k + n - k + 1 = n + 1$ interna noder.
+    \end{proof}
+\end{proposition}
+
 \section{Övningar}
 
 \begin{xca}
