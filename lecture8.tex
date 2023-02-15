@@ -124,6 +124,37 @@ Låt oss nu återse en gammal vän, Catalantalen.
     \end{proof}
 \end{proposition}
 
+\section{Cayleys formel}
+
+Vi har alltså lyckats räkna en väldigt specifik sorts träd. Kan vi räkna träd mer generellt?
+
+\begin{theorem}
+    Det finns
+    $$n^{n-2}$$
+    stycken etiketterade träd med $n$ noder.
+\end{theorem}
+
+För att förstå detta resultat, låt oss börja med att räkna de första små fallen. Vi kollar på \emph{oetiketterade} träd, och räknar hur många sätt vi kan sätta etiketter på dem.
+
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{graphics/counting_tree_labellings.png}
+    \caption{Oetiketterade grafer med $n$ noder, för $n = 1,\ldots,5$, med antalet sätt att sätta etiketter på varje i blått.}
+\end{figure}
+
+Sätten vi får dessa antal är, per värde på $n$:
+\begin{enumerate}
+    \item Att det bara finns ett sätt att skriva en etta på den enda noden är uppenbart.
+    \item Vi kan välja vilken permutation som helst av $[2]$ att skriva på noderna, men grafen har en speglingssymmetri, så att skriva etiketterna i motsatt ordning ger samma träd. Alltså $\frac{2!}{2}$.
+    \item Vi kan se vilken nod som är den mellersta, men vi kan inte se skillnad på de två yttre. Alltså är det enda val vi kan göra det av vilket tal vi skriver på den mellersta, vilket vi kan välja på tre sätt.
+    \item För den första av våra två oetiketterade grafer kan vi skriva vilken permutation av $[4]$ vi vill, men återigen har vi en speglingssymmetri, så att skriva den baklänges ger oss samma etikettering. Alltså $\frac{4!}{2}$.
+    
+    För den andra är vi i samma situation som vi var i för $n=3$ -- vi kan se vilken nod det är som har mer än en granne, men vi kan inte se skillnad på de andra. Alltså är det enda valet vi har vilken etikett just den särskilda noden får, vilket vi kan göra på $4$ sätt.
+    \item Vi får $\frac{5!}{2}$ av samma speglingssymmetri-skäl som innan, och för den tredje av våra grafer får vi $5$ eftersom vi åter har en särskild nod och resten kan vi inte se skillnad på.
+    
+    För den mellersta av våra tre oetiketterade träd kan vi se skillnad på de tre noderna i svansen till vänster, men de två som sticker ut åt höger kan vi inte se skillnad på. Så för att etikettera denna väljer vi två etiketter för de talen, vilket vi kan göra på $\binom{5}{2}$ sätt, och sedan är varje permutation av de återstående tre etiketterna faktiskt en distinkt etikettering, så vi kan välja $3!$ sätt att fullfölja vår etikettering. Så vi har totalt $\binom{5}{2}3!$ sätt att göra detta på.
+\end{enumerate}
+
 \section{Övningar}
 
 \begin{xca}
