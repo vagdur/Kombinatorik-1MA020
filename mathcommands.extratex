@@ -15,6 +15,8 @@
 \usepackage{tikz}
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
 
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 
 \makeatletter
 \newcommand{\ostar}{\mathbin{\mathpalette\make@circled\star}}
