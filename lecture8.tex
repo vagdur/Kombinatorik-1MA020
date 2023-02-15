@@ -205,6 +205,38 @@ Så vi ser i alla fall att vår formel gäller för $n$ upp till fem. Vi väljer
     Den första kanten att ritas kommer gå mellan det första lövet att tas bort och dess granne, den andra går mellan andra lövet att tas bort och dess granne, och så vidare -- ända fram tills den sista kanten vi lägger till, som går mellan de två kvarvarande noderna när vi byggde Prüferkoden. Alltså kommer denna algoritmen precis att rekonstruera grafen vi började med, vilket bevisar att vi faktiskt har en bijektion, och satsen följer.
 \end{proof}
 
+\section{Ett alternativt bevis av Cayleys formel}
+
+Det bevis vi just gav av Cayleys formel är visserligen elegant, men det är inte det enda beviset av denna sats. Det finns åtskilliga andra bevis -- inte bara med hjälp av bijektioner, utan också med rekursioner, och ett klassiskt bevis som använder determinanter och Kirchhoffs matris-träd-sats.
+
+Beviset vi skall ge nu använder inga avancerade metoder alls, inte ens en bijektion, utan är bara ett helt vanligt ``räkna på två sätt''-bevis. I boken jag tog det från
+\sidenote[][-1.5cm]{Beviset är av Jim Pitman, men boken är \emph{Proofs from the Book}. Den får detta namn från hur Erd\H{o}s brukade påstå att Gud hade en bok som innehöll alla de vackraste bevisen. (Kanske en väldigt infantil version av de medeltida teologernas idéer om matematiken som Guds ordning i Hans skapelseverk?) 
+
+Hela idén om ``boken'' är egentligen lite märklig, med tanke på att Erd\H{o}s var ateist -- om än av typen som är arg på Gud för Hans påstådda ickeexistens.
+
+Själva boken (den jag tog beviset ur, alltså) är, för övrigt, inte så särskilt bra, i min mening. Den gör bevisen mer komplicerade än de behöver vara, och har ett lite udda urval. Herren har definitivt en bättre bok, även om allvetande kanske får anses som fusk när man letar efter bevis.} 
+beskrivs detta som ``det vackraste beviset av dem alla'', men personligen föredrar jag nog Prüfers bevis, som inte ens var med på deras lista.
+
+För att kunna ge detta bevis behöver vi definiera några till koncept.
+
+\begin{definition}
+    En \emph{riktad} graf är en graf där varje kant har en utpekad start- och slutnod. Vi tänker oss kanterna som pilar som pekar från start till slut.
+
+    Det finns ett uppenbart sätt att omvandla ett rotat träd till ett \emph{riktat} träd\sidenote[][]{Alltså ett träd som har riktade kanter.} genom att ge varje kant den riktning som pekar bort från roten, och vice versa kan vi, för ett riktat träd med konsistenta riktningar på kanterna göra om det till ett rotat oriktat träd.
+\end{definition}
+
+\begin{definition}
+    En graf $H$ med noder $V_H$ och kanter $E_H$ är en \emph{delgraf} till en graf $G = (V_G, E_G)$ om $V_H\subseteq V_G$ och 
+    $$E_H \subseteq \left\{\{u,v\} \in E_G: u, v \in V_H\right\}.$$
+    För att skapa oss en delgraf till $G$ tar vi alltså någon delmängd till dess noder, och tar sedan någon delmängd av kanterna mellan dessa noder.
+
+    Om graferna är riktade kräver vi att de skall ha samma riktning i $G$ som i $H$.
+\end{definition}
+
+\begin{definition}
+    En \emph{skog} är en graf sådan att varje sammanhängande komponent är ett träd. Eller ekvivalent kan vi säga att det är en graf utan cykler.
+\end{definition}
+
 \section{Övningar}
 
 \begin{xca}
