@@ -1,10 +1,10 @@
 \documentclass[nobib]{tufte-handout}
 
-\title{Föreläsning 8: Träd och heltalspartitioner $\cdot$ 1MA020}
+\title{Föreläsning 8: Grafer och träd $\cdot$ 1MA020}
 
 \author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
 
-%\date{7 februari 2023}
+\date{16 februari 2023}
 
 
 %\geometry{showframe} % display margins for debugging page layout
@@ -42,9 +42,9 @@
 
 \begin{abstract}
 \noindent
-Vi introducerar grafer och träd, och bevisar att antalet rotade ordnade binära oetiketterade träd också räknas av Catalantalen.
+Vi introducerar grafer och träd, och bevisar att antalet rotade ordnade binära oetiketterade träd också räknas av Catalantalen. Vi bevisar också att samlingen av alla oetiketterade ordnade träd räknas av Catalantalen, fast på ett lite annat sätt.
 
-Sedan introducerar vi heltalspartitioner, och härleder en genererande funktion för dessa, som vi använder för några exempel.
+Efter det bevisar vi Cayleys formel, som säger att det finns $n^{n-2}$ etiketterade träd på $n$ noder, på två olika sätt.
 \end{abstract}
 
 \section{Grafer och träd}
@@ -250,6 +250,7 @@ För att kunna ge detta bevis behöver vi definiera några till koncept.
     En \emph{riktad} graf är en graf där varje kant har en utpekad start- och slutnod. Vi tänker oss kanterna som pilar som pekar från start till slut.
 
     Det finns ett uppenbart sätt att omvandla ett rotat träd till ett \emph{riktat} träd\sidenote[][]{Alltså ett träd som har riktade kanter.} genom att ge varje kant den riktning som pekar bort från roten, och vice versa kan vi, för ett riktat träd med konsistenta riktningar på kanterna göra om det till ett rotat oriktat träd.
+    Det finns ett uppenbart sätt att omvandla ett rotat träd till ett \emph{riktat} träd\sidenote[][0.4cm]{Alltså ett träd som har riktade kanter.} genom att ge varje kant den riktning som pekar bort från roten, och vice versa kan vi, för ett riktat träd med konsistenta riktningar på kanterna göra om det till ett rotat oriktat träd.
 \end{definition}
 
 \begin{definition}
