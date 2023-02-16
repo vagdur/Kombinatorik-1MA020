@@ -337,6 +337,40 @@ För att kunna ge detta bevis behöver vi definiera några till koncept.
     Pröva din kod på några slumpmässigt valda Prüferkoder. Hur ser ett träd vanligtvis ut?
 \end{xca}
 
+\begin{xca}
+    Betrakta figur \ref{fig:five_graphs_for_exercise}, med fem olika riktade etiketterade grafer ritade. Vilka grafer är delgrafer till vilka?
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/five_graphs_for_exercise.png}
+        \caption{Fem olika riktade etiketterade grafer, $a$ till $e$.}
+        \label{fig:five_graphs_for_exercise}
+    \end{figure}
+
+    Föreställ er nu att vi glömmer bort riktningen på alla kanterna, så att graferna blir \emph{oriktade} etiketterade grafer. Hur förändras era svar?
+
+    Om vår glömska fortsätter, och vi glömmer också etiketterna, hur ändras era svar? I det här fallet kan vi till och med ha att en graf är en delgraf till en annan på flera olika sätt -- till exempel finns det nu två olika delgrafer till $b$ som bägge är $a$ (ta en av $b$s två noder), och $c$ har tre delgrafer som är $b$ (ta två av noderna och kanten mellan dem). Ange för varje par av grafer hur många olika sätt den ena är en delgraf till den andra, som oetiketterade grafer.
+\end{xca}
+
+\begin{xca}
+    För varje $n$ betecknar vi med $K_n$ den \emph{fullständiga grafen} på $n$ noder, vilken är grafen med $n$ noder med etiketter från $1$ till $n$ och varje möjlig kant närvarande. Så $K_n = \left([n],\binom{[n]}{2}\right)$, i formell notation.
+
+    För en graf $G$ säger vi att ett träd $H$ är ett \emph{uppspännande träd} för $G$ om
+    \begin{itemize}
+        \item $H$ är en delgraf till $G$,
+        \item $V_H = V_G$, så varje nod i $G$ är med i $H$,
+        \item och $H$ är ett träd.
+    \end{itemize}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\textwidth]{graphics/spanning_tree_in_graph.png}
+        \caption{En graf $G$ med kanter i svart och blått. Tar vi enbart de blåa kanterna, och alla noder, får vi en delgraf $H$ som är ett uppspännande träd för $G$.}
+    \end{figure}
+
+    Hur många uppspännande träd finns det för $K_n$?\sidenote[][]{Ledtråd: Det här är en sak vi redan studerat, bara formulerad på ett annorlunda sätt. Fundera på vad det verkligen betyder att vara ett uppspännande träd för $K_n$.}
+\end{xca}
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 

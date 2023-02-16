@@ -15,7 +15,7 @@ Föreläsningsanteckningar för våra föreläsningar kommer också att länkas 
 5. [Föreläsning fem: Genererande funktioner](https://vagdur.github.io/Kombinatorik-1MA020/lecture5.pdf)
 6. [Föreläsning sex: Fortsättning på genererande funktioner](https://vagdur.github.io/Kombinatorik-1MA020/lecture6.pdf)
 7. [Föreläsning sju: Dyck-stigar och Catalantal](https://vagdur.github.io/Kombinatorik-1MA020/lecture7.pdf)
-8. [Föreläsning åtta: Grafer och träd](https://vagdur.github.io/Kombinatorik-1MA020/lecture8.pdf) (Klar, förutom att fler övningar skall till)
+8. [Föreläsning åtta: Grafer och träd](https://vagdur.github.io/Kombinatorik-1MA020/lecture8.pdf)
 
 # Annat material för kursen
 
