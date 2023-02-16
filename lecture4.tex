@@ -255,6 +255,13 @@ Till skillnad från Stirlings partitionstal finns det inte någon enkel formel f
     Vi upprepar denna process med fler bord ända tills varje person har fått ett bord, och vi har fått oss ett sätt att placera $n$ personer runt något antal bord mellan $1$ och $n$.
 
     Det är någorlunda enkelt att se, efter att man funderat en stund, att vi alltid kommer komma tillbaka till samma permutation vi började med om vi först skapar en bordsplacering av permutationen, och sedan skapar en permutation av den bordsplaceringen. Alltså är detta en bijektion, och vi har bevisat vår formel.
+\\ \bigskip
+    En annan mindre kombinatorisk förklaring till teorem 9, är att både höger- och vänsterledet kan skrivas som en slinga med n siffror, där ingen siffra får upprepas. Anledningen till att vänsterledet representerar denna slinga, är för att alla sätt att skriva en slinga med talen 1 till n utan upprepningar går att omvandla till en unik bordsplacering, som använder minst 1 bord och max n bord. Om vi till exempel har tre personer, finns det sex permutationer, alltså sex sätt att ordna dessa tre tal, vilket kan räknas ut som n!. Men det går också att omvandla dessa permutationer till sex olika bordsplaceringar, som använder antingen 1, 2 eller 3 bord.
+    \begin{figure}[h]
+\includegraphics[width=70mm]{bordsplac.png}
+	%\caption{Tre typer av olösta matematikproblem}
+\end{figure}
+
   \end{proof}
 \end{theorem}
 
@@ -309,7 +316,7 @@ När vi vill hitta den andra siffran så kollar vi till vänster om nästa tal i
   $$8, 9, 4, 10, 5, 7, 3, 2, 6, 1.$$
 \end{xca}
 
-
+\newpage
 \section{Lösningsförslag}
 \begin{xca2}
   $$\stirlingPart{n}{k} = k\stirlingPart{n-1}{k} + \stirlingPart{n-1}{k-1}.$$
