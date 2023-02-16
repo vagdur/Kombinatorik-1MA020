@@ -104,6 +104,8 @@ Vårt första ämne i denna föreläsning är grafer och träd, som kommer dyka 
     Ett träd i vilket alla noder antingen har två eller noll barn kallas för ett \emph{binärt} träd.
 \end{definition}
 
+\section{Ännu fler saker som räknas av Catalantalen}
+
 Låt oss nu återse en gammal vän, Catalantalen.
 
 \begin{proposition}
@@ -124,9 +126,34 @@ Låt oss nu återse en gammal vän, Catalantalen.
     \end{proof}
 \end{proposition}
 
+I själva verket räknas också godtyckliga oetiketterade ordnade träd av Catalantalen, utan något krav på att de skall vara binära.
+
+\begin{proposition}
+    Antalet rotade ordnade oetiketterade träd på $n+1$ noder ges av Catalantalen.\sidenote[][]{Notera att vi här räknar \emph{alla} noder, inte bara de interna, som vi gjorde för de binära träden.}
+
+    \begin{proof}
+        Vi bevisar detta genom att uppvisa en bijektion med sätt att skriva $n$ matchande par av parenteser.
+
+        Så, givet ett rotat ordnat oetiketterat träd på $n+1$ noder, numrera dess löv från höger till vänster.
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\textwidth]{graphics/rooted_ordered_general_tree_with_leaf_labels.png}
+            \caption{Ett rotat ordnat oetiketterat träd, med dess löv numrerade från vänster till höger.
+            
+            I vår algoritm för att omvandla detta träd till en parentetisering blir uttrycket, innan vi ersatt talen med $()$,
+            $$((12)34)56((7)(8))9.$$}
+        \end{figure}
+
+        Skriv sedan upp talen $12\ldots k$ på rad, och skriv i parenteser på följande vis: För varje intern nod, förutom roten, skriv ett par parenteser runt alla de tal som motsvarar löv under noden. Ersätt sedan varje av talen med ett tomt par av parenteser, $()$. Detta ger en parentetisering med precis $n$ par av parenteser.
+
+        För att återhämta ett träd från en parentetisering, börja med att rita en nod för varje $()$. Sedan, för varje grupp av noder som ligger i samma par av parenteser, rita en gemensam förälder för dem. Till slut, rita dit roten, och koppla den till varje par av parenteser som inte har någon parentes runt sig.
+    \end{proof}
+\end{proposition}
+
 \section{Cayleys formel}
 
-Vi har alltså lyckats räkna en väldigt specifik sorts träd. Kan vi räkna träd mer generellt?
+Vi har alltså lyckats räkna två specifika sorters träd. Kan vi räkna träd mer generellt?
 
 \begin{theorem}
     Det finns
