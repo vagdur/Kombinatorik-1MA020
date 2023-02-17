@@ -19,6 +19,7 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Exempel}
 \newtheorem{xca}{Övning}
+\newtheorem{solution}{Lösning}
 
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Kommentar}
