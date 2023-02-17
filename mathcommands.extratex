@@ -6,6 +6,8 @@
 \usepackage{amssymb}%
 \usepackage{amsthm}
 
+\usepackage[shortlabels]{enumitem}
+
 \usepackage[swedish]{babel}
 
 \newtheorem{theorem}{Teorem}%[subsection]
@@ -20,6 +22,7 @@
 \newtheorem{example}[theorem]{Exempel}
 \newtheorem{xca}{Övning}
 \newtheorem{solution}{Lösning}
+\newtheorem*{tips}{Tips}
 
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Kommentar}
