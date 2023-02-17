@@ -91,9 +91,9 @@ Merparten av alla pussel-spel av typen sudoku, eller ``flytta bilarna för att f
 \end{example}
 
 \begin{example}\label{example_addition_rule}
-En restaurang har en meny med fyra drinkar, fem förrätter, tio huvudrätter, och tre desserter. Hur många saker har de på menyn?
+	En restaurang har en meny med fyra drinkar, fem förrätter, tio huvudrätter, och tre desserter. Hur många saker har de på menyn?
 
-Additions-regeln säger oss att svaret är $4+5+10+3 = 22$.
+	Additions-regeln säger oss att svaret är $4+5+10+3 = 22$.
 \end{example}
 
 \begin{definition}[Multiplikations-regeln]
@@ -109,27 +109,27 @@ $$\abs{A\times B} = \abs{\{(a,b) \given a \in A, b \in B\}} = nm.$$
 
 \begin{example}
 	Om du besöker restaurangen i Exempel \ref{example_addition_rule}, hur många olika sätt finns det att beställa en trerätters middag med en drink till?
-\sidenote{En fullständigt teoretisk fråga, eftersom ingen faktiskt har råd med det i dagens ekonomi.} Multiplikations-regeln säger oss att svaret är $4\cdot 5\cdot 10\cdot 3 = 600$.
+	\sidenote{En fullständigt teoretisk fråga, eftersom ingen faktiskt har råd med det i dagens ekonomi.} Multiplikations-regeln säger oss att svaret är $4\cdot 5\cdot 10\cdot 3 = 600$.
 \end{example}
 
 \section{Strängar}
 
 \begin{definition}
-En \emph{sträng} $s$ (eller ett \emph{ord}) av längd $n$ på en mängd $X$ (kallad \emph{alfabetet} för strängen) är en funktion
-$$s: \{1, 2, \ldots, n\} = [n] \to X$$
-där $s_i$ är den $i$te bokstaven i ordet.\sidenote{Från och med nu kommer vi konsekvent använda notationen $[n]$ för mängden av tal mellan $1$ och $n$.}
-Vi skriver detta oftast som $s = x_1x_2\ldots x_n$, där $x_i = s(i)$.
+	En \emph{sträng} $s$ (eller ett \emph{ord}) av längd $n$ på en mängd $X$ (kallad \emph{alfabetet} för strängen) är en funktion
+	$$s: \{1, 2, \ldots, n\} = [n] \to X$$
+	där $s_i$ är den $i$te bokstaven i ordet.\sidenote{Från och med nu kommer vi konsekvent använda notationen $[n]$ för mängden av tal mellan $1$ och $n$.}
+	Vi skriver detta oftast som $s = x_1x_2\ldots x_n$, där $x_i = s(i)$.
 \end{definition}
 
 \begin{example}[Binära strängar]
-Låt $X = \{0,1\}$. Strängar $s: [n] \to X$ kallas för \emph{binära strängar}. Det finns $2^n$ strängar av längd $n$.\sidenote{Så det finns till exempel åtta binära strängar av längd tre, nämligen
-$$000, 001, 010, 011, 100, 101, 110, 111.$$}
+	Låt $X = \{0,1\}$. Strängar $s: [n] \to X$ kallas för \emph{binära strängar}. Det finns $2^n$ strängar av längd $n$.\sidenote{Så det finns till exempel åtta binära strängar av längd tre, nämligen
+	$$000, 001, 010, 011, 100, 101, 110, 111.$$}
 
-Hur vet vi detta? Det finns två val för varje bokstav, så multiplikationsregeln säger oss att det måste finnas $2\cdot 2\cdot\ldots\cdot 2 = 2^n$ att göra ett val av vad varje bokstav skall vara.
+	Hur vet vi detta? Det finns två val för varje bokstav, så multiplikationsregeln säger oss att det måste finnas $2\cdot 2\cdot\ldots\cdot 2 = 2^n$ att göra ett val av vad varje bokstav skall vara.
 \end{example}
 
 \begin{example}[$m$-ära strängar]
-Låt $X = \{0,1,\ldots,m-1\}$. Strängar med detta alfabetet kallas för $m$-ära strängar. Om $m = 2$ är de binära, om $m = 3$ är de ternära. Här kan vi även se en koppling till hur många strängar det finns av en viss längd n av ett alfabet med x antal bokstäver. När vi pratade om binära strängar var det strängar av längd n på ett alfabet av längd 2. Detta gav $2^n$ sådanna möjliga strängar eftersom det finns 2 alternativ per plats och det finns n platser. Samma resonemang kan göras med alla alfabet, oavsett längd. En ternär sträng har tre möjliga alternativ per plats och n platser, alltså $3^n$ möjliga strängar. Man kan generalisera detta till att en sträng av längd n med ett alfabet av storlek x har $x^n$ antal möjlig strängar.
+	Låt $X = \{0,1,\ldots,m-1\}$. Strängar med detta alfabetet kallas för $m$-ära strängar. Om $m = 2$ är de binära, om $m = 3$ är de ternära. Här kan vi även se en koppling till hur många strängar det finns av en viss längd n av ett alfabet med x antal bokstäver. När vi pratade om binära strängar var det strängar av längd n på ett alfabet av längd 2. Detta gav $2^n$ sådanna möjliga strängar eftersom det finns 2 alternativ per plats och det finns n platser. Samma resonemang kan göras med alla alfabet, oavsett längd. En ternär sträng har tre möjliga alternativ per plats och n platser, alltså $3^n$ möjliga strängar. Man kan generalisera detta till att en sträng av längd n med ett alfabet av storlek x har $x^n$ antal möjlig strängar.
 \end{example}
 
 För generella $X$ kallar vi en sträng $s: [n] \to X$ för en $X$-sträng.
@@ -137,42 +137,42 @@ För generella $X$ kallar vi en sträng $s: [n] \to X$ för en $X$-sträng.
 \section{Permutationer}
 
 \begin{definition}
-En sträng $s: [k] \to X$ kallas för en \emph{permutation} av längd $k$ av elementen i $X$ om alla bokstäverna i $s$ är olika, det vill säga om $s(i) \neq s(j)$ ifall $i \neq j$.
+	En sträng $s: [k] \to X$ kallas för en \emph{permutation} av längd $k$ av elementen i $X$ om alla bokstäverna i $s$ är olika, det vill säga om $s(i) \neq s(j)$ ifall $i \neq j$.
 \end{definition}
 
 Självklart måste $\abs{X} \geq k$ för att det skall existera några permutationer av längd $k$ av $X$.\sidenote{Hur hade du bevisat det?\\
 Om vi antar att $\abs{X} < k$ men vi ska välja ut en permutation av längd k. Då börjar vi att välja ut första bokstaven $i_1$, sedan nästa bokstav $i_2$, och så vidare. Detta går bra tills vi har valt bokstav i X, låt oss kalla den $j$. Efter det har vi valt varje bokstav i alfabetet och kommer då behöva återanvända bokstäver i X. Men detta är inte tillåtet eftersom $s(i) \neq s(j) $ ifall $i \neq j$. Alltså kan vi inte skapa en perumatation av längd k om $\abs{X} < k$. Så $\abs{x} \geq k$}
 
 \begin{example}
-Låt $X = [3]$. Det finns $6$ permutationer av längd $2$ av $X$\sidenote[][3.5cm]{Dessa är, specifikt, $$12, 13, 21, 23, 31, 32.$$} -- vi kan se detta med hjälp av multiplikationsprincipen: Vi har tre val av första bokstav, men när vi valt den har vi bara två val kvar av andra bokstav, eftersom vi inte får ha två av samma. Alltså är det totala antalet $3\cdot 2 = 6$.
+	Låt $X = [3]$. Det finns $6$ permutationer av längd $2$ av $X$\sidenote[][3.5cm]{Dessa är, specifikt, $$12, 13, 21, 23, 31, 32.$$} -- vi kan se detta med hjälp av multiplikationsprincipen: Vi har tre val av första bokstav, men när vi valt den har vi bara två val kvar av andra bokstav, eftersom vi inte får ha två av samma. Alltså är det totala antalet $3\cdot 2 = 6$.
 
 
-\begin{center}
-     \includegraphics{graphics/bildpresentation.png}
-\end{center}  
+	\begin{center}
+		\includegraphics{graphics/bildpresentation.png}
+	\end{center}  
 
-I bilden ser vi en representation av exempel 9. Tänk att de olika färgerna representerar olika bokstäver. Vi har från början tre bokstäver. Vi väljer först en bokstav och då har vi tre val, när vi valt en har vi två bokstäver kvar att välja på. 
+	I bilden ser vi en representation av exempel 9. Tänk att de olika färgerna representerar olika bokstäver. Vi har från början tre bokstäver. Vi väljer först en bokstav och då har vi tre val, när vi valt en har vi två bokstäver kvar att välja på. 
 \end{example}
 
 \begin{definition}
-För $n = 1, 2,\ldots$, definiera $n! = n(n-1)\ldots2\cdot1$. Definiera $0! = 1$.\sidenote{Att vi låter $0!$ vara lika med ett är för att vi ser det som produkten av inga tal alls, vilket är bekvämt att se som att det blir $1$. Varför detta är så kommer vi kanske att återkomma till när vi pratar om rekursioner.}
+	För $n = 1, 2,\ldots$, definiera $n! = n(n-1)\ldots2\cdot1$. Definiera $0! = 1$.\sidenote{Att vi låter $0!$ vara lika med ett är för att vi ser det som produkten av inga tal alls, vilket är bekvämt att se som att det blir $1$. Varför detta är så kommer vi kanske att återkomma till när vi pratar om rekursioner.}
 
-För $k \leq n$, definiera $P(n,k) = \frac{n!}{(n-k)!}$. Lägg märke till att $P(n,n) = \frac{n!}{(n-n)!} = \frac{n!}{0!} = n!$.
+	För $k \leq n$, definiera $P(n,k) = \frac{n!}{(n-k)!}$. Lägg märke till att $P(n,n) = \frac{n!}{(n-n)!} = \frac{n!}{0!} = n!$.
 \end{definition}
 
 \begin{proposition}\label{prop_Pnk_counts_permutations}
-Om $\abs{X}=n$ och $0 \leq k \leq n$ så finns det $P(n,k)$ permutationer av längd $k$ från $X$.
-\begin{proof}
-Vi bevisar detta med hjälp av multiplikationsprincipen -- så vi skall räkna hur många sätt vi kan välja vår permutation $x_1x_2\ldots x_k$ på. Det finns så klart $\abs{X} = n$ sätt att välja första bokstaven $x_1$ i vår permutation. När vi sedan skall välja $x_2$ får den inte vara lika med $x_1$, så vi väljer ett element ur $X \setminus \{x_1\}$, och $\abs{X\setminus\{x_1\}} = n-1$. Likaledes för $x_3$ så får den varken vara lika med $x_1$ eller $x_2$, så vi väljer från $X\setminus \{x_1, x_2\}$, och har $n-2$ val.
+	Om $\abs{X}=n$ och $0 \leq k \leq n$ så finns det $P(n,k)$ permutationer av längd $k$ från $X$.
+	\begin{proof}
+		Vi bevisar detta med hjälp av multiplikationsprincipen -- så vi skall räkna hur många sätt vi kan välja vår permutation $x_1x_2\ldots x_k$ på. Det finns så klart $\abs{X} = n$ sätt att välja första bokstaven $x_1$ i vår permutation. När vi sedan skall välja $x_2$ får den inte vara lika med $x_1$, så vi väljer ett element ur $X \setminus \{x_1\}$, och $\abs{X\setminus\{x_1\}} = n-1$. Likaledes för $x_3$ så får den varken vara lika med $x_1$ eller $x_2$, så vi väljer från $X\setminus \{x_1, x_2\}$, och har $n-2$ val.
 
-Den här processen fortsätter tills vi skall välja $x_k$, och i det skedet har vi tagit bort $k-1$ val, och har alltså $\abs{X \setminus \{x_1, x_2, \ldots, x_{k-1}\}} = n - (k-1)$ bokstäver kvar att välja på.
+		Den här processen fortsätter tills vi skall välja $x_k$, och i det skedet har vi tagit bort $k-1$ val, och har alltså $\abs{X \setminus \{x_1, x_2, \ldots, x_{k-1}\}} = n - (k-1)$ bokstäver kvar att välja på.
 
-Multiplikationsregeln säger oss att det totala antalet permutationer är lika med produkten av antalet val vi hade i varje steg, det vill säga
-\begin{align*}
-	n\cdot(n-1)\cdot(n-2)\cdot\ldots\cdot(n-(k-1)) &= \frac{n\cdot(n-1)\cdot(n-2)\cdot\ldots\cdot2\cdot1}{(n-k)\cdot\ldots\cdot2\cdot1}\\
-	&= \frac{n!}{(n-k)!} = P(n,k).
-\end{align*}
-\end{proof}
+		Multiplikationsregeln säger oss att det totala antalet permutationer är lika med produkten av antalet val vi hade i varje steg, det vill säga
+		\begin{align*}
+			n\cdot(n-1)\cdot(n-2)\cdot\ldots\cdot(n-(k-1)) &= \frac{n\cdot(n-1)\cdot(n-2)\cdot\ldots\cdot2\cdot1}{(n-k)\cdot\ldots\cdot2\cdot1}\\
+			&= \frac{n!}{(n-k)!} = P(n,k).
+		\end{align*}
+	\end{proof}
 \end{proposition}
 
 \begin{example}
@@ -182,12 +182,12 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
 
 	Om platserna har etiketter, så att det inte bara är ordningen som spelar roll, så kan vi numrera platserna från plats $1$ till plats $n$. Om vi kallar mängden med gäster för $X$ blir alltså varje placering ett $X$-ord -- vi kan skriva den som ``gäst ett, gäst två, etc.''. Och eftersom varje person bara kan sitta på en stol blir detta alltså en permutation -- och vi vet att det finns $n!$ permutationer av längd $n$ ur ett alfabete med $n$ bokstäver.
  
-\begin{center}
-    \includegraphics[width=0.7\textwidth]{graphics/bordmedfarg1.png}
-\end{center}
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{graphics/bordmedfarg1.png}
+	\end{center}
 
 
-        Bilden ovan visar de olika platserna och de olika platserna har olika färger. Vi kan då se det som att det inte är samma sak att sitta på en blå pall som att sitta på en orange pall till exempel. Alltså kommer det då spela roll vilken stol man sitter på och vem man sitter brevid. \sidenote{De små svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.}
+    Bilden ovan visar de olika platserna och de olika platserna har olika färger. Vi kan då se det som att det inte är samma sak att sitta på en blå pall som att sitta på en orange pall till exempel. Alltså kommer det då spela roll vilken stol man sitter på och vem man sitter brevid. \sidenote{De små svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.}
 
 	Om platserna är oetiketterade, det vill säga att det enda vi bryr oss om är ordningen folk sitter i, får vi räkna på ett annat sätt. Givet en placering kan vi godtyckligt välja en person som ``först'', och sedan numrera platserna i medurs ordning. För varje av de $n$ sätten att välja vem som är först får vi alltså en placering där platserna har etiketter.
 
@@ -195,12 +195,13 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
 
 	Men eftersom vi redan vet att antalet när platserna har etiketter är $n!$ så får vi alltså av detta att $n! = nm$, eller $m = \frac{n!}{n} = (n-1)!$, och vi har räknat antalet utan etiketter till $(n-1)!$.\sidenote{Detta är ett vanligt sätt att resonera inom kombinatorik -- vi hittade två olika sätt att räkna samma sak, och fick på så sätt ut en likhet ($nm = n!$) som vi kunde använda för att räkna en annan sak.}
  
- \begin{center}
-      \includegraphics[width=0.9\textwidth]{graphics/bordutanfarg1.png}
- \end{center}
+	\begin{center}
+		\includegraphics[width=0.9\textwidth]{graphics/bordutanfarg1.png}
+	\end{center}
 
        Här är alltså varje plats likadan och det kommer endast spela roll vem man sitter brevid, till skillnad från vid förra bordet. I figuren ovan representerar vi detta med att alla stolar ser likadana ut. Man kan se detta som att vi, när alla satt sig vid bordet, kan flytta oss ett steg åt höger exempelvis runt bordet. Då har vi en likadan placering igen, fast den är identiskt till den förra eftersom vilken specifik stol vi sitter på inte spelar roll. Varje sådan förflyttning, där varje person hoppar ett steg, är alltså en kopia av samma sätt att sitta som vi satte oss först. Det är en annan stol men det är samma grannar och samma placering jämfört med alla andra runt bordet. Det gör att det finns totalt n olika sätt att sitta på samma sätt vilket gör att vi måste dividera bort alla dessa dubbletter genom att dividera antalet sätt att sitta på med n. \sidenote{De små svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.} 
 \end{example}
+
 \section{Kombinationer}
 
 \begin{definition}
