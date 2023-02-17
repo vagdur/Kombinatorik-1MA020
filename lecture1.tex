@@ -109,7 +109,7 @@ $$\abs{A\times B} = \abs{\{(a,b) \given a \in A, b \in B\}} = nm.$$
 
 \begin{example}
 	Om du besöker restaurangen i Exempel \ref{example_addition_rule}, hur många olika sätt finns det att beställa en trerätters middag med en drink till?
-\sidenote{En fullständigt teoretisk fråga, eftersom ingen faktiskt har råd med det i dagens ekonomi.} Multiplikations-regeln säger oss att svaret är $4\times 5\times 10\times 3 = 600$.
+\sidenote{En fullständigt teoretisk fråga, eftersom ingen faktiskt har råd med det i dagens ekonomi.} Multiplikations-regeln säger oss att svaret är $4\cdot 5\cdot 10\cdot 3 = 600$.
 \end{example}
 
 \section{Strängar}
@@ -125,7 +125,7 @@ Vi skriver detta oftast som $s = x_1x_2\ldots x_n$, där $x_i = s(i)$.
 Låt $X = \{0,1\}$. Strängar $s: [n] \to X$ kallas för \emph{binära strängar}. Det finns $2^n$ strängar av längd $n$.\sidenote{Så det finns till exempel åtta binära strängar av längd tre, nämligen
 $$000, 001, 010, 011, 100, 101, 110, 111.$$}
 
-Hur vet vi detta? Det finns två val för varje bokstav, så multiplikationsregeln säger oss att det måste finnas $2\times 2\times\ldots\times 2 = 2^n$ att göra ett val av vad varje bokstav skall vara.
+Hur vet vi detta? Det finns två val för varje bokstav, så multiplikationsregeln säger oss att det måste finnas $2\cdot 2\cdot\ldots\cdot 2 = 2^n$ att göra ett val av vad varje bokstav skall vara.
 \end{example}
 
 \begin{example}[$m$-ära strängar]
@@ -144,7 +144,7 @@ Självklart måste $\abs{X} \geq k$ för att det skall existera några permutati
 Om vi antar att $\abs{X} < k$ men vi ska välja ut en permutation av längd k. Då börjar vi att välja ut första bokstaven $i_1$, sedan nästa bokstav $i_2$, och så vidare. Detta går bra tills vi har valt bokstav i X, låt oss kalla den $j$. Efter det har vi valt varje bokstav i alfabetet och kommer då behöva återanvända bokstäver i X. Men detta är inte tillåtet eftersom $s(i) \neq s(j) $ ifall $i \neq j$. Alltså kan vi inte skapa en perumatation av längd k om $\abs{X} < k$. Så $\abs{x} \geq k$}
 
 \begin{example}
-Låt $X = [3]$. Det finns $6$ permutationer av längd $2$ av $X$\sidenote[][3.5cm]{Dessa är, specifikt, $$12, 13, 21, 23, 31, 32.$$} -- vi kan se detta med hjälp av multiplikationsprincipen: Vi har tre val av första bokstav, men när vi valt den har vi bara två val kvar av andra bokstav, eftersom vi inte får ha två av samma. Alltså är det totala antalet $3\times 2 = 6$.
+Låt $X = [3]$. Det finns $6$ permutationer av längd $2$ av $X$\sidenote[][3.5cm]{Dessa är, specifikt, $$12, 13, 21, 23, 31, 32.$$} -- vi kan se detta med hjälp av multiplikationsprincipen: Vi har tre val av första bokstav, men när vi valt den har vi bara två val kvar av andra bokstav, eftersom vi inte får ha två av samma. Alltså är det totala antalet $3\cdot 2 = 6$.
 
 
 \begin{center}
@@ -155,7 +155,7 @@ I bilden ser vi en representation av exempel 9. Tänk att de olika färgerna rep
 \end{example}
 
 \begin{definition}
-För $n = 1, 2,\ldots$, definiera $n! = n\times(n-1)\times\ldots\times2\times1$. Definiera $0! = 1$.\sidenote{Att vi låter $0!$ vara lika med ett är för att vi ser det som produkten av inga tal alls, vilket är bekvämt att se som att det blir $1$. Varför detta är så kommer vi kanske att återkomma till när vi pratar om rekursioner.}
+För $n = 1, 2,\ldots$, definiera $n! = n(n-1)\ldots2\cdot1$. Definiera $0! = 1$.\sidenote{Att vi låter $0!$ vara lika med ett är för att vi ser det som produkten av inga tal alls, vilket är bekvämt att se som att det blir $1$. Varför detta är så kommer vi kanske att återkomma till när vi pratar om rekursioner.}
 
 För $k \leq n$, definiera $P(n,k) = \frac{n!}{(n-k)!}$. Lägg märke till att $P(n,n) = \frac{n!}{(n-n)!} = \frac{n!}{0!} = n!$.
 \end{definition}
