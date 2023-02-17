@@ -129,7 +129,9 @@ $$\abs{A\times B} = \abs{\{(a,b) \given a \in A, b \in B\}} = nm.$$
 \end{example}
 
 \begin{example}[$m$-ära strängar]
-	Låt $X = \{0,1,\ldots,m-1\}$. Strängar med detta alfabetet kallas för $m$-ära strängar. Om $m = 2$ är de binära, om $m = 3$ är de ternära. Här kan vi även se en koppling till hur många strängar det finns av en viss längd n av ett alfabet med x antal bokstäver. När vi pratade om binära strängar var det strängar av längd n på ett alfabet av längd 2. Detta gav $2^n$ sådanna möjliga strängar eftersom det finns 2 alternativ per plats och det finns n platser. Samma resonemang kan göras med alla alfabet, oavsett längd. En ternär sträng har tre möjliga alternativ per plats och n platser, alltså $3^n$ möjliga strängar. Man kan generalisera detta till att en sträng av längd n med ett alfabet av storlek x har $x^n$ antal möjlig strängar.
+	Låt $X = \{0,1,\ldots,m-1\}$. Strängar med detta alfabetet kallas för $m$-ära strängar. Om $m = 2$ är de binära, om $m = 3$ är de ternära.
+	
+	Precis som för de binära strängarna kan vi använda multiplikationsregeln för att räkna ut hur många $m$-ära strängar det finns av längd $n$. För varje position i ordet har vi $m$ olika val av bokstav -- en per bokstav i vårt alfabete -- och vi skall välja $n$ gånger. Alltså ger multiplikationsregeln att det finns totalt $m^n$ $m$-ära strängar av längd $n$. 
 \end{example}
 
 För generella $X$ kallar vi en sträng $s: [n] \to X$ för en $X$-sträng.
