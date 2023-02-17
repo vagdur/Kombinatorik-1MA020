@@ -142,8 +142,7 @@ För generella $X$ kallar vi en sträng $s: [n] \to X$ för en $X$-sträng.
 	En sträng $s: [k] \to X$ kallas för en \emph{permutation} av längd $k$ av elementen i $X$ om alla bokstäverna i $s$ är olika, det vill säga om $s(i) \neq s(j)$ ifall $i \neq j$.
 \end{definition}
 
-Självklart måste $\abs{X} \geq k$ för att det skall existera några permutationer av längd $k$ av $X$.\sidenote{Hur hade du bevisat det?\\
-Om vi antar att $\abs{X} < k$ men vi ska välja ut en permutation av längd k. Då börjar vi att välja ut första bokstaven $i_1$, sedan nästa bokstav $i_2$, och så vidare. Detta går bra tills vi har valt bokstav i X, låt oss kalla den $j$. Efter det har vi valt varje bokstav i alfabetet och kommer då behöva återanvända bokstäver i X. Men detta är inte tillåtet eftersom $s(i) \neq s(j) $ ifall $i \neq j$. Alltså kan vi inte skapa en perumatation av längd k om $\abs{X} < k$. Så $\abs{x} \geq k$}
+Självklart måste $\abs{X} \geq k$ för att det skall existera några permutationer av längd $k$ av $X$.\sidenote{Hur hade du bevisat det?}
 
 \begin{example}
 	Låt $X = [3]$. Det finns $6$ permutationer av längd $2$ av $X$\sidenote[][3.5cm]{Dessa är, specifikt, $$12, 13, 21, 23, 31, 32.$$} -- vi kan se detta med hjälp av multiplikationsprincipen: Vi har tre val av första bokstav, men när vi valt den har vi bara två val kvar av andra bokstav, eftersom vi inte får ha två av samma. Alltså är det totala antalet $3\cdot 2 = 6$.
