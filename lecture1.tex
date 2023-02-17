@@ -71,7 +71,7 @@ Merparten av alla pussel-spel av typen sudoku, eller ``flytta bilarna för att f
 
 \begin{definition}[Additions-regeln]
 	Om $A$ är en mängd av $n$ objekt och $B$ är en mängd av $m$ objekt så finns det $n+m$ sätt att välja ett objekt från $A$ \emph{eller} ett objekt från $B$. Eller formulerat i symboler, om $\abs{A} = n$ och $\abs{B} = m$ så är $\abs{A \coprod B} = n + m$.
-	\sidenote[][-1cm]{Symbolen $\coprod$ (Man ser ibland istället notationen $\uplus$ för detta) betyder \emph{disjunkt union} -- vi tar unionen av de två mängderna, men vi tvingar mängderna att vara disjunkta genom att komma ihåg vilken mängd varje element kom från.  Så om $A$ och $B$ inte har några gemensamma element är det samma sak som $\cup$, men om de har gemensamma element gäller att t.ex. 
+	\sidenote[][-3.5cm]{Symbolen $\coprod$ (Man ser ibland istället notationen $\uplus$ för detta) betyder \emph{disjunkt union} -- vi tar unionen av de två mängderna, men vi tvingar mängderna att vara disjunkta genom att komma ihåg vilken mängd varje element kom från.  Så om $A$ och $B$ inte har några gemensamma element är det samma sak som $\cup$, men om de har gemensamma element gäller att t.ex. 
 	$$\{1,2,3\}\cup \{3,4\} = \{1,2,3,4\},$$ emedan 
 	$$\{1,2,3\} \coprod \{3,4\} = \{(1,A), (2,A), (3,A), (3,B), (4, B)\},$$ så de har alltså olika antal medlemmar.
 
@@ -80,9 +80,10 @@ Merparten av alla pussel-spel av typen sudoku, eller ``flytta bilarna för att f
 
 \begin{example}\label{example_addition_rule_with_cans}
     Vi har två burkar med olikfärgade kulor. Om vi ska plocka ut en kula från en av burkarna, på hur många sätt kan vi göra det?
-\begin{figure}[h]   
-    \includegraphics{graphics/burkar med kulor.png}
-	%\caption{Två separata burkar med kulor i}
+\begin{figure}[h]
+	\centering
+    \includegraphics[width=0.6\textwidth]{graphics/burkar med kulor.png}
+	\caption[][2.7cm]{Två separata burkar med kulor i}
 \end{figure}
 
     Vi kan använda additionsregeln för att beräkna det och det ges av $9+6=15$, vilket summerar antalet kulor totalt vi har att välja bland.
