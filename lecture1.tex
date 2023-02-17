@@ -188,11 +188,13 @@ Självklart måste $\abs{X} \geq k$ för att det skall existera några permutati
 
 	Men eftersom vi redan vet att antalet när platserna har etiketter är $n!$ så får vi alltså av detta att $n! = nm$, eller $m = \frac{n!}{n} = (n-1)!$, och vi har räknat antalet utan etiketter till $(n-1)!$.\sidenote{Detta är ett vanligt sätt att resonera inom kombinatorik -- vi hittade två olika sätt att räkna samma sak, och fick på så sätt ut en likhet ($nm = n!$) som vi kunde använda för att räkna en annan sak.}
  
-	\begin{center}
+	\begin{figure}
+		\centering
 		\includegraphics[width=0.9\textwidth]{graphics/bordutanfarg1.png}
-	\end{center}
-
-       Här är alltså varje plats likadan och det kommer endast spela roll vem man sitter brevid, till skillnad från vid förra bordet. I figuren ovan representerar vi detta med att alla stolar ser likadana ut. Man kan se detta som att vi, när alla satt sig vid bordet, kan flytta oss ett steg åt höger exempelvis runt bordet. Då har vi en likadan placering igen, fast den är identiskt till den förra eftersom vilken specifik stol vi sitter på inte spelar roll. Varje sådan förflyttning, där varje person hoppar ett steg, är alltså en kopia av samma sätt att sitta som vi satte oss först. Det är en annan stol men det är samma grannar och samma placering jämfört med alla andra runt bordet. Det gör att det finns totalt n olika sätt att sitta på samma sätt vilket gör att vi måste dividera bort alla dessa dubbletter genom att dividera antalet sätt att sitta på med n. \sidenote{De små svarta pickarna beskriver att det finns många fler platser, så att summan blir n stycken platser.} 
+		\caption{Ett bord med identiska stolar runt bordet. Här är alltså varje plats likadan och det kommer endast spela roll vem man sitter bredvid, till skillnad från vid förra bordet.
+		
+		Om alla som sitter vid bordet flyttar ett steg åt höger kommer vi få precis samma bordsplacering igen, eftersom vi inte kan se skillnad på stolarna och alla fortfarande sitter bredvid samma personer.}
+	\end{figure} 
 \end{example}
 
 \section{Kombinationer}
