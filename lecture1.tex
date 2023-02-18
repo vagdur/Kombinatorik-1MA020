@@ -275,15 +275,19 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 		\caption{Ett långt bord med 24 numrerade stolar.}
 	\end{figure}
 
-    Enligt uppgiften behöver vi placera ut de fuskande eleverna på udda stolsplatser, alltså ska vi placera ut 10 elever på 12 platser. Detta kan göras på $P(12,10)$ sätt. Därefter har vi 14 elever kvar att placeras ut på de kvarvarande 14 platserna. Det kan göras på $P(14,14)$ sätt. Det totala antalet sättet att placera ut alla elever blir därmed
-    $P(12,10)*P(14,14)=\frac{12!\cdot14!}{2!}.$
+    Enligt uppgiften behöver vi placera ut de fuskande eleverna på udda stolsplatser, alltså ska vi placera ut 10 elever på 12 platser. Detta kan göras på $P(12,10)$ sätt.
+	
+	Därefter har vi 14 elever kvar att placeras ut på de kvarvarande 14 platserna. Det kan göras på $P(14,14)$ sätt. 
+	
+	Det totala antalet sättet att placera ut alla elever blir därmed
+    $$P(12,10) P(14,14)=\frac{12! 14!}{2!}.$$
 
-    Anledningen till att vi använder permutationer i lösningen är för att vi ser stolsplatserna som unika.
+    Anledningen till att vi använder permutationer i lösningen är för att vi ser både stolsplatserna och studenterna som särskiljbara.
 
     \begin{tips}
-		Viktigt i liknande uppgifter är att identifiera ifall platserna, stolarna i det här fallet, är unika eller inte. Om det är unika, som i det här fallet, så använder vi oss av permutationer. Är det inte unika så får vi använda oss av kombinationer istället. Detta försöktes tydliggöras genom att numrerar stolsplatserna.
+		Viktigt i liknande uppgifter är att identifiera ifall platserna, stolarna i det här fallet, är särskiljbara eller inte. Om de är särskiljbara, som i det här fallet, så använder vi oss av permutationer. Är de inte unika så får vi använda oss av kombinationer istället. I vår figur numrerar vi alltså stolsplatserna, så att vi kan se skillnad på dem på vilket nummer de har.
 
-    	Ett sätt att enklare förstå uppgiften är att vi ska dela ut stolsnummer till eleverna, istället för att placera ut eleverna på stolarna. Då kan det bli enklare att förstå varför det går att placera ut de 10 fuskande eleverna på de 12 udda platserna blir $P(12,10)$. 12 stolsnummer ska delas ut till 10 personer
+    	Ett sätt att enklare förstå uppgiften är att vi ska dela ut stolsnummer till eleverna, istället för att placera ut eleverna på stolarna. Då kan det bli enklare att förstå varför det går att placera ut de 10 fuskande eleverna på de 12 udda platserna på $P(12,10)$ olika sätt -- $12$ stolsnummer ska delas ut till $10$ personer.
 	\end{tips}
 \end{solution}
 
