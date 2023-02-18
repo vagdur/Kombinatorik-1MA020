@@ -298,17 +298,19 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 
 \begin{solution}
 	\begin{align*}
-		HL = n \binom{n-1}{k-1} &= \frac{n(n-1)!}{(k-1)!(n-1-(k-1))!}\\
-		 &= \frac{n(n-1)!}{(k-1)!(n-k)!} = \frac{k\cdot n!}{k!(n-k)!} = k\binom{n}{k} = VL	
+		n \binom{n-1}{k-1} &= \frac{n(n-1)!}{(k-1)!(n-1-(k-1))!}\\
+		&= \frac{n(n-1)!}{(k-1)!(n-k)!}\\
+		&= \frac{k n!}{k!(n-k)!} = k\binom{n}{k}	
 	\end{align*}
     
 	\begin{tips}
 		Expandera utrycket genom att använda definitionen av binomialkoefficienter
-		$$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
-		Tänk på att n-fakultet kan skrivas som
+		$$\binom{n}{k} = \frac{n!}{k!(n-k)!}.$$
+
+		Tänk på att $n$-fakultet kan skrivas som
 		$$n! = n(n-1)(n-2)...2\cdot 1$$ 
 		och att
-		$$\frac{n}{n!} = \frac{1}{(n-1)!}.$$
+		$$\frac{n}{n!} = \frac{1}{(n-1)!}\qquad\text{ och }\qquad n(n-1)! = n!.$$
 	\end{tips}
 \end{solution}
     
