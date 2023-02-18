@@ -50,7 +50,7 @@ Jag hörde en gång, på en fest under min masterutbildning, en utläggning av e
 En annan överförenklande kategorisering av matematiken ges oss av Randall Munroe.\cite{XKCD_math_classification} Kombinatorik sysslar med den mellersta sortens problem -- där det är lätt att förstå frågan, och inga märkliga kontinuerliga objekt är involverade, men svaret ändå kan vara komplicerat att ta reda på.
 
 \begin{figure}[h]
-	\includegraphics{graphics/unsolved_math_problems.png}
+	\includegraphics{graphics/F1/unsolved_math_problems.png}
 	%\caption{Tre typer av olösta matematikproblem}
 \end{figure}
 
@@ -70,15 +70,30 @@ Merparten av alla pussel-spel av typen sudoku, eller ``flytta bilarna för att f
 \section{Additions- och multiplikations-reglerna}
 
 \begin{definition}[Additions-regeln]
-	Om $A$ är en mängd av $n$ objekt och $B$ är en mängd av $m$ objekt så finns det $n+m$ sätt att välja ett objekt från $A$ \emph{eller} ett objekt från $B$. Eller formulerat i symboler, om $\abs{A} = n$ och $\abs{B} = m$ så är $\abs{A \coprod B} = n + m$.\sidenote[][-1cm]{Symbolen $\coprod$ betyder \emph{disjunkt union} -- vi tar unionen av de två mängderna, men vi tvingar mängderna att vara disjunkta genom att komma ihåg vilken mängd varje element kom från.  Så om $A$ och $B$ inte har några gemensamma element är det samma sak som $\cup$, men om de har gemensamma element gäller att t.ex. $\{1,2,3\}\cup \{3,4\} = \{1,2,3,4\}$, emedan $\{1,2,3\} \coprod \{3,4\} = \{(1,A), (2,A), (3,A), (3,B), (4, B)\}$, så de har alltså olika antal medlemmar.
+	Om $A$ är en mängd av $n$ objekt och $B$ är en mängd av $m$ objekt så finns det $n+m$ sätt att välja ett objekt från $A$ \emph{eller} ett objekt från $B$. Eller formulerat i symboler, om $\abs{A} = n$ och $\abs{B} = m$ så är $\abs{A \coprod B} = n + m$.
+	\sidenote[][-3.5cm]{Symbolen $\coprod$ (Man ser ibland istället notationen $\uplus$ för detta) betyder \emph{disjunkt union} -- vi tar unionen av de två mängderna, men vi tvingar mängderna att vara disjunkta genom att komma ihåg vilken mängd varje element kom från.  Så om $A$ och $B$ inte har några gemensamma element är det samma sak som $\cup$, men om de har gemensamma element gäller att t.ex. 
+	$$\{1,2,3\}\cup \{3,4\} = \{1,2,3,4\},$$ emedan 
+	$$\{1,2,3\} \coprod \{3,4\} = \{(1,A), (2,A), (3,A), (3,B), (4, B)\},$$ så de har alltså olika antal medlemmar.
 
-För det allra mesta behöver man inte vara så här rigorös, men det kan vara bra att ha i bakhuvudet att summa-regeln inte räknar antalet element i $A\cup B$ om $A$ och $B$ kan tänkas ha gemensamma element. Vad vi gör i det fallet kommer vi återkomma till senare, när vi diskuterar inklusion-exklusion.}
+	För det allra mesta behöver man inte vara så här rigorös, men det kan vara bra att ha i bakhuvudet att summa-regeln inte räknar antalet element i $A\cup B$ om $A$ och $B$ kan tänkas ha gemensamma element. Vad vi gör i det fallet kommer vi återkomma till senare, när vi diskuterar inklusion-exklusion.}
 \end{definition}
 
-\begin{example}\label{example_addition_rule}
-En restaurang har en meny med fyra drinkar, fem förrätter, tio huvudrätter, och tre desserter. Hur många saker har de på menyn?
+\begin{example}\label{example_addition_rule_with_cans}
+    Vi har två burkar med olikfärgade kulor, såsom i figur \ref{fig:two_cans_of_balls}. Om vi ska plocka ut en kula från en av burkarna, på hur många sätt kan vi göra det?
+\begin{figure}[h]
+	\centering
+    \includegraphics[width=0.6\textwidth]{graphics/F1/cans_with_balls.png}
+	\caption[][2.7cm]{Två separata burkar med kulor i, där den vänstra har nio kulor och den högra sex.}
+	\label{fig:two_cans_of_balls}
+\end{figure}
 
-Additions-regeln säger oss att svaret är $4+5+10+3 = 22$.
+    Vi kan använda additionsregeln för att beräkna att det finns $9+6=15$, sätt att välja en kula, vilket är samma som totala antalet kulor.
+\end{example}
+
+\begin{example}\label{example_addition_rule}
+	En restaurang har en meny med fyra drinkar, fem förrätter, tio huvudrätter, och tre desserter. Hur många saker har de på menyn?
+
+	Additions-regeln säger oss att svaret är $4+5+10+3 = 22$.
 \end{example}
 
 \begin{definition}[Multiplikations-regeln]
@@ -87,28 +102,36 @@ $$\abs{A\times B} = \abs{\{(a,b) \given a \in A, b \in B\}} = nm.$$
 \end{definition}
 
 \begin{example}
+    Om vi har samma två burkar som i Exempel \ref{example_addition_rule_with_cans}, på hur många sätt kan man välja en kula från den blå burken och en kula från den gula burken?
+	
+    Antalet olika sätt att välja två kulor, en från ena burken och en från den andra, ges enligt multiplikationsregeln av produkten av antalet bollar i varje burk, alltså $9\cdot 6 = 54$.   
+\end{example}
+
+\begin{example}
 	Om du besöker restaurangen i Exempel \ref{example_addition_rule}, hur många olika sätt finns det att beställa en trerätters middag med en drink till?
-\sidenote{En fullständigt teoretisk fråga, eftersom ingen faktiskt har råd med det i dagens ekonomi.} Multiplikations-regeln säger oss att svaret är $4\times 5\times 10\times 3 = 600$.
+	\sidenote{En fullständigt teoretisk fråga, eftersom ingen faktiskt har råd med det i dagens ekonomi.} Multiplikations-regeln säger oss att svaret är $4\cdot 5\cdot 10\cdot 3 = 600$.
 \end{example}
 
 \section{Strängar}
 
 \begin{definition}
-En \emph{sträng} $s$ (eller ett \emph{ord}) av längd $n$ på en mängd $X$ (kallad \emph{alfabetet} för strängen) är en funktion
-$$s: \{1, 2, \ldots, n\} = [n] \to X$$
-där $s_i$ är den $i$te bokstaven i ordet.\sidenote{Från och med nu kommer vi konsekvent använda notationen $[n]$ för mängden av tal mellan $1$ och $n$.}
-Vi skriver detta oftast som $s = x_1x_2\ldots x_n$, där $x_i = s(i)$.
+	En \emph{sträng} $s$ (eller ett \emph{ord}) av längd $n$ på en mängd $X$ (kallad \emph{alfabetet} för strängen) är en funktion
+	$$s: \{1, 2, \ldots, n\} = [n] \to X$$
+	där $s_i$ är den $i$te bokstaven i ordet.\sidenote{Från och med nu kommer vi konsekvent använda notationen $[n]$ för mängden av tal mellan $1$ och $n$.}
+	Vi skriver detta oftast som $s = x_1x_2\ldots x_n$, där $x_i = s(i)$.
 \end{definition}
 
 \begin{example}[Binära strängar]
-Låt $X = \{0,1\}$. Strängar $s: [n] \to X$ kallas för \emph{binära strängar}. Det finns $2^n$ strängar av längd $n$.\sidenote{Så det finns till exempel åtta binära strängar av längd tre, nämligen
-$$000, 001, 010, 011, 100, 101, 110, 111.$$}
+	Låt $X = \{0,1\}$. Strängar $s: [n] \to X$ kallas för \emph{binära strängar}. Det finns $2^n$ strängar av längd $n$.\sidenote{Så det finns till exempel åtta binära strängar av längd tre, nämligen
+	$$000, 001, 010, 011, 100, 101, 110, 111.$$}
 
-Hur vet vi detta? Det finns två val för varje bokstav, så multiplikationsregeln säger oss att det måste finnas $2\times 2\times\ldots\times 2 = 2^n$ att göra ett val av vad varje bokstav skall vara.
+	Hur vet vi detta? Det finns två val för varje bokstav, så multiplikationsregeln säger oss att det måste finnas $2\cdot 2\cdot\ldots\cdot 2 = 2^n$ att göra ett val av vad varje bokstav skall vara.
 \end{example}
 
 \begin{example}[$m$-ära strängar]
-Låt $X = \{0,1,\ldots,m-1\}$. Strängar med detta alfabetet kallas för $m$-ära strängar. Om $m = 2$ är de binära, om $m = 3$ är de ternära. 
+	Låt $X = \{0,1,\ldots,m-1\}$. Strängar med detta alfabetet kallas för $m$-ära strängar. Om $m = 2$ är de binära, om $m = 3$ är de ternära.
+	
+	Precis som för de binära strängarna kan vi använda multiplikationsregeln för att räkna ut hur många $m$-ära strängar det finns av längd $n$. För varje position i ordet har vi $m$ olika val av bokstav -- en per bokstav i vårt alfabete -- och vi skall välja $n$ gånger. Alltså ger multiplikationsregeln att det finns totalt $m^n$ $m$-ära strängar av längd $n$. 
 \end{example}
 
 För generella $X$ kallar vi en sträng $s: [n] \to X$ för en $X$-sträng.
@@ -116,34 +139,34 @@ För generella $X$ kallar vi en sträng $s: [n] \to X$ för en $X$-sträng.
 \section{Permutationer}
 
 \begin{definition}
-En sträng $s: [k] \to X$ kallas för en \emph{permutation} av längd $k$ av elementen i $X$ om alla bokstäverna i $s$ är olika, det vill säga om $s(i) \neq s(j)$ ifall $i \neq j$.
+	En sträng $s: [k] \to X$ kallas för en \emph{permutation} av längd $k$ av elementen i $X$ om alla bokstäverna i $s$ är olika, det vill säga om $s(i) \neq s(j)$ ifall $i \neq j$.
 \end{definition}
 
 Självklart måste $\abs{X} \geq k$ för att det skall existera några permutationer av längd $k$ av $X$.\sidenote{Hur hade du bevisat det?}
 
 \begin{example}
-Låt $X = [3]$. Det finns $6$ permutationer av längd $2$ av $X$\sidenote{Dessa är, specifikt, $$12, 13, 21, 23, 31, 32.$$} -- vi kan se detta med hjälp av multiplikationsprincipen: Vi har tre val av första bokstav, men när vi valt den har vi bara två val kvar av andra bokstav, eftersom vi inte får ha två av samma. Alltså är det totala antalet $3\times 2 = 6$.
+	Låt $X = [3]$. Det finns $6$ permutationer av längd $2$ av $X$\sidenote[][]{Dessa är, specifikt, $$12, 13, 21, 23, 31, 32.$$} -- vi kan se detta med hjälp av multiplikationsprincipen: Vi har tre val av första bokstav, men när vi valt den första bokstaven har vi bara två val kvar av andra bokstav, eftersom vi inte får ha två av samma. Alltså är det totala antalet $3\cdot 2 = 6$.
 \end{example}
 
 \begin{definition}
-För $n = 1, 2,\ldots$, definiera $n! = n\times(n-1)\times\ldots\times2\times1$. Definiera $0! = 1$.\sidenote{Att vi låter $0!$ vara lika med ett är för att vi ser det som produkten av inga tal alls, vilket är bekvämt att se som att det blir $1$. Varför detta är så kommer vi kanske att återkomma till när vi pratar om rekursioner.}
+	För $n = 1, 2,\ldots$, definiera $n! = n(n-1)\ldots2\cdot1$. Definiera $0! = 1$.\sidenote{Att vi låter $0!$ vara lika med ett är för att vi ser det som produkten av inga tal alls, vilket är bekvämt att se som att det blir $1$. Varför detta är så kommer vi kanske att återkomma till när vi pratar om rekursioner.}
 
-För $k \leq n$, definiera $P(n,k) = \frac{n!}{(n-k)!}$. Lägg märke till att $P(n,n) = \frac{n!}{(n-n)!} = \frac{n!}{0!} = n!$.
+	För $k \leq n$, definiera $P(n,k) = \frac{n!}{(n-k)!}$. Lägg märke till att $P(n,n) = \frac{n!}{(n-n)!} = \frac{n!}{0!} = n!$.
 \end{definition}
 
 \begin{proposition}\label{prop_Pnk_counts_permutations}
-Om $\abs{X}=n$ och $0 \leq k \leq n$ så finns det $P(n,k)$ permutationer av längd $k$ från $X$.
-\begin{proof}
-Vi bevisar detta med hjälp av multiplikationsprincipen -- så vi skall räkna hur många sätt vi kan välja vår permutation $x_1x_2\ldots x_k$ på. Det finns så klart $\abs{X} = n$ sätt att välja första bokstaven $x_1$ i vår permutation. När vi sedan skall välja $x_2$ får den inte vara lika med $x_1$, så vi väljer ett element ur $X \setminus \{x_1\}$, och $\abs{X\setminus\{x_1\}} = n-1$. Likaledes för $x_3$ så får den varken vara lika med $x_1$ eller $x_2$, så vi väljer från $X\setminus \{x_1, x_2\}$, och har $n-2$ val.
+	Om $\abs{X}=n$ och $0 \leq k \leq n$ så finns det $P(n,k)$ permutationer av längd $k$ från $X$.
+	\begin{proof}
+		Vi bevisar detta med hjälp av multiplikationsprincipen -- så vi skall räkna hur många sätt vi kan välja vår permutation $x_1x_2\ldots x_k$ på. Det finns så klart $\abs{X} = n$ sätt att välja första bokstaven $x_1$ i vår permutation. När vi sedan skall välja $x_2$ får den inte vara lika med $x_1$, så vi väljer ett element ur $X \setminus \{x_1\}$, och $\abs{X\setminus\{x_1\}} = n-1$. Likaledes för $x_3$ så får den varken vara lika med $x_1$ eller $x_2$, så vi väljer från $X\setminus \{x_1, x_2\}$, och har $n-2$ val.
 
-Den här processen fortsätter tills vi skall välja $x_k$, och i det skedet har vi tagit bort $k-1$ val, och har alltså $\abs{X \setminus \{x_1, x_2, \ldots, x_{k-1}\}} = n - (k-1)$ val.
+		Den här processen fortsätter tills vi skall välja $x_k$, och i det skedet har vi tagit bort $k-1$ val, och har alltså $\abs{X \setminus \{x_1, x_2, \ldots, x_{k-1}\}} = n - (k-1)$ bokstäver kvar att välja på.
 
-Multiplikationsregeln säger oss att det totala antalet permutationer är lika med produkten av antalet val vi hade i varje steg, det vill säga
-\begin{align*}
-	n\cdot(n-1)\cdot(n-2)\cdot\ldots\cdot(n-(k-1)) &= \frac{n\cdot(n-1)\cdot(n-2)\cdot\ldots\cdot2\cdot1}{(n-k)\cdot\ldots\cdot2\cdot1}\\
-	&= \frac{n!}{(n-k)!} = P(n,k).
-\end{align*}
-\end{proof}
+		Multiplikationsregeln säger oss att det totala antalet permutationer är lika med produkten av antalet val vi hade i varje steg, det vill säga
+		\begin{align*}
+			n\cdot(n-1)\cdot(n-2)\cdot\ldots\cdot(n-(k-1)) &= \frac{n\cdot(n-1)\cdot(n-2)\cdot\ldots\cdot2\cdot1}{(n-k)\cdot\ldots\cdot2\cdot1}\\
+			&= \frac{n!}{(n-k)!} = P(n,k).
+		\end{align*}
+	\end{proof}
 \end{proposition}
 
 \begin{example}
@@ -152,8 +175,22 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
 	Det finns två olika sätt vi kan se på frågan\sidenote{Detta är ett exempel av skillnaden mellan problem med etiketter och utan, vilket är ett generellt fenomen som kommer återkomma gång på gång. Här är det platserna runt bordet som kan ha etiketter eller inte. Var noggrann med att fundera kring vilken typ av } -- antingen är det skillnad på de olika stolarna runt bordet (vissa kan se ut genom fönstret, andra inte), så att vi får olika sätt att placera folk runt bordet genom att rotera hela placeringen, eller så är det enda som spelar roll ordningen de sitter i, och vi ser olika rotationer av samma ordning som samma sätt att sitta runt bordet.
 
 	Om platserna har etiketter, så att det inte bara är ordningen som spelar roll, så kan vi numrera platserna från plats $1$ till plats $n$. Om vi kallar mängden med gäster för $X$ blir alltså varje placering ett $X$-ord -- vi kan skriva den som ``gäst ett, gäst två, etc.''. Och eftersom varje person bara kan sitta på en stol blir detta alltså en permutation -- och vi vet att det finns $n!$ permutationer av längd $n$ ur ett alfabete med $n$ bokstäver.
+ 
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{graphics/F1/table_with_coloured_chairs.png}
+		\caption{Ett bord med olikfärgade stolar, så att vi kan se skillnad på stolarna -- det är skillnad mellan att sitta på en blå pall och i en orange fåtölj. Färgerna är alltså etiketter på platserna.}
+	\end{figure}
 
 	Om platserna är oetiketterade, det vill säga att det enda vi bryr oss om är ordningen folk sitter i, får vi räkna på ett annat sätt. Givet en placering kan vi godtyckligt välja en person som ``först'', och sedan numrera platserna i medurs ordning. För varje av de $n$ sätten att välja vem som är först får vi alltså en placering där platserna har etiketter.
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\textwidth]{graphics/F1/table_with_uncoloured_chairs.png}
+		\caption{Ett bord med identiska stolar runt bordet. Här är alltså varje plats likadan och det kommer endast spela roll vem man sitter bredvid, till skillnad från vid förra bordet.
+		
+		Om alla som sitter vid bordet flyttar ett steg åt höger kommer vi få precis samma bordsplacering igen, eftersom vi inte kan se skillnad på stolarna och alla fortfarande sitter bredvid samma personer.}
+	\end{figure} 
 
 	Detta ger oss ett annat sätt att räkna antalet placeringar med etiketter -- vi räknar antalet utan etiketter, kallar det $m$, och får alltså att antalet med etiketter är $nm$.
 
@@ -197,7 +234,7 @@ Multiplikationsregeln säger oss att det totala antalet permutationer är lika m
 	$$\binom{n}{k} = \binom{n}{n-k}.$$
 \end{proposition}
 
-Vi ger två olika bevisa av denna proposition. Det första är algebraiskt:
+Vi ger två olika bevis av denna proposition. Det första är algebraiskt:
 \begin{proof}
 	\begin{align*}
 		\binom{n}{k} &= \frac{n!}{k!(n-k)!}\\
@@ -206,7 +243,7 @@ Vi ger två olika bevisa av denna proposition. Det första är algebraiskt:
 	\end{align*}
 \end{proof}
 
-Det andra är kombinatoriskt:\sidenote{Vad menar vi när vi säger att det här beviset är ``kombinatoriskt'', till skillnad från det andra beviset? Nyckeln är att vi här visade att de två mängderna -- mängden av delmängder av storlek $k$ och mängden av delmängder av storlek $n-k$ -- har lika många medlemmar genom att uppvisa en bijektion mellan dem, emedan vi i det algebraiska beviset bara manipulerade våra formler för att visa att de var lika.
+Det andra är kombinatoriskt:\sidenote[][]{Vad menar vi när vi säger att det här beviset är ``kombinatoriskt'', till skillnad från det andra beviset? Nyckeln är att vi här visade att de två mängderna -- mängden av delmängder av storlek $k$ och mängden av delmängder av storlek $n-k$ -- har lika många medlemmar genom att uppvisa en bijektion mellan dem, emedan vi i det algebraiska beviset bara manipulerade våra formler för att visa att de var lika.
 
 Bijektionen vi hittade här är själv ett \emph{kombinatoriskt} objekt, och det berättar mer för oss än bara att mängderna har lika många medlemmar. Man kan se det som att den är en \emph{anledning} till varför de har lika många mängder.
 
@@ -217,6 +254,7 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 	Delmängder av storlek $k$ och delmängder av storlek $n-k$ står alltså i ett-till-ett-korrespondens med varandra, det finns en bijektion mellan dem, så det måste finnas lika många av storlek $k$ som av storlek $n-k$.
 
 	Men vi vet att antalet delmängder av storlek $n-$ är $\binom{n}{n-k}$, och alltså måste $\binom{n}{k} = \binom{n}{n-k}$.
+
 \end{proof}
 
 \section{Övningar}
@@ -233,13 +271,13 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 	Ge ett algebraiskt bevis för att
 	$$k\binom{n}{k} = n \binom{n-1}{k-1}.$$
 \end{xca}
-
+    
 \begin{xca}
 	Ge ett kombinatoriskt bevis för att\sidenote[][]{Ledtråd: Tänk på att välja grupper med ledare för ett projekt.}
 	$$k\binom{n}{k} = n \binom{n-1}{k-1}.$$
 \end{xca}
 
-\begin{xca}
+\begin{xca}\label{xca:second_combinatorial_proof}
 	Ge ett kombinatoriskt bevis för att
 	$$\binom{n}{2}\binom{n-2}{k-2} = \binom{n}{k}\binom{k}{2}.$$
 \end{xca}
@@ -259,12 +297,166 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 \begin{xca}
 	Du har sökt ett prestigefyllt internship, och ska klä dig för intervjun. Du inser att du borde ha slips på dig, och ser att du äger fem seriösa slipsar och sju slipsar med komiska tryck.
   
-	Hur många sätt kan du välja slips för intervjun på?
+	\textbf{a)} Hur många sätt kan du välja slips för intervjun på?
   
 	Efter lite eftertanke kommer du ihåg att jobbet du sökt är som clown,\sidenote[][-1cm]{Och tyvärr äger du ingen sådan där skoj fluga som kan spruta vatten i ansiktet på folk.}\sidenote[][]{Denna övningen är stulen från internet, och den handlade om en clownjobbintervju redan från början. Jag valde den helt baserat på hur mycket jag skrattade åt hur de antydde att deras studenter var clowner.} så du borde nog ha på dig två slipsar på samma gång, eftersom det är väldigt komiskt.
 
-	På hur många sätt kan du välja två slipsar att ha på dig på samma gång? Hur många sätt kan du välja en seriös slips och en med ett komiskt tryck på?
-  \end{xca}
+	\textbf{b)} På hur många sätt kan du välja två slipsar att ha på dig på samma gång? \textbf{c)} Hur många sätt kan du välja en seriös slips och en med ett komiskt tryck på?
+\end{xca}
+
+\hfill
+\newpage
+
+\section{Lösningsförslag till övningar}
+
+\begin{solution}
+	Vi börjar med att rita upp en bild för situationen.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\textwidth]{graphics/F1/rectangular_table_with_numbered_chairs.png}
+		\caption{Ett långt bord med 24 numrerade stolar.}
+	\end{figure}
+
+    Enligt uppgiften behöver vi placera ut de fuskande eleverna på udda stolsplatser, alltså ska vi placera ut 10 elever på 12 platser. Detta kan göras på $P(12,10)$ sätt.
+	
+	Därefter har vi 14 elever kvar att placeras ut på de kvarvarande 14 platserna. Det kan göras på $P(14,14)$ sätt. 
+	
+	Det totala antalet sättet att placera ut alla elever blir därmed
+    $$P(12,10) P(14,14)=\frac{12! 14!}{2!}.$$
+
+    Anledningen till att vi använder permutationer i lösningen är för att vi ser både stolsplatserna och studenterna som särskiljbara.
+
+    \begin{tips}
+		Viktigt i liknande uppgifter är att identifiera ifall platserna, stolarna i det här fallet, är särskiljbara eller inte. Om de är särskiljbara, som i det här fallet, så använder vi oss av permutationer. Är de inte unika så får vi använda oss av kombinationer istället. I vår figur numrerar vi alltså stolsplatserna, så att vi kan se skillnad på dem på vilket nummer de har.
+
+    	Ett sätt att enklare förstå uppgiften är att vi ska dela ut stolsnummer till eleverna, istället för att placera ut eleverna på stolarna. Då kan det bli enklare att förstå varför det går att placera ut de 10 fuskande eleverna på de 12 udda platserna på $P(12,10)$ olika sätt -- $12$ stolsnummer ska delas ut till $10$ personer.
+	\end{tips}
+\end{solution}
+
+\begin{solution}
+	\begin{align*}
+		n \binom{n-1}{k-1} &= \frac{n(n-1)!}{(k-1)!(n-1-(k-1))!}\\
+		&= \frac{n(n-1)!}{(k-1)!(n-k)!}\\
+		&= \frac{k n!}{k!(n-k)!} = k\binom{n}{k}	
+	\end{align*}
+    
+	\begin{tips}
+		Expandera utrycket genom att använda definitionen av binomialkoefficienter
+		$$\binom{n}{k} = \frac{n!}{k!(n-k)!}.$$
+
+		Tänk på att $n$-fakultet kan skrivas som
+		$$n! = n(n-1)(n-2)...2\cdot 1$$ 
+		och att
+		$$\frac{n}{n!} = \frac{1}{(n-1)!}\qquad\text{ och }\qquad n(n-1)! = n!.$$
+	\end{tips}
+\end{solution}
+
+\begin{solution}
+	Från sidnoten får vi tipset att tänka på det som att välja en grupp med ledare. Vi försöker nu studera vänsterledet för sig och högerledet för sig för att kombinatoriskt bevisa likheten.
+
+    Vi kollar på vänsterledet först: Vi vill välja en grupp med $k$ personer i och vi har totalt $n$ stycken personer att välja på. Antalet sätt vi kan skapa denna gruppen på ges av $\binom{n}{k}$. Vi har alltså beräknat antalet sätt att skapa en grupp med $k$ personer. 
+	
+	Nu vill vi välja en ledare bland dessa personer. Vi har $k$ potentiella ledare, så multiplikationsregeln säger oss att vi får antalet sätt att välja en grupp med ledare genom att multiplicera antalet sätt att välja en grupp med antalet sätt att välja en ledare, alltså
+	$$k\binom{n}{k}.$$
+
+    Nu tittar vi på högerledet: Vi vill visa att högerledet också beräknar antalet sätt att skapa en grupp med $k$ personer varav en person är ledare. Vi har $n$ personer att välja på och vi ska ha en grupp på $k$ personer, varav en ska vara ledare. 
+	
+	Vi börjar med att välja en person som ska vara vår ledare, vilket vi kan göra på $n$ sätt. Sedan vill vi välja en grupp till den här ledaren. Vi har $n-1$ personer kvar att välja på och $k-1$ platser kvar att fylla upp i gruppen. Antalet sätt att skapa gruppen av resterande personer blir då
+	$$\binom{n-1}{k-1}.$$
+	
+	Så antalet sätt att skapa en grupp med en ledare och $k-1$ medlemmar (alltså totalt $k$ medlemmar) är
+	$$n \binom{n-1}{k-1}.$$
+
+	\begin{tips}
+		\begin{enumerate}
+			\item I denna uppgiften använde vi oss av att vi ska skapa grupper. Ett bra sätt att lösa liknande uppgifter är att se det som att vi ska skapa grupper med personer av olika slag. Det kan vara en grupp med en eller flera ledare, grupper av olika storlekar med olika många personer som ska väljas ut eller plockas bort med mera. Försök att skapa ett sammanhang.
+			\item Är det svårt att hitta ett sammanhang så försök att identifiera variablerna en efter en, så i detta fallet försök först att identifiera vad $k$ skulle kunna innebära och vad $\binom{n}{k}$ skulle kunna innebära. Försök också att starta med en sida, så antingen vänster led eller höger led. Identifiera de olika variablerna (till exempel i ett sammanhang) på den sidan och försök sedan skapa en matchning med andra sidan.
+			\item Ett sätt att se på det är som ett händelseförlopp. Betrakta vänster led i Övning \ref{xca:second_combinatorial_proof}: Först händer en sak -- vi väljer två av totalt $n$ stycken saker. Sedan, efter att vi gjort det ``sker'' andra parentesen som säger att vi nu väljer $k-2$ saker av en hög som nu är $2$ färre än den var förut. Genom detta kan vi försöka skapa oss en bild av ett händelseförlopp som dessa uttryck representerar. 
+		\end{enumerate}
+	\end{tips}
+\end{solution}
+
+\begin{solution}
+	Här kan vi tänka på ungefär samma sätt som uppgift 3, men nu är skillnaden att vi ska välja $2$ ledare istället för en.
+
+	Vi har en grupp på $n$ personer och vi vill välja ut en liten grupp med $k$ personer i varav $2$ kommer utses till ledare.
+
+	Vi börjar med vänsterledet: Vi har alltså $n$ personer och vi vill välja två stycken ledare av alla de $n$ personerna. Detta kan vi göra på
+	$$\binom{n}{2}$$
+	sätt.
+	
+	När det är gjort så har vi $n-2$ personer kvar som inte blivit valda, och av de $n-2$ personerna vill vi välja ut $k-2$ stycken för att skapa en grupp som tillsammans med de två ledarna skapar en grupp på $k$ personer.
+	
+	Gruppen på $k-2$ personer kan vi skapa på $\binom{n-2}{k-2}$ sätt, eftersom vi har $n-2$ personer kvar att välja bland. När vi då multiplicerar
+	$$\binom{n}{2}\binom{n-2}{k-2}$$
+	får vi alltså antalet sätt att forma en grupp med $k$ personer varav $2$ stycken är ledare. 
+
+	Vi kollar på högerledet: I högerledet tänker vi först att vi vill skapa en grupp med $k$ personer av de $n$ stycken möjliga personerna. Antalet sätt att göra detta på är $\binom{n}{k}$. När vi har skapat en grupp med $k$ personer i så vill vi välja två stycken ledare. Detta kan vi göra på
+	$$\binom{k}{2}$$
+	sätt eftersom vi har $k$ stycken möjliga ledare.  
+
+	Poängen är alltså att HL och VL bara gör saker i olika ordning. VL väljer ledarna först och gruppen sedan medans HL väljer gruppen först och sedan väljer ledarna i gruppen. Nu har vi visat att både vänsterledet och högerledet båda beräknar antalet sätt att forma en grupp med $k$ personer varav två personer är ledare, ur en grupp av totalt $n$ personer.
+
+	\begin{tips}
+		Du kan använda samma tips som för uppgift 3.
+	\end{tips}
+\end{solution}
+
+\begin{solution}
+	\begin{enumerate}
+		\item Det finns $\abs{A} + \abs{B} = 15 + 7 = 22$. stycken sätt att välja ett objekt från $A$ eller ett objekt från $B$. Du kan beräkna detta med additionsregeln. Det beror på att det inte spelar någon roll om vi väljer ett objekt ur $A$ eller ett ur $B$ vilket gör att man kan tänka att man bara lägger ihop alla element i samma mängd och tar en. Antalet möjliga val är ju då bara det totala antalet element.
+
+		\item Det finns $\abs{A}\abs{B}  = 15 \cdot 7= 105$ sätt att välja ett objekt från $A$ och ett objekt från $B$. Detta gäller från multiplikationsregeln. Detta kan man se som att om vi tar upp ett element ur högen $A$ finns det nu exakt $\abs{B}$ val ur $B$. Detta gäller för alla element i $A$ vilket gör att vi kan multiplicera med antalet i $B$ och det ger det totala antalet kombinationer.
+
+		\item Det är antalet sätt vi kan välja ett objekt ur $A$ och ett objekt ur $B$, alltså $15 \cdot 7=105$. Detta är den notation som används för att beskriva multiplikationsregeln, det är därför vi egentligen gör samma sak här som i förra uppgiften.
+
+		\item Det är antalet sätt att välja ett objekt ur $A$ eller ett objekt ur $B$, alltså $15 + 7 = 22$. Detta är den notation som används för att beskriva multiplikationsregeln.
+
+		\item Det största värdet $A \cup B$ kan anta är $15+7=22$. I detta fallet (största möjliga unionen) kommer alla element i $B$ vara olika från alla element i $A$, vilket gör att vår nya mängd kommer innehålla alla $7$ element i $B$ och alla $15$ element i $A$. 
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.7\textwidth]{graphics/F1/disjoint_sets_A_and_B.png}
+			\caption{$A \cup B$ blir som störst när de, såsom i figuren, är disjunkta.}
+			\label{fig:A_and_B_disjoint}
+		\end{figure}
+		
+		Det minsta värdet $A \cup B$ kan anta är $15$. I detta fallet (minsta möjliga unionen) kommer alla element i $B$ vara närvarande i $A$. Alltså kommer vår nya mängd vara lika med mängden $A$, eftersom $B$ också är närvarande i den mängden. 
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.7\textwidth]{graphics/F1/set_B_contained_in_A.png}
+			\caption{$A\cup B$ blir som minst när $B$ ligger i $A$.}
+			\label{fig:B_contained_in_A}
+		\end{figure}
+
+		\item Det största värdet som $A \cap B$ kan anta är $7$. I detta faller kommer alla element i $B$ vara närvarande i $A$, såsom i figur \ref{fig:B_contained_in_A}. Alltså kommer $A \cap B = B$, och vi får med alla element i $B$.
+
+		Det minsta värdet som $A \cap B$ kan anta är $0$. I detta fallet så kommer alla element i $B$ vara skilda från alla element i $A$ och vårt snitt kommer då bli en tom mängd, såsom i figur \ref{fig:A_and_B_disjoint}.
+	\end{enumerate}
+
+	\begin{tips}
+		\begin{enumerate}
+			\item I sådana uppgifter är det bra att fundera över hur additionsregeln och multiplikationsregeln kan appliceras.
+			\item Rita upp mängderna och de olika fallen, ligger mängderna i varandra (innehåller samma element), ligger de utanför varandra (innehåller inte samma element) eller ligger de delvis i varandra/utanför varandra?
+		\end{enumerate}
+	\end{tips}
+\end{solution}
+
+\begin{solution}
+
+	\begin{enumerate}[a)]
+		\item Additionsregeln ger att det finns $5 + 7 = 12$ sätt att välja en slips att ha på sig på intervjun.
+		\item Vi kan välja fritt mellan de seriösa slipsarna och de med komiskt tryck.
+		Alltså hur många sätt kan man välja två slipsar från tolv stycken slipsar.
+		Det blir antalet kombinationer 
+		$$\binom{12}{2} = \frac{12!}{2!(12-2)!} = \frac{12!}{2!\cdot 10!} = \frac{12\cdot 11}{2} = 66.$$
+		\item Svaret ges av multiplikationsreglen, då vi vill veta hur många sätt vi kan välja en slips från mängden av seriösa slipsar och en slips från mängden av komiska slipsar.
+		$$5\cdot 7 = 35.$$
+	\end{enumerate}
+
+	\begin{tips}
+		Tipsen till övning 5 gäller även för övning 6.
+	\end{tips}
+\end{solution} 
 
 \bibliography{references}
 \bibliographystyle{plainnat}
