@@ -350,21 +350,25 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 \end{xca}
 
 \begin{solution}
-	Här kan vi tänka på ungefär samma sätt som uppgift 3, men nu är skillnaden att vi ska välja 2 ledare istället för en.
+	Här kan vi tänka på ungefär samma sätt som uppgift 3, men nu är skillnaden att vi ska välja $2$ ledare istället för en.
 
-	Vi har en grupp på n personer och vi vill välja ut en liten grupp med k personer i varav 2 av de kommer utses till ledare.
+	Vi har en grupp på $n$ personer och vi vill välja ut en liten grupp med $k$ personer i varav $2$ kommer utses till ledare.
 
-	Vi börjar med vänsterledet: Vi har alltså n personer och vi vill välja två stycken ledare av alla de n personerna. Detta kan vi göra på
+	Vi börjar med vänsterledet: Vi har alltså $n$ personer och vi vill välja två stycken ledare av alla de $n$ personerna. Detta kan vi göra på
 	$$\binom{n}{2}$$
-	sätt. När det är gjort så har vi n-2 personer kvar som inte blivit valda och av de n-2 personerna vill vi välja ut k-2 stycken för att skapa en grupp med k-2 personer och som tillsammans med ledarna skapar en grupp på k personer. Gruppen på k-2 personer kan vi skapa på $\binom{n-2}{k-2}$ sätt, eftersom vi har n-2 personer kvar. När vi då multiplicerar
+	sätt.
+	
+	När det är gjort så har vi $n-2$ personer kvar som inte blivit valda, och av de $n-2$ personerna vill vi välja ut $k-2$ stycken för att skapa en grupp som tillsammans med de två ledarna skapar en grupp på $k$ personer.
+	
+	Gruppen på $k-2$ personer kan vi skapa på $\binom{n-2}{k-2}$ sätt, eftersom vi har $n-2$ personer kvar att välja bland. När vi då multiplicerar
 	$$\binom{n}{2}\binom{n-2}{k-2}$$
-	får vi alltså antalet sätt att forma en grupp med k personer varav 2 stycken är ledare. 
+	får vi alltså antalet sätt att forma en grupp med $k$ personer varav $2$ stycken är ledare. 
 
-	Vi kollar på högerledet: I högerledet tänker vi först att vi vill skapa en grupp med k personer av de n stycken möjliga personerna. Antalet sätt att göra detta på är $\binom{n}{k}$. Så när vi har skapat en grupp med k personer i så vill vi välja två stycken ledare. Detta kan vi göra på
+	Vi kollar på högerledet: I högerledet tänker vi först att vi vill skapa en grupp med $k$ personer av de $n$ stycken möjliga personerna. Antalet sätt att göra detta på är $\binom{n}{k}$. När vi har skapat en grupp med $k$ personer i så vill vi välja två stycken ledare. Detta kan vi göra på
 	$$\binom{k}{2}$$
-	sätt eftersom vi har k stycken möjliga ledare och vi ska välja ut två stycken.  
+	sätt eftersom vi har $k$ stycken möjliga ledare.  
 
-	Poängen är alltså att HL och VL bara gör saker i olika ordning. VL väljer ledarna först och gruppen sedan medans HL väljer gruppen först och sedan väljer ledarna i gruppen. Nu har vi visat att både vänsterledet och högerledet båda beräknar antalet sätt att forma en grupp med k personer i varav två personer är ledare. 
+	Poängen är alltså att HL och VL bara gör saker i olika ordning. VL väljer ledarna först och gruppen sedan medans HL väljer gruppen först och sedan väljer ledarna i gruppen. Nu har vi visat att både vänsterledet och högerledet båda beräknar antalet sätt att forma en grupp med $k$ personer varav två personer är ledare, ur en grupp av totalt $n$ personer.
 
 	\begin{tips}
 		Du kan använda samma tips som för uppgift 3.
