@@ -51,12 +51,80 @@ Diskret sannolikhetsteori och kombinatorik studerar samma klass av objekt -- dis
 
 Så det är en anledning till att prata om diskret sannolikhetsteori i denna kurs -- vi kan få många exempel, och de exemplen är ofta mer praktiskt tillämpbara än motsvarande kombinatorikproblem. Så när man börjat tröttna på överdrivet abstrakta exempel, eller klämkäcka exempel om glasskiosker, kan sannolikhetsteorin komma som en frisk fläkt.
 
-Men det är så klart inte så att fälten bara överlappar i ena riktningen -- det är precis lika sant att det finns många \emph{kombinatoriska} problem där den enklaste och vackraste lösningen använder sannolikhetsteori. Detta kallas för den \emph{probabilistiska metoden}\sidenote[][]{På engelska \emph{the probabilistic method} -- det finns en utsökt bok med just denna titel av Noga Alon och Joel Spencer som utforskar just detta ämne.
+Men det är så klart inte så att fälten bara överlappar i ena riktningen -- det är precis lika sant att det finns många \emph{kombinatoriska} problem där den enklaste och vackraste lösningen använder sannolikhetsteori. Detta kallas för den \emph{probabilistiska metoden}\sidenote[][-0.8cm]{På engelska \emph{the probabilistic method} -- det finns en utsökt bok med just denna titel av Noga Alon och Joel Spencer som utforskar just detta ämne.
 
 Den lämpar sig definitivt inte som första bok om varken sannolikhetsteori eller kombinatorik, men har man läst någon kurs i vardera ämne och uppnått lite matematisk mognad är den nog ett bra men utmanande val av bok.} -- i dess vanligaste form visar vi att något kombinatoriskt objekt måste existera genom att vi visar att ett slumpmässigt valt objekt kan ha egenskapen. I många fall känner vi inte till något konkret exempel på ett sådant objekt -- bara att det måste existera.
 
 Men låt oss börja med att definiera vad vi egentligen menar med diskret sannolikhet.
 
+\section{Händelser och sannolikheter}
+
+\begin{definition}
+    Ett \emph{sannolikhetsrum} $(\Omega, \mu)$ består av en mängd $\Omega$ och en funktion $\mu: \Omega \to [0,1]$, sådana att
+    \begin{itemize}
+        \item $\Omega$ är icketom och ändlig eller uppräkneligt oändlig\sidenote[][-2.8cm]{Det vill säga, antingen är den ändlig, eller så kan vi numrera alla dess element $1, 2, 3, \ldots$. Detta är skillnaden mellan diskret och kontinuerlig sannolikhetsteori -- i kontinuerlig sannolikhetsteori tillåter vi oss överuppräkneliga mängder.
+        
+        I den kontinuerliga sannolikhetsteorin behöver man alltså kunna ``räkna'' saker som är fler än heltalen -- det vill säga ta integraler. Som ni kanske är medvetna är det inte helt okomplicerat att definiera vad det ens betyder att ta en integral i allmänhet. Alltså stannar vi i den trevliga diskreta världen, där vi har summor istället för integraler.},
+        \item det gäller att
+        $$\sum_{\omega \in \Omega} \mu(\omega) = 1.$$
+    \end{itemize}
+
+    Mängden $\Omega$ kallas för \emph{utfallsrum}, och elementen $\omega$ i $\Omega$ alltså för \emph{utfall}.\sidenote[][]{För den som är van med programmering, och vet hur slumpgeneratorer i datorn fungerar, bör man tänka på $\omega$ som \emph{seed} till slumpgeneratorn. Det är oftast inte ett intressant objekt i sig, men det bestämmer allt som slumpmässigt händer.} Funktionen $\mu$ kallar vi för vårt sannolikhetsmått.
+\end{definition}
+
+\begin{definition}
+    En \emph{händelse} $A$ är en delmängd till $\Omega$. Dess \emph{sannolikhet} ges av
+    $$\Prob{A} = \sum_{\Omega \in A} \mu(A).$$
+
+    Notera här att vi definierar sannolikheter för \emph{händelser}, \textbf{inte för utfall}.\sidenote[][]{Detta beror på att vi i den kontinuerliga sannolikhetsteorin inte längre kan definiera $\mu$ som en funktion från utfall till reella tal, utan måste definiera den som ett genuint \emph{mått}, alltså en funktion från \emph{händelser} (=delmängder) till utfall. Precis som vi inte kan ta integralen av en funktion i en enda punkt, utan tar integraler över intervall.
+    
+    Ibland kan vi komma att vara slarviga och prata om sannolikheter för enskilda utfall, men det korrekta sättet att skriva är alltid sannolikheten för händelsen $\{\omega\}$, inte för utfallet $\omega$.}
+\end{definition}
+
+\begin{example}
+    Låt oss formulera de mest uppenbara exemplen av slump i vår nya terminologi.
+
+    Vi kan se ett tärningskast som att det har utfallsrum 
+    $$\Omega = \{1,2,3,4,5,6\},$$
+    och sannolikhetsmått $\mu$ som skickar varje utfall på $\frac{1}{6}$, alltså $\mu(\omega) = \frac{1}{6}$ för alla $\omega$.
+
+    Vad är sannolikheten att vårt tärningskast ger oss ett udda tal? Jo, vad vi frågar efter är sannolikheten för händelsen $U = \{1,3,5\}$, vilken vi beräknar som
+    $$\Prob{U} = \sum_{\omega \in U} \mu(\omega) = \frac{1}{6} + \frac{1}{6} + \frac{1}{6} = \frac{1}{2}.$$
+
+    Om vi singlar slant har vi istället utfallsrum $\Omega = \{\text{krona}, \text{klave}\}$, och vårt sannolikhetsmått $\mu$ är lika med $\frac{1}{2}$ för bägge utfallen.
+
+    Sannolikheten att vi får krona är alltså sannolikheten av \emph{händelsen} $\{\text{krona}\}$, och ges av
+    $$\sum_{\omega \in \{\text{krona}\}} \mu(\omega) = \mu(\text{krona}) = \frac{1}{2}.$$
+\end{example}
+
+Vi kan också använda våra kunskaper från tidigare föreläsningar för att lösa mer invecklade problem.
+
+\begin{example}
+    Antag att en grupp av $n$ stycken försupna studenter går på en efterfest. När festen till slut är över är alla överraskande nog kapabla att gå hem, men ingen är nykter nog att känna igen sin egen jacka, så de bara tar en slumpmässig jacka på vägen ut.
+
+    Vad är sannolikheten att \emph{ingen} student kommer hem med sin egen jacka?
+
+    Vi får fundera ett ögonblick på hur vi formaliserar det här problemet. Vi kan skriva tilldelningen av jackor till studenter som en permutation av längd $n$ ur alfabetet av jackor. 
+    
+    Om vi numrerar studenterna och jackorna, så att student ett kom dit i jacka ett, student två i jacka två, och så vidare, så kan vi betrakta utfallet som en permutation av $[n]$. Alltså kan vi sätta $\Omega = S_n$, alltså mängden av sådana permutationer.
+
+    Hur skall vi tänka för att lista ut vad sannolikheten för varje given permutation är? Vi kan resonera på ett komplicerat sätt med olika ordningar de kan gå ut i, och varje student tar varje kvarvarande jacka med samma sannolikhet, för att få svaret, eller så kan vi resonera på ett enkelt sätt.
+
+    Eftersom alla studenterna är för packade för att kunna se skillnad på jackor är problemet helt symmetriskt -- det finns ingen anledning till varför något specifikt utfall skulle vara mer sannolikt än något annat, eftersom studenterna inte kan se skillnad på utfallen oavsett.\sidenote[][]{Jackorna har temporärt gjorts osärskiljbara av övermåga drickande.} Alltså måste sannolikheten för varje utfall vara lika, och för att de skall summera till $1$ måste de alltså vara $\frac{1}{n!}$.
+
+    Som nästa steg i vår räkning får vi fundera på vad händelsen att ingen student går hem med sin egen jacka är. Det betyder, i vår formulering av utfallen som permutationer av $n$, att $\omega_i \neq i$ för alla $i$, alltså att $\omega$ är ett derangemang. Så vår händelse är mängden av derangemang, vilka vi ju redan räknat i en tidigare föreläsning att den har storlek
+    $$n!\sum_{k=0}^{n} \frac{(-1)^k}{k!}.$$
+
+    Så vi kan räkna ut att
+    \begin{align*}
+        \Prob{\text{Ingen har sin egen jacka}} &= \Prob{\left\{\omega \in S_n: \omega(i) \neq i\, \forall i\right\}}\\
+        &= \sum_{\omega \in S_n: \omega(i) \neq i\, \forall i} \mu(\omega)\\
+        &= \sum_{\omega \in S_n: \omega(i) \neq i\, \forall i} \frac{1}{n!}\\
+        &= \frac{1}{n!}\left\{\omega \in S_n: \omega(i) \neq i\, \forall i\right\}\\
+        &= \frac{1}{n!}n!\sum_{k=0}^{n} \frac{(-1)^k}{k!} = \sum_{k=0}^{n} \frac{(-1)^k}{k!}
+    \end{align*}
+    vilket vi känner igen som de första $n$ termerna i Taylorutvecklingen av $e^{-1}$, så sannolikheten att ingen får med sig sin egen jacka är, för stora nog $n$, ungefär $36.8\%$.
+\end{example}
 
 \section{Övningar}
 
