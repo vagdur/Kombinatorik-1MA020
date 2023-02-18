@@ -320,26 +320,31 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 \end{xca}
 
 \begin{solution}
-	Från fotnoten får vi tipset att tänka på det som att välja en grupp med ledare. Vi försöker nu studera vänsterledet för sig och högerledet för sig för att kombinatoriskt bevisa likheten.
+	Från sidnoten får vi tipset att tänka på det som att välja en grupp med ledare. Vi försöker nu studera vänsterledet för sig och högerledet för sig för att kombinatoriskt bevisa likheten.
 
-    Vi kollar på vänsterledet först: Vi vill välja en grupp med k personer i och vi har totalt n stycken personer att välja på. För att få antalet sätt vi kan skapa denna gruppen tar vi $$\binom{n}{k}.$$. Nu har vi alltså beräknat antalet sätt att skapa en grupp med k personer. Nu vill vi välja en ledare bland dessa personer. Vi har då k potentiella ledare. Så För att beräkna antalet sätt vi kan skapa en grupp med k personer varav en person är ledare får vi då 
+    Vi kollar på vänsterledet först: Vi vill välja en grupp med $k$ personer i och vi har totalt $n$ stycken personer att välja på. Antalet sätt vi kan skapa denna gruppen på ges av $\binom{n}{k}$. Vi har alltså beräknat antalet sätt att skapa en grupp med $k$ personer. 
+	
+	Nu vill vi välja en ledare bland dessa personer. Vi har $k$ potentiella ledare, så multiplikationsregeln säger oss att vi får antalet sätt att välja en grupp med ledare genom att multiplicera antalet sätt att välja en grupp med antalet sätt att välja en ledare, alltså
 	$$k\binom{n}{k}.$$
 
-    Nu tittar vi på högerledet: Vi vill visa att högerledet också beräknar antalet sätt att skapa en grupp med k personer varav en person är ledare. Vi har n personer att välja på och vi ska ha en grupp på k personer och en av de ska vara ledare. Nu börjar vi med att välja en person som ska vara vår ledare, vi har då n personer att välja på för att vara ledare. Nu vill vi välja en grupp till den här ledaren. Vi har n-1 personer kvar att välja på och k-1 platser kvar att fylla upp i gruppen. Antalet sätt att skapa gruppen av resterande personer blir då
+    Nu tittar vi på högerledet: Vi vill visa att högerledet också beräknar antalet sätt att skapa en grupp med $k$ personer varav en person är ledare. Vi har $n$ personer att välja på och vi ska ha en grupp på $k$ personer, varav en ska vara ledare. 
+	
+	Vi börjar med att välja en person som ska vara vår ledare, vilket vi kan göra på $n$ sätt. Sedan vill vi välja en grupp till den här ledaren. Vi har $n-1$ personer kvar att välja på och $k-1$ platser kvar att fylla upp i gruppen. Antalet sätt att skapa gruppen av resterande personer blir då
 	$$\binom{n-1}{k-1}.$$
 	
-	Så antalet sätt att skapa en grupp med en ledare och k-1 medlemmar (alltså totalt k medlemmar) är då $$n \binom{n-1}{k-1}.$$. 
+	Så antalet sätt att skapa en grupp med en ledare och $k-1$ medlemmar (alltså totalt $k$ medlemmar) är
+	$$n \binom{n-1}{k-1}.$$
 
 	\begin{tips}
 		\begin{enumerate}
 			\item I denna uppgiften använde vi oss av att vi ska skapa grupper. Ett bra sätt att lösa liknande uppgifter är att se det som att vi ska skapa grupper med personer av olika slag. Det kan vara en grupp med en eller flera ledare, grupper av olika storlekar med olika många personer som ska väljas ut eller plockas bort med mera. Försök att skapa ett sammanhang.
-			\item Är det svårt att hitta ett sammanhang så försök att identifiera variablerna en efter en, så i detta fallet försök först att identifiera vad k skulle kunna innebära och vad $$\binom{n}{k}$$ skulle kunna innebära. Försök också att starta med en sida, så antingen vänsterled eller högerled. Identifiera de olika variablerna (till exempel i ett sammanhang) på den sidan och försök sedan skapa en matchning med andra sidan.
-			\item Ett sätt att se på det är som ett händelseförlopp. Först händer en sak, till exemple att vi väljer två av totalt n stycken saker, som i denna uppgift i VL. Sedan, efter att vi gjort det "sker" andra parentesen som säger att vi nu väljer k-2 saker av en hög som nu är 2 färren än den var förrut. Genom detta kan vi försöka skapa oss en bild av ett händelseförlopp som dessa parenteser representerar. 
+			\item Är det svårt att hitta ett sammanhang så försök att identifiera variablerna en efter en, så i detta fallet försök först att identifiera vad $k$ skulle kunna innebära och vad $\binom{n}{k}$ skulle kunna innebära. Försök också att starta med en sida, så antingen vänster led eller höger led. Identifiera de olika variablerna (till exempel i ett sammanhang) på den sidan och försök sedan skapa en matchning med andra sidan.
+			\item Ett sätt att se på det är som ett händelseförlopp. Betrakta vänster led i Övning \ref{xca:second_combinatorial_proof}: Först händer en sak -- vi väljer två av totalt $n$ stycken saker. Sedan, efter att vi gjort det ``sker'' andra parentesen som säger att vi nu väljer $k-2$ saker av en hög som nu är $2$ färre än den var förut. Genom detta kan vi försöka skapa oss en bild av ett händelseförlopp som dessa uttryck representerar. 
 		\end{enumerate}
 	\end{tips}
 \end{solution}
 
-\begin{xca}
+\begin{xca}\label{xca:second_combinatorial_proof}
 	Ge ett kombinatoriskt bevis för att
 	$$\binom{n}{2}\binom{n-2}{k-2} = \binom{n}{k}\binom{k}{2}.$$
 \end{xca}
