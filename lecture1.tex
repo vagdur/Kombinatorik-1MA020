@@ -267,6 +267,48 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 	Hur många sätt finns det att placera studenterna vid bordet?
 \end{xca}
 
+\begin{xca}
+	Ge ett algebraiskt bevis för att
+	$$k\binom{n}{k} = n \binom{n-1}{k-1}.$$
+\end{xca}
+    
+\begin{xca}
+	Ge ett kombinatoriskt bevis för att\sidenote[][]{Ledtråd: Tänk på att välja grupper med ledare för ett projekt.}
+	$$k\binom{n}{k} = n \binom{n-1}{k-1}.$$
+\end{xca}
+
+\begin{xca}\label{xca:second_combinatorial_proof}
+	Ge ett kombinatoriskt bevis för att
+	$$\binom{n}{2}\binom{n-2}{k-2} = \binom{n}{k}\binom{k}{2}.$$
+\end{xca}
+
+\begin{xca}
+	Antag att du har två mängder $A$ och $B$, med $\abs{A} = 15$ och $\abs{B} = 7$.
+	\begin{enumerate}
+		\item Hur många sätt finns det att välja ett objekt från $A$ eller ett från $B$?
+		\item Hur många sätt finns det att välja ett objekt från $A$ och ett från $B$?
+		\item Vad är $\abs{A\times B}$?
+		\item Vad är $\abs{A \coprod B}$?
+		\item Vad är det största och minsta värde som $A \cup B$ kan ta?
+		\item Vad är det största och minsta värde som $A \cap B$ kan ta?
+	\end{enumerate}
+\end{xca}
+
+\begin{xca}
+	Du har sökt ett prestigefyllt internship, och ska klä dig för intervjun. Du inser att du borde ha slips på dig, och ser att du äger fem seriösa slipsar och sju slipsar med komiska tryck.
+  
+	\textbf{a)} Hur många sätt kan du välja slips för intervjun på?
+  
+	Efter lite eftertanke kommer du ihåg att jobbet du sökt är som clown,\sidenote[][-1cm]{Och tyvärr äger du ingen sådan där skoj fluga som kan spruta vatten i ansiktet på folk.}\sidenote[][]{Denna övningen är stulen från internet, och den handlade om en clownjobbintervju redan från början. Jag valde den helt baserat på hur mycket jag skrattade åt hur de antydde att deras studenter var clowner.} så du borde nog ha på dig två slipsar på samma gång, eftersom det är väldigt komiskt.
+
+	\textbf{b)} På hur många sätt kan du välja två slipsar att ha på dig på samma gång? \textbf{c)} Hur många sätt kan du välja en seriös slips och en med ett komiskt tryck på?
+\end{xca}
+
+\hfill
+\newpage
+
+\section{Lösningsförslag till övningar}
+
 \begin{solution}
 	Vi börjar med att rita upp en bild för situationen.
 	\begin{figure}
@@ -291,11 +333,6 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 	\end{tips}
 \end{solution}
 
-\begin{xca}
-	Ge ett algebraiskt bevis för att
-	$$k\binom{n}{k} = n \binom{n-1}{k-1}.$$
-\end{xca}
-
 \begin{solution}
 	\begin{align*}
 		n \binom{n-1}{k-1} &= \frac{n(n-1)!}{(k-1)!(n-1-(k-1))!}\\
@@ -313,11 +350,6 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 		$$\frac{n}{n!} = \frac{1}{(n-1)!}\qquad\text{ och }\qquad n(n-1)! = n!.$$
 	\end{tips}
 \end{solution}
-    
-\begin{xca}
-	Ge ett kombinatoriskt bevis för att\sidenote[][]{Ledtråd: Tänk på att välja grupper med ledare för ett projekt.}
-	$$k\binom{n}{k} = n \binom{n-1}{k-1}.$$
-\end{xca}
 
 \begin{solution}
 	Från sidnoten får vi tipset att tänka på det som att välja en grupp med ledare. Vi försöker nu studera vänsterledet för sig och högerledet för sig för att kombinatoriskt bevisa likheten.
@@ -344,11 +376,6 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 	\end{tips}
 \end{solution}
 
-\begin{xca}\label{xca:second_combinatorial_proof}
-	Ge ett kombinatoriskt bevis för att
-	$$\binom{n}{2}\binom{n-2}{k-2} = \binom{n}{k}\binom{k}{2}.$$
-\end{xca}
-
 \begin{solution}
 	Här kan vi tänka på ungefär samma sätt som uppgift 3, men nu är skillnaden att vi ska välja $2$ ledare istället för en.
 
@@ -374,18 +401,6 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 		Du kan använda samma tips som för uppgift 3.
 	\end{tips}
 \end{solution}
-
-\begin{xca}
-	Antag att du har två mängder $A$ och $B$, med $\abs{A} = 15$ och $\abs{B} = 7$.
-	\begin{enumerate}
-		\item Hur många sätt finns det att välja ett objekt från $A$ eller ett från $B$?
-		\item Hur många sätt finns det att välja ett objekt från $A$ och ett från $B$?
-		\item Vad är $\abs{A\times B}$?
-		\item Vad är $\abs{A \coprod B}$?
-		\item Vad är det största och minsta värde som $A \cup B$ kan ta?
-		\item Vad är det största och minsta värde som $A \cap B$ kan ta?
-	\end{enumerate}
-\end{xca}
 
 \begin{solution}
 	\begin{enumerate}
@@ -426,15 +441,6 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 	\end{tips}
 \end{solution}
 
-\begin{xca}
-	Du har sökt ett prestigefyllt internship, och ska klä dig för intervjun. Du inser att du borde ha slips på dig, och ser att du äger fem seriösa slipsar och sju slipsar med komiska tryck.
-  
-	\textbf{a)} Hur många sätt kan du välja slips för intervjun på?
-  
-	Efter lite eftertanke kommer du ihåg att jobbet du sökt är som clown,\sidenote[][-1cm]{Och tyvärr äger du ingen sådan där skoj fluga som kan spruta vatten i ansiktet på folk.}\sidenote[][]{Denna övningen är stulen från internet, och den handlade om en clownjobbintervju redan från början. Jag valde den helt baserat på hur mycket jag skrattade åt hur de antydde att deras studenter var clowner.} så du borde nog ha på dig två slipsar på samma gång, eftersom det är väldigt komiskt.
-
-	\textbf{b)} På hur många sätt kan du välja två slipsar att ha på dig på samma gång? \textbf{c)} Hur många sätt kan du välja en seriös slips och en med ett komiskt tryck på?
-\end{xca}
 \begin{solution}
 
 	\begin{enumerate}[a)]
