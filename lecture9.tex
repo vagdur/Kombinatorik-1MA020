@@ -120,7 +120,7 @@ Vi kan också använda våra kunskaper från tidigare föreläsningar för att l
         \Prob{\text{Ingen har sin egen jacka}} &= \Prob{\left\{\omega \in S_n: \omega(i) \neq i\, \forall i\right\}}\\
         &= \sum_{\omega \in S_n: \omega(i) \neq i\, \forall i} \mu(\omega)\\
         &= \sum_{\omega \in S_n: \omega(i) \neq i\, \forall i} \frac{1}{n!}\\
-        &= \frac{1}{n!}\left\{\omega \in S_n: \omega(i) \neq i\, \forall i\right\}\\
+        &= \frac{1}{n!}\abs{\left\{\omega \in S_n: \omega(i) \neq i\, \forall i\right\}}\\
         &= \frac{1}{n!}n!\sum_{k=0}^{n} \frac{(-1)^k}{k!} = \sum_{k=0}^{n} \frac{(-1)^k}{k!}
     \end{align*}
     vilket vi känner igen som de första $n$ termerna i Taylorutvecklingen av $e^{-1}$, så sannolikheten att ingen får med sig sin egen jacka är, för stora nog $n$, ungefär $36.8\%$.
