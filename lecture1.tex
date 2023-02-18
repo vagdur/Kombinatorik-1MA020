@@ -389,35 +389,39 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 
 \begin{solution}
 	\begin{enumerate}
-		\item Det finns $\abs{A} + \abs{B} = 15 + 7 = 22$. stycken sätt att välja ett objekt från A eller ett objekt från B. Du kan beräkna detta med additionsregeln. Det beror på att det inte spelar någon roll om vi väljer ett objekt ur A eller ett ur B vilket gör att man kan tänka att man bara lägger ihop alla element i samma mängd och tar en. Antalet möjliga val är ju då bara det totala antalet element. (Kom ihåg att additionsregeln förutsätter att A och B inte delar på något element).
+		\item Det finns $\abs{A} + \abs{B} = 15 + 7 = 22$. stycken sätt att välja ett objekt från $A$ eller ett objekt från $B$. Du kan beräkna detta med additionsregeln. Det beror på att det inte spelar någon roll om vi väljer ett objekt ur $A$ eller ett ur $B$ vilket gör att man kan tänka att man bara lägger ihop alla element i samma mängd och tar en. Antalet möjliga val är ju då bara det totala antalet element.
 
-		\item Det finns $\abs{A}\abs{B}  = 15 \cdot 7= 105$ sätt att välja ett objekt från A och ett objekt från B. Detta gäller från multiplikationsregeln. Detta kan man se som att om vi tar upp ett element ur högen A finns det nu exakt $\abs{B}$ val ur B. Detta gäller för alla element i A vilket gör att vi man multiplicera med antalet i B och det ger det totala antalet kombinationer. (Kom ihåg att även multiplikationsregeln förutsätter att A och B inte delar något element).
+		\item Det finns $\abs{A}\abs{B}  = 15 \cdot 7= 105$ sätt att välja ett objekt från $A$ och ett objekt från $B$. Detta gäller från multiplikationsregeln. Detta kan man se som att om vi tar upp ett element ur högen $A$ finns det nu exakt $\abs{B}$ val ur $B$. Detta gäller för alla element i $A$ vilket gör att vi kan multiplicera med antalet i $B$ och det ger det totala antalet kombinationer.
 
-		\item Det är antalet sätt vi kan välja ett objekt ur A och ett objekt ur B, alltså $15 \cdot 7=105$. Detta är den notation som används för att beskriva multiplikationsregeln, det är därför vi egentligen gör samma sak här som i förra uppgiften.
+		\item Det är antalet sätt vi kan välja ett objekt ur $A$ och ett objekt ur $B$, alltså $15 \cdot 7=105$. Detta är den notation som används för att beskriva multiplikationsregeln, det är därför vi egentligen gör samma sak här som i förra uppgiften.
 
-		\item Det är antalet sätt att välja ett objekt ur A eller ett objekt ur B, alltså $15 + 7 = 22$. Detta är den notation som används för att beskriva multiplikationsregeln.
+		\item Det är antalet sätt att välja ett objekt ur $A$ eller ett objekt ur $B$, alltså $15 + 7 = 22$. Detta är den notation som används för att beskriva multiplikationsregeln.
 
-		\item Det största värdet $A \cup B$ kan anta är $15+7=22$. I detta fallet (största möjliga unionen) kommer alla element i B vara olika från alla element i A, vilket gör att vår nya mängd kommer innehålla alla 7 element i B och alla 15 element i A. 
-		\begin{center}
+		\item Det största värdet $A \cup B$ kan anta är $15+7=22$. I detta fallet (största möjliga unionen) kommer alla element i $B$ vara olika från alla element i $A$, vilket gör att vår nya mängd kommer innehålla alla $7$ element i $B$ och alla $15$ element i $A$. 
+		\begin{figure}
+			\centering
 			\includegraphics[width=0.7\textwidth]{graphics/mangButanformangdA.png}
-		\end{center}
+			\caption{$A \cup B$ blir som störst när de, såsom i figuren, är disjunkta.}
+			\label{fig:A_and_B_disjoint}
+		\end{figure}
 		
-		Det minsta värdet $A \cup B$ kan anta är 15. I detta fallet (minsta möjliga unionen) kommer alla element i B vara närvarande i A. Alltså kommer vår nya mängd vara lika med mängden A, eftersom B också är närvarande i den mängden. 
-		\begin{center}
+		Det minsta värdet $A \cup B$ kan anta är $15$. I detta fallet (minsta möjliga unionen) kommer alla element i $B$ vara närvarande i $A$. Alltså kommer vår nya mängd vara lika med mängden $A$, eftersom $B$ också är närvarande i den mängden. 
+		\begin{figure}
+			\centering
 			\includegraphics[width=0.7\textwidth]{graphics/mangimangdA.png}
-		\end{center}
+			\caption{$A\cup B$ blir som minst när $B$ ligger i $A$.}
+			\label{fig:B_contained_in_A}
+		\end{figure}
 
-		\item Det största värdet som $A \cap B$ kan anta är 7. I detta faller kommer alla element i B vara närvarande i A. Då får vi vår nya mängd som innehåller alla element som finns i både A och i B. 
-		Här kan vi visualisera problemet på samma sätt som andra bilden i övning 5.5 (bilden precis ovan).
+		\item Det största värdet som $A \cap B$ kan anta är $7$. I detta faller kommer alla element i $B$ vara närvarande i $A$, såsom i figur \ref{fig:B_contained_in_A}. Alltså kommer $A \cap B = B$, och vi får med alla element i $B$.
 
-		Det minsta värdet som $A \cap B$ kan anta är 0. I detta fallet så kommer alla element i B vara skilda från alla element i A och vårt snitt kommer då bli en tom mängd. 
-		Här kan vi visualisera problemet på samma sätt som första bilden i övning 5.5 (två bilder upp).
+		Det minsta värdet som $A \cap B$ kan anta är $0$. I detta fallet så kommer alla element i $B$ vara skilda från alla element i $A$ och vårt snitt kommer då bli en tom mängd, såsom i figur \ref{fig:A_and_B_disjoint}.
 	\end{enumerate}
 
 	\begin{tips}
 		\begin{enumerate}
 			\item I sådana uppgifter är det bra att fundera över hur additionsregeln och multiplikationsregeln kan appliceras.
-			\item Rita upp mängderna och de olika fallen, ligger mängderna i varandra (innehåller samma element), ligger de utanför varandra (innehåller inte samma element) eller ligger de delvis i varandra/utanförvarandra?
+			\item Rita upp mängderna och de olika fallen, ligger mängderna i varandra (innehåller samma element), ligger de utanför varandra (innehåller inte samma element) eller ligger de delvis i varandra/utanför varandra?
 		\end{enumerate}
 	\end{tips}
 \end{solution}
