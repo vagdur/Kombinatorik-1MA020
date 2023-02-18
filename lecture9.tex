@@ -1,0 +1,66 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Föreläsning 9: Diskret sannolikhetsteori $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
+
+\date{16 februari 2023}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+\include{mathcommands.extratex}
+
+\begin{document}
+
+\definecolor{darkgreen}{rgb}{0.0627, 0.4588, 0.1451}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+Vi introducerar den diskreta sannolikhetsteorin, vilket är den som behandlar samma sorts objekt som kombinatoriken.
+\end{abstract}
+
+Varför har vi ett avsnitt om diskret sannolikhetsteori\sidenote[][]{I kursplanen kallat ``klassisk sannolikhetsteori'', vilket jag tolkar som en mer tvetydig term för ``diskret sannolikhetsteori''.} i en kurs om kombinatorik? 
+
+Diskret sannolikhetsteori och kombinatorik studerar samma klass av objekt -- diskreta strukturer -- så områdena överlappar. Ofta är vad man ser i början när man lär sig om sannolikhetsteori olika problem vars lösning kan sammanfattas som ``översätt till ett problem med att räkna någonting, lös det kombinatorikproblemet, och översätt tillbaka till en sannolikhet''. 
+
+Så det är en anledning till att prata om diskret sannolikhetsteori i denna kurs -- vi kan få många exempel, och de exemplen är ofta mer praktiskt tillämpbara än motsvarande kombinatorikproblem. Så när man börjat tröttna på överdrivet abstrakta exempel, eller klämkäcka exempel om glasskiosker, kan sannolikhetsteorin komma som en frisk fläkt.
+
+Men det är så klart inte så att fälten bara överlappar i ena riktningen -- det är precis lika sant att det finns många \emph{kombinatoriska} problem där den enklaste och vackraste lösningen använder sannolikhetsteori. Detta kallas för den \emph{probabilistiska metoden}\sidenote[][]{På engelska \emph{the probabilistic method} -- det finns en utsökt bok med just denna titel av Noga Alon och Joel Spencer som utforskar just detta ämne.
+
+Den lämpar sig definitivt inte som första bok om varken sannolikhetsteori eller kombinatorik, men har man läst någon kurs i vardera ämne och uppnått lite matematisk mognad är den nog ett bra men utmanande val av bok.} -- i dess vanligaste form visar vi att något kombinatoriskt objekt måste existera genom att vi visar att ett slumpmässigt valt objekt kan ha egenskapen. I många fall känner vi inte till något konkret exempel på ett sådant objekt -- bara att det måste existera.
+
+Men låt oss börja med att definiera vad vi egentligen menar med diskret sannolikhet.
+
+
+\section{Övningar}
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}
