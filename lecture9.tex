@@ -146,6 +146,13 @@ Rent konkret gör vi detta med följande definition:
     Funderar man lite grann på saken bör det kännas rimligt att detta mäter sannolikheten för en händelse, givet att vi redan vet att händelsen $B$ inträffar -- vi räknar ju bara på utfallen där $B$ inträffat.
 \end{definition}
 
+\begin{definition}
+    Vi säger att två händelser $A$ och $B$ är \emph{oberoende} ifall
+    $$\Prob{A \cap B} = \Prob{A}\Prob{B}.$$
+
+    Namnet motiveras av att detta är samma sak som att $\Prob{A \given B} = \Prob{A}$ -- att få veta huruvida $B$ inträffade ger oss alltså ingen information alls om ifall $A$ inträffade, vår skattning av sannolikheten för det är helt oförändrad.
+\end{definition}
+
 \begin{lemma}[Lagen om total sannolikhet]\label{law_of_total_probability}
     Det är alldeles uppenbart från vår definition att\sidenote[][]{Och som vår diskussion om hur vi använder betingad sannolikhet indikerade är detta den centrala egenskapen den har -- den låter oss dela upp det potentiellt svåra problemet att förstå $A \cap B$ i de enklare problemen att förstå $B$ och förstå $A$ givet $B$.}
     $$\Prob{A \given B}\Prob{B} = \Prob{A \cap B}.$$
@@ -178,9 +185,10 @@ Låt oss, innan vi går vidare, ge några basala räkneregler för sannolikheter
         \item och om $A$ och $B$ har tomt snitt, $A\cap B = \emptyset$, så är $\Prob{A \cup B} = \Prob{A} + \Prob{B}$,
         \item och om de inte nödvändigtvis har tomt snitt har vi att
         $$\Prob{A \cup B} = \Prob{A} + \Prob{B} - \Prob{A \cap B}.$$
-        \item $\Prob{A \cap B} = \Prob{A \given B}\Prob{B}.$
+        \item $\Prob{A \cap B} = \Prob{A \given B}\Prob{B}$,
+        \item och per definition är $A$ och $B$ oberoende precis när $\Prob{A \cap B} = \Prob{A}\Prob{B}$.
     \end{itemize}
-  \end{lemma}
+\end{lemma}
 
 \section{Unionsbegränsningar, med tillämpning på Ramseytalen}
 
