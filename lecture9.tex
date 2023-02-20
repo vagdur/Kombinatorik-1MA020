@@ -221,6 +221,58 @@ Låt oss nu introducera ett oerhört potent lemma, som ändock är väldigt enke
     \end{proof}
 \end{lemma}
 
+Vår första tillämpning är på Ramseytalen, som vi redan sett innan som ett exempel på lådprincipen. Låt oss upprepa vår definition av dessa tal, i en mer rigorös terminologi som vi lärt oss sedan dess.
+
+\begin{definition}
+    Tänk att vi tar den fullständiga grafen $K_n$\sidenote[][]{Alltså grafen som har $n$ noder, och varje par av noder har en kant mellan dem.} och målar alla dess kanter antingen röda eller blå.
+
+    \emph{Ramseytalet} $R(k,\ell)$ är det minsta heltalet $n$ sådant att det måste finnas antingen en delmängd av $k$ noder i $K_n$ sådana att alla kanter mellan dem är röda, eller en delmängd av $\ell$ noder sådana att alla kanter mellan dem är blå. Vi kallar sådana delmängder för \emph{monokromatiska delgrafer}.
+\end{definition}
+
+Vi konstaterade när vi först introducerade dessa tal att det är svårt att bevisa saker om dem bortom att de är ändliga, vilket är vad vi gjorde i en övning då. Nu har vi kommit långt nog att vi kan bevisa en faktisk olikhet för dem.
+
+\begin{proposition}
+    Om
+    $$\binom{n}{k}2^{1-\binom{k}{2}} < 1$$
+    så är $R(k,k) > n$. Således är
+    $$R(k,k) > \floor{2^{k/2}}$$
+    för alla $k\geq 3$.
+
+    \begin{proof}
+        Hur bevisar man att $R(k,k)$ måste vara större än ett visst givet $n$? Jo, Ramseytalet är ju per definition det minsta $n$ sådant att alla färgningar av kanterna till $K_n$ har en monokromatisk delgraf av storlek $k$. Alltså måste vi påvisa någon färgning av kanterna till $K_n$ som inte har en monokromatisk delgraf av någondera färgen.
+
+        Det här låter ju som något som kräver en väldigt smart konstruktion. Det stämmer -- i själva verket en så smart konstruktion att vi inte faktiskt förmår hitta den.
+
+        Det är här den probabilistiska metoden visar sin styrka -- vad vi gör istället för att konstruera ett exempel är att välja en \emph{slumpmässig} färgning, och visa att denna har sannolikhet större än noll att ha vår önskade egenskap.
+
+        Så, vi tänker oss att vi singlar en slant för varje kant i $K_n$, där myntets två sidor är ``röd'' och ``blå'' -- och våra slantsinglingar är oberoende av varandra. Vårt utfallsrum blir då lika med mängden av funktioner från $E(K_n)$, kanter i $K_n$, till mängden $\{\text{röd}, \text{blå}\}$, där varje blir lika sannolik. Vi kallar våra funktioner $\omega$, och låter alltså $\omega(i,j)$ vara färgen på kanten mellan $i$ och $j$.
+
+        Vad är sannolikheten att vår resulterande graf har en monokrom delgraf av storlek $k$? Jo, om vi för varje delmängd $A$ till $[n]$ av storlek $k$ låter $R_A$ vara händelsen att $A$ är monokromt röd och $B_A$ vara händelsen att $B_A$ är monokromt blå,\sidenote[][]{Vill man vara rigorös låter vi alltså
+        $$R_A = \left\{\omega: \forall i, j \in A: \omega(i,j) = \text{röd}\right\}$$
+        och
+        $$B_A = \left\{\omega: \forall i, j \in A: \omega(i,j) = \text{blå}\right\}.$$} så blir händelsen att det finns \emph{någon} monokrom delgraf av den storleken precis\sidenote[][]{Den här notationen kan vara aningen förvirrande innan man tänkt efter -- vi tar en union av en samling mängder, där \emph{index} för summan också är mängder. Men det vi tar unionen över är händelserna $R_A \cup B_A$, inte indexen $A$.}
+        $$\bigcup_{A \in \binom{[n]}{k}} R_A \cup B_A.$$
+
+        Hittills verkar det ju inte som att vi gjort några större framsteg -- vi har gått från att behöva göra en väldigt smart konstruktion till att behöva förstå en väldigt invecklad mängd av funktioner, som definierats som en union med index i en bunt mängder... Det är här Unionsbegränsningen visar sin kraft, och låter oss lösa ett mycket mycket enklare problem -- för om vi tillämpar den så får vi ju att
+        $$\Prob{\bigcup_{A \in \binom{[n]}{k}} R_A \cup B_A} \leq \sum_{A\in \binom{[n]}{k}} \Prob{R_A} + \Prob{B_A}.$$
+
+        Vi behöver alltså inte alls förstå oss på den komplicerade unionen, vi behöver bara förstå sannolikheterna för $R_A$ och $B_A$ -- och de är mycket enklare, eftersom de ju specificerar precis var den monokroma delgrafen skall finnas: Den skall ligga i $A$.
+
+        Så vad är sannolikheten att just $A$ innehåller enbart röda kanter, alltså sannolikheten för $R_A$? Jo, den innehåller totalt $\binom{k}{2}$ kanter, och för varje av dessa kanter måste myntet visa den röda sidan. Eftersom våra slantsinglingar är oberoende måste sannolikheten att alla blir röda vara produkten av sannolikheterna för varje mynt att bli rött. Alltså tar vi produkten av $\binom{k}{2}$ stycken $1/2$, och får att
+        $$\Prob{R_A} = 2^{-\binom{k}{2}}$$
+        för alla $A$. 
+        
+        Eftersom problemet är totalt symmetriskt mellan blå och röd gäller samma resultat för $B_A$, så vi får att
+        \begin{align*}
+            \sum_{A\in \binom{[n]}{k}} \Prob{R_A} + \Prob{B_A} &= \sum_{A\in \binom{[n]}{k}} 2^{1-\binom{k}{2}}\\
+            &= \binom{n}{k}2^{1-\binom{k}{2}}
+        \end{align*}
+        och här kan vi känna igen uttrycket vi antog i formuleringen av satsen var mindre än ett.
+
+        Alltså har vi bevisat att sannolikheten att vår slumpmässiga färgning av $K_n$ har en monokromatisk delgraf är mindre än ett -- så sannolikheten att den inte har det är större än noll. Men om sannolikheten för detta är större än noll måste det specifikt finnas ett utfall som inte har en monokromatisk delgraf -- så vi har hittat vårt exempel på en sådan färgning, helt utan att explicit konstruera det.
+    \end{proof}
+\end{proposition}
+
 \section{Övningar}
 
 \begin{xca}
