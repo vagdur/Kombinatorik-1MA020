@@ -126,6 +126,48 @@ Vi kan också använda våra kunskaper från tidigare föreläsningar för att l
     vilket vi känner igen som de första $n$ termerna i Taylorutvecklingen av $e^{-1}$, så sannolikheten att ingen får med sig sin egen jacka är, för stora nog $n$, ungefär $36.8\%$.
 \end{example}
 
+\section{Betingad sannolikhet}
+
+Ett av de allra mest användbara verktygen för att resonera om sannolikheter är \emph{betingad sannolikhet}. Det låter oss utföra argument av stilen ``under antagandet att $A$ är sant så är sannolikheten för $B$ det här, så eftersom vi vet sannolikheten av $A$ är sannolikheten för $B$ detta''. Vi bryter alltså ned ett potentiellt svårt problem i enklare beståndsdelar.
+
+Rent konkret gör vi detta med följande definition:
+
+\begin{definition}
+    Givet två händelser $A$ och $B$, sådana att $\Prob{B} > 0$, definierar vi \emph{sannolikheten för $A$ givet $B$} som
+    $$\Prob{A \given B} = \frac{\Prob{A \cap B}}{\Prob{B}}.$$
+
+    Vi kan tolka detta som att vi ``zoomat in'' på bara $B$, och skapat oss ett nytt sannolikhetsmått $\mu_{|B}$, som ges av
+    $$\mu_{|B}: B \to [0,1]: x \mapsto \frac{\mu(x)}{\sum_{x\in B} \mu(x)}$$
+    så att
+    $$\Prob{A \given B} = \mu_{|B}(A \cap B).$$
+    
+    Så termen $\frac{1}{\Prob{B}} = \frac{1}{\sum_{x\in B} \mu(x)}$ är helt enkelt där för att få sannolikheterna i $\mu_{|B}$ att summera till ett.
+
+    Funderar man lite grann på saken bör det kännas rimligt att detta mäter sannolikheten för en händelse, givet att vi redan vet att händelsen $B$ inträffar -- vi räknar ju bara på utfallen där $B$ inträffat.
+\end{definition}
+
+\begin{lemma}[Lagen om total sannolikhet]
+    Det är alldeles uppenbart från vår definition att\sidenote[][]{Och som vår diskussion om hur vi använder betingad sannolikhet indikerade är detta den centrala egenskapen den har -- den låter oss dela upp det potentiellt svåra problemet att förstå $A \cap B$ i de enklare problemen att förstå $B$ och förstå $A$ givet $B$.}
+    $$\Prob{A \given B}\Prob{B} = \Prob{A \cap B}.$$
+
+    Detta generaliserar enkelt till att, om vi har en samling $B_1, B_2, \ldots B_k$ av disjunkta händelser sådana att
+    $$A \subseteq \coprod_{i=1}^k B_i,$$
+    alltså sådana att närhelst $A$ inträffar så inträffar exakt en av händelserna $B_i$, så är
+    $$\Prob{A} = \sum_{i=1}^{k} \Prob{A \given B_i}\Prob{B_i}.$$
+
+    I en enkel form får vi alltså för \emph{alla} par av händelser $A$ och $B$ att
+    $$\Prob{A} = \Prob{A \given B}\Prob{B} + \Prob{A \given B^c}\Prob{B}.$$
+\end{lemma}
+
+\begin{example}
+    Antag att vi har en urna som innehåller hundra glaskulor, som kan vara av glas eller sten, och kan vara antingen röda, gröna, eller blå. Vi drar upp en slumpmässig kula ur vår urna.
+
+    Om vi låter $A$ vara händelsen att kulan vi drar är av glas, och $B_r$, $B_g$, och $B_b$ vara händelserna att den är \emph{r}öd, \emph{g}rön, eller \emph{b}lå, så säger oss alltså lagen om total sannolikhet att
+    $$\Prob{A} = \Prob{A \given B_r}\Prob{B_r} + \Prob{A \given B_g}\Prob{B_g} + \Prob{A \given B_b}\Prob{B_b}.$$
+
+    Alltså: Om vi vet fördelningen mellan de olika färgerna i urnan (sannolikheterna för $B_r$, $B_g$, och $B_b$) och vi vet hur stor andel av varje given färg som är glaskulor, kan vi räkna ut hur stor andel av alla kulor som är av glas.\sidenote[][]{Som vi formulerat det här är det ju oerhört oöverraskande att vi kan göra det. Så är det -- det är inget märkligt som pågår här. Vad som är överraskande är om något hur ofta lagen om total sannolikhet är användbar, vilket vi kommer se i senare exempel.}
+\end{example}
+
 \section{Övningar}
 
 %\bibliography{references}
