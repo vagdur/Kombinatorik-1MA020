@@ -146,7 +146,7 @@ Rent konkret gör vi detta med följande definition:
     Funderar man lite grann på saken bör det kännas rimligt att detta mäter sannolikheten för en händelse, givet att vi redan vet att händelsen $B$ inträffar -- vi räknar ju bara på utfallen där $B$ inträffat.
 \end{definition}
 
-\begin{lemma}[Lagen om total sannolikhet]
+\begin{lemma}[Lagen om total sannolikhet]\label{law_of_total_probability}
     Det är alldeles uppenbart från vår definition att\sidenote[][]{Och som vår diskussion om hur vi använder betingad sannolikhet indikerade är detta den centrala egenskapen den har -- den låter oss dela upp det potentiellt svåra problemet att förstå $A \cap B$ i de enklare problemen att förstå $B$ och förstå $A$ givet $B$.}
     $$\Prob{A \given B}\Prob{B} = \Prob{A \cap B}.$$
 
@@ -167,6 +167,37 @@ Rent konkret gör vi detta med följande definition:
 
     Alltså: Om vi vet fördelningen mellan de olika färgerna i urnan (sannolikheterna för $B_r$, $B_g$, och $B_b$) och vi vet hur stor andel av varje given färg som är glaskulor, kan vi räkna ut hur stor andel av alla kulor som är av glas.\sidenote[][]{Som vi formulerat det här är det ju oerhört oöverraskande att vi kan göra det. Så är det -- det är inget märkligt som pågår här. Vad som är överraskande är om något hur ofta lagen om total sannolikhet är användbar, vilket vi kommer se i senare exempel.}
 \end{example}
+
+\section{Unionsbegränsningar, med tillämpning på Ramseytalen}
+
+Vi hade kunnat ge hela detta avsnittet av kursen med enbart exempel om kulor av olika färger i olika urnor -- av någon anledning är det det första exemplet som dyker upp i de flesta probabilisters huvud. Låt oss undvika det, och istället ge ett lite mer intressant exempel.
+
+Vi börjar med att påminna oss om ett resultat vi bevisade tidigare, bara omklätt i probabilistisk skrud:
+
+\begin{lemma}[Inklusion-exklusion]
+    Det gäller, för varje samling av händelser $A_1, A_2, \ldots, A_n$, att
+    $$\Prob{\bigcup_{i=1}^n A_i} = \sum_{k=1}^{n} (-1)^{k+1}\sum_{\substack{I \subseteq [n]\\\abs{I} = k}} \Prob{\bigcap_{i\in I} A_i}.$$
+
+    Så specifikt har vi för varje par av händelser $A$ och $B$ att
+    $$\Prob{A \cup B} = \Prob{A} + \Prob{B} - \Prob{A \cap B}.$$
+
+    \begin{proof}
+        Vi utelämnar det, eftersom det är så snarlikt till det kombinatoriska fallet vi redan bevisat.
+    \end{proof}
+\end{lemma}
+
+Låt oss nu introducera ett oerhört potent lemma, som ändock är väldigt enkelt:
+
+\begin{lemma}[Unionsbegränsning]\label{union_bound}
+    Antag att vi har en samling av händelser $A_1, A_2, \ldots, A_k$. Vi är intresserade av sannolikheten att \emph{någon} av händelserna inträffar, alltså sannolikheten för deras \emph{union}. Det gäller att
+    $$\Prob{\bigcup_{i=1}^k A_i} \leq \sum_{i=1}^{k} \Prob{A_i}.$$
+
+    \begin{proof}
+        Inklusion-exklusion ger oss att
+        $$\Prob{\bigcup_{i=1}^k A_i} = \sum_{i=1}^{k} \Prob{A_i} - \left(\sum_{k=2}^{n} (-1)^{k}\sum_{\substack{I \subseteq [n]\\\abs{I} = k}} \Prob{\bigcap_{i\in I} A_i}\right)$$
+        och vi kommer ihåg att de extra termerna, som vi stoppat in i ett minustecken, är en korrektion för att vi råkat räkna punkterna i snitten mellan $A_i$ och $A_j$ för många gånger, så alltså måste vi göra höger led större om vi stryker den korrektionen. Alltså har vi vår sökta olikhet.
+    \end{proof}
+\end{lemma}
 
 \section{Övningar}
 
