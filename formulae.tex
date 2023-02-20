@@ -99,6 +99,20 @@ I detta dokument ligger en samling av viktiga resultat och räkneregler, sammanf
   Fixt $n$, $a_k = \frac{n!}{(n-k)!}$ & $(1 + x)^n$
 \end{tabularx}
 
+\section{Sannolikhetsteori}
+
+\begin{lemma}
+  Det gäller för alla händelser $A$ och $B$ att
+  \begin{itemize}
+      \item per definition är $\Prob{A} = \sum_{\omega \in A} \mu(\omega)$,
+      \item så $\Prob{A^c} = 1 - \Prob{A}$,
+      \item och om $A$ och $B$ har tomt snitt, $A\cap B = \emptyset$, så är $\Prob{A \cup B} = \Prob{A} + \Prob{B}$,
+      \item och om de inte nödvändigtvis har tomt snitt har vi att
+      $$\Prob{A \cup B} = \Prob{A} + \Prob{B} - \Prob{A \cap B}.$$
+      \item $\Prob{A \cap B} = \Prob{A \given B}\Prob{B}.$
+  \end{itemize}
+\end{lemma}
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 

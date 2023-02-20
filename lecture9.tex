@@ -168,6 +168,20 @@ Rent konkret gör vi detta med följande definition:
     Alltså: Om vi vet fördelningen mellan de olika färgerna i urnan (sannolikheterna för $B_r$, $B_g$, och $B_b$) och vi vet hur stor andel av varje given färg som är glaskulor, kan vi räkna ut hur stor andel av alla kulor som är av glas.\sidenote[][]{Som vi formulerat det här är det ju oerhört oöverraskande att vi kan göra det. Så är det -- det är inget märkligt som pågår här. Vad som är överraskande är om något hur ofta lagen om total sannolikhet är användbar, vilket vi kommer se i senare exempel.}
 \end{example}
 
+Låt oss, innan vi går vidare, ge några basala räkneregler för sannolikheter, som sammanfattning av vad vi sett hittills:
+
+\begin{lemma}
+    Det gäller för alla händelser $A$ och $B$ att
+    \begin{itemize}
+        \item per definition är $\Prob{A} = \sum_{\omega \in A} \mu(\omega)$,
+        \item så $\Prob{A^c} = 1 - \Prob{A}$,
+        \item och om $A$ och $B$ har tomt snitt, $A\cap B = \emptyset$, så är $\Prob{A \cup B} = \Prob{A} + \Prob{B}$,
+        \item och om de inte nödvändigtvis har tomt snitt har vi att
+        $$\Prob{A \cup B} = \Prob{A} + \Prob{B} - \Prob{A \cap B}.$$
+        \item $\Prob{A \cap B} = \Prob{A \given B}\Prob{B}.$
+    \end{itemize}
+  \end{lemma}
+
 \section{Unionsbegränsningar, med tillämpning på Ramseytalen}
 
 Vi hade kunnat ge hela detta avsnittet av kursen med enbart exempel om kulor av olika färger i olika urnor -- av någon anledning är det det första exemplet som dyker upp i de flesta probabilisters huvud. Låt oss undvika det, och istället ge ett lite mer intressant exempel.
