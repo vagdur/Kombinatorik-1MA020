@@ -231,7 +231,7 @@ Vår första tillämpning är på Ramseytalen, som vi redan sett innan som ett e
 
 Vi konstaterade när vi först introducerade dessa tal att det är svårt att bevisa saker om dem bortom att de är ändliga, vilket är vad vi gjorde i en övning då. Nu har vi kommit långt nog att vi kan bevisa en faktisk olikhet för dem.
 
-\begin{proposition}
+\begin{proposition}\label{prop_ramsey_bound}
     Om
     $$\binom{n}{k}2^{1-\binom{k}{2}} < 1$$
     så är $R(k,k) > n$. Således är
@@ -284,6 +284,35 @@ Vi konstaterade när vi först introducerade dessa tal att det är svårt att be
     $$\sum_{i=1}^{k} \Prob{A_i} = \sum_{\omega \in \Omega} \abs{\left\{i: \omega \in A_i\right\}}\,\mu(\omega).$$
 
     Använd detta för att ge ett alternativt bevis för Lemma \ref{union_bound}.
+\end{xca}
+
+\begin{xca}
+    Vi har $n$ stycken fotbollslag som skall spela i en turnering mot varandra -- en väldigt utmattande sådan, eftersom varje lag spelar mot varje annat lag en gång, och oavgjorda matcher avgörs på straffar.
+
+    Vi kan tänka oss resultatet av denna turnering som ett sätt att ge varje kant i $K_n$ en \emph{riktning} -- kanten pekar från vinnaren till förloraren.
+
+    Vi säger att en turnering har \emph{egenskap $S_k$} om det, för varje samling av $k$ lag, finns ett annat lag som vann mot alla $k$ lagen.
+
+    Tänk er nu att dessa alla är amatörlag, som är precis lika usla på fotboll -- vinnaren i varje match är helt slumpmässig, och alla matcher är helt oberoende av varandra. Vi helt enkelt singlar en slant för att avgöra vem som vinner.
+
+    \textbf{Deluppgift a:} Givet en viss mängd $K$ bestående av $k$ stycken lag, låt $A_K$ vara händelsen att det inte finns något annat lag som slår alla lagen i $K$. Beräkna $\Prob{A_K}$.
+
+    \textbf{Deluppgift b:} Skriv upp händelsen att vår turnering \emph{inte} har egenskap $S_k$, i termer av händelserna $A_K$. Tillämpa en unionsbegränsning på sannolikheten för det här uttrycket, och använd vad ni fick i deluppgift a för att ge ett enkelt uttryck för en övre begränsning på denna sannolikhet.
+
+    \textbf{Deluppgift c:} Använd vad ni gjort i tidigare delar av denna uppgift för att ge ett resultat i stil med Proposition \ref{prop_ramsey_bound} om när det finns turneringar med egenskap $S_k$.
+\end{xca}
+
+\begin{xca}
+    En grupp av sju studenter i en kombinatorikkurs, Anton, Birgitta, Chiara, Damiano, Elisabet, och Francesco\sidenote[][]{Det var ovanligt många utbytesstudenter från Italien i just denna klassen.}, är vänner. Totalt är det $35$ studenter i klassen.
+
+    Deras föreläsare är betydligt elakare än mig, och väljer slumpmässigt ut tre studenter att gå fram och räkna en uppgift vid tavlan.
+
+    \begin{enumerate}
+        \item Vad är sannolikheten att Anton blir vald?
+        \item Vad är sannolikheten att Birgitta blir vald, och de andra två som blir valda inte är med i deras lilla grupp?
+        \item Vad är sannolikheten att exakt två personer ur vängruppen blir valda?
+        \item Givet att Francesco blivit vald, vad är sannolikheten att alla tre som valts ut är ur vängruppen?
+    \end{enumerate}
 \end{xca}
 
 %\bibliography{references}
