@@ -315,6 +315,30 @@ Vi konstaterade när vi först introducerade dessa tal att det är svårt att be
     \end{enumerate}
 \end{xca}
 
+\begin{xca}
+    Antag att du singlar en slant $n$ stycken gånger -- men till skillnad från våra vanliga idealiserade mynt är det här myntet lite imperfekt, så sannolikheten att det blir krona ges av $p$, för något $p \in [0,1]$.
+
+    Vad är sannolikheten att du får precis $k$ stycken krona?\sidenote[][]{Ledtråd: Betrakta ditt utfallsrum som samlingen av ord av längd $n$ ur alfabetet $\{\text{krona},\text{klave}\}$. Vad bör $\mu(\omega)$ vara för varje givet $\omega$?}
+\end{xca}
+
+\begin{xca}[Svår, frivillig på inlämningsuppgiften]
+    Antag att vi har en samling av händelser $A_1, A_2, \ldots, A_n$, och låt, för varje $1 \leq k \leq n$,
+    $$\chi_k = \sum_{j=1}^{k} (-1)^{j+1}\sum_{\substack{I \subseteq [n]\\\abs{I} = j}} \Prob{\bigcap_{i\in I} A_i}.$$
+    
+    Alltså blir
+    $$\chi_1 = \sum_{i=1}^{n} \Prob{A_i}$$
+    och vad vår unionsbegränsning säger är att
+    $$\Prob{\bigcup_{i=1}^n A_i} \leq \chi_1$$
+    och inklusion-exklusion är påståendet att
+    $$\Prob{\bigcup_{i=1}^n A_i} = \chi_n.$$
+
+    Bevisa att vi i allmänhet har att
+    $$\Prob{\bigcup_{i=1}^n A_i} \leq \chi_k$$
+    för udda $k$ och
+    $$\Prob{\bigcup_{i=1}^n A_i} \geq \chi_k$$
+    för jämna $k$.
+\end{xca}
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
