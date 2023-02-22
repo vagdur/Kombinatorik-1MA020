@@ -79,6 +79,7 @@
 \newcommand{\ind}[1]{\mathds{1}_{\left\{#1\right\}}}
 \newcommand{\indSet}[1]{\mathds{1}_{#1}}
 \newcommand{\given}{\ \middle|\ }
+\newcommand{\uniformIn}{\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny u}}}{\in}}}
 
 \newcommand{\e}{\mathfrak{e}}
 \newcommand{\Pset}{\mathcal{P}}
