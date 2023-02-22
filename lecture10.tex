@@ -52,9 +52,11 @@ Vi använder den teori vi byggt upp för att bevisa några fler resultat inom ko
 Hittills är vad vi har sett bara hälften av vad man intuitivt tänker ingår i sannolikhetsteorin -- vi har diskuterat slumpmässiga \emph{händelser}, som antingen inträffar eller inte, men vi har inte definierat slumpmässiga tal. Frågan om ifall det kommer att regna imorgon eller inte kan vi modellera i vår formalism, men inte frågan om hur många millimeter det kommer regna.
 
 \begin{definition}
-    Givet ett sannolikhetsrum $(\Omega, \mu)$ är en \emph{slumpvariabel} $X$ en funktion $X: \Omega \to \R$. Givet varje utfall tar alltså vår slumpvariabel ett visst värde, och givet varje\sidenote[][]{Detta är lite av en lögn i det allmänna fallet, eftersom det finns \emph{väldigt} skumma delmängder till $\R$, men så länge vi tänker oss våra diskreta sannolikhetsrum är det sant.} delmängd $A\subseteq \R$ blir $X\in A$ en händelse -- specifikt är det händelsen
+    Givet ett sannolikhetsrum $(\Omega, \mu)$ är en \emph{slumpvariabel} $X$ som tar värden i $V$ en funktion $X: \Omega \to V$. Givet varje utfall tar alltså vår slumpvariabel ett visst värde, och givet varje\sidenote[][]{Detta är lite av en lögn i det allmänna fallet, eftersom det kan finnas \emph{väldigt} skumma delmängder till $V$, men så länge vi tänker oss våra diskreta sannolikhetsrum är det sant.} delmängd $A\subseteq V$ blir $X\in A$ en händelse -- specifikt är det händelsen
     $$\left\{\omega \in \Omega \given X(\omega) \in A\right\} = X^{-1}(A).$$
 \end{definition}
+
+Det allra vanligaste fallet är när $V = \R$ eller någon delmängd till $\R$. I många introtexter om sannolikhetsteori \emph{definierar} man att slumpvariabler tar värden i $\R$ -- men eftersom vi sysslar med kombinatorik kommer vi att vilja ha mer exotiska slumpvariabler, som slumpmässiga permutationer eller slumpmässiga mängder.
 
 \begin{example}
     Låt oss återbesöka vårt exempel med ett tärningskast. Vi konstaterade att vi kan ta $\Omega = \{1,2,3,4,5,6\}$ och $\mu(\omega) = 1/6$ för alla $\omega \in \Omega$.
@@ -65,7 +67,7 @@ Hittills är vad vi har sett bara hälften av vad man intuitivt tänker ingår i
 Vi vet att om vi slår vår tärning många gånger kommer vi i genomsnitt att få upp $3.5$. Hur gör vi den intuitionen rigorös?
 
 \begin{definition}
-    \emph{Väntevärdet} av en slumpvariabel $X$ ges av
+    \emph{Väntevärdet} av en slumpvariabel $X$ som tar värden i $\R$ ges av
     $$\E{X} = \sum_{x \in X(\Omega)} x \Prob{X = x}.$$
 
     Vi tar alltså summan över alla tänkbara värden $x$ för $X$, multiplicerar $x$ med sannolikheten att $X$ faktiskt blir $x$, och summerar. I specialfallet där $X$ bara tar värden $0, 1, 2, \ldots$ blir alltså formeln
