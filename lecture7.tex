@@ -480,6 +480,28 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
     Bevisa att antalet uppdelningar av en konvex polygon med $n+2$ sidor i trianglar, såsom vi diskuterade i Exempel \ref{example_polygons}, räknas av Catalantalen.\sidenote[][]{Ledtråd: Tänk kombinatoriskt, och se att dessa också lyder vår rekursion.}
 \end{xca}
 
+\newpage
+\subsection{Övning 5}\hfill\\\par
+\noindent Vi fick en väldigt bra ledtråd, för att sätta den i perspektiv behöver vi påminna oss om att vi kunde räkna antalet Dyck-stigar med rekursion \textit{och} med Catalan-tal.
+\par\bigskip
+\noindent Catalan-talen kan alltså skrivas på formen
+\begin{equation*}
+  \begin{gathered}
+    C_0 = 1\qquad C_{n+1} = \sum_{k=0}^{n}C_{k}C_{n-k}
+  \end{gathered}
+\end{equation*}\par
+\noindent Då behöver vi bara hitta ett sätt att räkna partitionerna på liknande vis!
+\par\bigskip
+\noindent Låt $I(n)$ vara antalet icke-korsande partitioner för $[n]$.\par
+\noindent För $I(0)$ (tomma mängden) finns det en mängd som inte korsar andra partitioner, så $I(0) = 1$\par
+\noindent Catalan-talens rekursion har en $C_{n-k}$ del där $n$ är fixerad medan $k$ varierar. För $I(n+1)$ blir vi lite kreativa. Vi tittar på den partitionen som innehåller $n+1$, och låter $k$ vara det minsta talet i den partitionen. Vi kan nu partitionera $[n+1]$ i två delar, $[k-1]$ och resten $\left\{k,k+1,\hdots,n+1\right\}$. Partitionen $[k-1]$ har då $I(k-1)$ icke-korsande partitioner. $k$ och $n+1$ är i samma partition per definition, så det finns kvar $I(n+1-k)$ sätt att forma icke-korsande partitioner. Då får vi:
+\begin{equation*}
+  \begin{gathered}
+    I(n+1) = \sum_{k=1}^{n+1}I(k-1)I(n+1-k) = \sum_{j=0}^{n}I(j)I(n-k)
+  \end{gathered}
+\end{equation*}\par
+\noindent Detta är precis Catalan-talen
+
 \bibliography{references}
 \bibliographystyle{plainnat}
 
