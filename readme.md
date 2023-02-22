@@ -17,6 +17,7 @@ Föreläsningsanteckningar för våra föreläsningar kommer också att länkas 
 7. [Föreläsning sju: Dyck-stigar och Catalantal](https://vagdur.github.io/Kombinatorik-1MA020/lecture7.pdf)
 8. [Föreläsning åtta: Grafer och träd](https://vagdur.github.io/Kombinatorik-1MA020/lecture8.pdf)
 8. [Föreläsning nio: Diskret sannolikhetsteori](https://vagdur.github.io/Kombinatorik-1MA020/lecture9.pdf)
+8. [Föreläsning tio: Diskret sannolikhetsteori, fortsättning](https://vagdur.github.io/Kombinatorik-1MA020/lecture10.pdf) (Work In Progress)
 
 # Annat material för kursen
 

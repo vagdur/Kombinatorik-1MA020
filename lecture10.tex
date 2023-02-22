@@ -1,0 +1,131 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Föreläsning 10: Diskret sannolikhetsteori, fortsättning $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
+
+%\date{20 februari 2023}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+\include{mathcommands.extratex}
+
+\begin{document}
+
+\definecolor{darkgreen}{rgb}{0.0627, 0.4588, 0.1451}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+Vi fortsätter att diskutera diskret sannolikhetsteori, och introducerar slumpvariabler och deras väntevärden.
+
+Vi använder den teori vi byggt upp för att bevisa några fler resultat inom kombinatoriken.
+\end{abstract}
+
+\section{Slumpvariabler}
+
+Hittills är vad vi har sett bara hälften av vad man intuitivt tänker ingår i sannolikhetsteorin -- vi har diskuterat slumpmässiga \emph{händelser}, som antingen inträffar eller inte, men vi har inte definierat slumpmässiga tal. Frågan om ifall det kommer att regna imorgon eller inte kan vi modellera i vår formalism, men inte frågan om hur många millimeter det kommer regna.
+
+\begin{definition}
+    Givet ett sannolikhetsrum $(\Omega, \mu)$ är en \emph{slumpvariabel} $X$ en funktion $X: \Omega \to \R$. Givet varje utfall tar alltså vår slumpvariabel ett visst värde, och givet varje\sidenote[][]{Detta är lite av en lögn i det allmänna fallet, eftersom det finns \emph{väldigt} skumma delmängder till $\R$, men så länge vi tänker oss våra diskreta sannolikhetsrum är det sant.} delmängd $A\subseteq \R$ blir $X\in A$ en händelse -- specifikt är det händelsen
+    $$\left\{\omega \in \Omega \given X(\omega) \in A\right\} = X^{-1}(A).$$
+\end{definition}
+
+\begin{example}
+    Låt oss återbesöka vårt exempel med ett tärningskast. Vi konstaterade att vi kan ta $\Omega = \{1,2,3,4,5,6\}$ och $\mu(\omega) = 1/6$ för alla $\omega \in \Omega$.
+
+    Vi kan naturligt betrakta vårt tärningskast som en slumpvariabel -- i detta fall blir det en mycket enkel funktion, $X: \Omega \hookrightarrow \R$ skickar helt enkelt varje $\omega$ på sig självt.
+\end{example}
+
+Vi vet att om vi slår vår tärning många gånger kommer vi i genomsnitt att få upp $3.5$. Hur gör vi den intuitionen rigorös?
+
+\begin{definition}
+    \emph{Väntevärdet} av en slumpvariabel $X$ ges av
+    $$\E{X} = \sum_{x \in X(\Omega)} x \Prob{X = x}.$$
+
+    Vi tar alltså summan över alla tänkbara värden $x$ för $X$, multiplicerar $x$ med sannolikheten att $X$ faktiskt blir $x$, och summerar. I specialfallet där $X$ bara tar värden $0, 1, 2, \ldots$ blir alltså formeln
+    $$\E{X} = \sum_{k=0}^{\infty} k\Prob{X = k}.$$
+\end{definition}
+
+\begin{example}
+    Så om vi åter tar exemplet med tärningskastet så blir alltså väntevärdet
+    \begin{align*}
+        \E{X} &= 1\Prob{X = 1} + 2\Prob{X = 2} + \ldots + 6\Prob{X = 6}\\
+        &= \frac{1 + 2 + 3 + 4 + 5 + 6}{6} = \frac{7}{3} = 3.5
+    \end{align*}
+    precis som vi förväntade oss.
+\end{example}
+
+Ibland är det mer användbart att skriva definitionen av väntevärde på en alternativ form:
+
+\begin{lemma}\label{lemma_expectation_as_sum_over_omegas}
+    Det gäller att
+    $$\E{X} = \sum_{\omega \in \Omega} X(\omega)\mu(\omega).$$
+
+    \begin{proof}
+        Vi kan skriva
+        \begin{align*}
+            \E{X} &= \sum_{x \in X(\Omega)} x \Prob{X = x}\\
+            &= \sum_{x \in X(\Omega)} x\left(\sum_{\omega \in \Omega: X(\omega) = x} \mu(\omega)\right)\\
+            &= \sum_{x \in X(\Omega)} \sum_{\omega \in \Omega: X(\omega) = x} x\mu(\omega)\\
+            &= \sum_{x \in X(\Omega)} \sum_{\omega \in \Omega: X(\omega) = x} X(\omega)\mu(\omega)\\
+            &= \sum_{\omega \in \Omega} X(\omega)\mu(\omega).
+        \end{align*}
+    \end{proof}
+\end{lemma}
+
+Eftersom vi definierat slumpvariabler som att de helt enkelt är funktioner från $\Omega$ kan vi göra all den algebra vi vanligen kan på funktioner in i $\R$. Till exempel är det, givet två slumpvariabler $X$ och $Y$, helt väldefinierat att skriva $X + Y$, och det betyder precis vad vi förväntar oss att det skall betyda -- vi slumpar ett $X$ och ett $Y$ och sedan adderar vi dem med varandra.
+
+När vi nu har introducerat addition av slumpvariabler så kan vi bevisa vad som, i min mening, är en av de allra mest användbara satserna i hela matematiken.\sidenote[][]{Jag är så klart oerhört partisk, eftersom just gränslandet mellan kombinatorik och sannolikhetsteori är mitt område -- men det är onekligen ett otroligt användbart resultat.}
+
+\begin{lemma}[Väntevärdets linjäritet]
+    Givet två slumpvariabler $X$ och $Y$ och två reella tal $a$ och $b$ gäller det att
+    $$\E{aX + bY} = a\E{X} + b\E{Y}.$$
+
+    Väntevärdet är alltså linjärt, som funktion från rummet av slumpvariabler in i $\R$.\sidenote[][]{Detta sätt att formulera det skrapar lite på ytan av en väldigt djup teori -- väntevärden är nämligen ``bara'' integraler mot sannolikhetsmått, och samlingen av funktioner från $\Omega$ in i $\R$ blir ju ett vektorrum. Vi kan ge det vektorrummet en inre produkt genom att skriva $\langle X,Y\rangle = \E{XY}$, och vi har börjat med funktionalanalys.
+    
+    Men detta är ju en kurs i kombinatorik, så att utforska detta får vänta till en framtida kurs för er.}
+
+    \begin{proof}
+        Vi använder den alternativa formeln för väntevärde vi fann i Lemma \ref{lemma_expectation_as_sum_over_omegas} och skriver
+        \begin{align*}
+            \E{aX + bY} &= \sum_{\omega \in \Omega} (aX + bY)(\omega)\mu(\omega)\\
+            &= \sum_{\omega \in \Omega} (aX(\omega) + bY(\omega))\mu(\omega)\\
+            &= a\sum_{\omega \in \Omega} X(\omega)\mu(\omega) + b\sum_{\omega \in \Omega} Y(\omega)\mu(\omega)\\
+            &= a\E{X} + b\E{Y}.
+        \end{align*}
+    \end{proof}
+\end{lemma}
+
+\section{Övningar}
+
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}
