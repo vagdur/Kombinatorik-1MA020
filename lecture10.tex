@@ -135,6 +135,24 @@ När vi nu har introducerat addition av slumpvariabler så kan vi bevisa vad som
     \end{proof}
 \end{lemma}
 
+För att göra det här verkligt användbart behöver vi konceptet med indikatorvariabler, som vi introducerade när vi bevisade inklusion-exklusion.
+
+\begin{proposition}
+    För en händelse $A$ blir dess indikatorfunktion $\indSet{A}$, som ges av att $\indSet{A}(\omega) = 1$ om $\omega \in A$ och noll annars, en slumpvariabel.\sidenote[][]{Det är ju en funktion från utfall till reella tal -- per definition är det en slumpvariabel. Vi behöver bara känna igen att den är det.}
+
+    Det gäller att
+    $$\Prob{A} = \E{\indSet{A}}.$$
+
+    \begin{proof}
+        Per definition har vi att
+        \begin{align*}
+            \E{\indSet{A}} &= 0\cdot\Prob{\indSet{A} = 0} + 1\cdot\Prob{\indSet{A} = 1}\\
+            &= \sum_{\omega: \indSet{A}(\omega) = 1} \mu(\omega)\\
+            &= \sum_{\omega \in A} \mu(\omega) = \Prob{A}.
+        \end{align*}
+    \end{proof}
+\end{proposition}
+
 \section{Övningar}
 
 
