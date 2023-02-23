@@ -158,6 +158,24 @@ För att göra det här verkligt användbart behöver vi konceptet med indikator
     \end{proof}
 \end{proposition}
 
+\section{Räkneregler för slumpvariabler}
+
+Vi sammanfattar vad vi lärt oss om slumpvariabler hittills i följande räkneregler:\sidenote[][]{Den här biten skippar vi på föreläsningen -- den ligger här för att vara behjälplig som sammanfattning och när man gör övningarna. Den finns också i vår samling av formler och räkneregler.}
+
+\begin{lemma}
+    Om $(\Omega, \mu)$ är något sannolikhetsrum, $A \subseteq \Omega$ någon händelse, och $X, Y: \Omega \to \R$ samt $Z: \Omega \to V$ är slumpvariabler som tar värden i $\R$ och i någon godtycklig mängd $V$, så gäller att:
+    \begin{enumerate}
+        \item $$\E{X} = \sum_{x \in X(\Omega)} x \Prob{X = x} = \sum_{\omega \in \Omega} X(\omega)\mu(\omega).$$
+        \item För alla $a, b \in \R$ så är
+        $$\E{aX + bY} = a\E{X} + b\E{Y}.$$
+        Väntevärdet är alltså en linjär funktional.
+        \item $$\Prob{A} = \E{\indSet{A}}.$$
+        \item Om $X(\omega) \leq C$ för varje $\omega$, eller ekvivalent om $\Prob{X \leq C} = 1$, så är $\E{X} \leq C$.
+        \item Om $Z$ är likformigt fördelad på $V$ så gäller det för varje delmängd $W \subseteq V$ att
+        $$\Prob{Z \in W} = \frac{\abs{W}}{\abs{V}}.$$
+    \end{enumerate}
+\end{lemma}
+
 \section{Övningar}
 
 
