@@ -78,7 +78,9 @@ Vårt tärningskast är ett specialfall av ett mer allmänt fenomen, som det kom
 Vi vet att om vi slår vår tärning många gånger kommer vi i genomsnitt att få upp $3.5$. Hur gör vi den intuitionen rigorös?
 
 \begin{definition}
-    \emph{Väntevärdet} av en slumpvariabel $X$ som tar värden i $\R$ ges av
+    \emph{Väntevärdet} av en slumpvariabel $X$ som tar värden i $\R$ ges av\sidenote[][]{Notera att detta är en summa över \emph{alla värden som $X$ kan tänkas ta} -- eftersom vi antagit att $\Omega$ är ändligt eller uppräkneligt så kommer detta vara en summa över ändligt eller uppräkneligt många summander, vilket är okej.
+    
+    Hade vi velat modellera en \emph{kontinuerlig} slumpvariabel -- som till exempel en normalfördelning, som nog många sett redan -- som kan ta vilket reellt tal som helst som värde, hade vi behövt definiera detta som en integral, inte en summa. Att slippa ge definitioner som fungerar i dessa fall är en av anledningarna till varför vi begränsar oss till bara diskret sannolikhetsteori.}
     $$\E{X} = \sum_{x \in X(\Omega)} x \Prob{X = x}.$$
 
     Vi tar alltså summan över alla tänkbara värden $x$ för $X$, multiplicerar $x$ med sannolikheten att $X$ faktiskt blir $x$, och summerar. I specialfallet där $X$ bara tar värden $0, 1, 2, \ldots$ blir alltså formeln
@@ -97,7 +99,7 @@ Vi vet att om vi slår vår tärning många gånger kommer vi i genomsnitt att f
 Ibland är det mer användbart att skriva definitionen av väntevärde på en alternativ form:
 
 \begin{lemma}\label{lemma_expectation_as_sum_over_omegas}
-    Det gäller att
+    Det gäller att\sidenote[][]{Det här fungerar bara för att vi har antagit att våra sannolikhetsrum är ändliga eller uppräkneligt oändliga, så vi kan skriva våra sannolikheter som summor. I det mer allmänna fallet hade vi behövt skriva en integral mot sannolikhetsmåttet, och det kräver betydligt mer avancerad analys än vad vi kan.}
     $$\E{X} = \sum_{\omega \in \Omega} X(\omega)\mu(\omega).$$
 
     \begin{proof}
