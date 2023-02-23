@@ -158,6 +158,64 @@ För att göra det här verkligt användbart behöver vi konceptet med indikator
     \end{proof}
 \end{proposition}
 
+\section{Sperners lemma}
+
+Låt oss nu ta vad vi har lärt oss och tillämpa det på ett faktiskt kombinatoriskt resultat.
+
+\begin{definition}
+    En samling $\mathcal{F}$ av delmängder till $[n]$ kallas för en \emph{anti-kedja} ifall det för varje par $F, G \in \mathcal{F}$ varken gäller att $F \subset G$ eller $G \subset F$.
+\end{definition}
+
+Hur stor kan en anti-kedja vara? Ett enkelt sätt att skapa sig en sådan är att ta alla delmängder av storlek $k$ till $[n]$ för något $k$. Att dessa inte kan vara delmängder till varandra är uppenbart. Att det val av $k$ som gör denna anti-kedja som störst blir $\floor{\frac{n}{2}}$ är inte allt för svårt att se.\sidenote[][]{Vi hade också kunnat välja $\ceil{\frac{n}{2}}$, det ger samma storlek.} Är det möjligt att hitta en ännu större genom att ha med delmängder av olika storlekar? Sperners lemma säger oss att svaret är nej.
+
+\begin{lemma}[Sperners lemma]
+    För varje anti-kedja $\mathcal{F}$ i $[n]$ gäller det att
+    $$\abs{\mathcal{F}} \leq \binom{n}{\floor{\frac{n}{2}}}.$$
+
+    \begin{proof}
+        Vi tar en likformigt slumpmässig permutation $\sigma$ av $[n]$, och låter $I$ vara mängden av $i$ sådana att
+        $$\{\sigma(1), \sigma(2), \ldots, \sigma(i)\} \in \mathcal{F}.$$
+
+        Det är enkelt att se att $I$ innehåller antingen noll eller ett element -- om den innehöll både $i$ och $j$, med $i < j$, vore ju
+        $$\{\sigma(1), \sigma(2), \ldots, \sigma(i)\} \subset \{\sigma(1), \sigma(2), \ldots, \sigma(i), \sigma(i+1), \ldots, \sigma(j)\},$$
+        vilket skulle motsäga att $\mathcal{F}$ är en antikedja.
+
+        Låt oss nu studera slumpvariabeln $X = \abs{I}$. Att vi vet att $I$ bara kan ha noll eller ett element ger oss omedelbart att $\E{X} \leq 1$,\sidenote[][]{Detta kan vi göra till ett allmänt lemma:
+            \begin{lemma}
+                Om $X(\omega) \leq C$ för varje $\omega \in \Omega$ gäller det att $\E{X} \leq C$.
+                \begin{proof}
+                    Vi kan räkna
+                    \begin{align*}
+                        \E{X} &= \sum_{\omega \in \Omega} X(\omega)\mu(\omega)\\
+                        &\leq \sum_{\omega \in \Omega} C\mu(\omega)\\
+                        &= C\sum_{\omega \in \Omega} \mu(\omega) = C.
+                    \end{align*}
+                \end{proof}
+            \end{lemma}
+        } men låt oss studera detta väntevärde också på ett annat sätt.
+
+        Vi kan räkna att\sidenote[][]{Här använder vi den kortare notationen $\ind{i \in I}$ för att beteckna $\ind{\omega \in \Omega: i \in I(\omega)}$.}
+        \begin{align*}
+            \E{X} = \E{\abs{I}} &= \E{\sum_{i=1}^{n} \ind{i \in I}}\\
+            &= \sum_{i=1}^{n} \E{\ind{i \in I}} = \sum_{i=1}^{n} \Prob{i \in I}.
+        \end{align*}
+
+        Vad är sannolikheten att $i$ ligger i $I$? Att $i$ ligger i $I$ betyder att $\{\sigma(1), \sigma(2), \ldots, \sigma(i)\} \in \mathcal{F}$, per definition. Så vad vi behöver förstå är den slumpmässiga \emph{mängden} 
+        $$U_i = \{\sigma(1), \sigma(2), \ldots, \sigma(i)\}.$$
+
+        Eftersom vi valde $\sigma$ som en slumpmässig permutation finns det ingen anledning till varför något tal skulle vara mer sannolikt än något annat att dyka upp i denna mängd. $U_i$ är alltså, av symmetriskäl, ett likformigt slumpmässigt element ur $\binom{[n]}{i}$, mängden av delmängder av storlek $i$.
+
+        Vad är sannolikheten att $U_i$ faller i $\mathcal{F}$? Jo, om vi låter $\mathcal{F}_i$ beteckna samlingen av element i $\mathcal{F}$ av storlek $i$ vet vi att $\mathcal{F}_i \subseteq \binom{[n]}{i}$  och $U_i \uniformIn \binom{[n]}{i}$, så vi måste ha att
+        $$\Prob{U_i \in \mathcal{F}_i} = \frac{\abs{\mathcal{F}_i}}{\binom{n}{i}}.$$
+
+        Så samlar vi ihop vad vi har listat ut hittills i ett enda uttryck, och använder olikheten\sidenote[][]{Vi har strikt sett inte faktiskt bevisat den någon gång, men det bör vara någorlunda enkelt att övertyga sig själv om att den är sann.} $\binom{n}{\floor{\frac{n}{2}}} \geq \binom{n}{i}$ för alla $i$, har vi att
+        $$1 \geq \E{X} = \sum_{i=1}^{n} \Prob{i \in I} = \sum_{i=1}^{n} \frac{\abs{\mathcal{F}_i}}{\binom{n}{i}} \geq \sum_{i=1}^{n} \frac{\abs{\mathcal{F}_i}}{\binom{n}{\floor{\frac{n}{2}}}}$$
+        så multiplicerar vi bägge sidorna av detta med $\binom{n}{\floor{\frac{n}{2}}}$ får vi att
+        $$\binom{n}{\floor{\frac{n}{2}}} \geq \sum_{i=1}^{n} \abs{\mathcal{F}_i} = \abs{\mathcal{F}}$$
+        vilket är precis Sperners lemma, som vi ville bevisa.
+    \end{proof}
+\end{lemma}
+
 \section{Räkneregler för slumpvariabler}
 
 Vi sammanfattar vad vi lärt oss om slumpvariabler hittills i följande räkneregler:\sidenote[][]{Den här biten skippar vi på föreläsningen -- den ligger här för att vara behjälplig som sammanfattning och när man gör övningarna. Den finns också i vår samling av formler och räkneregler.}
