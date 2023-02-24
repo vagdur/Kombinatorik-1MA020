@@ -482,6 +482,385 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
 \end{xca}
 
 \newpage
+
+\begin{ans}
+    Låt beteckna antalet uppdelningar av ett konvext polygon av $n+2$ hörn i trianglar med $p_n$. Vi vill finna en korrelation mellan trianguleringar av konvexa polygoner av $n+2$ hörn och trianguleringar av polygoner av $n-k+1$ respektive $k$ hörn; alltså en korrelation mellan $p_n$, $p_{n-k+1}$ och $p_{k-2}$. Vi definierar $p_0 = 1$ (varför kommer visa sig strax). Detta ger att $k \in \{2, 3, \ldots, n-1\}$\sidenote[][]{Kom ihåg att $k-2$ i $p_{k-2}$ måste vara större än $0$ och likaså $n+1-k$, alltså är $2$ minsta möjliga värde på $k$ och $n-1$ största möjliga värde.}.
+    
+    Följande resonemang kommer för enkelhetens skull att utföras för ett konvext polygon av $6+2 = 8$ hörn, alltså en oktagon:
+    
+    \begin{figure}[h]
+        \centering
+            \begin{tikzpicture}
+            \centering
+            \node[name=P,regular polygon, regular polygon sides=8, draw, minimum width=3cm] at (0,0) {};
+        \end{tikzpicture}
+    \end{figure}
+
+    \vspace{4mm}
+    
+    Vi söker därmed en korrelation mellan antalet trianguleringar av oktagoner, $p_6$, och antalet trianguleringar av $(7-k)$-hörningar och $k$-hörningar, alltså $p_{5-k}$ respektive $p_{k-2}$.
+    
+    Eftersom:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \node[name=P,regular polygon, regular polygon sides=8, draw, minimum width=3cm] at (0,0) {};
+            \node[scale=0.5mm] at (2, 0) {\&};
+            \node[name=S,regular polygon, regular polygon sides=8, draw, minimum width=3cm] at (4,0) {};
+            
+            \draw (P.corner 1) -- (P.corner 6);
+            \draw (P.corner 1) -- (P.corner 7);
+            \draw (P.corner 1) -- (P.corner 5);
+            \draw (P.corner 1) -- (P.corner 4);
+            \draw (P.corner 1) -- (P.corner 3);
+            
+            \draw (S.corner 5) -- (S.corner 2);
+            \draw (S.corner 5) -- (S.corner 3);
+            \draw (S.corner 5) -- (S.corner 1);
+            \draw (S.corner 5) -- (S.corner 8);
+            \draw (S.corner 5) -- (S.corner 7);
+        \end{tikzpicture}
+    \end{center}
+
+    \vspace{2mm}
+
+    \vspace{2mm}
+    
+    betraktas som olika uppdelningar trots att de är roterade versioner av varandra innebär detta att vi tar hänsyn till orientering. Som riktmärke markerar vi därför en speciell kant i vår oktagon:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \node[name=P,regular polygon, regular polygon sides=8, draw, minimum width=3cm] at (0,0) {};
+            \draw[color=red, line width=0.5mm] (P.corner 5) -- (P.corner 6);
+        \end{tikzpicture}
+    \end{center}
+
+    Låt också numrera alla hörn:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \node[name=P,regular polygon, regular polygon sides=8, draw, minimum width=3cm] at (0,0) {};
+            \node[] at ($ (P.corner 6) + (0, -0.3) $) {1};
+            \node[] at ($ (P.corner 7) + (0.2, -0.2) $) {2};
+            \node[] at ($ (P.corner 8) + (0.2, 0.2) $) {3};
+            \node[] at ($ (P.corner 1) + (0, 0.3) $) {4};
+            \node[] at ($ (P.corner 2) + (0, 0.3) $) {5};
+            \node[] at ($ (P.corner 3) + (-0.2, 0.2) $) {6};
+            \node[] at ($ (P.corner 4) + (-0.2, -0.2) $) {7};
+            \node[] at ($ (P.corner 5) + (0, -0.3) $) {8};
+
+            \draw[color=red, line width=0.5mm] (P.corner 5) -- (P.corner 6);
+        \end{tikzpicture}
+    \end{center}
+
+    \vspace{2mm}
+
+    Valet av $k$ kommer nu att förtydligas. Vi vill nämligen bilda en triangel inuti vår oktagon med den röda sidan som bas. Talet $k$ låter vi symbolisera vilket hörn som ska bli toppen i vår triangel; varför $k \in \{2, 3, \ldots, 7\}$ blir nu tydligare. Vi tar ett exempel där $k = 5$ för att illustrera:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \node[name=P,regular polygon, regular polygon sides=8, draw, minimum width=3cm] at (0,0) {};
+            \node[] at ($ (P.corner 6) + (0, -0.3) $) {1};
+            \node[] at ($ (P.corner 7) + (0.2, -0.2) $) {2};
+            \node[] at ($ (P.corner 8) + (0.2, 0.2) $) {3};
+            \node[] at ($ (P.corner 1) + (0, 0.3) $) {4};
+            \node[] at ($ (P.corner 2) + (0, 0.3) $) {5};
+            \node[] at ($ (P.corner 3) + (-0.2, 0.2) $) {6};
+            \node[] at ($ (P.corner 4) + (-0.2, -0.2) $) {7};
+            \node[] at ($ (P.corner 5) + (0, -0.3) $) {8};
+
+            \draw[color=red, line width=0.5mm] (P.corner 5) -- (P.corner 6);
+            \draw[color=blue] (P.corner 6) -- (P.corner 2);
+            \draw[color=blue] (P.corner 5) -- (P.corner 2);
+        \end{tikzpicture}
+    \end{center}
+
+    Två intressanta fall sker då $k = 2$ respektive då $k = 7$:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \node[name=P,regular polygon, regular polygon sides=8, draw, minimum width=3cm] at (0,0) {};
+            \node[] at ($ (P.corner 6) + (0, -0.3) $) {1};
+            \node[] at ($ (P.corner 7) + (0.2, -0.2) $) {2};
+            \node[] at ($ (P.corner 8) + (0.2, 0.2) $) {3};
+            \node[] at ($ (P.corner 1) + (0, 0.3) $) {4};
+            \node[] at ($ (P.corner 2) + (0, 0.3) $) {5};
+            \node[] at ($ (P.corner 3) + (-0.2, 0.2) $) {6};
+            \node[] at ($ (P.corner 4) + (-0.2, -0.2) $) {7};
+            \node[] at ($ (P.corner 5) + (0, -0.3) $) {8};
+
+            \node[name=S,regular polygon, regular polygon sides=8, draw, minimum width=3cm] at (5,0) {};
+            \node[] at ($ (S.corner 6) + (0, -0.3) $) {1};
+            \node[] at ($ (S.corner 7) + (0.2, -0.2) $) {2};
+            \node[] at ($ (S.corner 8) + (0.2, 0.2) $) {3};
+            \node[] at ($ (S.corner 1) + (0, 0.3) $) {4};
+            \node[] at ($ (S.corner 2) + (0, 0.3) $) {5};
+            \node[] at ($ (S.corner 3) + (-0.2, 0.2) $) {6};
+            \node[] at ($ (S.corner 4) + (-0.2, -0.2) $) {7};
+            \node[] at ($ (S.corner 5) + (0, -0.3) $) {8};
+
+            \draw[color=red, line width=0.5mm] (P.corner 5) -- (P.corner 6);
+            \draw[color=blue] (P.corner 6) -- (P.corner 7);
+            \draw[color=blue] (P.corner 5) -- (P.corner 7);
+
+            \draw[color=red, line width=0.5mm] (S.corner 5) -- (S.corner 6);
+            \draw[color=blue] (S.corner 6) -- (S.corner 4);
+            \draw[color=blue] (S.corner 5) -- (S.corner 4);
+        \end{tikzpicture}
+    \end{center}
+
+    Som går att se sammanfaller då en av kanterna i triangeln med en av sidorna i oktagonen, men detta kommer dock visa sig nödvändigt när vi ska räkna antalet indelningar. \\
+
+    Givet ett $k$-värde (tag $5$ igen för enkelhetens skull) kan vi slutföra trianguleringen av oktagonen genom att först triangulera den fyrhörning som bildats till vänster om triangeln med röd bas, och sedan triangulera femhörningen som bildats till höger om denna triangel. Följande är ett exempel på en fullständig triangulering av oktagonen med denna metod där den orangefärgade linjen hör till den vänstra trianguleringen och de lila linjerna hör till den högra trianguleringen:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \node[name=P,regular polygon, regular polygon sides=8, draw, minimum width=3cm] at (0,0) {};
+            \node[] at ($ (P.corner 6) + (0, -0.3) $) {1};
+            \node[] at ($ (P.corner 7) + (0.2, -0.2) $) {2};
+            \node[] at ($ (P.corner 8) + (0.2, 0.2) $) {3};
+            \node[] at ($ (P.corner 1) + (0, 0.3) $) {4};
+            \node[] at ($ (P.corner 2) + (0, 0.3) $) {5};
+            \node[] at ($ (P.corner 3) + (-0.2, 0.2) $) {6};
+            \node[] at ($ (P.corner 4) + (-0.2, -0.2) $) {7};
+            \node[] at ($ (P.corner 5) + (0, -0.3) $) {8};
+
+            \draw[color=red, line width=0.5mm] (P.corner 5) -- (P.corner 6);
+            \draw[color=blue] (P.corner 6) -- (P.corner 2);
+            \draw[color=blue] (P.corner 5) -- (P.corner 2);
+
+            \draw[color=orange] (P.corner 5) -- (P.corner 3);
+            
+            \draw[color=purple] (P.corner 6) -- (P.corner 8);
+            \draw[color=purple] (P.corner 2) -- (P.corner 8);
+        \end{tikzpicture}
+    \end{center}
+
+    Antalet trianguleringar av fyrhörningen och femhörningen ges av $p_2$ respektive $p_3$; det finns därmed $p_2 \cdot p_3$ antal sätt att slutföra oktagonens triangulering för detta $k$-värde. Allmänt gäller att det finns $p_{n - k + 1}$ trianguleringar för den vänstra månghörningen och $p_{k-2}$ för högra månghörningen där $n + 2$ som sagt är antalet hörn i den stora månghörningen\sidenote[][]{Det är av denna anledning vi definierar $p_0 = 1$, för då $k = 2$ eller $k = n + 1$ fås $p_0$ för den högra respektive den vänstra månghörningen; dessa fall motsvarar, som visat ovan, då en av de blå sidorna i triangeln med den röda sidan som bas sammanfaller med en av sidorna hos den stora månghörningen. I dessa fall är den högra respektive vänstra månghörningen en tvåhörning, alltså ett linjesegment, och för att göra dessa fall kompatibla med vår räkning säger vi därför att det finns $1$ sätt att triangulera ett linjesegment trots att den inte innehåller några trianglar.}.
+    
+    Vi ska nu se att två fullständiga trianguleringar som bildats från olika $k$-värden aldrig kan vara lika. För att se detta placerar vi två oktagoner ovanpå varandra med olika $k$-värden ($k = 5$ och $k = 3$ för sakens skull):
+
+    \begin{center}
+        \begin{tikzpicture}
+            \node[name=P,regular polygon, regular polygon sides=8, draw, minimum width=3cm] at (0,0) {};
+            \node[] at ($ (P.corner 6) + (0, -0.3) $) {1};
+            \node[] at ($ (P.corner 7) + (0.2, -0.2) $) {2};
+            \node[] at ($ (P.corner 8) + (0.2, 0.2) $) {3};
+            \node[] at ($ (P.corner 1) + (0, 0.3) $) {4};
+            \node[] at ($ (P.corner 2) + (0, 0.3) $) {5};
+            \node[] at ($ (P.corner 3) + (-0.2, 0.2) $) {6};
+            \node[] at ($ (P.corner 4) + (-0.2, -0.2) $) {7};
+            \node[] at ($ (P.corner 5) + (0, -0.3) $) {8};
+
+            \node[name=S,regular polygon, regular polygon sides=8, draw, minimum width=3cm] at (0,0) {};
+            \node[] at ($ (S.corner 6) + (0, -0.3) $) {1};
+            \node[] at ($ (S.corner 7) + (0.2, -0.2) $) {2};
+            \node[] at ($ (S.corner 8) + (0.2, 0.2) $) {3};
+            \node[] at ($ (S.corner 1) + (0, 0.3) $) {4};
+            \node[] at ($ (S.corner 2) + (0, 0.3) $) {5};
+            \node[] at ($ (S.corner 3) + (-0.2, 0.2) $) {6};
+            \node[] at ($ (S.corner 4) + (-0.2, -0.2) $) {7};
+            \node[] at ($ (S.corner 5) + (0, -0.3) $) {8};
+
+            \draw[color=red, line width=0.5mm] (P.corner 5) -- (P.corner 6);
+            \draw[color=blue] (P.corner 6) -- (P.corner 2);
+            \draw[color=blue] (P.corner 5) -- (P.corner 2);
+
+            \draw[color=red, line width=0.5mm] (S.corner 5) -- (S.corner 6);
+            \draw[color=blue] (S.corner 6) -- (S.corner 8);
+            \draw[color=blue] (S.corner 5) -- (S.corner 8);
+        \end{tikzpicture}
+    \end{center}
+
+    Som går att se korsar två av de blå linjerna varandra vilket betyder att dessa trianguleringar måste vara distinkta oavsett hur den vänstra och högra månghörningen trianguleras därefter, för annars skulle det existera en triangulering av oktagonen som inkluderar dessa två korsande linjer vilket vi inte accepterar. Alltså är mängderna av fullständiga trianguleringar givet ett visst $k$ disjunkta. Den enda återstående frågan som måste besvaras innan vi kan dra en slutsats kring antalet trianguleringar av oktagonen är: finns det någon triangulering som \textbf{inte} räknas för något värde på $k$? Det kan det inte göra eftersom en godtycklig triangulering av oktagonen alltid innefattar en triangel som innehåller vår speciella röda sida och som därmed kan delas upp i en vänstra och högra månghörning\sidenote[][]{Kan som sagt vara ett linjesegment på en av sidorna.}. Enligt additionsprincipen ges därmed antalet fullständiga trianguleringar av oktagonen av summan av alla trianguleringar för specifika $k$-värden, alltså:
+
+    \vspace{-2mm}
+    
+    \begin{align*}
+        p_6 = \sum_{k = 2}^{7} p_{k - 2} p_{7 - k}
+    \end{align*}
+
+    Resonemanget som vi just utfört gäller allmänt och därmed är antalet trianguleringar av en $(n + 2)$-hörning lika med:
+
+    \vspace{-2mm}
+    
+    \begin{align*}
+        p_{n} = \sum_{k = 2}^{n + 1} p_{k - 2} p_{n - k + 1}
+    \end{align*}
+
+    En justering av denna summa ger:
+
+    \vspace{-2mm}
+    
+    \begin{align*}
+        p_{n} = \sum_{k = 0}^{n - 1} p_k p_{n - k - 1}
+    \end{align*}
+
+    Alltså följer antalet trianguleringar av månghörningar Catalantalens rekurrensrelation:
+
+    \vspace{-2mm}
+    
+    \begin{align*}
+        p_{n + 1} = \sum_{k = 0}^n p_k p_{n - k}
+    \end{align*}
+
+    d.v.s dessa räknas av Catalantalen.
+
+    $\hfill \square$
+\end{ans}
+
+\begin{ans}
+    Låt $F_n$ vara alla följder av given längd $n \in \mathbb{Z}_{\geq 0}$ som uppfyller villkoren i uppgiften, och låt $|F_n| = f_n$. Låt därefter $(F_n)_k$ beteckna alla följder i $F_n$ vars sista $1$:a är på position nummer $k$ i följden, d.v.s. $(F_n)_k = \{a \in F_n\ : a_k = 1 \land \forall i \in \{k+1, k+2, \ldots, n\}(a_i \neq 1)\}$\sidenote[][]{$k$ är alltså begränsad till att vara ett element av $\{1, 2, \ldots, n\}$}. Låt nu definiera mängden av funktioner:
+
+    \vspace{-3mm}
+    
+    \begin{align*}
+        \mathbb{U}_{n, k} : (F_n)_k \rightarrow F_{n-k} \times F_{k-1}
+    \end{align*}
+
+    så att om $a = (a_1, a_2, \ldots, a_n) \in (F_n)_k$\sidenote[][]{Alltså $a_1 = 1$ eftersom $a \in (F_n)_k \subseteq F_n$, och $a_k = 1$ är den sista $1$:an i följden.}:
+
+    \vspace{-3mm}
+
+    \begin{align*}
+        \mathbb{U}_{n,k}(a) = \begin{pmatrix} (a_1, a_2, \ldots, a_{k-1}) \\ (a_{k+1} - 1, a_{k+2} - 1, \ldots, a_{n} - 1) \end{pmatrix}
+    \end{align*}
+
+    d.v.s. funktionen delar den inmatade följden $a$ vid $a_k$ genom att samla alla komponenter innan $a_k$ i en ny följd av längd $k-1$ samt alla komponenter efter $a_k$ i en ny följd av längd $n-k$. I den andra följden subtraheras också alla komponenter med $1$.
+
+    \vspace{3mm}
+
+    Innan vi kan säga något intressant om denna funktion måste vi första kontrollera att den är väldefinierad. Alltså betrakta ovanstående godtyckliga $a \in (F_n)_k$ som instoppat i $\mathbb{U}_{n, k}$ ger följderna $(a_1, a_2, \ldots, a_{k-1})$ och $(a_{k+1} - 1, a_{k+2} - 1, \ldots, a_{n} - 1)$. Till att börja med så stämmer längderna på dessa följder som sagt överens med $n-k$ och $k + 1$. Den första följden tillhör definitivt $F_{n-k}$ då den bara är en förkortning av $a$ som per definition uppfyller uppgiftens villkor. Eftersom $a_{k+1}, a_{k+2}, \ldots, a_n \geq 2$ då $a_k$ var den sista $1$:an fås $a_{k+1} - 1, a_{k+2} - 1, \ldots, a_n - 1 \geq 1$ och då en förskjutning av alla komponenter med $-1$ inte påverkar det andra villkoret i uppgiften, så länge ingen komponent understiger $1$ efter förskjutningen, så tillhör den andra följden $F_{k-1}$. Därmed är $\mathbb{U}_{n, k}$ väldefinierad.
+
+    \vspace{3mm}
+    
+    Vi vill nu visa att alla $\mathbb{U}_{n, k}$ är bijektioner. Vi betraktar därför en av funktionerna $\mathbb{U}_{n, k}$ för godtyckligt $k \in \{1, 2, \ldots, n\}$. Vi kan faktiskt visa funktionens surjektivitet och injektivitet på samma gång. För att göra detta betraktar vi ett godtyckligt element i $\alpha \in F_{n-k} \times F_{k-1}$:
+
+    \vspace{-4mm}
+    
+    \begin{align*}
+        \alpha = \begin{pmatrix} (\alpha_1, \alpha_2, \ldots, \alpha_{k-1}) \\ (\alpha_{k+1}, \alpha_{k+2}, \ldots, \alpha_{n}) \end{pmatrix}
+    \end{align*}
+
+    Bilda därefter följden av längd $n$ genom att:
+    \begin{align*}
+        &\text{\textbf{1.} Ta den första följden i $\alpha$.} \\
+        &\text{\textbf{2.}  Lägga till $1$ i slutet av denna följd.} \\
+        &\text{\textbf{3.}  Ta den andra följden i $\alpha$ och addera $1$ till alla} \\
+        &\quad \text{dess komponenter.} \\
+        &\text{\textbf{4.}  Lägga till följden från steg 3 i slutet av följden} \\
+        &\quad \text{från steg 2.}
+    \end{align*}
+
+    Detta ger följden:
+
+    \vspace{-4mm}
+    
+    \begin{align*}
+        \alpha' = (\alpha_1, \alpha_2, \ldots, \alpha_{k-1}, 1, \alpha_{k+1} + 1, \ldots, \alpha_n + 1)
+    \end{align*}
+
+    Delföljden $\alpha_1, \ldots, \alpha_{k-1}$ uppfyller per konstruktion uppgiftens villkor, och eftersom att $\alpha_{k+1}, \ldots, \alpha_n$ uppfyller villkoren av samma anledning ger detta att $\alpha_{k+1} + 1, \ldots, \alpha_n + 1$ uppfylla det första villkoret men dock inte det andra som kräver en $1$:a i början av följden då $\alpha_{k+1} = 1 \iff \alpha_{k+1} + 1 = 2$. Men i följden $\alpha'$ har vi lagt till en $1$:a framför $\alpha_{k+1} + 1$ och därmed uppfyller följden $\alpha'$ som helhet alla villkoren för att tillhöra $F_n$. Notera att $\forall i \in \{k+1, k+2, \ldots, n\}(\alpha_i \geq 1) \iff \forall i \in \{k+1, k+2, \ldots, n\}(\alpha_i + 1 \geq 2)$, och därmed är $\alpha' \in (F_n)_k$. Vi kan alltså mata in $\alpha'$ i $\mathbb{U}_{n, k}$ vilket ger:
+
+    \vspace{-4mm}
+    
+    \begin{align*}
+        \mathbb{U}_{n, k}(\alpha') = \begin{pmatrix} (\alpha_1, \alpha_2, \ldots, \alpha_{k-1}) \\ (\alpha_{k+1}, \alpha_{k+2}, \ldots, \alpha_{n}) \end{pmatrix} = \alpha
+    \end{align*}
+
+    Detta medför att funktionen $\mathbb{U}_{n ,k}$ är surjektiv. Dessutom så har vi visat att processen när vi bildade $\alpha'$ är inversen till $\mathbb{U}_{n, k}$, och eftersom funktionen har en invers så måste därmed $\mathbb{U}_{n, k}$ vara bijektiv.
+
+    \vspace{3mm}
+
+    Vi vill nu visa att mängderna $(F_n)_k$ är disjunkta för olika värden på $k$. Detta är ekvivalent med att:
+
+    \vspace{-4mm}
+
+    \begin{align*}
+        \forall k, \ell \in \{1, 2, \ldots, n\}(k \neq \ell \implies (F_n)_k \cap (F_n)_\ell = \varnothing)
+    \end{align*}
+
+    Vi antar negationen:
+
+    \vspace{-4mm}
+
+    \begin{align*}
+        &\exists k, \ell \in \{1, 2, \ldots, n\}(k \neq \ell \land (F_n)_k \cap (F_n)_\ell \neq \varnothing) \\
+        \implies &\exists k, \ell \in \{1, 2, \ldots, n\}(k \neq \ell \land \exists a \in F_n (a \in (F_n)_k \land a \in (F_n)_\ell))
+    \end{align*}
+
+    Alla följder i $(F_n)_k$ har sin sista $1$:a vid position $k$, och alla följder i $(F_n)_\ell$ har sin sista $1$:a vid position $\ell$. Men om det existerar en följd $a$ som ligger i både $(F_n)_k$ och $(F_n)_\ell$ med $k \neq \ell$ så betyder det att denna följd har sin sista $1$:a på två distinkta positioner vilket inte är möjligt. Alltså måste alla mängderna $(F_n)_k$ vara disjunkta för olika värden på $k$.
+
+    \vspace{3mm}
+
+    Nästa steg är att visa att:
+
+    \vspace{-4mm}
+    
+    \begin{align*}
+        &\bigsqcup_{k = 1}^{n} (F_n)_k = F_n \\
+        \iff &\bigsqcup_{k = 1}^{n} (F_n)_k \subseteq F_n \\
+        \iff &F_n \subseteq \bigsqcup_{k = 1}^{n} (F_n)_k
+    \end{align*}
+
+    Den första inklusionen följer mer eller mindre direkt. Antag att:
+
+    \vspace{-4mm}
+    
+    \begin{align*}
+        &a \in \bigsqcup_{k = 1}^{n} (F_n)_k \\
+        \implies &\exists \ell \in \{1, \ldots, n\} (a \in (F_n)_\ell) \\
+        \iff &\exists \ell \in \{1, \ldots, n\} (a \in F_n \land (a_\ell = 1 \land \forall i \in \{\ell + 1, \ldots, n\} (a_i \neq 1))) \\
+        \implies &a \in F_n
+    \end{align*}
+
+    För den andra inklusionen antar vi att $a \in F_n$. Nu ställer vi oss frågan: har $a$ har en sista $1$:a? Eftersom $a_1 = 1$ och $a$ är en ändlig följd så följer det att svaret på denna fråga är ja, alltså:
+
+    \vspace{-4mm}
+
+    \begin{align*}
+        &\exists \ell \in \{1, \ldots, n\} (a_\ell = 1 \land \forall i \in \{\ell + 1, \ldots, n\})) \\
+        \implies &\exists \ell \in \{1, \ldots, n\} (a \in (F_n)_\ell) \\
+        \implies &a \in \bigsqcup_{k = 1}^{n} (F_n)_k
+    \end{align*}
+
+    Alltså gäller båda inklusionerna och därmed är:
+
+    \vspace{-4mm}
+    
+    \begin{align*}
+        &\bigsqcup_{k = 1}^{n} (F_n)_k = F_n
+    \end{align*}
+
+    Vi är nu redo att betrakta $f_n$. Det gäller ju nu nämligen att:
+
+    \vspace{-4mm}
+
+    \begin{align*}
+        f_n &= |F_n| \\
+        &= |\bigsqcup_{k = 1}^{n} (F_n)_k| \\
+        &= \sum_{k=1}^{n} |(F_n)_k| &&\quad \text{(Eftersom mängderna $(F_n)_k$ är disjunkta)} \\
+        &= \sum_{k=1}^{n} |F_{n-k} \times F_{k-1}| &&\quad \text{(Använder bijektionerna $\mathbb{U}_{n, k}$)} \\
+        &= \sum_{k=1}^{n} |F_{n-k}| \cdot |F_{k-1}| \\
+        &= \sum_{k=1}^{n} f_{n-k} \cdot f_{k-1} \\
+        &= \sum_{k=0}^{n-1} f_{n-k-1} f_{k} &&\quad \text{(Justering av summa)}
+    \end{align*}
+
+    \vspace{3mm}
+    
+    På mer bekant form innebär detta att:
+
+    \vspace{-4mm}
+
+    \begin{align*}
+        f_{n+1} = \sum_{k=0}^{n} f_{n-k} f_{k}
+    \end{align*}
+
+    Alltså följer $f_n$ rekurrensrelationen för Catalantalen. Detta ger i sin tur att $f_n$ räknas av Catalantalen.
+
+    $\hfill \square$
+\end{ans}
+
 \subsection{Övning 5}\hfill\\\par
 \noindent Vi fick en väldigt bra ledtråd, för att sätta den i perspektiv behöver vi påminna oss om att vi kunde räkna antalet Dyck-stigar med rekursion \textit{och} med Catalan-tal.
 \par\bigskip
