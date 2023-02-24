@@ -37,6 +37,7 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Exempel}
 \newtheorem{xca}{Övning}
+\newtheorem{ans}{Svar på övning}
 
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Kommentar}
