@@ -448,8 +448,8 @@ Så vårt kombinatoriska bevis undvek helt att behöva fundera på rekursioner o
 
 
 \subsection{Ekvivalenta kombinatoriska omskrivningar av Catalantalen}\hfill\\\par
-Nu när vi väl har funnit en explicit formel för Catalantalen med hjälp av binomialtal, finns det fler sätt vi kan räkna de?\par
-\noindent Från våra studier av binomialtalen vet vi att de går att skriva på flera olika (men ekvivalenta) vis. \par
+Nu när vi väl har funnit en explicit formel för Catalantalen med hjälp av binomialtal, finns det fler sätt vi kan räkna dem?\par
+\noindent Från våra studier av binomialkoefficienter vet vi att de går att skriva på flera olika (men ekvivalenta) vis. \par
 \begin{cor}
   Catalantalen ges av 
   \begin{equation*}
@@ -459,7 +459,7 @@ Nu när vi väl har funnit en explicit formel för Catalantalen med hjälp av bi
   \end{equation*}
 \end{cor}\par
 \begin{proof}
-  Eftersom detta är en ren och skär omskrivning av binomialformen av Catalantalen gäller att hitta tillbaks:
+  Eftersom detta är en ren och skär omskrivning av Catalantalen så behöver vi endast hitta tillbaka till den bekanta formen:
   \begin{equation*}
     \begin{gathered}
       \dfrac{(2n-3)!}{(n-1)!(n-2)!}+\dfrac{(2n-2)!}{n!(n-2)!}-\dfrac{(2n-3)!}{n!(n-3)!}-\dfrac{(2n-2)!}{(n+1)!(n-3)!}\\
@@ -519,6 +519,10 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
 \end{xca}
 
 \newpage
+
+\begin{ans}
+  %Plats för svar till övning 1
+\end{ans}
 
 \begin{ans}
     Låt beteckna antalet uppdelningar av ett konvext polygon av $n+2$ hörn i trianglar med $p_n$. Vi vill finna en korrelation mellan trianguleringar av konvexa polygoner av $n+2$ hörn och trianguleringar av polygoner av $n-k+1$ respektive $k$ hörn; alltså en korrelation mellan $p_n$, $p_{n-k+1}$ och $p_{k-2}$. Vi definierar $p_0 = 1$ (varför kommer visa sig strax). Detta ger att $k \in \{2, 3, \ldots, n-1\}$\sidenote[][]{Kom ihåg att $k-2$ i $p_{k-2}$ måste vara större än $0$ och likaså $n+1-k$, alltså är $2$ minsta möjliga värde på $k$ och $n-1$ största möjliga värde.}.
@@ -898,7 +902,6 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
     $\hfill \square$
 \end{ans}
 
-\setcounter{ans}{2}
 \begin{ans}
   \begin{enumerate}[label=(\alph*)]
     \item
