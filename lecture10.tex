@@ -81,12 +81,12 @@ Vårt tärningskast är ett specialfall av ett mer allmänt fenomen, som det kom
 Vi vet att om vi slår vår tärning många gånger kommer vi i genomsnitt att få upp $3.5$. Hur gör vi den intuitionen rigorös?
 
 \begin{definition}
-    \emph{Väntevärdet} av en slumpvariabel $X$ som tar värden i $\R$ ges av\sidenote[][]{Notera att detta är en summa över \emph{alla värden som $X$ kan tänkas ta} -- eftersom vi antagit att $\Omega$ är ändligt eller uppräkneligt så kommer detta vara en summa över ändligt eller uppräkneligt många summander, vilket är okej.
+    \emph{Väntevärdet} av en slumpvariabel $X$ som tar värden i $\R$ ges av\sidenote[][-2.5cm]{Notera att detta är en summa över \emph{alla värden som $X$ kan tänkas ta} -- eftersom vi antagit att $\Omega$ är ändligt eller uppräkneligt så kommer detta vara en summa över ändligt eller uppräkneligt många summander, vilket är okej.
     
     Hade vi velat modellera en \emph{kontinuerlig} slumpvariabel -- som till exempel en normalfördelning, som nog många sett redan -- som kan ta vilket reellt tal som helst som värde, hade vi behövt definiera detta som en integral, inte en summa. Att slippa ge definitioner som fungerar i dessa fall är en av anledningarna till varför vi begränsar oss till bara diskret sannolikhetsteori.}
     $$\E{X} = \sum_{x \in X(\Omega)} x \Prob{X = x}.$$
 
-    Vi tar alltså summan över alla tänkbara värden $x$ för $X$, multiplicerar $x$ med sannolikheten att $X$ faktiskt blir $x$, och summerar. I specialfallet där $X$ bara tar värden $0, 1, 2, \ldots$ blir alltså formeln
+    Vi tar alltså summan över alla tänkbara värden $x$ för $X$, multiplicerar $x$ med sannolikheten att $X$ faktiskt blir $x$,\sidenote[][0.2cm]{Notera att när den här summan löper över oändligt många tal är det fullt möjligt att den inte konvergerar, trots att $\sum_{x \in X(\Omega)} \Prob{x = X} = 1$. Det finns slumpvariabler som alltid tar ändliga värden, men ändå har oändligt väntevärde.} och summerar. I specialfallet där $X$ bara tar värden $0, 1, 2, \ldots$ blir alltså formeln
     $$\E{X} = \sum_{k=0}^{\infty} k\Prob{X = k}.$$
 \end{definition}
 
