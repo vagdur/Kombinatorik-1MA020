@@ -446,6 +446,33 @@ Så vi har till slut hittat en fin formel för antalet Dyck-stigar, och alltså 
 
 Så vårt kombinatoriska bevis undvek helt att behöva fundera på rekursioner och genererande funktioner. Det är en mycket mer direkt rutt till vårt mål, men vi missade några sevärdheter längs vägen.\sidenote[][]{Hur man hade härlett vår rekursion eller den genererande funktionen givet bara vad vi lärde oss i det kombinatoriska beviset är långt ifrån uppenbart.}
 
+
+\subsection{Ekvivalenta kombinatoriska omskrivningar av Catalantalen}\hfill\\\par
+Nu när vi väl har funnit en explicit formel för Catalantalen med hjälp av binomialtal, finns det fler sätt vi kan räkna de?\par
+\noindent Från våra studier av binomialtalen vet vi att de går att skriva på flera olika (men ekvivalenta) vis. \par
+\begin{cor}
+  Catalantalen ges av 
+  \begin{equation*}
+    \begin{gathered}
+      C_n = \begin{pmatrix}2n-3\\n-1\end{pmatrix}+\begin{pmatrix}2n-2\\n\end{pmatrix}-\begin{pmatrix}2n-3\\n\end{pmatrix}-\begin{pmatrix}2n-2\\n+1\end{pmatrix}
+    \end{gathered}
+  \end{equation*}
+\end{cor}\par
+\begin{proof}
+  Eftersom detta är en ren och skär omskrivning av binomialformen av Catalantalen gäller att hitta tillbaks:
+  \begin{equation*}
+    \begin{gathered}
+      \dfrac{(2n-3)!}{(n-1)!(n-2)!}+\dfrac{(2n-2)!}{n!(n-2)!}-\dfrac{(2n-3)!}{n!(n-3)!}-\dfrac{(2n-2)!}{(n+1)!(n-3)!}\\
+      = \dfrac{(2n-3)!}{(n-1)!(n-3)!}\left(\dfrac{1}{n-2}-\dfrac{1}{n}\right)+\dfrac{(2n-2)!}{n!(n-3)!}\left(\dfrac{1}{n-2}-\dfrac{1}{n+1}\right)\\
+      =\dfrac{2(2n-3)!}{n!(n-2)!}+\dfrac{3(2n-2)!}{(n+1)!(n-2)!}\\
+      =\dfrac{(2n-3)!}{n!(n-2)!}\left(2+\dfrac{3(2n-2)}{n+1}\right)\\
+      =\dfrac{(2n-3)!}{n!(n-2)!}\dfrac{4(2n-1)}{n+1}\\
+      =\dfrac{(2n-3)!}{(n+1)!(n-2)!}\dfrac{2(2n-2)(2n-1)}{n-1}\\
+      =\dfrac{2(2n-1)!}{(n+1)!(n-1)!}=\dfrac{(2n)!}{(n+1)!n(n-1)!} = \dfrac{(2n)!}{(n+1)!n!} = C_n
+    \end{gathered}
+  \end{equation*}
+\end{proof}
+
 \section{Fler saker som räknas av Catalantalen}
 
 Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker än bara just Dyck-stigar. I nästa föreläsning kommer vi se ett viktigt exempel. Nu, i slutet på denna, tar vi några mindre exempel.
@@ -481,6 +508,14 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
 
 \begin{xca}
     Bevisa att antalet uppdelningar av en konvex polygon med $n+2$ sidor i trianglar, såsom vi diskuterade i Exempel \ref{example_polygons}, räknas av Catalantalen.\sidenote[][]{Ledtråd: Tänk kombinatoriskt, och se att dessa också lyder vår rekursion.}
+\end{xca}
+
+\begin{xca}
+  \hspace{1cm}\par
+  \begin{enumerate}[label=(\alph*)]
+    \item Visa att Catalantalen kan räknas med $\begin{pmatrix}2n\\n\end{pmatrix}-\begin{pmatrix}2n\\n-1\end{pmatrix}$
+    \item Visa att $C_{n+1} = \begin{pmatrix}2n\\n\end{pmatrix}-\begin{pmatrix}2n\\n-2\end{pmatrix}$
+  \end{enumerate}
 \end{xca}
 
 \newpage
@@ -861,6 +896,29 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
     Alltså följer $f_n$ rekurrensrelationen för Catalantalen. Detta ger i sin tur att $f_n$ räknas av Catalantalen.
 
     $\hfill \square$
+\end{ans}
+
+\setcounter{ans}{2}
+\begin{ans}
+  \begin{enumerate}[label=(\alph*)]
+    \item
+
+      \begin{equation*}
+        \begin{gathered}
+          \dfrac{(2n)!}{n!n!}-\dfrac{(2n)!}{(n+1)!(n-1)!} = \dfrac{(2n)!}{n!(n-1)!}\left(\dfrac{1}{n}-\dfrac{1}{n+1}\right) = \dfrac{(2n)!}{(n+1)!n!} = C_n
+        \end{gathered}
+      \end{equation*}
+      \par\bigskip
+    \item 
+
+      \begin{equation*}
+        \begin{gathered}
+          \dfrac{(2n)!}{n!n!}-\dfrac{(2n)!}{(n+2)!(n-2)!}=\dfrac{(2n)!}{n!(n-2)!}\left(\dfrac{1}{n(n-2)}-\dfrac{1}{(n+1)(n+2)}\right)\\
+          = \dfrac{(3n)!}{n!(n-2)!}\left(\dfrac{4n+2}{n(n-1)(n+1)(n+2)}\right)\\
+          = \dfrac{2(2n+1)!}{(n+2)!n!} = \dfrac{(2n+2)!}{(n+2)!(n+1)!} = C_{n+1}
+        \end{gathered}
+      \end{equation*}
+  \end{enumerate}
 \end{ans}
 
 \subsection{Övning 5}\hfill\\\par
