@@ -216,6 +216,80 @@ Hur stor kan en anti-kedja vara? Ett enkelt sätt att skapa sig en sådan är at
     \end{proof}
 \end{lemma}
 
+\section{Caro-Weis sats}
+
+Antag att vi har en grupp av $n$ personer på ett läger, och säg att person nummer $i$ känner $d_i$ andra personer sedan tidigare. Du vill bilda en mindre grupp av personer för en lära-känna-varandra-lek\sidenote[][]{Eftersom du är en fruktansvärt ondskefull person. Ingen tycker om sådana lekar.}, så du vill hitta en så stor grupp som möjligt av personer som \emph{inte} känner varandra. Finns det någon garanti för hur stor du kan göra den mindre gruppen?
+
+\begin{theorem}[Caro-Wei]
+    Du kan välja den mindre gruppen sådan att den har åtminstone
+    $$\sum_{i=1}^{n} \frac{1}{d_i + 1}$$
+    medlemmar.
+
+    Eller formulerat i mer matematiska termer: Varje graf $G$ på $n$ noder, där nod $i$ har grad $d_i$\sidenote[][-2.5cm]{Ett ord vi inte har definierat, som får en definition i sidnoterna:
+        \begin{definition}
+            \emph{Graden} av en nod $v$ i en graf $G = (V_G, E_G)$ är antalet kanter som går ut från $v$. Alltså
+            $$d_v = \abs{e \in E_G \given v \in e}.$$
+        \end{definition}
+    }, har alltid en oberoende mängd\sidenote[][]{
+        Nästa hitintills odefinierade term, och nästa sidnot:
+        \begin{definition}
+            En \emph{oberoende mängd} $S \subseteq V_G$ i en graf $G = (V_G, E_G)$ är en mängd av noder sådana att det inte finns några kanter mellan något par av noder i $S$. Alltså, mängden
+            $$E(S) = \left\{\{u,v\} \in E_G \given u, v \in S\right\}$$
+            är tom.
+        \end{definition}
+    } $S$ sådan att
+    $$\abs{S} \geq \sum_{i=1}^{n} \frac{1}{d_i + 1}.$$
+
+    \begin{proof}
+        Numrera noderna i $G$ från $1$ till $n$, och välj sedan likformigt slumpmässigt ett nytt sätt att etikettera $G$, så att nod $i$ nu har etikett $\sigma(i)$. $\sigma$ är alltså en likformig permutation av $[n]$.
+
+        Hur använder vi detta för att skapa vår oberoende mängd? Jo, beteckna mängden av grannar till $i$ med $N(i)$ -- alltså mängden av alla noder som har en kant till $i$. Om vi lägger in $i$ i $S$ får vi alltså inte ta med något annat element i $N(i)$ om $S$ skall vara en oberoende mängd.\sidenote[][]{Tänk er det som att vi lägger ett pussel, där varje bit är ``formad som'' en $N(i)$, och vi inte får lov att välja två pusselbitar som överlappar. Målet är att lyckas lägga så många bitar som möjligt. (Det här går nog att omvandla till ett faktiskt spel -- jag kräver inga royalties för idén.)}
+        
+        Om vi nu låter
+        $$S = \left\{i \in V_G \given \sigma(i) < \sigma(j)\quad \forall j \in N(i)\right\}$$
+        så hävdar vi att detta måste vara en oberoende mängd. Varför? Tänk för motsägelse att det fanns ett par $i, j$ i $S$ med en kant mellan sig. Eftersom $i$ ligger i $S$ måste alla $i$s grannar ha högre etikett än $i$ -- specifikt så måste alltså $\sigma(i) < \sigma(j)$. Men det betyder ju att $j$ har en granne med lägre etikett, så $j$ kan inte ligga i $S$, och vi har en motsägelse.
+
+        Vi vill alltså förstå oss på mängden $S$. Låt $A_i$ vara händelsen att $i$ fick en lägre etikett än alla sina grannar i vår slumpmässiga ometikettering -- vi har då av väntevärdets linjäritet att
+        $$\E{\abs{S}} = \E{\sum_{i=1}^{n} \indSet{A_i}} = \sum_{i=1}^{n} \Prob{A_i}.$$
+        
+        Det räcker alltså för oss att förstå sannolikheterna för händelserna $A_i$. Eftersom $\sigma$ var likformigt slumpmässig betyder det alltså att vi vill räkna antalet sätt att etikettera grafen sådana att $i$ får en lägre etikett än alla sina grannar.
+
+        För att konstruera ett sådant sätt att etikettera $G$ börjar vi med att välja vilka tal som skall stå på $i$ och dess grannar -- detta kan vi göra på $\binom{n}{d_i + 1}$ sätt, eftersom vi skall ha $d_i$ etiketter på dess grannar och en etikett på den själv.
+
+        Sedan väljer vi hur vi placerar dessa etiketter på $d_i$ och $N(i)$ -- vi måste så klart välja att placera det lägsta av talen på $i$, men de återstående $d_i$ talen kan vi placera ut fritt\sidenote[][]{Det är här som vår teknik med väntevärdets linjäritet verkligen lönar sig -- vi har kunnat zooma in bara på $i$, och behöver inte bry oss om vad som händer utanför just $i$. Hade vi inte gjort det hade vi kanske behövt bekymra oss om kanter mellan $i$s grannar här, och inte kunnat placera ut etiketterna helt fritt.}, och alltså på $d_i!$ sätt.
+
+        Till slut väljer vi hur vi placerar resten av etiketterna på noderna utanför $i$s grannskap -- detta kan vi också göra helt fritt, så på $(n - d_i - 1)!$ sätt. Så totalt har vi sett att det finns
+        $$\binom{n}{d_i + 1} d_i! (n - d_i - 1)!$$
+        sätt att välja en etikettering av $G$ sådan att $i$ får en lägre etikett än alla sina grannar.
+
+        Så sannolikheten att en slumpmässig etikettering är sådan ges alltså av
+        \begin{align*}
+            \Prob{A_i} &= \frac{1}{n!}\binom{n}{d_i + 1} d_i! (n - d_i - 1)!\\
+            &= \frac{1}{n!}\frac{n!}{(d_i + 1)!(n - (d_i + 1))!}d_i! (n - d_i - 1)!\\
+            &= \frac{1}{d_i + 1}
+        \end{align*}
+        så
+        $$\E{\abs{S}} = \sum_{i=1}^{n} \Prob{A_i} = \sum_{i=1}^{n} \frac{1}{d_i + 1}.$$
+
+        Vi har alltså visat att vi \emph{i genomsnitt} hittar en oberoende mängd av vår sökta storlek med denna metoden. Men det genomsnittliga utfallet kan ju omöjligen vara mindre än \emph{alla} specifika utfall\sidenote[][-2cm]{
+            Låt oss formulera detta som ett lemma och bevisa det:
+            \begin{lemma}
+                För varje slumpvariabel $X$ med $\E{X} = C$ måste det finnas åtminstone ett $\omega$ sådant att $X(\omega) \geq C$.
+
+                \begin{proof}
+                    Antag för motsägelse att $X(\omega) < C$ för alla $\omega$. Då kan vi räkna att
+                    \begin{align*}
+                        C = \E{X} &= \sum_{\omega \in \Omega} X(\omega)\mu(\omega)\\
+                        &< \sum_{\omega \in \Omega} C\mu(\omega)\\
+                        &= C\sum_{\omega \in \Omega} \mu(\omega) = C
+                    \end{align*}
+                    så $C < C$, en motsägelse.
+                \end{proof}
+            \end{lemma}
+        } -- alltså måste det finnas något specifikt val av $\sigma$ sådant att storleken på $S(\sigma)$ blir åtminstone detta. Alltså är vi klara.
+    \end{proof}
+\end{theorem}
+
 \section{Räkneregler för slumpvariabler}
 
 Vi sammanfattar vad vi lärt oss om slumpvariabler hittills i följande räkneregler:\sidenote[][]{Den här biten skippar vi på föreläsningen -- den ligger här för att vara behjälplig som sammanfattning och när man gör övningarna. Den finns också i vår samling av formler och räkneregler.}
