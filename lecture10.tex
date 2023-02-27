@@ -243,8 +243,14 @@ Antag att vi har en grupp av $n$ personer på ett läger, och säg att person nu
     \begin{proof}
         Numrera noderna i $G$ från $1$ till $n$, och välj sedan likformigt slumpmässigt ett nytt sätt att etikettera $G$, så att nod $i$ nu har etikett $\sigma(i)$. $\sigma$ är alltså en likformig permutation av $[n]$.
 
-        Hur använder vi detta för att skapa vår oberoende mängd? Jo, beteckna mängden av grannar till $i$ med $N(i)$ -- alltså mängden av alla noder som har en kant till $i$. Om vi lägger in $i$ i $S$ får vi alltså inte ta med något annat element i $N(i)$ om $S$ skall vara en oberoende mängd.\sidenote[][]{Tänk er det som att vi lägger ett pussel, där varje bit är ``formad som'' en $N(i)$, och vi inte får lov att välja två pusselbitar som överlappar. Målet är att lyckas lägga så många bitar som möjligt. (Det här går nog att omvandla till ett faktiskt spel -- jag kräver inga royalties för idén.)}
+        Hur använder vi detta för att skapa vår oberoende mängd? Jo, beteckna mängden av grannar till $i$ med $N(i)$ -- alltså mängden av alla noder som har en kant till $i$. Om vi lägger in $i$ i $S$ får vi alltså inte ta med något annat element i $N(i)$ om $S$ skall vara en oberoende mängd.\sidenote[][-1.5cm]{Tänk er det som att vi lägger ett pussel, där varje bit är ``formad som'' en $N(i)$, och vi inte får lov att välja två pusselbitar som överlappar. Målet är att lyckas lägga så många bitar som möjligt. (Det här går nog att omvandla till ett faktiskt spel -- jag kräver inga royalties för idén.)}
         
+        \begin{figure}
+            \centering
+            \includegraphics[width = 0.7\textwidth]{graphics/Caro_Wei_construction.png}
+            \caption[][0.8cm]{En illustration av vår konstruktion av den oberoende mängden $S$. Vår första etikettering av grafen är i svart, vår ometikettering $\sigma$ i blått, och den resulterande oberoende mängden $S$ markerad i rött.}
+        \end{figure}
+
         Om vi nu låter
         $$S = \left\{i \in V_G \given \sigma(i) < \sigma(j)\quad \forall j \in N(i)\right\}$$
         så hävdar vi att detta måste vara en oberoende mängd. Varför? Tänk för motsägelse att det fanns ett par $i, j$ i $S$ med en kant mellan sig. Eftersom $i$ ligger i $S$ måste alla $i$s grannar ha högre etikett än $i$ -- specifikt så måste alltså $\sigma(i) < \sigma(j)$. Men det betyder ju att $j$ har en granne med lägre etikett, så $j$ kan inte ligga i $S$, och vi har en motsägelse.
