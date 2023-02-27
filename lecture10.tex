@@ -296,6 +296,89 @@ Antag att vi har en grupp av $n$ personer på ett läger, och säg att person nu
     \end{proof}
 \end{theorem}
 
+\section{Första-moment-metoden}
+
+Hittills har vi sett ett sätt som väntevärden och sannolikheter kan samspela -- om slumpvariabeln vi vill studera kan formuleras som antalet ``ja'' på en samling ja-nej-frågor så får vi att dess väntevärde är summan av sannolikheterna för ett ``ja'' på varje enskild fråga.
+
+Detta låter oss alltså svara på en fråga om ett väntevärde genom att räkna ut en bunt sannolikheter. Hur gör vi om det vi verkligen är intresserade av är en sannolikhet?
+
+\begin{lemma}[Markovs olikhet]
+    Om en icke-negativ\sidenote[][]{Det vill säga, $X(\omega) \geq 0$ för alla $\omega \in \Omega$ -- den tar aldrig ett negativt värde.} slumpvariabel $X$ har väntevärde $\nu$ gäller det för varje $C > 0$ att\sidenote[][]{Eller ekvivalent att
+    $$\Prob{X > C} \leq \frac{\nu}{C}.$$}
+    $$\Prob{X > C\nu} < \frac{1}{C}.$$
+
+    \begin{proof}
+        Vi kan räkna att\sidenote[][]{Var i beviset använder vi antagandet att $X$ är ickenegativ?}
+        \begin{align*}
+            \nu = \E{X} &= \sum_{\omega \in \Omega} X(\omega)\mu(\omega)\\
+            &\geq \sum_{\substack{\omega \in \Omega\\X(\Omega) > C\nu}} X(\omega)\mu(\omega)\\
+            &> \sum_{\substack{\omega \in \Omega\\X(\Omega) > C\nu}} C\nu\mu(\omega)\\
+            &= C\nu \Prob{X > C\nu}
+        \end{align*}
+        så om vi delar bägge sidor av detta med $C\nu$ får vi resultatet.
+    \end{proof}
+\end{lemma}
+
+Vad för slags problem kan man tänkas tillämpa det här verktyget på?
+
+\begin{definition}
+    En Erd\H{o}s-Renyi-graf (med parametrar $n$ och $p$) är en slumpmässig graf $G$ på $n$ noder, där varje kant är med med sannolikhet $p$, oberoende av om varje annan kant är med. Vi skriver att $G \sim G_{n,p}$.
+
+    Om $p = \frac{1}{2}$ så kommer alltså $G_{n,p}$ helt enkelt vara en likformigt slumpmässig graf på $n$ noder, men för det mesta kommer vi vara intresserade av fallet när $p$ är en funktion av $n$.
+\end{definition}
+
+Vi kan säga en hel del om den ``lokala'' strukturen av en $G_{n,p}$ bara med de verktyg vi har lärt oss hittills -- alltså de egenskaper hos den som vi kan avgöra om de gäller genom att studera den lokalt runt varje nod. Desto svårare blir det om vi ställer oss frågor om ifall den är, till exempel, sammanhängande.
+
+Ett exempel på en lokal struktur är ifall vi har isolerade noder -- om vi tänker oss det som att noderna är personer och kanterna är vänskapsrelationer är vi alltså intresserade av sannolikheten att inte ha några vänner.\sidenote[][-1.1cm]{Som vi alla vet går denna upp markant om man studerar matematik, men vår modell är inte sofistikerad nog att fånga detta.}
+
+\begin{proposition}
+    Om $p > \frac{c\log(n)}{n}$ för något $c > 1$ så finns det asymptotiskt nästan säkert\sidenote[][]{Vad sjutton betyder det? Det betyder att, om $p_n$ är en följd sådan att $p_n > \frac{\log(n)}{n}$ för varje $n$, och $G_n$ är en $G_{n, p_n}$ för varje $n$, så går sannolikheten att $G_n$ har en isolerad nod mot noll.} inga isolerade noder\sidenote[][]{Och vad är en isolerad nod? Det är en nod utan grannar.} i $G_{n,p}$.
+
+    \begin{proof}
+        Beviset följer ett mönster som förhoppningsvis börjar bli bekant vid det här laget.
+
+        Låt $G \sim G_{n,p}$. Vi låter $I_i$ vara händelsen att nod $i$ är isolerad, och konstaterar att om $I$ är mängden av isolerade noder i $G$ så är
+        $$\E{\abs{I}} = \sum_{i=1}^{n} \Prob{I_i}$$
+        så vad vi behöver räkna ut är sannolikheten att en viss given nod är isolerad.
+
+        Detta är en relativt enkel beräkning -- det finns $n-1$ noder som $i$ hade kunnat ha en kant till, och varje kant finns med sannolikhet $p$, oberoende av varje annan kant. Alltså är sannolikheten att inga av kanterna finns $(1-p)^{n-1}$, och vi har att
+        $$\E{\abs{I}} = \sum_{i=1}^{n} \Prob{I_i} = n(1-p)^{n-1}$$
+        och Markovs olikhet ger oss nu, för varje $C > 0$, att
+        \begin{equation}\label{eq_markov_isolated_verts}
+            \Prob{\abs{I} > C\nu} < \frac{1}{C}.
+        \end{equation}
+
+        Hur omvandlar vi detta till det resultat vi vill ha? Om vi tar ett väldigt litet $\epsilon$ och låter $C = \frac{1 - \epsilon}{\nu}$ så blir \eqref{eq_markov_isolated_verts} till
+        $$\Prob{\abs{I} > 1 - \epsilon} < \frac{\nu}{1 - \epsilon}.$$
+
+        Eftersom $\abs{I}$ självklart enbart tar heltalsvärden är händelsen i vänster led precis samma händelse som händelsen att $\abs{I} \geq 1$, det vill säga $I \neq \emptyset$.\sidenote[][]{Varje tänkbart värde på $\abs{I}$ som är större än $1-\epsilon$ är också $\geq 1$, och vice versa.} Så om vi ersätter vänster led med detta får vi att
+        $$\Prob{I \neq \emptyset} < \frac{\nu}{1-\epsilon}$$
+        och här kan vi utan problem ta gränsvärdet $\epsilon \to 0$ och få\sidenote[][]{Notera att vi, när vi tar gränsvärdet här, måste ersätta $<$ med $\leq$ -- för oss är det inget problem eftersom vi oavsett skall visa att $\nu$ går mot noll.}
+        $$\Prob{I \neq \emptyset} \leq \nu.$$
+
+        Så det enda som återstår att göra är att visa att $\nu$ går mot noll. Enligt satsens antaganden har vi att $p > c\frac{\log(n)}{n}$, så vi kan räkna att
+        \begin{align*}
+            \lim_{n\to\infty} \nu &= \lim_{n\to\infty} n(1-p)^{n-1}\\
+            &\leq \lim_{n\to\infty} n\left(1 - c\frac{\log(n)}{n}\right)^{n-1}\\
+            &= \lim_{n\to\infty} \frac{n}{1 - c\frac{\log(n)}{n}}\left(1 - \frac{c\log(n)}{n}\right)^{n}\\
+            &= \lim_{n\to\infty} n\underbrace{\frac{1}{1 - c\frac{\log(n)}{n}}}_{\to\, 1\text{ när }n\,\to\,\infty}\left(\underbrace{\left(1 - \frac{c}{n/\log(n)}\right)^{\frac{n}{\log(n)}}}_{\to\, e^{-c}\text{ när }n\,\to\, \infty}\right)^{\log(n)}\\
+            &= \lim_{n \to \infty} n \left(e^{-c}\right)^{\log(n)} = \lim_{n \to \infty} n^{1-c}
+        \end{align*}
+        och eftersom $c > 1$ går detta mot noll, såsom önskat.\sidenote[][-2cm]{I steget mellan rad fyra och fem går vi väldigt snabbt fram -- egentligen hade man behövt kolla att
+        $$f(n,c) = \left(1 - \frac{c}{n/\log(n)}\right)^{\frac{n}{\log(n)}}$$
+        går mot $e^{-c}$ snabbt nog att vi får lov att göra den substitutionen. Som tur är gäller det att $f(n,c) - e^{-c}$ är ungefär $\frac{\log(n)}{n}$ -- specifikt
+        $$\frac{e^{-c} - f(n,c)}{\frac{\log(n)}{n}} \to \frac{c^2}{2e^c}$$
+        vilket är bra nog. Men detta är mycket mer analys än vad vi faktiskt vill göra i denna kurs.
+        }
+    \end{proof}
+\end{proposition}
+
+Det finns några saker som är värda att anmärka på här. Om vi hade valt $c \leq 1$ hade inte vår räkning fungerat längre -- och detta är inte ett sammanträffande eller ett resultat av att vi använde en svag metod.
+
+I själva verket kan man visa att antalet isolerade noder faktiskt kommer gå mot oändligheten om $p < \frac{\log(n)}{n}$ -- så vårt resultat är det bästa möjliga.
+
+Vi nämnde innan att vi kan studera lokala problem som dessa enkelt, men att ``globala'' problem är svårare, och nämnde frågan om grafen är sammanhängande som ett exempel på en svår global fråga. I själva verket kan man visa att grafen kommer vara sammanhängande så snart vi inte längre har några isolerade noder -- så detta resultat tillsammans med vad vi just visade visar alltså att en Erd\H{o}s-Renyi-graf är sammanhängande så snart $p \geq \frac{c\log(n)}{n}$.
+
 \section{Räkneregler för slumpvariabler}
 
 Vi sammanfattar vad vi lärt oss om slumpvariabler hittills i följande räkneregler:\sidenote[][]{Den här biten skippar vi på föreläsningen -- den ligger här för att vara behjälplig som sammanfattning och när man gör övningarna. Den finns också i vår samling av formler och räkneregler.}
@@ -310,6 +393,7 @@ Vi sammanfattar vad vi lärt oss om slumpvariabler hittills i följande räknere
         \item $$\Prob{A} = \E{\indSet{A}}.$$
         \item Om $X(\omega) \leq C$ för varje $\omega$, eller ekvivalent om $\Prob{X \leq C} = 1$, så är $\E{X} \leq C$.
         \item Om $\E{X} = C$ så finns det åtminstone ett $\omega$ sådant att $X(\omega) \geq C$.
+        \item Markovs olikhet ger oss att, om $\E{X_n} \to 0$ för någon följd av ickenegativa slumpvariabler $X_n$ som enbart tar heltalsvärden, så måste också $\Prob{X_n > 0} \to 0$.
         \item Om $Z$ är likformigt fördelad på $V$ så gäller det för varje delmängd $W \subseteq V$ att
         $$\Prob{Z \in W} = \frac{\abs{W}}{\abs{V}}.$$
     \end{enumerate}
