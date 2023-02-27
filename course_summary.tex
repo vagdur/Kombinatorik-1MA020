@@ -1,0 +1,197 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Sammanfattning av hela kursen $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
+
+%\date{20 februari 2023}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+\include{mathcommands.extratex}
+
+%\let\emph\relax % there's no \RedeclareTextFontCommand
+%\DeclareTextFontCommand{\emph}{\bfseries}
+
+\definecolor{light-gray}{gray}{0.9}
+\definecolor{dark-red}{rgb}{0.8, 0, 0}
+\definecolor{dark-orange}{rgb}{0.98, 0.69, 0.03}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathmorphing}
+
+\makeatletter
+
+\newcommand{\defhighlighter}[3][]{%
+  \tikzset{every highlighter/.style={color=#2, fill opacity=#3, #1}}%
+}
+
+\defhighlighter{yellow}{.5}
+
+\newcommand{\highlight@DoHighlight}{
+  \fill [ decoration = {random steps, amplitude=1pt, segment length=15pt}
+        , outer sep = -15pt, inner sep = 0pt, decorate
+        , every highlighter, this highlighter ]
+        ($(begin highlight)+(0,8pt)$) rectangle ($(end highlight)+(0,-3pt)$) ;
+}
+
+\newcommand{\highlight@BeginHighlight}{
+  \coordinate (begin highlight) at (0,0) ;
+}
+
+\newcommand{\highlight@EndHighlight}{
+  \coordinate (end highlight) at (0,0) ;
+}
+
+\newdimen\highlight@previous
+\newdimen\highlight@current
+
+\DeclareRobustCommand*\highlight[1][]{%
+  \tikzset{this highlighter/.style={#1}}%
+  \SOUL@setup
+  %
+  \def\SOUL@preamble{%
+    \begin{tikzpicture}[overlay, remember picture]
+      \highlight@BeginHighlight
+      \highlight@EndHighlight
+    \end{tikzpicture}%
+  }%
+  %
+  \def\SOUL@postamble{%
+    \begin{tikzpicture}[overlay, remember picture]
+      \highlight@EndHighlight
+      \highlight@DoHighlight
+    \end{tikzpicture}%
+  }%
+  %
+  \def\SOUL@everyhyphen{%
+    \discretionary{%
+      \SOUL@setkern\SOUL@hyphkern
+      \SOUL@sethyphenchar
+      \tikz[overlay, remember picture] \highlight@EndHighlight ;%
+    }{%
+    }{%
+      \SOUL@setkern\SOUL@charkern
+    }%
+  }%
+  %
+  \def\SOUL@everyexhyphen##1{%
+    \SOUL@setkern\SOUL@hyphkern
+    \hbox{##1}%
+    \discretionary{%
+      \tikz[overlay, remember picture] \highlight@EndHighlight ;%
+    }{%
+    }{%
+      \SOUL@setkern\SOUL@charkern
+    }%
+  }%
+  %
+  \def\SOUL@everysyllable{%
+    \begin{tikzpicture}[overlay, remember picture]
+      \path let \p0 = (begin highlight), \p1 = (0,0) in \pgfextra
+        \global\highlight@previous=\y0
+        \global\highlight@current =\y1
+      \endpgfextra (0,0) ;
+      \ifdim\highlight@current < \highlight@previous
+        \highlight@DoHighlight
+        \highlight@BeginHighlight
+      \fi
+    \end{tikzpicture}%
+    \the\SOUL@syllable
+    \tikz[overlay, remember picture] \highlight@EndHighlight ;%
+  }%
+  \SOUL@
+}
+\makeatother
+
+%\renewcommand\emph[1]{{\color{dark-red} \highlight[light-gray]{#1}}}
+
+\renewcommand\emph[1]{\highlight[dark-orange]{#1}}
+
+\begin{document}
+
+\definecolor{darkgreen}{rgb}{0.0627, 0.4588, 0.1451}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+Detta dokument ger en sammanfattning av kursens innehåll, med \emph{nyckelord} markerade, och saker vi \emph{räknat} eller \emph{bevisat}.
+\end{abstract}
+
+Kursen är uppdelad i tre delar -- vi började med \emph{grundläggande kombinatorik} i de första fyra föreläsningarna, sedan introducerade vi \emph{genererande funktioner} i de kommande tre föreläsningarna. Sedan hade vi ett intermezzo om \emph{grafer} och \emph{träd} i en föreläsning, innan vi fortsatte till vår tredje del om \emph{diskret sannolikhetsteori och den probabilistiska metoden}.
+
+\section{Del ett: Grundläggande kombinatorik}
+
+I den första föreläsningen introducerade vi de allra mest grundläggande koncepten i kombinatoriken:
+\begin{enumerate}
+    \item \emph{Additionsprincipen} och \emph{multiplikationsprincipen} låter oss räkna olika mängder.
+    \item \emph{Ord} bildade ur olika alfabeten är det mest basala av alla kombinatoriska objekt.
+    \item Ett viktigt exempel på en slags ord är \emph{permutationer} -- vi definierar och \emph{räknar dessa}.
+    \item Om ord är det mest basala exemplet där ordning spelar roll är \emph{kombinationer} det mest grundläggande exemplet på när vi väljer saker utan ordning.
+    \item Vi definierar \emph{binomialkoefficienterna} och \emph{visar att} dessa räknar antalet kombinationer av en viss storlek.
+\end{enumerate}
+
+Precis i slutet av föreläsning ett börjar vi prata om \emph{kombinatoriska bevis}. I föreläsning två fortsätter vi på detta tema, och ger ett antal olika exempel.
+
+\begin{enumerate}
+    \item De flesta av våra \emph{kombinatoriska bevis involverar binomialkoefficienter}, alltså delmängder till en viss mängd i en kombinatorisk tolkning.
+    \item Vi \emph{bevisar} specifikt \emph{binomialsatsen} med ett kombinatoriskt bevis.
+    \item Sedan definierar vi \emph{omordningar} och använder dessa för att räkna \emph{multi-delmängder}\sidenote[][]{Just termen multi-delmängd introducerar vi tyvärr först i en senare föreläsning -- i efterhand borde termen ha dykt upp redan här. Den refererar till ett sätt att fördela ut $n$ osärskiljbara objekt till $k$ särskiljbara personer, om vi inte kräver att varje person måste få ett objekt.} med ett \emph{pinnar-och-stjärnor-argument}.
+    \item Vi ser vårt första exempel av att \emph{räkna lösningar till ekvationer} när vi tolkar en multi-delmängd som en lösning på en ekvation $x_1 + x_2 + \ldots + x_n = k$ -- detta kommer dyka upp igen senare i kursen, med fler begränsningar på vad variablerna kan ta för värden.
+    \item Vi definierar \emph{multinomialkoefficienterna}, och ser att dessa ger \emph{antalet omordningar av ett ord}.
+\end{enumerate}
+
+I den tredje föreläsningen i denna del av kursen introducerar vi några till enkla verktyg inom kombinatoriken.
+
+\begin{enumerate}
+    \item \emph{Lådprincipen}, i dess generaliserade form, låter oss visa en del överraskande resultat. Vi ger ett par enkla exempel, och ett lite mer sofistikerat.
+    \item \emph{Inklusion-exklusion} låter oss räkna många saker som annars vore väldigt svåra att räkna. För att kunna bevisa den introducerar vi \emph{indikatorfunktioner} och ger några räkneregler för dessa.
+    \item Vi \emph{använder} inklusion-exklusion för att räkna lösningar till ekvationer, nu med övre begränsningar på variablerna.
+    \item Vi definierar \emph{derangemang}, och använder inklusion-exklusion för att räkna dessa.
+\end{enumerate}
+
+Föreläsning fyra sammanfattar till slut vad vi gjort i denna del av kursen.
+
+\begin{enumerate}
+    \item Vi definierar \emph{Stirlings partitionstal}, och \emph{använder} inklusion-exklusion för att visa att antalet \emph{surjektioner} från en mängd till en annan räknas av en formel som involverar dessa.
+    \item Vi definierar \emph{mängdpartitioner} och \emph{visar} att dessa räknas av Stirlings partitionstal. Dessa ger oss ett till vanligt exempel på något vi kan ge \emph{kombinatoriska bevis} kring.
+    \item Vi skriver upp en stor tre-gånger-fyra tabell över många av de räkneproblem vi sysslat med hittills -- den \emph{tolvfaldiga vägen} -- som sammanfattar och systematiserar det hela i termer av \emph{särskiljbara och osärskiljbara objekt} och funktioner som kan vara \emph{generella, injektiva, eller surjektiva}.
+    \item Vi definierar \emph{Stirlings cykeltal}, och därmed också \emph{cykler i permutationer}. Vi \emph{visar} hur man kan \emph{omvandla} mellan en permutation i vanlig form och en i cykelform.
+\end{enumerate}
+
+\section{Del två: Genererande funktioner}
+
+\section{Intermezzo: Grafer och träd}
+
+\section{Del tre: Diskret sannolikhetsteori och den probabilistiska metoden}
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}

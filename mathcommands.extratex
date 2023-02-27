@@ -19,6 +19,8 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
+\usepackage{soulutf8}
+
 \makeatletter
 \newcommand{\ostar}{\mathbin{\mathpalette\make@circled\star}}
 \newcommand{\make@circled}[2]{%
