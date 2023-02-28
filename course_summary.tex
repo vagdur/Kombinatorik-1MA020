@@ -187,6 +187,39 @@ Föreläsning fyra sammanfattar till slut vad vi gjort i denna del av kursen.
 
 \section{Del två: Genererande funktioner}
 
+I den här delen av kursen introducerar vi ett mer mekaniskt maskineri än tidigare -- innan var våra metoder ofta skräddarsydda för problemen, men genererande funktioner ger ofta ett generellt recept på en lösning.
+
+Första föreläsningen, föreläsning fem totalt, lade grunderna,
+\begin{enumerate}
+  \item gav definitionen av en (ordinär) \emph{genererande funktion},
+  \item räknade ut vad genererande funktionen var för några enkla exempel,
+  \item och \emph{använde} vår metod för att hitta genererande funktionen för \emph{Fibonaccitalen}.
+  \item Mer allmänt såg vi hur man kan \emph{manipulera} summor för att \emph{omvandla} \emph{rekursioner} för följder till ekvationer för deras genererande funktioner, och lösa dessa för att få ut den genererande funktionen.
+  \item Sedan definierade vi \emph{faltningen} av två följder, och \emph{bevisade} att den genererande funktionen för faltningen av två följder är produkten av deras genererande funktioner.
+  \item Vi \emph{använde} detta för att räkna lösningar till ekvationer med begränsningar på variablerna\sidenote[][-1cm]{I biten om multidelmängder kunde vi ha begränsningar av typen $x_4 \geq 72$, sedan när vi använde inklusion-exklusion kunde vi ha mer generella begränsningar av typen $3 \leq x_2 \leq 14$. När vi använder genererande funktioner kan vi ha mycket mer generella begränsningar, som till exempel på pariteten till $x_7$.} -- eller i alla fall hitta genererande funktionen för antalet lösningar, vilket oftast är gott nog.
+  \item Vi \emph{utnyttjade} också algebraiska manipulationer för genererande funktioner för att bevisa likheter mellan olika följder eller hitta genererande funktionen för en följd.\sidenote[][]{Detta dyker inte upp fullt så mycket i själva föreläsningen, men övning tre och fyra i föreläsningsanteckningarna är bra exempel på principen.}
+\end{enumerate}
+
+Andra föreläsningen om genererande funktioner, föreläsning sex totalt, fortsatte på samma tema, med mer räkning av lösningar till ekvationer. Sedan
+\begin{enumerate}
+  \item såg vi ett exempel på hur man kan \emph{finna en rekursion för ett kombinatoriskt problem},
+  \item definierade \emph{exponentiella genererande funktioner} och
+  \item fann några exempel på sådana för olika följder.
+  \item Sedan återvände vi till rekursionen vi funnit tidigare, och såg hur vi kan \emph{finna} en differentialekvation för den exponentiella genererande funktionen för en följd givet en rekursion. Att faktiskt lösa differentialekvationen är oftast möjligt, men inte riktigt en del av denna kursen, som ju inte handlar om analys.
+  \item Sedan definierade vi \emph{binomialfaltningen} mellan två följder, och \emph{visade} att den exponentiella genererande funktionen för binomialfaltningen mellan två följder är produkten av deras genererande funktioner.
+  \item Vi \emph{använde} sedan detta för att räkna antalet ord ur olika alfabeten, under olika begränsningar på antalet av en viss bokstav -- och såg att det var helt analogt med hur vi räknade lösningar på ekvationer.
+\end{enumerate}
+
+I tredje föreläsningen om genererande funktioner, föreläsning sju totalt, genomförde vi en mer omfattande räkning med genererande funktioner. Vi
+\begin{enumerate}
+  \item definierade \emph{gitterstigar}, \emph{uppåt-höger-stigar}, och \emph{Dyckstigar}.
+  \item Sedan \emph{fann} vi en rekursion, \emph{Segner-rekursionen}, för antalet Dyck-stigar,
+  \item och \emph{använde} denna för att hitta genererande funktionen för antalet Dyck-stigar.
+  \item Sedan definierade vi den \emph{stigande} och \emph{fallande fakulteten}, och använde dessa med Newtons binomialsats för att ge ett omständligt men helt mekaniskt bevis för vår \emph{explicita formel för Catalantalen}.
+  \item Efter det gav vi ett kombinatoriskt bevis för samma formel, som helt skippade att behöva hitta en rekursion och genererande funktion.
+  \item Vi gav några fler exempel på saker som räknas av Catalantalen, och \emph{visade} att de faktiskt räknas av dem genom att visa att de lyder Segner-rekursionen.\sidenote[][]{För att vara tydlig: Det intressanta här är inte nödvändigtvis de specifika exemplen, även om de är nyttiga, utan att allmänt förstå hur vi, genom att visa att ett objekt kan delas upp i två mindre objekt av samma typ, kan visa att någon följd lyder Segnerrekursionen och alltså räknas av Catalantalen.}
+\end{enumerate}
+
 \section{Intermezzo: Grafer och träd}
 
 \section{Del tre: Diskret sannolikhetsteori och den probabilistiska metoden}
