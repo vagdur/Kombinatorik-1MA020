@@ -683,23 +683,58 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
   \end{itemize}\par
   \noindent Sista fallet är det vi är intresserade av.
   \par\bigskip
-  \noindent Vi kan börja med att placera ut alla höger och uppåt steg, detta kan ske på $\begin{pmatrix}n\\a\end{pmatrix}\begin{pmatrix}n-a\\b\end{pmatrix}$ olika sätt.\par
-  \noindent Nu har vi $n-a-b$ platser att välja ut paren av antingen höger-vänster, eller uppåt-neråt.\par
-  \noindent Hur många olika par kan vi skapa? Om vi delar platserna i 2 blir det en fråga om hur många binära strängar av längd $\dfrac{n-a-b}{2}$ det finns där ordningen av 0,1 inte spelar roll. Det blir $\dfrac{n-a-b}{2}+1$
+  \noindent Vi kan tänka oss att vi kan vandra fritt i följande koordinatsystem:
+  \begin{figure}[h]
+        \centering
+        \includegraphics{initaltgrafsystem.png}
+  \end{figure}
   \par\bigskip
-  \noindent Vi har nu:
+  \noindent Om vi roterar planet med $45°$ grader får vi:
+  \begin{figure}[h]
+        \centering
+        \includegraphics{roteratgrafsystem.png}
+  \end{figure}
+  \par\bigskip
+  \noindent En punkt $(a,b)$ i övre systemet motsvarar då punkten $(a+b,a-b)$ i det roterade systemet. 
+  \par\bigskip
+  \noindent Notera även att en enhetsvektor i det övre planet har hälften av sin längd i det undre planet. En gitterstig i det undre planet har alltså en massa extra "vektorer" för att fylla ut och nå samma punkt, hur många? Precis $n$ stycken då vi i varje steg behöver addera $\left(\dfrac{1}{2}, \dfrac{1}{2}\right)$ för att få punkterna på enhetlig form.
+  \par\bigskip
+  \noindent För att nå punkten $(a,b)$ i det undre planet blir frågan lite lättare, eftersom det nu gäller att räkna hur många sätt vi kan fördela ut $\left(\dfrac{1}{2}, \dfrac{1}{2}\right)$ så att vi får dessa enhetliga punkterna. För att förflytta oss $a$ steg åt höger har vi $n$ saker att välja mellan och $a$ val, och för att förflytta oss $b$ steg uppåt har vi $n$ saker att välja mellan och $b$ val, vi får då:
+  \begin{equation}
+    \begin{gathered}
+      \begin{pmatrix}n\\a\end{pmatrix}\begin{pmatrix}n\\b\end{pmatrix}
+    \end{gathered}
+  \end{equation}
+  \par\bigskip
+  \noindent För att återgå till icke-roterade systemet behöver vi plocka bort de $n$:st $\left(\dfrac{1}{2}, \dfrac{1}{2}\right)$:
   \begin{equation*}
     \begin{gathered}
-      \begin{pmatrix}n\\a\end{pmatrix}\begin{pmatrix}n-a\\b\end{pmatrix}\left(\dfrac{n-a-b}{2}+1\right)
+      \left(a-\dfrac{n}{2}, b-\dfrac{n}{2}\right)
+    \end{gathered}
+  \end{equation*}och rotera tillbaks genom $(a-b, a+b)$:
+  \begin{equation*}
+    \begin{gathered}
+      \left(a-\dfrac{n}{2}-b+\dfrac{n}{2}, a-\dfrac{n}{2}+b-\dfrac{n}{2}\right)\\
+      = \left(a-b,a+b-n\right)
     \end{gathered}
   \end{equation*}
   \par\bigskip
-  \noindent Efter vi har valt vilka par vi vill fylla ut med behöver vi hitta hur många olika sätt vi kan placera ut de på. Eftersom varje höger-steg måste ha ett vänster-steg, och vice-versa med uppåt-neråt, så påminner denna del av problemet om hur vi kunde fördela ut parenteserna! Detta kunde göras med catalantalen, vi får då slutligen:
+  \noindent Låt nu $p = a-b$, och $q = a+b-n$. Lös för $a$ resp. $b$ ger:
   \begin{equation*}
     \begin{gathered}
-      \begin{pmatrix}n\\a\end{pmatrix}\begin{pmatrix}n-a\\b\end{pmatrix}\left(\dfrac{n-a-b}{2}+1\right)\cdot\dfrac{1}{n+1}\begin{pmatrix}2n\\n\end{pmatrix}
+      p+q = 2a-n\Lrarr a = \dfrac{p+q+n}{2}\\
+      p-q = -2b+n\Lrarr b = \dfrac{n+p-q}{2}
     \end{gathered}
   \end{equation*}
+  \par\bigskip
+  \noindent Insättning i (1) ger:
+  \begin{equation}
+    \begin{gathered}
+      \begin{pmatrix}n\\\dfrac{p+q+n}{2}\end{pmatrix}\begin{pmatrix}n\\\dfrac{n+p-q}{2}\end{pmatrix}
+    \end{gathered}
+  \end{equation}
+  \par\bigskip
+  \noindent WLOG kan vi säga att antalet gitterstigar till en punkt $(p,q)$ med $n$ steg ges av (2)
 \end{ans}
 
 \begin{ans}
