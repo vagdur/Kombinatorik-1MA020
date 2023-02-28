@@ -236,6 +236,32 @@ I vår åttonde föreläsning hade vi ett litet intermezzo, där vi introducerad
 
 \section{Del tre: Diskret sannolikhetsteori och den probabilistiska metoden}
 
+I denna del av kursen introducerade vi den andra större metoden inom kombinatoriken som vår kurs täcker -- den \emph{probabilistiska metoden}. För att kunna göra detta behövde vi så klart först introducera vårt verktyg, den \emph{diskreta sannolikhetsteorin}.
+
+Denna delen innehåller många olika exempel och satser -- ingen av dem är enskilt central, men att se den övergripande metoden, den röda tråden, är det. Alltså är inte själva satserna markerade, men \emph{metoderna} kan vara det.
+
+I den första föreläsningen, nummer nio totalt, så
+\begin{enumerate}
+  \item definierade vi \emph{sannolikhetsrum} bestående av \emph{utfallsrum} och \emph{sannolikhetsmått},
+  \item och kallade delmängder till utfallsrummet för \emph{händelser}, och definierade \emph{sannolikheten} för händelser.
+  \item Vi gav några enkla exempel på hur man kan beskriva problem i denna formalism -- och efter det var vi så vaga vi kunde komma undan med om hur exakt problemen formaliseras i den.\sidenote[][]{Detta var inte bara att jag var lat -- det är en universell standard bland sannolikhetsteoretiker att sopa det under mattan som irrelevanta detaljer. Man måste kunna definitionerna, men i nittionio fall av hundra behöver man inte tänka så noga på dem.}
+  \item Vi definierade den \emph{betingade sannolikheten}, vad det betyder att händelser är \emph{oberoende}, och formulerade \emph{lagen om total sannolikhet}.
+  \item Sedan formulerade vi inklusion-exklusion i dess sannolikhetsteoretiska version, och använde denna för att bevisa \emph{unionsbegränsningen}.
+  \item Vi använde unionsbegränsningen för att bevisa en undre begränsning för Ramseytalen. Vi gjorde detta genom att välja en \emph{slumpmässig färgning} och \emph{räkna} på sannolikheten för att delgrafer skulle bli monokromatiska.
+\end{enumerate}
+
+I föreläsning två i denna del, nummer tio totalt,
+\begin{enumerate}
+  \item definierade vi \emph{slumpvariabler}, och specialfallet med \emph{likformiga slumpvariabler}.
+  \item Sedan definierade vi \emph{väntevärdet} av en slumpvariabel, och \emph{bevisade} ett lemma som gav en \emph{alternativ formel} för väntevärdet.
+  \item Vi \emph{bevisade} sedan \emph{väntevärdets linjäritet}, och fann en koppling mellan väntevärdet av \emph{indikatorvariabeln för en händelse} och sannolikheten för denna händelse.
+  \item Vi använde sedan detta för att bevisa Sperners lemma och \emph{Caro-Weis sats}. I bägge fallen involverade idén att välja en slumpmässig permutation, och använda den för att skapa ett nyttigt objekt -- en slumpmässig kedja i Sperners lemma, och en slumpmässig oberoende mängd för Caro-Wei -- som vi sedan kunde studera för att få fram resultatet.
+  \item Vi \emph{bevisade} sedan \emph{Markovs olikhet}, och definierade \emph{Erd\H{o}s-Renyi-grafer},
+  \item och bevisade ett villkor för när Erd\H{o}s-Renyi-grafen inte har några isolerade noder. \emph{Idén} var helt enkelt att räkna ut väntevärdet av antalet isolerade noder, med hjälp av väntevärdets linjäritet, och sedan använda Markovs olikhet för att se att det faktum att detta väntevärde gick mot noll gav att sannolikheten att det existerade isolerade noder också gick mot noll.
+\end{enumerate}
+
+Föreläsning tre i denna del, den elfte och sista i kursen, \emph{är ett mysterium, eftersom den fortfarande inte är skriven.}
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
