@@ -20,6 +20,9 @@
 \usepackage{fancyvrb} % extended verbatim environments
   \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
 \usepackage{import}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage{pdfpages}
 \usepackage{transparent}
 \usepackage{float}
@@ -217,7 +220,7 @@ Hur många Dyck-stigar finns det av varje given längd? Vi kan använda vår obs
             \draw[red, very thick] (7*.75cm,7*.75cm) -- (7*.75cm,8*.75cm);
             \draw[red, very thick] (7*.75cm,8*.75cm) -- (8*.75cm,8*.75cm);
           \end{tikzpicture}
-          \caption{En illustration av vår uppdelning av en Dyck-stig i gråa, blåa, och röda steg.}
+          \caption{En illustration av vår uppdelning av en\, Dyck-stig i gråa, blåa, och röda steg.}
       \end{figure}
         Överväg en Dyck-stig av längd $2(n+1)$. Vi kan dela upp den i två kortare Dyck-stigar som följer: Den börjar med ett upp-steg, som vi färgar grått. Sedan fortsätter den i ett tag tills den träffar diagonalen för första gången. Vi färgar alla steg innan det steg i vilken den träffar diagonalen blåa, och steget i vilken den träffar diagonalen grått. Sedan färgar vi resten av stegen röda.
 
@@ -500,6 +503,8 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
     Senare studerades problemet med parentetiseringar av Eugène Charles Catalan, efter vilken talen fick sitt namn på femtiotalet.
 \end{example}
 
+\newpage
+
 \section{Övningar}
 
 \begin{xca}
@@ -511,6 +516,28 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
 \end{xca}
 
 \begin{xca}
+    Betrakta mängden av följder av heltal av längd $n$, som
+    \begin{itemize}
+        \item börjar med $1$,
+        \item och om det föregående talet är $k$ är nästa tal vilket tal som helst mellan $1$ och $k+1$.
+    \end{itemize} 
+
+    För $n = 4$ är dessa följder
+    $$1234, 1233, 1232, 1231, 1223, 1222, 1221, 1212, 1211, 1123, 1122, 1121, 1112, 1111.$$
+
+    Bevisa att antalet av dessa följder ges av Catalantalen.
+\end{xca}
+
+\begin{xca}
+    Bevisa att alla följderna på denna lista är lika med Catalantalen:
+    \begin{enumerate}
+        \item Antalet ord ur alfabetet $\{-1, 1\}$ med $n$ stycken av varje bokstav, sådana att alla partialsummor är ickenegativa. Det vill säga, om vi tar summan av de första $k$ bokstäverna i ordet skall det inte bli negativt, för alla $0 \leq k \leq 2n$.
+        \item Följder $1 \leq a_1 \leq a_2 \leq \ldots \leq a_n$ av heltal, med $a_i \leq i$ för alla $i$.
+        \item En valfri följd från Richard Stanleys lista av 66 saker som räknas av Catalantalen\sidenote[][]{Denna lista återfinns här: \url{https://math.mit.edu/~rstan/ec/catalan.pdf}}, som inte redan dykt upp i föreläsningen eller i en annan övning.
+    \end{enumerate}
+\end{xca}
+
+\begin{xca}
   \hspace{1cm}\par
   \begin{enumerate}[label=(\alph*)]
     \item Visa att Catalantalen kan räknas med $\begin{pmatrix}2n\\n\end{pmatrix}-\begin{pmatrix}2n\\n-1\end{pmatrix}$
@@ -518,10 +545,159 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
   \end{enumerate}
 \end{xca}
 
-\newpage
+\begin{xca}
+    Vi skriver talen $1$ till $n$ i ordning runt en cirkel.\sidenote[][]{Visst är ni glada att jag inte valde att formulera detta som ``$n$ personer runt ett runt bord?''?} Vi säger att en mängdpartition $\{A_1, A_2, \ldots, A_k\}$ av $[n]$ är \emph{ickekorsande} ifall det, när vi ritar streck mellan alla tal som ligger i samma del av partitionen, aldrig händer att två streck som hör till olika delar korsar varandra. Alltså, närhelst $a, b \in A_i$ och $c, d \in A_j$ så korsar inte strecket $ab$ strecket $cd$. Se figur \ref{fig:two_noncrossing_partitions} för två exempel på ickekorsande partitioner då $n=9$, och figur \ref{fig:crossing_partition} för ett exempel på en korsande partition.
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}{.45\textwidth}
+          \centering
+          \begin{center}
+              \begin{tikzpicture}
+                  \node[name=P,circle , draw, minimum width=3cm] at (0,0) {};
+                  \node at (0,1.75) {1};
+                  \node at (1.1,1.4) {2};
+                  \node at (1.75,.5) {3};
+                  \node at (1.75,-.5) {4};
+                  \node at (1.1,-1.5) {5};
+                  \node at (-1.1,-1.5) {6};
+                  \node at (-1.75,-.5) {7};
+                  \node at (-1.75,.5) {8};
+                  \node at (-1.1,1.4) {9};
+                  \node at (0,1.5) [circle, color=red, fill,inner sep=1.5pt] (1){};
+                  \node at (.9,1.2) [circle, color=red, fill,inner sep=1.5pt] (2){};
+                  \node at (1.45,.4) [circle, color=red, fill,inner sep=1.5pt] (3){};
+                  \node at (1.45,-.4) [circle, color=red, fill,inner sep=1.5pt] (4){};
+                  \node at (.9,-1.2) [circle, color=red, fill,inner sep=1.5pt] (5){};
+                  \node at (-.9,-1.2) [circle, color=red, fill,inner sep=1.5pt] (6){};
+                  \node at (-1.45,-.4) [circle, color=red, fill,inner sep=1.5pt] (7){};
+                  \node at (-1.45,.4) [circle, color=red, fill,inner sep=1.5pt] (8){};
+                  \node at (-.9,1.2) [circle, color=red, fill,inner sep=1.5pt] (9){};
+                  \draw[color=blue] (1) -- (9);
+                  \draw[color=blue] (1) -- (8);
+                  \draw[color=blue] (9) -- (8);
+                  \draw[color=blue] (2) -- (7);
+                  \draw[color=blue] (2) -- (6);
+                  \draw[color=blue] (2) -- (5);
+                  \draw[color=blue] (7) -- (6);
+                  \draw[color=blue] (7) -- (5);
+                  \draw[color=blue] (6) -- (5);
+                  \draw[color=blue] (3) -- (4);
+              \end{tikzpicture}
+          \end{center}
+          \caption{$\{\{1,8,9\}, \{2,5,6,7\}, \{3,4\}\}$.}
+        \end{subfigure}%
+        \begin{subfigure}{.45\textwidth}
+          \centering
+          \begin{center}
+              \begin{tikzpicture}
+                  \node[name=P,circle , draw, minimum width=3cm] at (0,0) {};
+                  \node at (0,1.75) {1};
+                  \node at (1.1,1.4) {2};
+                  \node at (1.75,.5) {3};
+                  \node at (1.75,-.5) {4};
+                  \node at (1.1,-1.5) {5};
+                  \node at (-1.1,-1.5) {6};
+                  \node at (-1.75,-.5) {7};
+                  \node at (-1.75,.5) {8};
+                  \node at (-1.1,1.4) {9};
+                  \node at (0,1.5) [circle, color=red, fill,inner sep=1.5pt] (1){};
+                  \node at (.9,1.2) [circle, color=red, fill,inner sep=1.5pt] (2){};
+                  \node at (1.45,.4) [circle, color=red, fill,inner sep=1.5pt] (3){};
+                  \node at (1.45,-.4) [circle, color=red, fill,inner sep=1.5pt] (4){};
+                  \node at (.9,-1.2) [circle, color=red, fill,inner sep=1.5pt] (5){};
+                  \node at (-.9,-1.2) [circle, color=red, fill,inner sep=1.5pt] (6){};
+                  \node at (-1.45,-.4) [circle, color=red, fill,inner sep=1.5pt] (7){};
+                  \node at (-1.45,.4) [circle, color=red, fill,inner sep=1.5pt] (8){};
+                  \node at (-.9,1.2) [circle, color=red, fill,inner sep=1.5pt] (9){};
+                  \draw[color=blue] (1) -- (3);
+                  \draw[color=blue] (1) -- (4);
+                  \draw[color=blue] (9) -- (5);
+                  \draw[color=blue] (9) -- (6);
+                  \draw[color=blue] (5) -- (6);
+                  \draw[color=blue] (8) -- (7);
+              \end{tikzpicture}
+          \end{center}
+          \caption{$\{\{1,3,4\},\{2\},\{5,6,9\},\{7,8\}\}$.}
+        \end{subfigure}
+        \caption{Två stycken ickekorsande mängdpartitioner.}
+        \label{fig:two_noncrossing_partitions}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \begin{center}
+            \begin{tikzpicture}
+                \node[name=P,circle , draw, minimum width=3cm] at (0,0) {};
+                \node at (0,1.75) {1};
+                \node at (1.1,1.4) {2};
+                \node at (1.75,.5) {3};
+                \node at (1.75,-.5) {4};
+                \node at (1.1,-1.5) {5};
+                \node at (-1.1,-1.5) {6};
+                \node at (-1.75,-.5) {7};
+                \node at (-1.75,.5) {8};
+                \node at (-1.1,1.4) {9};
+                \node at (0,1.5) [circle, color=red, fill,inner sep=1.5pt] (1){};
+                \node at (.9,1.2) [circle, color=red, fill,inner sep=1.5pt] (2){};
+                \node at (1.45,.4) [circle, color=red, fill,inner sep=1.5pt] (3){};
+                \node at (1.45,-.4) [circle, color=red, fill,inner sep=1.5pt] (4){};
+                \node at (.9,-1.2) [circle, color=red, fill,inner sep=1.5pt] (5){};
+                \node at (-.9,-1.2) [circle, color=red, fill,inner sep=1.5pt] (6){};
+                \node at (-1.45,-.4) [circle, color=red, fill,inner sep=1.5pt] (7){};
+                \node at (-1.45,.4) [circle, color=red, fill,inner sep=1.5pt] (8){};
+                \node at (-.9,1.2) [circle, color=red, fill,inner sep=1.5pt] (9){};
+                \draw[color=red] (1) -- (8);
+                \draw[color=red] (2) -- (9);
+                \draw[color=red] (7) -- (9);
+                \draw[color=blue] (2) -- (7);
+                \draw[color=blue] (3) -- (4);
+                \draw[color=blue] (3) -- (6);
+                \draw[color=blue] (6) -- (4);
+            \end{tikzpicture}
+        \end{center}
+        \caption{Den korsande partitionen $\{\{1,8\},\{2,7,9\},\{3,4,6\},\{5\}\}$, med de korsande strecken\, i rött.}
+        \label{fig:crossing_partition}
+    \end{figure}
+
+    Bevisa att antalet ickekorsande partitioner räknas av Catalantalen.\sidenote[][]{Ledtråd: Fundera på strecket mellan $9$ och $5$ i den högra av våra två exempel på ickekorsande partitioner. Kan ni se en rekursion?}
+\end{xca}
 
 \begin{ans}
-  %Plats för svar till övning 1
+  \noindent Vi kan se gitterstigarna som strängar med längd $n$. För att nå punkten $(a,b)$ \textit{måste} vi ta $a$ steg till höger, och $b$ steg uppåt.
+  \par\bigskip
+  \noindent Det finns då 3 olika saker som kan ske, beroende på hur vi väljer $n$:\par
+  \begin{itemize}
+    \item $n < a+ b$:\par
+      Inga gitterstigar uppfyller detta krav :(
+    \item $n = a+b$\par
+      Här gäller klassikern $\begin{pmatrix}a+b\\a\end{pmatrix}$
+    \item $n>a+b$\par
+  \end{itemize}
+  \noindent Här blir det mer intressant! Vi har $n-a-b$ platser över som måste fördelas. Men återigen finns det fall då detta inte går. Eftersom vi måste landa på punkten $(a,b)$ så måste varje nytt tillägg av steg kancelleras av ett annat (dvs om vi lägger till ett extra höger steg, måste vi lägga till ett vänstersteg så att vi inte hamnar på punkten $(a+1,b)$). Det finns 2 fall här:\par
+  \begin{itemize}
+    \item $n-a-b\equiv1\text{ mod } 2$\par
+      Inga gitterstigar uppfyller detta krav :( 
+    \item $n-a-b\equiv0\text{ mod } 2$\par\par
+  \end{itemize}\par
+  \noindent Sista fallet är det vi är intresserade av.
+  \par\bigskip
+  \noindent Vi kan börja med att placera ut alla höger och uppåt steg, detta kan ske på $\begin{pmatrix}n\\a\end{pmatrix}\begin{pmatrix}n-a\\b\end{pmatrix}$ olika sätt.\par
+  \noindent Nu har vi $n-a-b$ platser att välja ut paren av antingen höger-vänster, eller uppåt-neråt.\par
+  \noindent Hur många olika par kan vi skapa? Om vi delar platserna i 2 blir det en fråga om hur många binära strängar av längd $\dfrac{n-a-b}{2}$ det finns där ordningen av 0,1 inte spelar roll. Det blir $\dfrac{n-a-b}{2}+1$
+  \par\bigskip
+  \noindent Vi har nu:
+  \begin{equation*}
+    \begin{gathered}
+      \begin{pmatrix}n\\a\end{pmatrix}\begin{pmatrix}n-a\\b\end{pmatrix}\left(\dfrac{n-a-b}{2}+1\right)
+    \end{gathered}
+  \end{equation*}
+  \par\bigskip
+  \noindent Efter vi har valt vilka par vi vill fylla ut med behöver vi hitta hur många olika sätt vi kan placera ut de på. Eftersom varje höger-steg måste ha ett vänster-steg, och vice-versa med uppåt-neråt, så påminner denna del av problemet om hur vi kunde fördela ut parenteserna! Detta kunde göras med catalantalen, vi får då slutligen:
+  \begin{equation*}
+    \begin{gathered}
+      \begin{pmatrix}n\\a\end{pmatrix}\begin{pmatrix}n-a\\b\end{pmatrix}\left(\dfrac{n-a-b}{2}+1\right)\cdot\dfrac{1}{n+1}\begin{pmatrix}2n\\n\end{pmatrix}
+    \end{gathered}
+  \end{equation*}
 \end{ans}
 
 \begin{ans}
@@ -878,12 +1054,9 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
     \vspace{-4mm}
 
     \begin{align*}
-        f_n &= |F_n| \\
-        &= |\bigsqcup_{k = 1}^{n} (F_n)_k| \\
-        &= \sum_{k=1}^{n} |(F_n)_k| &&\quad \text{(Eftersom mängderna $(F_n)_k$ är disjunkta)} \\
+      f_n &= |F_n|= \underbrace{|\bigsqcup_{k = 1}^{n} (F_n)_k = |\sum_{k=1}^{n} |(F_n)_k|}_{\text{$(F_n)_k$ disjunkta}}\\
         &= \sum_{k=1}^{n} |F_{n-k} \times F_{k-1}| &&\quad \text{(Använder bijektionerna $\mathbb{U}_{n, k}$)} \\
-        &= \sum_{k=1}^{n} |F_{n-k}| \cdot |F_{k-1}| \\
-        &= \sum_{k=1}^{n} f_{n-k} \cdot f_{k-1} \\
+        &= \sum_{k=1}^{n} |F_{n-k}| \cdot |F_{k-1}|= \sum_{k=1}^{n} f_{n-k} \cdot f_{k-1} \\
         &= \sum_{k=0}^{n-1} f_{n-k-1} f_{k} &&\quad \text{(Justering av summa)}
     \end{align*}
 
@@ -903,6 +1076,60 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
 \end{ans}
 
 \begin{ans}
+  \hspace{1cm}
+  \begin{enumerate}
+    \item\noindent 
+      Vi börjar genom att undersöka hur följden ser ut genom att ta exemplet $n = 2$. De möjliga sekvenserna blir då:
+
+      \begin{equation}
+        \text{1-11-1} \hspace{5mm} \text{11-1-1}
+      \end{equation}
+
+      \noindent
+      Den kanske enklaste lösningen till detta problem är att identifiera en bijektion mellan antalet ord sådana att alla partialsummor är positiva och Dyck-stigar. Detta åstadkoms genom att tolka $1$ som ett steg uppåt och $-1$ som ett steg åt höger.\newline
+
+      \noindent
+      För att alla partialsummor ska vara positiva krävs det dels att följden börjar med $1$ (ett steg uppåt) och slutar med $-1$ (ett steg åt höger), men också att vi 'aldrig går mer åt höger än uppåt'. Det här ger precis samma rekursion som för Dyck-stigarna, och de är därmed Catalan talen.
+      \par\bigskip
+    \item 
+      Denna sekvens är en monotont ökande sekvens. Catalan talen räknar antalet monotona stigar från $(0,0)$ till $(n,n)$ som inte korsar över diagonalen. Genom att tolka index $i$ som koordinaten i längdled (x-led), och $a_i$ som koordinaten i höjdled (y-led) kan vi skapa en bijektion mellan sekvensen och Dyck-stigar. I detta fall bijekterar var och en av våra sekvenser till en monoton stig som går genom punkterna $(i-1, a_i)$.\newline
+
+      \noindent
+      Eftersom vi har som krav att $a_i \leq i, \forall \hspace{1mm} i$ säkerställer vi att stigen inte kommer att korsa över diagonalen, och vi kan därmed se att denna sekvens har precis samma rekursion som Dyck-stigarna, och är därmed Catalan talen.
+      \par\bigskip
+    \item 
+      Vi undersöker uppgift \textit{(dd)} i Richard Stanleys lista, som lyder: visa att följande följd ges av Catalan talen \newline
+
+      \noindent
+      Permutationer $a_1a_2\cdot\cdot\cdot a_{2n}$ på mängden $[2n]$ sådan att:
+
+      \begin{itemize}
+          \item $1,3,...,2n-1$ är i ökande ordning
+          \item $2,4,...,2n$ är i ökande ordning
+          \item $2i -1$ är före $2i$ i följden, $1 \leq i \leq n$
+      \end{itemize}
+
+      \noindent
+      För $n = 3$ ser de möjliga sekvenserna ut:
+
+      \begin{equation}
+          123456 \hspace{2mm} 123546 \hspace{2mm} 132456 \hspace{2mm} 132546 \hspace{2mm} 135246 
+      \end{equation}
+
+      \noindent
+      Vi ersätter alla udda siffror med $1$ och alla jämna siffror med $-1$ och ser att vi kan skapa en bijektion med Dyck-stigar. I fallet $n=3$ får vi:
+
+      \begin{equation}
+          \text{1-11-11-1} \hspace{2mm} \text{1-111-1-1} \hspace{2mm} \text{11-1-11-1} \hspace{2mm} \text{11-11-1-1} \hspace{2mm} \text{111-1-1-1} 
+      \end{equation}
+
+      \noindent
+      Kravet '\textit{$2i-1$ är före $2i$ i följden}' innebär att för ett udda tal, måste det nästkommande jämna talet komma efter det udda talet i följden. Detta säkerställer att sekvensen måste börja med $1$ och sluta med $-1$. Som innan är det här lätt att skapa en bijektionen mellan följden och Dyck-stigar, och vi ser att man får precis samma rekursion. Denna sekvens är alltså Catalan talen.
+  \end{enumerate}
+\end{ans}
+
+\setcounter{ans}{4}
+\begin{ans}\hspace{1cm}
   \begin{enumerate}[label=(\alph*)]
     \item
 
@@ -924,26 +1151,27 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
   \end{enumerate}
 \end{ans}
 
-\subsection{Övning 5}\hfill\\\par
-\noindent Vi fick en väldigt bra ledtråd, för att sätta den i perspektiv behöver vi påminna oss om att vi kunde räkna antalet Dyck-stigar med rekursion \textit{och} med Catalan-tal.
-\par\bigskip
-\noindent Catalan-talen kan alltså skrivas på formen
-\begin{equation*}
-  \begin{gathered}
-    C_0 = 1\qquad C_{n+1} = \sum_{k=0}^{n}C_{k}C_{n-k}
-  \end{gathered}
-\end{equation*}\par
-\noindent Då behöver vi bara hitta ett sätt att räkna partitionerna på liknande vis!
-\par\bigskip
-\noindent Låt $I(n)$ vara antalet icke-korsande partitioner för $[n]$.\par
-\noindent För $I(0)$ (tomma mängden) finns det en mängd som inte korsar andra partitioner, så $I(0) = 1$\par
-\noindent Catalan-talens rekursion har en $C_{n-k}$ del där $n$ är fixerad medan $k$ varierar. För $I(n+1)$ blir vi lite kreativa. Vi tittar på den partitionen som innehåller $n+1$, och låter $k$ vara det minsta talet i den partitionen. Vi kan nu partitionera $[n+1]$ i två delar, $[k-1]$ och resten $\left\{k,k+1,\hdots,n+1\right\}$. Partitionen $[k-1]$ har då $I(k-1)$ icke-korsande partitioner. $k$ och $n+1$ är i samma partition per definition, så det finns kvar $I(n+1-k)$ sätt att forma icke-korsande partitioner. Då får vi:
-\begin{equation*}
-  \begin{gathered}
-    I(n+1) = \sum_{k=1}^{n+1}I(k-1)I(n+1-k) = \sum_{j=0}^{n}I(j)I(n-k)
-  \end{gathered}
-\end{equation*}\par
-\noindent Detta är precis Catalan-talen
+\begin{ans}
+  \noindent Vi fick en väldigt bra ledtråd, men för att sätta den i perspektiv behöver vi påminna oss om att vi kunde räkna antalet Dyck-stigar med rekursion \textit{och} med Catalan-tal.
+  \par\bigskip
+  \noindent Catalan-talen kan alltså skrivas på formen
+  \begin{equation*}
+    \begin{gathered}
+      C_0 = 1\qquad C_{n+1} = \sum_{k=0}^{n}C_{k}C_{n-k}
+    \end{gathered}
+  \end{equation*}\par
+  \noindent Då behöver vi bara hitta ett sätt att räkna partitionerna på liknande vis!
+  \par\bigskip
+  \noindent Låt $I(n)$ vara antalet icke-korsande partitioner för $[n]$.\par
+  \noindent För $I(0)$ (tomma mängden) finns det en mängd som inte korsar andra partitioner, så $I(0) = 1$\par
+  \noindent Catalantalens rekursion har en $C_{n-k}$ del där $n$ är fixerad medan $k$ varierar. För $I(n+1)$ blir vi lite kreativa. Vi tittar på den partitionen som innehåller talet $n+1$, och låter $k$ vara det minsta talet i den partitionen. Vi kan nu partitionera $[n+1]$ i två delar, $[k-1]$ och resten $\left\{k,k+1,\hdots,n+1\right\}$. Partitionen $[k-1]$ har då $I(k-1)$ icke-korsande partitioner. $k$ och $n+1$ är i samma partition per definition, så det finns kvar $I(n+1-k)$ sätt att forma icke-korsande partitioner. Då får vi:
+  \begin{equation*}
+    \begin{gathered}
+      I(n+1) = \sum_{k=1}^{n+1}I(k-1)I(n+1-k) = \sum_{j=0}^{n}I(j)I(n-k)
+    \end{gathered}
+  \end{equation*}\par
+  \noindent Detta är precis Catalantalen
+\end{ans}
 
 \bibliography{references}
 \bibliographystyle{plainnat}
