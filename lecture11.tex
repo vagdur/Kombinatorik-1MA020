@@ -129,6 +129,91 @@ Vi kan använda denna sats för att bevisa följande resultat:
 
 \section{ACNSL-olikheten och VLSI}
 
+I nästan varje sak vi gjort som involverat grafer så har vi ritat bilder av grafen på tavlan, och försökt göra dessa bilder så tydliga som möjligt. Vi väljer att rita dem så att kanterna inte korsar varandra om de inte absolut måste.
+
+Detta leder oss till en faktisk matematisk fråga: Givet en graf $G$, hur få korsningar mellan kanter kan vi rita den med?
+
+\begin{definition}
+  En graf $G$ som vi kan rita helt utan att några kanter korsar varandra kallas för \emph{planär}. I allmänhet betecknar vi det minimala antalet korsningar av kanter i en ritning av $G$ med $cr(G)$.\sidenote[][]{Från engelskans \emph{crossing number}.}
+\end{definition}
+
+Låt oss återigen ge ett lemma som vi inte bevisar.
+
+\begin{lemma}\label{newtons_formula_lemma}
+  Det gäller för alla grafer $G = (V, E)$ att
+  $$cr(G) \geq \abs{E} - 3\abs{V} + 6.$$
+
+  \begin{proof}
+    Utelämnas.\sidenote[][]{Idén i beviset är att använda Eulers formel och sedan resonera om att ta bort kanter som korsar andra kanter:
+    \begin{lemma}[Eulers formel]
+      Om $G = (V, E)$ är planär är
+      $$3\abs{V} - 6 \geq \abs{E}.$$
+    \end{lemma}
+    
+    Hur bevisar man Eulers formel? Den är ett specialfall av Eulerkarakteristiken av en polyeder. För en väldigt lång och intressant diskussion av just hur man bevisar detta, och primärt vad det faktiskt innebär att bevisa något, se Imre Lakatos bok \emph{Proofs and Refutations}, som handlar enbart om just det.}
+  \end{proof}
+\end{lemma}
+
+Anledningen att vi ger den här olikheten är att vi faktiskt kan enkelt härleda en starkare version av samma olikhet med ett probabilistiskt trick. Såsom mycket annan modern matematik är listan av upptäckare lång -- till skillnad från förr i tiden görs merparten av all matematik i samarbeten numera.
+
+\begin{theorem}[Ajtai-Chvatal-Newborn-Szemerédi-Leighton (ACNSL)]
+  För varje graf $G = (V,E)$ gäller det att, om $\abs{E} \geq 4\abs{V}$ så är
+  $$cr(G) \geq \frac{\abs{E}^3}{64\abs{V}^2}.$$
+
+  \begin{proof}
+    För att förenkla vår notation, låt $n = \abs{V}$ och $e = \abs{E}$. Tag ett godtyckligt $p \in (0,1)$.
+
+    Vad vi vill göra är att studera en slumpmässig delgraf $H$ till $G$, som ges av att varje nod i $G$ är med i $H$ med sannolikhet $p$, och varje kant är med om bägge dess ändpunkter är med i $H$.\sidenote[][]{Detta kallas i allmänhet \emph{nodperkolation} på $G$. Perkolationsteori är ett stort ämne i sannolikhetsteorin, med kopplingar till fysiken -- man brukar tänka sig det som en modell för hur vatten sipprar genom sten. Således namnlikheten till perkolatorkaffe.}
+
+    Vi får av Lemma \ref{newtons_formula_lemma} att
+    $$cr(H) \geq \abs{E(H)} - 3\abs{V(H)} + 6.$$
+    Eftersom denna likhet gäller för \emph{alla} utfall måste den också gälla om vi tar väntevärdet på bägge sidorna,\sidenote[][]{
+      Vi kan formulera detta som ett lemma:
+      \begin{lemma}
+        Om $X(\omega) \geq Y(\omega)$ för varje $\omega \in \Omega$ så är $\E{X} \geq \E{Y}$.
+
+        \begin{proof}
+          Vi räknar att
+          \begin{align*}
+            \E{X} &= \sum_{\omega \in \Omega} X(\omega)\mu(\omega)\\
+            &\geq \sum_{\omega \in \Omega} Y(\omega)\mu(\omega) = \E{Y}.
+          \end{align*}
+        \end{proof}
+      \end{lemma}
+    } så från väntevärdets linjäritet får vi alltså att
+    \begin{equation}\label{eq:H_expectations_ineq}
+      \E{cr(H)} \geq \E{\abs{E(H)}} - 3\E{\abs{V(H)}} + 6.
+    \end{equation}
+
+    Så låt oss studera vardera av dessa väntevärden. Så vi räknar att
+    \begin{align*}
+      \E{\abs{V(H)}} &= \E{\sum_{v \in V(G)} \ind{v \in V(H)}}\\
+      &= \sum_{v \in V(G)} \Prob{v \in V(H)} = \abs{V(G)}p = np,
+    \end{align*}
+    och
+    \begin{align*}
+      \E{\abs{E(H)}} &= \E{\sum_{\{u,v\} \in E(G)} \ind{\{u,v\} \in E(H)}}\\
+      &= \sum_{\{u,v\}\in E(G)} \Prob{\{u,v\} \in E(H)}\\
+      &= \sum_{\{u,v\}\in E(G)} \Prob{u \in V(H), v \in V(H)}\\
+      &= \sum_{\{u,v\}\in E(G)} \Prob{u \in V(H)}\Prob{v \in V(H)} = \abs{E(G)}p^2 = ep^2.
+    \end{align*}
+
+    Hur hanterar vi $\E{cr(H)}$? Jo, vi tar en ritning av $G$ som har precis $cr(G)$ korsningar, och räknar hur många av de korsningarna som är kvar när vi suddat ut alla noder och kanter utanför $H$.
+
+    För att korsningen skall vara kvar krävs det så klart att bägge kanterna i korsningen är kvar -- och vi har sett att sannolikheten att en enda kant är kvar är $p^2$, så eftersom kanter är kvar oberoende av varandra\sidenote[][]{Förutom om de utgår från samma nod -- men vi kan aldrig tvingas att rita två kanter som utgår från samma nod så att de korsas. (Detta är ganska uppenbart men inte helt trivialt -- fundera ett ögonblick på varför det är sant.)} är sannolikheten att en korsning blir kvar $p^4$.
+
+    Så enligt samma logik som i de andra fallen får vi att $\E{cr(H)} = cr(G)p^4$, så om vi sätter in resultatet av våra räkningar i \eqref{eq:H_expectations_ineq} så får vi att
+    $$p^3cr(G) \geq p^2e - 3pn + 6$$
+    så om vi nu väljer $p = \frac{4n}{e}$ så får vi alltså
+    $$\left(\frac{4n}{e}\right)^3cr(G) \geq \frac{(4n)^2}{e} - 3\frac{4n^2}{e} + 6 > \frac{(4n)^2}{e} - 3\frac{4n^2}{e}$$
+    vilket förenklar till påståendet vi sade vi skulle bevisa.
+  \end{proof}
+\end{theorem}
+
+Varför är det här ett intressant problem? Att rita grafer med så få korsningar som möjligt är inte bara ett estetiskt problem när man ritar saker på en blackboard, utan också ett praktiskt problem när man skall designa kretskort.
+
+Kretskorten har nämligen många olika komponenter, som vi kan tänka oss som noder, som skall kopplas ihop med varandra. Så länge inte kopplingarna korsar varandra kan man helt enkelt måla dit dem, men om de skall korsa behöver man göra något mer komplicerat. Alltså är det av praktiskt intresse att hitta sätt att rita grafer som minimerar antalet korsningar -- problemet i allmänhet med kretskortsdesign kallas för VLSI (Very Large Scale Integration).
+
 \section{Oberoende mängder i triangelfria grafer}
 
 \section{Längsta ökande delföljden i en permutation}
