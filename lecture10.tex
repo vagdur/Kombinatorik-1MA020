@@ -401,6 +401,76 @@ Vi sammanfattar vad vi lärt oss om slumpvariabler hittills i följande räknere
 
 \section{Övningar}
 
+\begin{xca}
+    \begin{definition}
+        En familj $\mathcal{F}$ av delmängder till $[n]$ kallas för \emph{skärande} om $A \cap B \neq \emptyset$ för alla par av $A$ och $B$ i $\mathcal{F}$.
+    \end{definition}
+
+    Hur stor kan en skärande familj av mängder vara, om vi kräver att varje $A \in \mathcal{F}$ har storlek exakt $k$? Svaret ges av följande sats:
+
+    \begin{theorem}[Erd\H{o}s-Ko-Rado]
+        För varje skärande familj $\mathcal{F}$ av delmängder av storlek $k$ till $[n]$ gäller det att
+        $$\abs{F} \leq \binom{n-1}{k-1}.$$
+    \end{theorem}
+
+    \textbf{Delfråga a:} Hitta, för alla $n$ och $k$, ett exempel på en skärande familj $\mathcal{F}$ av delmängder av storlek $k$ till $[n]$ sådan att
+    $$\abs{F} \leq \binom{n-1}{k-1}.$$
+
+    \textbf{Delfråga b:} Bevisa följande lemma:\sidenote[][]{Den här delen kräver ingen probabilistisk metod, det är bara ett direkt bevis. Sannolikhetsteorin kommer in i nästa delfråga.}
+
+    \begin{lemma}
+        Låt $\mathcal{F} \subseteq \binom{[n]}{k}$ vara en skärande familj, och låt för varje $s \in \{0,1,\ldots,n-1\}$
+        $$A_s = \{s, s+1, \ldots, s + k - 1\}$$
+        där additionen är modulo $n$. Då kan $\mathcal{F}$ innehålla högst $k$ av mängderna $A_s$.
+    \end{lemma}
+
+    Dra sedan slutsatsen från detta att samma lemma gäller även om vi tar någon permutation $\sigma \in S_n$ och låter
+    $$A_s = \{\sigma(s), \sigma(s+1), \ldots, \sigma(s + k - 1)\}.$$
+
+    \textbf{Delfråga c:} Nu skall vi bevisa Erd\H{o}s-Ko-Rado. Idén är att vi vill skapa en likformigt slumpmässig $A \uniformIn \binom{[n]}{k}$ och studera sannolikheten att denna ligger i $\mathcal{F}$ -- det finns ett uppenbart uttryck för denna sannolikhet, och vi vill skapa $A$ på ett sätt som gör att vi också kan använda vårt lemma från förra delfrågan för att begränsa den.
+
+    Beviset börjar alltså med ``Tag en likformigt fördelad permutation $\sigma \uniformIn S_n$ och ett likformigt fördelat heltal $s \uniformIn \{0,1,\ldots,n-1\}$''. Skriv resten av beviset.
+\end{xca}
+
+\begin{xca}
+    Bevisa följande proposition:
+
+    \begin{proposition}
+        Antag att $v_1, v_2, \ldots, v_n$ är $n$ stycken enhetsvektorer i $\R^n$, alltså $\norm{v_i} = 1$ för alla $i$. Då finns det en följd $\eta_1, \eta_2, \ldots, \eta_n$, med $\eta_i = \pm 1$ för varje $i$, sådan att
+        $$\norm{\sum_{i=1}^{n} \eta_i v_i} \leq \sqrt{n}.$$
+    \end{proposition}
+\end{xca}
+
+\begin{xca}
+    I denna övning skall vi bevisa följande resultat:
+
+    \begin{theorem}
+        Låt $G = (V, E)$ vara någon graf, och antag att $\abs{V} = n$ och $\abs{E} = n\frac{d}{2}$ för något $d \geq 1$. Då finns det en oberoende mängd i $G$ av storlek åtminstone $\frac{n}{2d}$.
+    \end{theorem}
+
+    Idén för beviset är att vi tar en slumpmässig delmängd $S \subseteq V$ genom att ta med varje nod med sannolikhet $p = \frac{1}{d}$. Denna kommer så klart inte vara garanterad att vara en oberoende mängd -- men om vi, för varje kant $\{u, v\}$ som kopplar ihop $u, v \in S$ , tar bort $u$ eller $v$ ur $S$ så blir den återstående mängden av noder oberoende.
+
+    Bevisa satsen genom att räkna ut väntevärdet av storleken på $S$ och väntevärdet av antalet noder vi tvingas ta bort ur $S$, och se att vi kommer ha i genomsnitt $\frac{n}{2d}$ noder kvar.
+\end{xca}
+
+\begin{xca}
+    Låt $p \in (0,1)$ vara fixt. För varje $i \in \N$, låt 
+    $$X_i = \begin{cases}
+        1  & \text{med sannolikhet }p\\
+        0 & \text{annars},
+    \end{cases}$$
+    så att $X_1, X_2, X_3, \ldots$ blir en slumpmässig följd av nollor och ettor. Låt $I$ vara det minsta $I$ sådant att $X_I = 0$ -- detta blir alltså ett slumpmässigt heltal.
+
+    Beräkna, för varje $i \in \N$, $\Prob{I = i}$. Räkna sedan ut $\E{I}$.
+\end{xca}
+
+\begin{xca}
+    Antag att du samlar på Pokemonkort.\sidenote[][]{Ersätt med ditt favorit-gacha med lootboxes om du vill ha ett mer samtida exempel.} Vi föreställer oss en väldigt enkel modell för hur du får ett nytt kort -- det finns $n$ stycken distinkta kort totalt, och du kan köpa ett nytt kort åt taget. Det nya kortet du får är likformigt fördelat i samlingen av kort -- varje kort är lika sannolikt.
+
+    När du köper ditt första kort är du garanterad att få ett kort du inte har innan. När du köper ditt andra kort är sannolikheten bara $\frac{1}{n}$ att du råkar få det kort du redan fick en gång -- men när du redan har de flesta av korten kommer du oftast bara att få ett kort du redan äger, inte ett nytt, så du behöver köpa väldigt många paket för att gå från att ha en samling av $n-1$ kort till att ha en fullständig samling.
+
+    Låt $T$ vara antalet gånger du behöver köpa ett nytt kort för att få en fullständig samling, om du börjar på noll. Beräkna $\E{T}$.\sidenote[][]{Ledtråd: Lösningen på det här problemet använder lösningen på föregående problem.}
+\end{xca}
 
 %\bibliography{references}
 %\bibliographystyle{plainnat}
