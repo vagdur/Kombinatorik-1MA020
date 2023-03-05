@@ -216,6 +216,168 @@ Kretskorten har nämligen många olika komponenter, som vi kan tänka oss som no
 
 \section{Oberoende mängder i triangelfria grafer}
 
+Vi har redan innan visat resultat om antalet oberoende mängder i en graf -- på en föreläsning visade vi Caro-Weis sats, och i en övning ger vi ett annat resultat om oberoende mängder med ett annat bevis.
+
+Låt oss nu ge ytterligare ett resultat om oberoende mängder, denna gång under antagandet att grafen inte har några trianglar. Att detta borde hjälpa oss att hitta större oberoende mängder är någorlunda intuitivt -- i en triangel kan vi ju bara ha med högst ett av de tre hörnen i vår oberoende mängd. Att inte innehålla någon triangel är dessutom en begränsning på antalet kanter grafen kan innehålla 
+\sidenote[][]{Detta är Turáns sats -- en graf på $n$ noder som inte innehåller några trianglar kan inte ha mer än $\frac{n^2}{4}$ kanter. 
+
+Detta maximala antal kanter uppnås för övrigt av att ta en graf som har två grupper $A$ och $B$ av $n/2$ noder var, och rita varje kant $\{a,b\}$ mellan $A$ och $B$ och inga kanter inuti varken $A$ eller $B$.
+
+En sådan graf kallas för \emph{bipartit}, och har ju faktiskt en väldigt stor oberoende mängd.}
+-- och desto färre kanter desto enklare blir det ju att hitta en oberoende mängd, eftersom varje kant ju säger att ``du får bara ta en av dessa två noder till din oberoende mängd''.
+
+Så resultatet vi ger säger oss något om hur stor oberoende mängd vi kan få om vi inte innehåller en triangel, och dessutom vet att varje nod har låg grad.
+
+\begin{theorem}[Ursprungligen av Ajtai-Komlós-Szemerédi, bevis av Shearer]\label{thm:shearer_triangle_free_indep_set}
+  Låt $G = (V, E)$ vara en triangelfri graf på $n$ noder, och skriv $\Delta = \max_{v \in V} d_v$ för den maximala graden av en nod i $G$. Då finns det en oberoende mängd $S \subseteq V$ sådan att
+  $$\abs{S} \geq n\frac{\log_2(\Delta)}{8\Delta}.$$
+\end{theorem}
+
+Låt oss bryta ut den centrala idén i beviset av det här i ett lemma, bevisa det, och sedan använda lemmat för att bevisa satsen. I beviset kommer vi välja en slumpmässig oberoende mängd\sidenote[][]{Vi väljer alltså varje oberoende mängd med samma sannolikhet -- för det mesta brukar vi ju välja våra slumpvariabler som likformigt fördelade på en mängd vi förstår oss på väl, men det är så klart tillåtet att göra på detta viset också.} $S$, och sedan visa en nedre begränsning av $\E{\abs{S}}$. Som vanligt vill vi studera vårt problem ``lokalt'', runt en enda nod -- så frågan vi vill ställa oss är: Om vi vet hur $S$ ser ut överallt utom i $v$ och dess grannar, vad kan vi säga om sannolikheten att $v \in S$? Och hur många av $v$s grannar ligger i genomsnitt i $S$?
+
+Det visar sig att vi kan svara på dessa frågor, och ge exakta uttryck, men det kräver en del notation för att kunna göra det -- formuleringen av lemmat blir nästan lika lång som beviset.
+
+\begin{lemma}
+  Låt $G = (V, E)$ vara en triangelfri graf på $n$ noder, och låt $S$ vara en likformigt slumpmässig oberoende mängd i $G$.
+
+  Låt oss, för varje nod $v \in V$, skriva 
+  $$H_v = G \setminus (v \cup N(v))$$
+  så att $H_v$ alltså är hela $G$ förutom just $v$ och dess grannar.
+  
+  Vi skriver $N_v(S)$ för mängden av grannar till en nod i $S \cap H_v$,\sidenote[][-1.5cm]{Alltså mängden noder vi inte kan lägga till till $S \cap H_v$ utan att den slutar vara en oberoende mängd.} alltså
+  $$N(S) = \bigcup_{v \in S \cap H_v} N(v)$$
+  och vi låter $P_v = N(v) \setminus N(S)$ -- så att $P_v$ är mängden av grannar till $v$ som hade kunnat läggas till till $S$.
+
+  Då gäller det för varje $v$ att
+  \sidenote[][-2.5cm]{Den uppmärksamma läsaren bör vara skeptisk mot vad vi just skrivit här, både i vänster och höger led.
+  
+  I vänster led skrev vi en betingad sannolikhet där vi betingade på en \emph{slumpvariabel}, men vi har ju definierat betingade sannolikheter som att vi betingar på \emph{händelser}.
+  
+  I höger led påstår vi sedan att denna betingade sannolikhet blir lika med ett uttryck som inte är ett tal utan en \emph{slumpvariabel} -- $S$ är ju slumpmässig, så varje uttryck som innehåller $S$ kommer ju också vara slumpmässigt tills vi skriver ett $\Prob{\,}$ eller $\E{\,}$ för att omvandla det till ett tal.
+  
+  Det finns definitioner som gör det här helt väldefinierat, men vi kan nöja oss med att betrakta detta som en läsligare notation för påståendet att, för varje oberoende mängd $W\subseteq H_v$, så är
+  $$\Prob{v \in S \given S \cap H_v = W} = \left(2^{\abs{P_v}} + 1\right)^{-1}.$$
+  
+  I detta påstående, när vi valt ett $W$, blir ju $S \cap H_v = W$ en händelse, och höger led blir bara ett tal eftersom $W$ är en fix mängd. Så detta är väldefinierat enligt våra definitioner.}
+  $$\Prob{v \in S \given S \cap H_v} = \frac{1}{2^{\abs{P_v}} + 1}.$$
+  och
+  $$\E{\abs{N_v \cap S} \given S\cap H_v} = \frac{\abs{P_v}}{2 + 2^{1-\abs{P_v}}}.$$
+
+  \begin{proof}
+    Det är mycket notation i formuleringen av detta lemma, men beviset är faktiskt rätt så enkelt, i alla fall när man har rätt bild i huvudet av vad som pågår -- att studera Figur \ref{fig:triangle_free_graph} först för att förstå notationen innan man ger sig in i beviset är nog klokt.
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.9\textwidth]{graphics/independent_sets_in_triangle_free_graphs.png}
+      \caption{En triangelfri graf, med noden $v$ ifylld blå, noderna i $N(v)$ ihåligt blå, noder i $H_v$ svarta, noder i $S \cap H_v$ ifyllda i rött, och mängden $N_v(S)$ inringad med en blå cirkel.}
+      \label{fig:triangle_free_graph}
+    \end{figure}
+
+    Vad vi behöver svara på är följande fråga: Givet att vi vet vilka noder i $H_v$ som är med i $S$, hur många olika sätt kan vi utvidga $S$ till hela $G$, alltså inklusive $v \cup N(v)$, och hur många av dessa sätt har $v \in S$?
+
+    Den senare delen av frågan är enkel att besvara -- så snart vi lagt in $v$ i $S$ så får så klart inga av dess grannar vara med i $S$, så det finns exakt ett sätt att utvidga $S$ från $H_v$ till hela $G$ sådant att $v \in S$.
+
+    Hur många sätt finns det att utvidga $S$ om vi säger att $v \not\in S$? Jo, för varje granne till $v$ ligger den antingen i $N_v(S)$, och får inte läggas till, eller så ligger grannen i $N_v(S)^c$ och vi får lov att lägga till den. 
+    
+    Eftersom grafen inte innehåller några trianglar finns det inga kanter mellan några två noder i $N(v)$ -- alltså kan våra val av noder ur $N(v) \cap N_v(S)^c$ att lägga till till $S$ inte blockera varandra, så varje delmängd till $N(v) \cap N_v(S)^c$ är ett giltigt val.
+
+    Alltså finns det $2^{\abs{N(v) \cap N_v(S)^c}}$ sätt att utvidga $S$ till hela $G$ sådana att $v \not \in S$.
+
+    Eftersom $S$ var likformigt fördelad på mängden av oberoende mängder måste varje av dessa alternativ vara lika sannolikt, och alltså är sannolikheten att vi väljer det enda alternativet där $v \in S$ precis
+    $$\frac{1}{2^{\abs{N(v) \cap N_v(S)^c}} + 1}$$
+    såsom vi önskade bevisa.
+
+    För att räkna ut väntevärdet av antalet noder i $N(v)$ som ligger i $S$ kan vi räkna likadant. Först noterar vi att $N(v) \cap S = P_v \cap S$ -- en nod som inte ligger i $P_v$ har redan en granne i $S$, så den kan omöjligen hamna i $S$.
+    
+    Vi har sett att det finns totalt $2^{\abs{P_v}} + 1$ möjliga värden för $P_v \cap S$, och alla är lika sannolika, så
+    \begin{align*}
+      \E{\abs{N(v) \cap S} \given S \cap H_v} &= \E{\abs{P_v \cap S} \given S \cap H_v}\\
+      &= 0\cdot \Prob{v \in S \given S \cap H_v}\\
+      &\qquad + \sum_{Q \subseteq P_v} \abs{Q}\Prob{P_v \cap S = Q \given S \cap H_v}\\
+      &= \sum_{i=0}^{\abs{P_v}} \sum_{\substack{Q \subseteq P_v\\\abs{Q} = i}} \frac{i}{2^{\abs{P_v}} + 1}\\
+      &= \frac{1}{2^{\abs{P_v}} + 1}\sum_{i=0}^{\abs{P_v}} i\binom{\abs{P_v}}{i}\\
+      &= \frac{\abs{P_v}\,\, 2^{\abs{P_v} - 1}}{2^{\abs{P_v}} + 1} = \frac{\abs{P_v}}{2^{1-\abs{P_v}} + 2}
+    \end{align*}
+    vilket är precis vad vi ville bevisa.\sidenote[][]{För att ta oss från näst sista raden till sista raden använde vi oss av likheten
+    $$\sum_{k=0}^{n} k\binom{n}{k} = n 2^{n-1}.$$
+    
+    Att bevisa denna likhet med ett kombinatoriskt bevis är en av våra extraövningar.}
+  \end{proof}
+\end{lemma}
+
+Med detta resultat i handen kan vi nu ge vårt bevis för Teorem \ref{thm:shearer_triangle_free_indep_set}.
+
+\begin{proof}[Bevis av Teorem \ref{thm:shearer_triangle_free_indep_set}]
+  Om $\Delta < 16$ följer resultatet av Caro-Weis sats, så vi antar att $\Delta \geq 16$. Låt $S$ vara en likformigt slumpmässig oberoende mängd i $G$.
+
+  Vi definierar, för varje $v \in V$, en slumpvariabel $X_v$ som
+  $$X_v = \Delta\ind{v \in S} + \abs{N(v) \cap S}.$$
+
+  Låt oss nu studera väntevärdet av summan av dessa $X_v$. Vi ser att det är sant, för alla utfall, att
+  \begin{align*}
+    \sum_{v \in V} X_v &= \sum_{v \in V} \Delta\ind{v \in S} + \abs{N(v) \cap S}\\
+    &= \Delta\abs{S} + \sum_{v \in V} \abs{N(v) \cap S}\\
+    &= \Delta\abs{S} + \sum_{w \in S} \abs{N(w)}.
+  \end{align*}
+
+  Vad hände i det sista steget? Jo, vi observerar att de två summorna bara är olika sätt att räkna samma sak -- antalet kanter mellan en nod i $S$ och en utanför $S$. I den första summan summerar vi över alla noder, och räknar antalet kanter från den noden till en nod i $S$, och i den andra summan summerar vi över alla noder i $S$ och räknar antalet kanter från den till någonting utanför $S$.
+
+  Vi vet också att alla noder har grad högst $\Delta$, så att $\abs{N(w)} \leq \Delta$ för alla $w$. Alltså måste vi ha från vår räkning att
+  $$\sum_{v \in V} X_v = \Delta\abs{S} + \sum_{w \in S} \abs{N(w)} \leq \Delta\abs{S} + \sum_{w \in S} \Delta = 2\Delta\abs{S}.$$
+
+  Så om vi kan hitta en nedre begränsing på $\sum_{v\in V} X_v$ kommer vi alltså att ha en nedre begränsning på $\abs{S}$, vilket ju är vad vi är ute efter.
+
+  Så låt oss studera $\E{X_v}$. Vi kan använda vårt lemma och lagen om total sannolikhet 
+  \sidenote[][]{Här ser vi en av de stora anledningarna till att använda våra betingningar på slumpvariabler istället för på händelser. Hade vi betingat på händelsen att $S \cap H_v = W$ för olika $W$ hade vi behövt skriva
+  \begin{align*}
+    \E{X_v} = \sum_{\substack{W\\\text{ober. mgd. i } H_v}} \substack{\E{X_v \given S \cap H_v = W}\cdot\\\qquad\cdot\Prob{S \cap H_v = W}},
+  \end{align*}
+  vilket ju är ett uttryck så stort att vi knappt kan formatera det i marginalen!
+  
+  Med vårt alternativa skrivsätt kan vi formulera lagen om total sannolikhet som att den säger att
+  $$\E{A} = \E{\E{A \given B}}$$
+  för varje par av slumpvariabler $A$ och $B$ -- en mycket renare formulering, som ger kortare formler.}
+  för att få ut att
+  \begin{align*}
+    \E{X_v} &= \E{\E{X_v \given S \cap H_v}}\\
+    &= \E{\E{\Delta\ind{v \in S} + \abs{N_v \cap S} \given S \cap H_v}}\\
+    &= \E{\Delta\Prob{v \in S \given S \cap H_v} + \frac{\abs{P_v}}{2^{1-\abs{P_v}} + 2}}\\
+    &= \E{\frac{\Delta}{2^{\abs{P_v}} + 1} + \frac{\abs{P_v}}{2^{1-\abs{P_v}} + 2}}
+  \end{align*}
+
+  Vad vi vill göra nu är att bevisa att uttrycket inuti väntevärdet är större än $\frac{1}{4}\log_2(\Delta)$ för \emph{alla} utfall. Antag alltså för motsägelse att det är \emph{mindre} än detta. Detta antagande ger oss omedelbart att $\abs{P_v} > 0$, eftersom om $\abs{P_v} = 0$ blir uttrycket helt enkelt $\frac{1}{2}\Delta$, och det är definitivt större än $\frac{1}{4}\log_2(\Delta)$ när $\Delta \geq 16$, vilket vi har antagit.
+  
+  Vi kan sedan räkna att\sidenote[][0.5cm]{Att gå från första till andra olikheten här kräver så klart ett antal steg -- vi skippar att faktiskt inkludera dem, eftersom de inte är så intressanta, men känn dig inte dum om du inte omedelbart ser varför dessa olikheter är ekvivalenta, det gör nog ingen.}
+  \begin{align*}
+    \frac{\Delta}{2^{\abs{P_v}} + 1} + \frac{\abs{P_v}}{2^{1-\abs{P_v}} + 2} &< \frac{\log_2(\Delta)}{4}\\
+    &\Updownarrow\\
+    2^{\abs{P_v}}(\log_2(\Delta) - 2\abs{P_v}) &> 4 \Delta - \log_2(\Delta).
+  \end{align*}
+  Höger led av detta är positivt, så alltså kan inte parentesen i vänster led vara negativ, så $\log_2(\Delta) > 2\abs{P_v}$. Alltså kan vi räkna
+  $$\log_2(\Delta) > 2\abs{P_v} \Leftrightarrow 2^{\frac{1}{2}\log_2(\Delta)} > 2^{\abs{P_v}} \Leftrightarrow \sqrt{\Delta} > 2^{\abs{P_v}}$$
+  så
+  \begin{align*}
+    4\Delta - \log_2(\Delta) < 2^{\abs{P_v}}(\log_2(\Delta) - 2\abs{P_v}) < \sqrt{\Delta}(\log_2(\Delta) - 2)
+  \end{align*}
+  och detta är till slut en olikhet som enbart involverar $\Delta$! Så vi kan helt enkelt studera funktionen
+  $$\sqrt{\Delta}(\log_2(\Delta) - 2) - 4\Delta - \log_2(\Delta)$$
+  och konstatera att denna är negativ för alla $\Delta \geq 16$, så olikheten måste vara falsk, och alltså följer det att
+  $$\frac{\Delta}{2^{\abs{P_v}} + 1} + \frac{\abs{P_v}}{2^{1-\abs{P_v}} + 2} \geq \frac{\log_2(\Delta)}{4}$$
+  oavsett vad $P_v$ är.
+
+  Så
+  \begin{align*}
+    \E{X_v} = \E{\frac{\Delta}{2^{\abs{P_v}} + 1} + \frac{\abs{P_v}}{2^{1-\abs{P_v}} + 2}} \geq \E{\frac{\log_2(\Delta)}{4}} = \frac{\log_2(\Delta)}{4}
+  \end{align*}
+  och alltså är
+  $$\E{\sum_{v \in V} X_v} \geq \frac{n\log_2(\Delta)}{4}$$
+  och enligt vår tidigare räkning har vi också
+  $$2\Delta\abs{S} \geq \sum_{v \in V} X_v$$
+  så vad vi sett är att
+  $$\E{2\Delta\abs{S}} \geq \frac{n\log_2(\Delta)}{4}$$
+  vilket ger satsen, enligt vårt vanliga resonemang om att väntevärdet inte kan vara mindre än varje givet utfall.
+\end{proof}
+
 \section{Längsta ökande delföljden i en permutation}
 
 \section{Övningar}
