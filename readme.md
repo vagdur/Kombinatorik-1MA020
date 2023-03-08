@@ -18,7 +18,7 @@ Föreläsningsanteckningar för våra föreläsningar kommer också att länkas 
 8. [Föreläsning åtta: Grafer och träd](https://vagdur.github.io/Kombinatorik-1MA020/lecture8.pdf)
 9. [Föreläsning nio: Diskret sannolikhetsteori, introduktion](https://vagdur.github.io/Kombinatorik-1MA020/lecture9.pdf)
 10. [Föreläsning tio: Slumpvariabler](https://vagdur.github.io/Kombinatorik-1MA020/lecture10.pdf)
-11. [Föreläsning elva: Probabilistiska metoden](https://vagdur.github.io/Kombinatorik-1MA020/lecture11.pdf) (Work In Progress, nästan tom fil just nu)
+11. [Föreläsning elva: Probabilistiska metoden](https://vagdur.github.io/Kombinatorik-1MA020/lecture11.pdf) (Klar, förutom att det skall till fler övningar)
 
 Vi sammanfattar hela kursen kortfattat, vad varje föreläsning innehöll och nyckelord från den, i detta dokument:
 
