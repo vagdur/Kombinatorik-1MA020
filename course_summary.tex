@@ -260,7 +260,13 @@ I föreläsning två i denna del, nummer tio totalt,
   \item och bevisade ett villkor för när Erd\H{o}s-Renyi-grafen inte har några isolerade noder. \emph{Idén} var helt enkelt att räkna ut väntevärdet av antalet isolerade noder, med hjälp av väntevärdets linjäritet, och sedan använda Markovs olikhet för att se att det faktum att detta väntevärde gick mot noll gav att sannolikheten att det existerade isolerade noder också gick mot noll.
 \end{enumerate}
 
-Föreläsning tre i denna del, den elfte och sista i kursen, \emph{är ett mysterium, eftersom den fortfarande inte är skriven.}
+Föreläsning tre i denna del, den elfte och sista i kursen, introducerade nästan inga nya koncept, utan gav bara ytterligare exempel på hur man kan använda den probabilistiska metoden.
+
+\begin{enumerate}
+  \item Vi började med att bevisa en nedre begränsning för \texttt{min-bisection}. Vi gjorde detta genom att utnyttja Diracs sats för att hitta en \emph{Hamiltoncykel} i komplementgrafen, tog varannan kant i den cykeln för att få en matchning disjunkt från kanterna i grafen, och valde sedan hälften av noderna som vårt $A$ genom att ta en ur varje par.
+  \item Sedan visade vi ett resultat av Ajtai-Chvatal-Newborn-Szemerédi-Leighton om det minimala antalet korsningar mellan kanter i en ritning av en graf. Idén var att ta en känd olikhet för detta, och tillämpa den på en slumpmässig delgraf där vi behöll varje nod med en viss sannolikhet. Eftersom detta skalade antalet noder, antalet kanter, och antalet korsningar på olika sätt\sidenote[][]{Snarlikt till hur man, om man halverar sidlängden på en kub, minskar dess yta till en fjärdedel och dess volym till en åttondel.} kunde vi få ut en bättre olikhet av detta.
+  \item Till slut bevisade vi ett till resultat om oberoende mängder, nu i triangelfria grafer, efter en bevisidé av Shearer. Till skillnad från vår vanliga procedur där vi tog en enkelt slumpfördelning och byggde objektet vi var ute efter, tog vi här direkt en slumpmässig oberoende mängd, och ansträngde oss för att förstå hur den betedde sig.
+\end{enumerate}
 
 %\bibliography{references}
 %\bibliographystyle{plainnat}
