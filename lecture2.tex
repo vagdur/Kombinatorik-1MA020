@@ -150,7 +150,7 @@ I slutet av förra föreläsningen diskuterade vi kombinatoriska bevis, och bevi
 
     Ett annat sätt att räkna detta är att dela upp efter hur många ettor ordet innehåller. Först väljer vi antalet ettor, sedan väljer vi var ettorna skall stå, och till sist väljer vi vad resten av bokstäverna skall vara för något.
 
-    Givet att vi vet att vi skall ha $k$ stycken ettor, och vi vet var de skall stå, så har vi $n-k$ bokstäver kvar att göra ett val för -- och nu har vi bara två val, eftersom vi inte får välja ettor utan bara nollor och treor. Så enligt multiplikationsprincipen multiplicerar vi antalet val vi har i varje fall och får att det finns $2^{n-k}$ sätt att fylla i resten av ordet med nollor och treor.
+    Givet att vi vet att vi skall ha $k$ stycken ettor, och vi vet var de skall stå, så har vi $n-k$ bokstäver kvar att göra ett val för -- och nu har vi bara två val, eftersom vi inte får välja ettor utan bara tvåor och treor. Så enligt multiplikationsprincipen multiplicerar vi antalet val vi har i varje fall och får att det finns $2^{n-k}$ sätt att fylla i resten av ordet med tvåor och treor.
 
     Givet att vi vet att vi skall ha $k$ stycken ettor, hur många olika strängar kan vi skapa? Antalet sätt att välja var ettorna skall stå är precis antalet kombinationer av $k$ element från mängden av platser, $[n]$, och vi vet att det är $\binom{n}{k}$. När vi väl valt var ettorna skall stå kan vi fylla i resten på $2^{n-k}$ sätt, som vi såg i föregående stycket, så multiplikationsprincipen ger oss att det måste finnas $\binom{n}{k}2^{n-k}$ strängar av längd $n$ med $k$ stycken ettor.
 
