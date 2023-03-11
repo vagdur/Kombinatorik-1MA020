@@ -250,7 +250,21 @@ På de frågor som är mer teori -- ge definitioner eller bevis ur kursen -- ges
 
 \section{Fråga 1}
 
+\noindent\textbf{Delfråga a:}
+
 Höger led är uppenbarligen antalet sätt att välja ut $k$ personer ur en grupp av $m + w$ personer. Om vi tänker oss att vår grupp av personer består av $m$ män och $w$ kvinnor kan vi också tänka att vi först väljer hur många av personerna som skall vara män -- $j$ stycken, och $j$ kan vara mellan $0$ och $k$ -- och sedan väljer vi $j$ stycken män och $k-j$ stycken kvinnor. Detta är precis vad som pågår i vänster led.
+
+\noindent\textbf{Delfråga b:}
+
+Vänster led är uppenbarligen antalet sätt att välja en grupp på $n$ personer och en grupp på $m$ personer ur totalt $z$ personer. Notera att det är okej om grupperna överlappar.
+
+Varför är höger led också det? Låt oss tänka oss att det är totalt $z$ personer som skall dela en måltid, och de behöver vara $n$ stycken som lagar maten och $m$ stycken som diskar efteråt.
+
+I höger led väljer de först hur många som skall vara i bägge grupperna, och kallar det antalet $k$ -- det kan vara mellan $0$ och $n$, eftersom det ju omöjligen kan vara fler som har bägge rollerna än som lagar maten. (Vi hade alltså lika gärna kunnat låta summan gå till $m$, eller till $\min n, m$.)
+
+När vi väl valt $k$ vet vi att det kommer vara totalt $n+m-k$ personer som har någon roll. Vi kan välja vilka dessa skall vara på $\binom{z}{n+m-k}$ sätt.
+
+Sedan skall vi tilldela dessa personer deras roller. Vi skall ha $k$ stycken som både diskar och lagar mat, $n-k$ stycken som bara lagar mat, och $m-k$ som bara diskar. Vi kan betrakta denna tilldelning av roller som ett ord ur alfabetet $\{\text{bägge, diska, laga}\}$ med givna antal av varje bokstav -- och antalet sådana vet vi räknas av multinomialkoefficienten $\binom{n+m-k}{n-k,m-k,k}$, så vi har visat formeln.
 
 \section{Fråga 2}
 
