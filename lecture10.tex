@@ -21,7 +21,10 @@
   \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
 
 \usepackage{color,soul} % Highlights for text
-
+\usepackage{tikz} % Package used for painting graph
+\usetikzlibrary{arrows,positioning, fit}
+\usepackage{xcolor} % Colouring 
+\usepackage[swedish,english]{babel}
 % Standardize command font styles and environments
 \newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
 \newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
@@ -61,7 +64,7 @@ Det allra vanligaste fallet är när $V = \R$ eller någon delmängd till $\R$. 
 \begin{example}
     Låt oss återbesöka vårt exempel med ett tärningskast. Vi konstaterade att vi kan ta $\Omega = \{1,2,3,4,5,6\}$ och $\mu(\omega) = 1/6$ för alla $\omega \in \Omega$.
 
-    Vi kan naturligt betrakta vårt tärningskast som en slumpvariabel -- i detta fall blir det en mycket enkel funktion, $X: \Omega \hookrightarrow \R$ skickar helt enkelt varje $\omega$ på sig självt.
+    Vi kan naturligt betrakta vårt tärningskast som en slumpvariabel -- i detta fall blir det en mycket enkel funktion, $X: \Omega \hookrightarrow \R$ skickar helt enkelt varje $\omega$ på sig självt.\sidenote[][]{Vi fördjupar oss inte i definitionen av $\hookrightarrow$, men i vårt fall kan vi enkelt förklara det som att $\Omega$ är en delmängd av $\R$.}
 \end{example}
 
 Vårt tärningskast är ett specialfall av ett mer allmänt fenomen, som det kommer vara bekvämt att ha en terminologi för.
@@ -94,7 +97,7 @@ Vi vet att om vi slår vår tärning många gånger kommer vi i genomsnitt att f
     Så om vi åter tar exemplet med tärningskastet så blir alltså väntevärdet
     \begin{align*}
         \E{X} &= 1\Prob{X = 1} + 2\Prob{X = 2} + \ldots + 6\Prob{X = 6}\\
-        &= \frac{1 + 2 + 3 + 4 + 5 + 6}{6} = \frac{7}{3} = 3.5
+        &= \frac{1 + 2 + 3 + 4 + 5 + 6}{6} = \frac{7}{2} = 3.5
     \end{align*}
     precis som vi förväntade oss.
 \end{example}
@@ -121,7 +124,7 @@ Eftersom vi definierat slumpvariabler som att de helt enkelt är funktioner frå
 
 När vi nu har introducerat addition av slumpvariabler så kan vi bevisa vad som, i min mening, är en av de allra mest användbara satserna i hela matematiken.\sidenote[][-0.8cm]{Jag är så klart oerhört partisk, eftersom just gränslandet mellan kombinatorik och sannolikhetsteori är mitt område -- men det är onekligen ett otroligt användbart resultat.}
 
-\begin{lemma}[Väntevärdets linjäritet]
+\begin{lemma}[Väntevärdets linjäritet] \label{Lemma7}
     Givet två slumpvariabler $X$ och $Y$ och två reella tal $a$ och $b$ gäller det att
     $$\E{aX + bY} = a\E{X} + b\E{Y}.$$
 
@@ -163,10 +166,11 @@ För att göra det här verkligt användbart behöver vi konceptet med indikator
 Låt oss nu ta vad vi har lärt oss och tillämpa det på ett faktiskt kombinatoriskt resultat.
 
 \begin{definition}
-    En samling $\mathcal{F}$ av delmängder till $[n]$ kallas för en \emph{anti-kedja} ifall det för varje par $F, G \in \mathcal{F}$ varken gäller att $F \subset G$ eller $G \subset F$.
+    En samling $\mathcal{F}$ av delmängder till $[n]$ kallas för en \emph{anti-kedja} ifall det för varje par $F, G \in \mathcal{F}$ varken gäller att $F \subset G$ eller $G \subset F$.\\
+    Det gäller alltså för varje par av delmängder $F$ och $G$ att $F \cap G \neq F$ eller $F \cap G \neq G.$\sidenote[][]{Notera att delmängderna \emph{inte} behöver vara disjunkta.}
 \end{definition}
 
-Hur stor kan en anti-kedja vara? Ett enkelt sätt att skapa sig en sådan är att ta alla delmängder av storlek $k$ till $[n]$ för något $k$. Att dessa inte kan vara delmängder till varandra är uppenbart. Att det val av $k$ som gör denna anti-kedja som störst blir $\floor{\frac{n}{2}}$ är inte allt för svårt att se.\sidenote[][]{Vi hade också kunnat välja $\ceil{\frac{n}{2}}$, det ger samma storlek.} Är det möjligt att hitta en ännu större genom att ha med delmängder av olika storlekar? Sperners lemma säger oss att svaret är nej.
+Hur stor kan en anti-kedja vara? Ett enkelt sätt att skapa sig en sådan är att ta alla delmängder av storlek $k$ till $[n]$ för något $k$. Att dessa inte kan vara delmängder till varandra är uppenbart. Att det val av $k$ som gör denna anti-kedja som störst blir $\floor{\frac{n}{2}}$ är inte allt för svårt att se.\sidenote[][]{$\floor{\frac{n}{2}}$ innebär att vi avrundar \emph{ned} till närmaste heltal, det vill säga att om $n$ är udda så slipper vi få "halva tal" efter tudelning. Vi hade också kunnat välja $\ceil{\frac{n}{2}}$, alltså av vi avrundar \emph{upp} till nämaste heltal. Det ger samma storlek.} Är det möjligt att hitta en ännu större genom att ha med delmängder av olika storlekar? Sperners lemma säger oss att svaret är nej.
 
 \begin{lemma}[Sperners lemma]
     För varje anti-kedja $\mathcal{F}$ i $[n]$ gäller det att
@@ -216,9 +220,39 @@ Hur stor kan en anti-kedja vara? Ett enkelt sätt att skapa sig en sådan är at
     \end{proof}
 \end{lemma}
 
+\begin{example}
+    Om vi låter $n=5$ så får vi att den största antikedjan $\mathcal{F}$ till $[n]$ innehåller
+    $$\binom{5}{\floor{\frac{5}{2}}} = \binom{5}{2} = 10 $$ delmängder.
+    För att få en intuition för varför det är så kan vi tänka oss hur många kombinationer vi kan skapa ur $[5]$. Om vi jämför
+    $$\binom{5}{0}, \binom{5}{1}, \binom{5}{2}, \binom{5}{3}, \binom{5}{4}, \binom{5}{5}$$ vet vi att $\binom{5}{2}$ och $\binom{5}{3}$ är störst ($=10$)\sidenote[][]{Notera att binomialkoefficienterna är lika med talen på rad 5 i Pascals triangel: $1, 5, 10, 10, 5, 1$ respektive. Det är talen i mitten, eller närmast mitten, i Pascals triangel som ger oss största antalet delmängder till en antikedja.}, och om vi skulle välja alla kombinationer av storlket $2$ (eller $3$) så vet vi att ingen av delmängderna kommer vara en delmängd till någon annan delmängd.\sidenote[][]{Kombinationerna i detta exempel blir $12, 13, 14, 15, 23, 24, 25, 34, 35, 45$ och ingen av dem är en delmängd av en annan.} Sperners lemma säger oss att vår antikedja inte kan bli större än så.
+ 
+ %   \tikzset{p node/.style={circle,draw, fill=black!20,minimum size=0.5cm,inner sep=0pt},}
+
+    
+%    \begin{tikzpicture} [>=stealth',shorten >=5pt,auto,node distance=0.5cm, scale = 1,transform shape]
+%        \node[p node] (1) {$1$};
+%        \node[p node] (2a) [below left =of 1] {$1$};
+%        \node[p node] (2b) [below right =of 1] {$1$};
+%        \node[p node] (3a) [below left =of 2a] {$1$};
+%        \node[p node] (3b) [below right =of 2a] {$3$};
+%        \node[p node] (3c) [below right =of 2b] {$1$};
+%        \node[p node] (4a) [below left =of 3a] {$1$};
+%        \node[p node] (4b) [below right =of 3a] {$3$};
+%        \node[p node] (4c) [below left =of 3c] {$3$};
+%        \node[p node] (4d) [below right =of 3c] {$1$};
+        
+%        \node[p node] (5a) [below left =of 4a] {$1$};
+%        \node[p node] (5b) [below right =of 4a] {$4$};
+%        \node[p node] (5c) [below right =of 4b] {$6$};
+%        \node[p node] (5d) [below left =of 4d] {$4$};
+%        \node[p node] (5e) [below right =of 4d] {$1$};
+%    \end{tikzpicture}
+    
+\end{example}
+
 \section{Caro-Weis sats}
 
-Antag att vi har en grupp av $n$ personer på ett läger, och säg att person nummer $i$ känner $d_i$ andra personer sedan tidigare. Du vill bilda en mindre grupp av personer för en lära-känna-varandra-lek\sidenote[][]{Eftersom du är en fruktansvärt ondskefull person. Ingen tycker om sådana lekar.}, så du vill hitta en så stor grupp som möjligt av personer som \emph{inte} känner varandra. Finns det någon garanti för hur stor du kan göra den mindre gruppen?
+Antag att vi har en grupp av $n$ personer på ett läger, och säg att person nummer $i$ känner $d_i$ andra personer sedan tidigare. Du vill bilda en mindre grupp av personer för en lära-känna-varandra-lek\sidenote[][]{Eftersom du är en fruktansvärt ondskefull person. Ingen tycker om sådana lekar.}, så du vill hitta en så stor grupp som möjligt av personer som \emph{inte} känner varandra. Finns det någon garanti för hur stor grupp du kan skapa av personer som inte känner varandra?
 
 \begin{theorem}[Caro-Wei]
     Du kan välja den mindre gruppen sådan att den har åtminstone
@@ -237,20 +271,54 @@ Antag att vi har en grupp av $n$ personer på ett läger, och säg att person nu
             $$E(S) = \left\{\{u,v\} \in E_G \given u, v \in S\right\}$$
             är tom.
         \end{definition}
-    } $S$ sådan att
+    } 
+    $S$ sådan att
     $$\abs{S} \geq \sum_{i=1}^{n} \frac{1}{d_i + 1}.$$
 
     \begin{proof}
         Numrera noderna i $G$ från $1$ till $n$, och välj sedan likformigt slumpmässigt ett nytt sätt att etikettera $G$, så att nod $i$ nu har etikett $\sigma(i)$. $\sigma$ är alltså en likformig permutation av $[n]$.
 
-        Hur använder vi detta för att skapa vår oberoende mängd? Jo, beteckna mängden av grannar till $i$ med $N(i)$ -- alltså mängden av alla noder som har en kant till $i$. Om vi lägger in $i$ i $S$ får vi alltså inte ta med något annat element i $N(i)$ om $S$ skall vara en oberoende mängd.\sidenote[][-1.5cm]{Tänk er det som att vi lägger ett pussel, där varje bit är ``formad som'' en $N(i)$, och vi inte får lov att välja två pusselbitar som överlappar. Målet är att lyckas lägga så många bitar som möjligt. (Det här går nog att omvandla till ett faktiskt spel -- jag kräver inga royalties för idén.)}
-        
-        \begin{figure}
-            \centering
-            \includegraphics[width = 0.7\textwidth]{graphics/Caro_Wei_construction.png}
-            \caption[][0.8cm]{En illustration av vår konstruktion av den oberoende mängden $S$. Vår första etikettering av grafen är i svart, vår ometikettering $\sigma$ i blått, och den resulterande oberoende mängden $S$ markerad i rött.}
-        \end{figure}
+        Hur använder vi detta för att skapa vår oberoende mängd? Jo, beteckna mängden av grannar till $i$ med $N(i)$ -- alltså mängden av alla noder som har en kant till $i$. Om vi lägger in $i$ i $S$ får vi alltså inte ta med något annat element i $N(i)$ om $S$ skall vara en oberoende mängd.\sidenote[][]{Tänk er det som att vi lägger ett pussel, där varje bit är ``formad som'' en $N(i)$, och vi inte får lov att välja två pusselbitar som överlappar. Målet är att lyckas lägga så många bitar som möjligt. (Det här går nog att omvandla till ett faktiskt spel -- jag kräver inga royalties för idén.)}
 
+        % Beskriver noderna i grafen i figuren
+        \tikzset{main node/.style={circle,draw,minimum size=0.5cm,inner sep=0pt}, }
+
+        % Beskriver den röda grafen i figuren
+        \tikzset{red node/.style={circle, fill=red!100, draw,minimum size=0.5cm,inner sep=0pt},}
+
+        % Målar ut grafen
+        \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm,
+        scale = 1,transform shape]
+            \node[main node, label = {$1\ \ \textcolor{blue}{10}$}] (A) {};
+            \node[main node, label = {$2\ \ \textcolor{blue}{5}$}] (B) [right =of A] {};
+            \node[red node, label = above left:{$3\ \ \textcolor{blue}{1}$}] (C) [below left =of A] {};
+            \node[main node, label = above right:{$4\ \ \textcolor{blue}{2}$}] (D) [below =of A] {};
+            \node[red node, label = {$5\ \ \textcolor{blue}{4}$}] (E) [below right =of B] {};
+            \node[main node, label = above left:{$6\ \ \textcolor{blue}{8}$}] (F) [below left =of D] {};
+            \node[main node, label = below:{$7\ \ \textcolor{blue}{9}$}] (G) [below right =of D] {};
+            \node[main node, label = below:{$8\ \ \textcolor{blue}{7}$}] (H) [below right =of F] {};
+            \node[red node, label = below:{$9\ \ \textcolor{blue}{3}$}] (I) [below right =of G] {};
+            \node[main node, label = {$10\ \ \textcolor{blue}{6}$}] (J) [right =of G] {};
+
+            \path (A) edge (D);
+            \path (A) edge (C);
+            \path (C) edge (D);
+            \path (D) edge (F);
+            \path (D) edge (G);
+            \path (F) edge (G);
+            \path (A) edge (D);
+            \path (F) edge (H);
+            \path (H) edge (I);
+            \path (I) edge (J);
+            \path (G) edge (J);
+            \path (G) edge (B);
+            \path (G) edge (E);
+            \path (B) edge (E);
+
+            
+            
+        \end{tikzpicture} \sidenote[][]{Figur inspererad av Vilhem Agdurs figur 1 från Föreläsning 10.}
+        
         Om vi nu låter
         $$S = \left\{i \in V_G \given \sigma(i) < \sigma(j)\quad \forall j \in N(i)\right\}$$
         så hävdar vi att detta måste vara en oberoende mängd. Varför? Tänk för motsägelse att det fanns ett par $i, j$ i $S$ med en kant mellan sig. Eftersom $i$ ligger i $S$ måste alla $i$s grannar ha högre etikett än $i$ -- specifikt så måste alltså $\sigma(i) < \sigma(j)$. Men det betyder ju att $j$ har en granne med lägre etikett, så $j$ kan inte ligga i $S$, och vi har en motsägelse.
@@ -296,6 +364,45 @@ Antag att vi har en grupp av $n$ personer på ett läger, och säg att person nu
     \end{proof}
 \end{theorem}
 
+\begin{example}
+Antag att vi är på ett litet läger med 10 personer. Figuren nedan visar relationerna mellan personerna på lägret. Varje nod representerar en person och varje granne till en nod/person betyder att den noden/personen känner sin granne. Antalet kanter från en nod $n$ betyder alltså hur månger personer $n$ känner. 
+
+     
+   \tikzset{p node/.style={circle,draw, fill=black!20,minimum size=0.5cm,inner sep=4pt},} %Beskriver hur noden ska se ut
+
+    \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm,scale = 1,transform shape] % målar ut grafen
+        \node[p node] (1) {$1$};
+        \node[p node] (2) [below =of 1] {$2$};
+        \node[p node] (3) [ right =of 1] {$3$};
+        \node[p node] (4) [right =of 2] {$4$};
+        \node[p node] (5) [right =of 4] {$5$};
+        \node[p node] (6) [below =of 2] {$6$};
+        \node[p node] (7) [below right =of 2] {$7$};
+        \node[p node] (8) [below left =of 6] {$8$};
+        \node[p node] (9) [below right =of 6] {$9$};
+        \node[p node] (10) [below  =of 6] {$10$};
+
+        \path (1) edge (3);
+        \path (1) edge (2);
+        \path (2) edge (7);
+        \path (2) edge (6);
+        \path (6) edge (8);
+        \path (6) edge (9);
+        \path (9) edge (10);
+        \path (8) edge (10);
+        
+        
+\end{tikzpicture}
+
+Följt av formeln given i teorem 13 får vi:
+\begin{align*}
+    \abs{S} \geq \sum_{i=1}^{n} \frac{1}{d_i + 1} 
+    &= \frac{1}{3} + \frac{1}{4} +\frac{1}{2} + \frac{1}{1} + \frac{1}{1} + \frac{1}{4} + \frac{1}{2} + \frac{1}{3} + \frac{1}{3} + \frac{1}{3}\\
+    &=\frac{5}{6} + 4\\
+\end{align*}
+Således kan vi garantera att vi kan skapa en grupp om minst 5 personer som inte känner varandra enligt Caro-Weis teorem (då vi avrundar uppåt eftersom personer inte kan delas upp i fem sjättedelar). 
+\end{example}
+
 \section{Första-moment-metoden}
 
 Hittills har vi sett ett sätt som väntevärden och sannolikheter kan samspela -- om slumpvariabeln vi vill studera kan formuleras som antalet ``ja'' på en samling ja-nej-frågor så får vi att dess väntevärde är summan av sannolikheterna för ett ``ja'' på varje enskild fråga.
@@ -320,6 +427,13 @@ Detta låter oss alltså svara på en fråga om ett väntevärde genom att räkn
 \end{lemma}
 
 Vad för slags problem kan man tänkas tillämpa det här verktyget på?
+\begin{example}
+    Tänk dig att du är en lärare på Uppsala Universitet och håller en kurs inom matematik. Du som lärare vill undersöka sannolikheten att en godtycklig student får minst 25 poäng på din tentamen. Du har från tidigare tentor beräknat väntevärdet till 21 poäng. Vad kan du säga om sannolikheten att den godtyckliga studenten får minst en fyra i betyg?
+    
+    Först ser vi att $C=\frac{24}{21}=\frac{8}{7}$. Med hjälp av \textit{Marokvs olikhet} har vi nu ett sätt att undersöka problemet. Sannolikheten blir
+    $$\Prob{X > 24} < \frac{1}{\frac{8}{7}} = \frac{7}{8}$$
+    att en godtycklig student får minst en fyra i betyg. 
+\end{example}
 
 \begin{definition}
     En Erd\H{o}s-Renyi-graf (med parametrar $n$ och $p$) är en slumpmässig graf $G$ på $n$ noder, där varje kant är med med sannolikhet $p$, oberoende av om varje annan kant är med. Vi skriver att $G \sim G_{n,p}$.
@@ -409,13 +523,62 @@ Vi sammanfattar vad vi lärt oss om slumpvariabler hittills i följande räknere
     Hur stor kan en skärande familj av mängder vara, om vi kräver att varje $A \in \mathcal{F}$ har storlek exakt $k$? Svaret ges av följande sats:
 
     \begin{theorem}[Erd\H{o}s-Ko-Rado]
-        För varje skärande familj $\mathcal{F}$ av delmängder av storlek $k$ till $[n]$ gäller det att
-        $$\abs{F} \leq \binom{n-1}{k-1}.$$
+        För varje skärande familj $\mathcal{F}$ av delmängder av storlek $k$ till $[n]$, där $k \leq \lfloor \frac{n}{2} \rfloor$, gäller det att
+        $$\abs{\mathcal{F}} \leq \binom{n-1}{k-1}.$$
     \end{theorem}
 
     \textbf{Delfråga a:} Hitta, för alla $n$ och $k$, ett exempel på en skärande familj $\mathcal{F}$ av delmängder av storlek $k$ till $[n]$ sådan att
-    $$\abs{F} \leq \binom{n-1}{k-1}.$$
+    $$\abs{\mathcal{F}} \leq \binom{n-1}{k-1}.$$
 
+    \textit{Lösning delfråga a:} Det finns en väldigt enkel metod för att skapa en familj med exakt $\binom{n-1}{k-1}$ delmängder: Börja med att fixera ett element i varje delmängd, på så vis är vi säkra på att alla delmängder kommer skära vid det elementet. Nu återstår $n-1$ element att välja bland samt $k-1$ element kvar att tilldela varje delmängd, vilket kan göras på $\binom{n-1}{k-1}$ sätt; välj alla sådana delmängder.\sidenote[][]{Det finns en annan enkel metod som ger samma resultat: Börja med att välja en slumpmässig delmängd av storlekt $k$ till $[n]$, välj sedan en delmängd (av samma storlek) som skär den första i endast ett element. Resterande delmängder väljs så att de också skär i samma element, vilket leder till samma resultat, $$\abs{\mathcal{F}}=\binom{n-1}{k-1}.$$} $\abs{\mathcal{F}}$ kan inte bli större än så, men beviset sparas till \textit{delfråga c}.
+    % Har en figur till detta exempel /Robin
+    \\ 
+    \tikzset{a node/.style={circle,draw, fill=black!20,minimum size=0.5cm,inner sep=0pt},
+            }
+    \tikzset{box/.style = {draw,inner sep=5pt,rounded corners=5pt}}
+    
+    \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=0.5cm,
+        scale = 1,transform shape]
+        
+        \node[a node] (1) {$1$};
+        \node[a node] (2) [right =of 1] {$2$};
+        \node[a node] (3) [right =of 2] {$3$};
+        \node[a node] (4) [right =of 3] {$4$};
+        \node[a node] (5) [below =of 1] {$5$};
+        \node[a node] (6) [below =of 2] {$6$};
+        \node[a node] (7) [below =of 3] {$7$};
+        \node[a node] (8) [below =of 4] {$8$};
+        \node[a node] (9) [below =of 5] {$9$};
+        \node[a node] (10) [below =of 6] {$10$};
+        \node[a node] (11) [below =of 7] {$11$};
+        \node[a node] (12) [below =of 8] {$12$};
+
+        \node[box, red, fit=(1)(4)] {};
+        %\node[box, blue, fit=(1)(9)] {}; 
+        \draw[draw, blue, inner sep=5pt,rounded corners=5pt] 
+        ([xshift=-5pt, yshift=7pt]1.north west) -- 
+        ([xshift=-5pt, yshift=-5pt]9.south west)  -- 
+        ([xshift=5pt, yshift=-5pt]10.south east) -- 
+        ([xshift=5pt, yshift=5pt]10.north east) -- 
+        ([xshift=5pt, yshift=5pt]9.north east) -- 
+        ([xshift=5pt, yshift=7pt]1.north east) -- cycle;
+        
+        \draw[draw, green, inner sep=5pt,rounded corners=5pt] 
+        ([xshift=-7pt]1.west) -- 
+        ([yshift=-5pt]6.south west) -- 
+        ([xshift=5pt, yshift=-5pt]8.south east) -- 
+        ([xshift=5pt, yshift=5pt]8.north east) -- 
+        ([yshift=5pt]6.north east) -- 
+        ([yshift =7pt]1.north) -- cycle;
+    
+    \end{tikzpicture}
+
+    Trivialt exempel: Låt $k=1$, det vill säga att varje delmängd innehåller endast ett element. Då kan $\mathcal{F}$ innehålla endast en delmängd eftersom vi inte kan välja någon annan distinkt delmängd som skär denna mängd. Olikheten gäller fortfarande, men resultatet är trivialt, $$\abs{\mathcal{F}} \leq \binom{n-1}{1-1} = \binom{n-1}{0}=1.$$
+    
+    Exempel på när olikheten \textit{inte} gäller: Låt $k > \lfloor \frac{n}{2} \rfloor$, det vill säga att varje delmängd innehåller fler än hälften av alla element i $[n]$.\sidenote[][]{Detta bryter mot villkoret om att $k$ inte får vara större än hälften av $n$ i Erd\H{o}s-Ko-Rados sats.} Börja med att välja en delmängd som innehåller fler än hälften av alla element i $[n]$. När det är gjort kan vi inte välja någon delmängd som inte skär den första eftersom vi måste välja fler element än det finns "oanvända" element. Hur vi än väljer delmängder kommer varje par av delmängder i $\mathcal{F}$ att skära varandra och därför gäller $\abs{\mathcal{F}} = \binom{n}{k}$ då $k > \lfloor \frac{n}{2} \rfloor$. 
+    
+
+    \hfill \break 
     \textbf{Delfråga b:} Bevisa följande lemma:\sidenote[][]{Den här delen kräver ingen probabilistisk metod, det är bara ett direkt bevis. Sannolikhetsteorin kommer in i nästa delfråga.}
 
     \begin{lemma}
@@ -437,10 +600,20 @@ Vi sammanfattar vad vi lärt oss om slumpvariabler hittills i följande räknere
 
     \begin{proposition}
         Antag att $v_1, v_2, \ldots, v_n$ är $n$ stycken enhetsvektorer i $\R^n$, alltså $\norm{v_i} = 1$ för alla $i$. Då finns det en följd $\eta_1, \eta_2, \ldots, \eta_n$, med $\eta_i = \pm 1$ för varje $i$, sådan att
-        $$\norm{\sum_{i=1}^{n} \eta_i v_i} \leq \sqrt{n}.$$
+        $$\norm{\sum_{i=1}^{n} \eta_i v_i} \leq \sqrt{n}.$$ 
     \end{proposition}
 \end{xca}
+\textit{Lösning:} \begin{proof} Vi vill lösa $\norm{\sum_{i=1}^{n} \eta_i v_i} \leq \sqrt{n}$ vilket vi kan skriva om som $\norm{\sum_{i=1}^{n} \eta_i v_i}^2 \leq n$. Vi börjar med att skriva om vänsterledet. Notera att $\sum_{i=1}^{n} \eta_i v_i$ är en vektor bestående av enhetsvektorer. 
 
+\begin{align*}
+    \norm{\sum_{i=1}^{n} \eta_i v_i}^2 &= \left(\sum_{i=1}^{n} \eta_i v_i\right) \cdot \left(\sum_{i=1}^{n} \eta_i v_i\right) \\
+    &= \sum_{i,j = 1}^{n} (\eta_i v_i \cdot \eta_j v_j) \\  
+\end{align*}
+\sidenote[][]{Sista steget är linjär algebra mumbo jumbo som vi inte fokuseras i denna kurs.} % Får inte ordning på sidnoten.
+Eftersom $v_i \cdot v_j = 0$ när $i \neq j$ och $1$ annars eftersom alla $v_i$ är enhetsvektorer så får vi 
+$$\sum_{i=1}^{n}{\eta_i}^2$$. Om vi nu tar väntevärdet av detta får vi $$\E{\norm{\sum_{i=1}^{n} \eta_i v_i}^2} = \E{\sum_{i=1}^{n}{\eta_i}^2} = \sum_{i=1}^{n}\E{{\eta_i}^2}$$
+Eftesom för varje ${\eta_i}^2 = 1$ så får vi $\E{{\eta_i}^2}=1$ och vi får $$\sum_{i=1}^{n}\E{{\eta_i}^2} = n$$ och vi har nu bevisat att det finns en följd så att $\norm{\sum_{i=1}^{n} \eta_i v_i}^2 \leq n$. 
+\end{proof}
 \begin{xca}
     I denna övning skall vi bevisa följande resultat:
 
@@ -464,6 +637,45 @@ Vi sammanfattar vad vi lärt oss om slumpvariabler hittills i följande räknere
     Beräkna, för varje $i \in \N$, $\Prob{I = i}$. Räkna sedan ut $\E{I}$.
 \end{xca}
 
+\textit{Lösning övning 4:} Om det inte redan är uppenbart så är även $I$ en slumpvariabel. Vi har alltså slumpvariabler $X_i$ som antar värden $0$ eller $1$, och $I$ som blir ett positivt heltal som anger på vilken plats vi får den första nollan i följden $X_1, X_2, X_3, \ldots$ Sannolikheten för att $X_1=0$ är $$\Prob{I=1}=1-p.$$
+
+Om vi får att $X_1=1$ och $X_2=0$ så är den första nollan på andra plats, det vill säga $I=2$, och vi får sannolikheten (enligt multiplikationsregeln)
+$$\Prob{I=2}=p(1-p).$$
+
+Vi fortsätter med $X_1=1$, $X_2=1$ och $X_3=0$, alltså $I=3$, och sannolikheten
+$$\Prob{I=3}=p\cdot p(1-p)=p^2(1-p).$$
+
+Nu kan vi ana ett mönster och beräkna $\Prob{I=i}$ för ett godtyckligt $i$:
+$$\Prob{I=i}=p^{i-1}(1-p)$$
+
+som är svaret på den första frågan i denna övning. Nu vill vi ta reda på väntevärdet för var den första nollan hamnar, som ges av
+    \begin{align*}
+        \E{I} &=\sum_{i=1}^{\infty} i\Prob{I=i}\\
+        &=1\Prob{I=1}+2\Prob{I=2}+3\Prob{I=3}+\ldots\\
+        &=(1-p)+2p(1-p)+3p^2(1-p)+\ldots
+    \end{align*}
+
+När vi upptäcker att koefficienterna framför $p$ och dess exponent är nära varandra men inte lika multiplicerar vi båda leden med $p$ i ren frustration:
+$$p\E{I}=p(1-p)+2p^2(1-p)+3p^3(1-p)+\ldots$$
+
+Nu känns det bättre, men vänsterledet är fel. Nästa steg är inte så uppenbart, men vi subtraherar $p\E{I}$ från $\E{I}$ och får
+    \begin{align*}
+        \E{I}-p\E{I} &=(1-p)+2p(1-p)-p(1-p)+3p^2(1-p)-2p^2(1-p)+\ldots\\
+        &=(1-p)+p(1-p)+p^2(1-p)+p^3(1-p)+\ldots
+    \end{align*} % En rad sticker ut i marginalen. Ser lite konstigt ut, men stör ingen sidnot och ser bättre ut än att radbryta uttrycket.
+
+Nu kan vi bryta ut $(1-p)$ från båda sidor (äntligen!)
+    \begin{align*}
+        (1-p)\E{I} &=(1-p)(1+p+p^2+p^3+\ldots)\\
+        \E{I} &=1+p+p^2+p^3+\ldots
+    \end{align*}
+Ser högerledet bekant ut är det för att det är den genererande funktionen för talföljden $\{1,1,1,\ldots\}$. Enligt \textit{formel- och räknesamling} får vi
+$$\E{I}=\frac{1}{1-p}.$$
+
+Det viktiga att ta med sig från denna övning är att om $\Prob{X}=p$ så är $\E{X}=\frac{1}{p}$ då vi stöter på liknande problem, alltså "när händer $X$ för första gången?"
+
+    \textbf{Tips:} Tänk att något händer med en sannolikhet $\frac{1}{100}$. Då känns det naturligt att göra $100$ försök och förvänta sig att det som kan hända faktiskt händer; väntevärdet är inversen av sannolikheten.
+
 \begin{xca}
     Antag att du samlar på Pokemonkort.\sidenote[][]{Ersätt med ditt favorit-gacha med lootboxes om du vill ha ett mer samtida exempel.} Vi föreställer oss en väldigt enkel modell för hur du får ett nytt kort -- det finns $n$ stycken distinkta kort totalt, och du kan köpa ett nytt kort åt taget. Det nya kortet du får är likformigt fördelat i samlingen av kort -- varje kort är lika sannolikt.
 
@@ -471,6 +683,20 @@ Vi sammanfattar vad vi lärt oss om slumpvariabler hittills i följande räknere
 
     Låt $T$ vara antalet gånger du behöver köpa ett nytt kort för att få en fullständig samling, om du börjar på noll. Beräkna $\E{T}$.\sidenote[][]{Ledtråd: Lösningen på det här problemet använder lösningen på föregående problem.}
 \end{xca}
+
+\textit{Lösning övning 5:} Sannolikheten att få ett nytt kort följer alltså mönstret $$1, \frac{n-1}{n}, \frac{n-2}{n}, \ldots, \frac{n-i+1}{n}, \ldots, \frac{1}{n}$$ där $i$ är det $i$te kortet som ska erhållas.\\
+Låt $T_i$ vara antalet gånger vi behöver köpa ett nytt kort för att få det $i$te kortet i samlingen, givet att vi redan har alla kort upp till $i-1$. Det betyder att $$\E{T}=\E{T_1+T_2+\ldots+T_n}.$$
+Enligt \emph{väntevärdets linjäritet} (se Lemma~\ref{Lemma7}) får vi $$\E{T_1+T_2+\ldots+T_n} = \E{T_1} + \E{T_2}+ \ldots + \E{T_n}$$ och nu kommer föregående övnings resultat till hands: Om vi inverterar sannolikheterna får vi väntevärdet för var och ett av korten som ska samlas, $$\E{T_i} = \frac{n}{n-i+1}.$$
+
+Stoppar vi in varje värde får vi
+    \begin{align*}
+        \E{T} &= \frac{n}{n} + \frac{n}{n-1} + \frac{n}{n-2} + \ldots + \frac{n}{2} + \frac{n}{1}\\
+        &= n \left(1 + \frac{1}{2} + \frac{1}{3} + \ldots + \frac{1}{n} \right)\\
+        &= nH_n
+    \end{align*}
+Där $H_n$ är det $n$te harmoniska talet. Harmoniska tal har vi inte jobbat med under kursen och därför lämnar såhär.\\
+Väntevärdet för hur många pokemonkort vi behöver köpa för att få en komplett samling ges alltså av att sätta in det totala antalet kort $n$ i uttrycket ovan.
+
 
 %\bibliography{references}
 %\bibliographystyle{plainnat}
