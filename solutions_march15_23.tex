@@ -73,6 +73,53 @@ I det senare fallet kan vi uppenbarligen bara göra på ett enda sätt -- och et
 Alltså är det totala antalet sätt att skapa vår skog
 $$(n-1)t_{n-1,k} + t_{n-1,k-1}$$
 och vi har bevisat rekursionen.
+
+\section{Fråga 2}
+
+Denna tabell, med tolkningar av problemen i termer av lådor och bollar, återfinns i föreläsning 4.
+
+\section{Fråga 3}
+
+Vi använder vår vanliga metod för att lösa detta problemet: Låt 
+\begin{itemize}
+  \item $a_n$ vara antalet heltalslösningar på ekvationen $x_1 = n$,
+  \item $b_n$ vara antalet heltalslösningar på ekvationen $x_2 = n$, där vi kräver att $x_2$ är jämnt,
+  \item $c_n$ vara antalet heltalslösningar på ekvationen $x_3 = n$, med $2 \leq x \leq 50$,
+  \item och $d_n$ vara antalet heltalslösningar på ekvationen $x_4 = n$, där $x_4$ kan ha fyra olika färger om det är delbart med tre, och två olika färger annars.
+\end{itemize}
+
+Vi ser enkelt att dessa följder är
+$$a = (1,1,1,1,\ldots),\qquad b = (1,0,1,0,1,\ldots),$$
+$$c = (0,0,\underbrace{1,\ldots,1}_{\text{t.o.m. }50},0,0,\ldots), \quad\text{och}\quad d = (4,2,2,4,2,2,4,2,2,4,\ldots),$$
+och vi vill finna deras genererande funktioner.
+
+Formelsamlingen ger oss direkt att
+$$F_a(x) = \frac{1}{1-x}\quad\text{och}\quad F_b(x) = \frac{1}{1 - x^2}.$$
+
+För $c$ kan vi observera att 
+$$c = (\underbrace{1,1,1,\ldots,1}_{51\text{ stycken}},0,0,\ldots) - (1,1,0,0,\ldots)$$
+Formelsamlingen ger oss att genererande funktionen för första följden i högerled här är $\frac{1 - x^{50+1}}{1-x}$, och genererande funktionen för den andra är uppenbarligen $1 + x$, så
+$$F_c(x) = \frac{1 - x^{50+1}}{1-x} - 1 - x.$$
+
+Slutligen, för $d$, kan vi observera att
+$$d = 2(1,0,0,1,0,0,1,0,0,1,\ldots) + 2(1,1,1,1,\ldots)$$
+så vad vi behöver göra är att finna genererande funktionen för $e = (1,0,0,1,0,0,1,0,0,1,\ldots)$, indikatorfunktionen av tal delbara med tre. Vi kan räkna
+\begin{align*}
+  F_{e}(x) &= \sum_{k=0}^{\infty} \ind{3|k} x^k\\
+  &= \sum_{k=0}^{\infty} x^{3k}\\
+  &= \sum_{k=0}^{\infty} (x^3)^k = \frac{1}{1-x^3}
+\end{align*}
+där vi i sista ledet kände igen genererande funktionen för $(1,1,1,\ldots)$.
+
+Alltså är
+$$F_d(x) = 2\frac{1}{1 - x^3} + 2\frac{1}{1 - x}.$$
+
+Vi vet att antalet lösningar till ekvationen vi studerar ges av faltningen av dessa fyra följder, så
+\begin{align*}
+  F_l(x) &= F_{a * b * c * d}(x) = F_a(x)F_b(x)F_c(x)F_d(x)\\
+  &= \left(\frac{1}{1-x}\right)\left(\frac{1}{1-x^2}\right)\left(\frac{1 - x^{51}}{1-x} - 1 - x\right)\left(2\frac{1}{1 - x^3} + 2\frac{1}{1 - x}\right).
+\end{align*}
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
