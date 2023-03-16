@@ -60,8 +60,19 @@ Hittills är formeln vi har sett
 $$\sum_{\substack{n_1, n_2, \ldots, n_k\\ n_i \geq 1\\n_1 + n_2 + \ldots + n_k = n}} \binom{n}{n_1, n_2, \ldots, n_k}n_1^{n_1-2}n_2^{n_2-2}\ldots n_k^{n_k-2},$$
 men det finns ett problem med hur vi räknat hittills -- vi har pratat om ``det första trädet'', ``det andra trädet'', och så vidare, men träden skall ju inte ha etiketter, bara de enskilda noderna. Så vi behöver dividera med antalet sätt att sätta etiketter på träden, vilket är $k!$, och då får vi exakt den formel uppgiften bad oss om.
 
+\section{Fråga 1, del b}
 
+Vi börjar med att bekräfta att randvillkoren gäller. Att $t_{n,n}$ är $1$ för alla $n$ är enkelt att se, eftersom det ju bara finns en enda skog med lika många träd som noder -- det är grafen utan kanter på $n$ noder. Att $t_{n,0} = 0$ följer av att varje nod måste tillhöra något träd, så vi kan inte ha noll träd. Att $t_{n,k} = 0$ om $n < k$ följer av att varje träd måste ha åtminstone en nod, så vi kan inte ha fler träd än noder.
 
+Låt oss nu bevisa rekursionen: Antag att vi vill konstruera en skog på $n$ noder och $k$ träd. Vi kan antingen göra detta genom att ta en skog på lika många träd men en nod färre, och sedan lägga till vår nya nod till ett av träden, eller ta en skog på en nod och ett träd färre, och lägga till vår nya nod som ett nytt träd på en enda nod.
+
+I det tidigare fallet kommer vår nya nod ha etikett $n$, alltså högre än varje nod som redan var i trädet -- så vi måste lägga till den som ett löv, eftersom etiketteringen annars inte vore ökande. Men vi kan lägga till den som barn till vilken som helst av de $n-1$ redan existerande noderna.
+
+I det senare fallet kan vi uppenbarligen bara göra på ett enda sätt -- och ett träd på en enda nod har trivialt en ökande etikettering.
+
+Alltså är det totala antalet sätt att skapa vår skog
+$$(n-1)t_{n-1,k} + t_{n-1,k-1}$$
+och vi har bevisat rekursionen.
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
