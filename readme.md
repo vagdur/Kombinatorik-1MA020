@@ -29,6 +29,7 @@ Vi sammanfattar hela kursen kortfattat, vad varje föreläsning innehöll och ny
 1. [Extra övningar](https://vagdur.github.io/Kombinatorik-1MA020/extra_exercises.pdf)
 2. [Formel- och räkneregelssamling](https://vagdur.github.io/Kombinatorik-1MA020/formulae.pdf)
 3. [Modelltenta](https://vagdur.github.io/Kombinatorik-1MA020/modelltenta.pdf)
+4. [Tenta från den 15 Mars 2023](https://vagdur.github.io/Kombinatorik-1MA020/tenta_15mars.pdf) (Lösningsförslag kommer snart.)
 
 Övningar med lösningsförslag: 
 1. Ett ställe att hitta sådana på är [anteckningarna från förra årets version av kursen](https://vagdur.github.io/Kombinatorik-1MA020/CombinatoricsCourse.pdf). Dessa innehåller inte bara övningar, utan också en del exempel som vi inte går igenom på föreläsningarna detta året - så de exemplen kan ju också användas som övningar, om ni försöker lösa exemplet själva innan ni läser hur han gjorde. 
