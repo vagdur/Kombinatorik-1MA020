@@ -120,6 +120,18 @@ Vi vet att antalet lösningar till ekvationen vi studerar ges av faltningen av d
   &= \left(\frac{1}{1-x}\right)\left(\frac{1}{1-x^2}\right)\left(\frac{1 - x^{51}}{1-x} - 1 - x\right)\left(2\frac{1}{1 - x^3} + 2\frac{1}{1 - x}\right).
 \end{align*}
 
+\section{Fråga 4, del a}
+
+Vi vill se att dessa figurer är i bijektion med parentetiseringar av uttryck, vilka vi redan vet räknas av Catalantalen. Så vad vi gör är helt enkelt att ersätta varje start av en båge med en startparentes, och varje slut av en båge med en slutparentes. I motsatt riktning, för att få bågar av parentetiseringar, så ritar vi helt enkelt en båge som kopplar ihop varje matchande par av parenteser. Att detta ger en bijektion är tydligt om man studerar figuren.
+
+\section{Fråga 4, del b}
+
+Vi visar att dessa objekt uppfyller Segnerrekursionen. För att visa detta räcker det att visa hur varje objekt består av två mindre objekt av samma typ.
+
+Vad vi gör är helt enkelt att vi suddar bågen som kopplar ihop den första och sista punkten, och studerar vad som återstår. Vi hävdar att det alltid kommer finnas två sammanhängande komponenter, en som innehåller den första punkten, och en som innehåller den sista. För om dessa fortfarande hängde ihop hade vi antingen behövt ha en punkt med bågar som går ut åt bägge hållen, eller två korsande bågar.
+
+Dessa två komponenter kommer uppfylla alla våra krav, eftersom de var bitar i vårt originalobjekt. Alltså är dessa de två mindre objekten av vilka det större bestod, så vi har visat att de lyder rekursionen,\sidenote[][]{Här kan man fylla i mer detaljer, men det väsentliga är vad vi gjorde ovan.} och alltså räknas av Catalantalen.
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
