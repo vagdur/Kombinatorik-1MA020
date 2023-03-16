@@ -146,6 +146,33 @@ Detta är andra delen av föreläsning åtta.
 
 Detta är Teorem 12 i föreläsning tio.
 
+\section{Fråga 8, del a}
+
+Varje mängd $A \in \binom{[n]}{3}$ av tre noder är en potentiell triangel -- låt $T_A$ vara händelsen att $A$ faktiskt är en triangel, alltså att alla tre kanterna existerar.
+
+Vi ser enkelt att $\Prob{T_A} = p^3$ för varje $A$, eftersom det är tre kanter som skall vara med, och var och en existerar oberoende med sannolikhet $p$.
+
+Nu kan vi, med hjälp av väntevärdets linjäritet och att väntevärden av indikatorfunktioner är sannolikheter, beräkna att
+\begin{align*}
+  \E{\#\text{trianglar}} &= \E{\sum_{A \in \binom{[n]}{3}} \ind{T_A}}\\
+  &= \sum_{A \in \binom{[n]}{3}} \Prob{T_A} = \binom{n}{3}p^3.
+\end{align*}
+
+\section{Fråga 8, del b}
+
+Låt $X$ vara antalet trianglar i vår slumpgraf -- i förra deluppgiften såg vi att $\E{X} = \binom{n}{3}p^3$.
+
+Om vi låter $\eta > 0$ vara litet kan vi, med hjälp av Markovs olikhet, räkna att
+\begin{align*}
+  \Prob{X > 0} &= \Prob{X > 1 - \eta}\\
+  &\leq \frac{\E{X}}{1 - \eta} < \E{X}\\
+  &= \binom{n}{3}p^3 = \frac{n(n-1)(n-2)}{6}p^3\\
+  &\leq n^3 p^3
+\end{align*}
+men vi vet att $p \leq n^{-(1+\epsilon)}$, så
+$$n^3p^3 = (n n^{-(1+\epsilon)})^3 = n^{-3\epsilon} \to 0\quad\text{när } n\to\infty$$
+vilket ger oss resultatet.
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
