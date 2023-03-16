@@ -1,0 +1,68 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Lösningsförslag för tentamen i kombinatorik, 15 Mars 2023 $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
+
+\date{15 mars 2023}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+\include{mathcommands.extratex}
+\setlength{\extrarowheight}{12pt}
+
+\begin{document}
+
+\definecolor{darkgreen}{rgb}{0.0627, 0.4588, 0.1451}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+
+\end{abstract}
+
+\section{Lösningsförslag till tentan}
+
+\section{Fråga 1, del a}
+
+Vi vill se varför denna formel för $f_{n,k}$ räknar etiketterade skogar med $n$ noder på $k$ träd. Vill vi skapa oss en sådan skog så börjar vi med att bestämma hur många noder varje träd skall innehålla -- vi säger att träd ett har $n_1$ noder, träd två har $n_2$ noder, och så vidare.
+
+Sedan fördelar vi ut de $n$ etiketterna i dessa $k$ olika högar, så att varje hög får rätt antal etiketter -- detta kan göras på $\binom{n}{n_1, n_2, \ldots, n_k}$ sätt.
+
+Sedan väljer vi, för varje hög av etiketter, vilket träd med dessa etiketter vi vill ha. Cayleys formel ger oss att detta kan, för varje träd, göras på $n_i^{n_i-2}$ sätt, så multiplikationsprincipen ger oss att vi kan välja vår skog på $n_1^{n_1-2}n_2^{n_2-2}\ldots n_k^{n_k-2}$ sätt.
+
+Hittills är formeln vi har sett
+$$\sum_{\substack{n_1, n_2, \ldots, n_k\\ n_i \geq 1\\n_1 + n_2 + \ldots + n_k = n}} \binom{n}{n_1, n_2, \ldots, n_k}n_1^{n_1-2}n_2^{n_2-2}\ldots n_k^{n_k-2},$$
+men det finns ett problem med hur vi räknat hittills -- vi har pratat om ``det första trädet'', ``det andra trädet'', och så vidare, men träden skall ju inte ha etiketter, bara de enskilda noderna. Så vi behöver dividera med antalet sätt att sätta etiketter på träden, vilket är $k!$, och då får vi exakt den formel uppgiften bad oss om.
+
+
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}
