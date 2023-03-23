@@ -4,7 +4,7 @@
 
 \author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
 
-\date{17 januari 2023}
+%\date{15 januari 2023}
 
 
 %\geometry{showframe} % display margins for debugging page layout
@@ -52,38 +52,53 @@ I slutet av förra föreläsningen diskuterade vi kombinatoriska bevis, och bevi
   
   Han använde dock en annan metod än den vi använder, som inte involverade någon figur. Kan du komma på fler sätt att göra detta? (Eller Googla ``Gauss triangular numbers story'' om du bara vill veta svaret.)}
 
-  Vi studerar ett rutnät av $(n+1)\times(n+1)$ punkter, såsom i figuren.
+  Vi studerar ett rutnät av $(n+1)\times(n+1)$ punkter, såsom i figuren nedan.
 
   \begin{figure}
-    \includegraphics{graphics/counting_triangular_numbers_by_square.png}
-    \caption[][2cm]{Ett rutnät av punkter. Figur tagen direkt från förra årets föreläsningsanteckningar.}
+    \includegraphics{graphics/Rutnät av punkter.png}
+    \caption[][2cm]{Ett rutnät av $(n+1)\times(n+1)$ punkter. Bevis av summan av de först n talen.}
   \end{figure}
   
-  Vi ser på den nedre gröna triangeln, och försöker räkna antalet punkter i den. Vi ser att den vänstra kolumnen har $(n+1)-1 = n$ punkter, den näst vänstraste har $(n+1)-2=n-1$ punkter, och så vidare till den näst längst till höger som har en punkt, och kolumnen längst till höger har noll punkter i den gröna triangeln.
+  Vi ser på den nedre gröna triangeln, och försöker räkna antalet punkter i den. Vi ser att kolumnen längst till vänster i triangeln har $(n+1)-1 = n$ punkter, den näst längst till vänster har $(n+1)-2=n-1$ punkter, och så vidare till den näst längst till höger som har en punkt. Kolumnen längst till höger ligger utanför triangeln och har därför noll punkter i den gröna triangeln.
 
-  Alltså, om vi summerar över kolumnerna så får vi att det är totalt $n + (n-1) + \ldots + 2 + 1 = S(n)$ punkter i triangeln. Eftersom kvadraten så klart är helt symmetrisk är det lika många punkter i den övre gröna triangeln, och det är lätt att se att det är $n+1$ punkter på diagonalen.
+  Alltså, om vi summerar över kolumnerna så får vi att det är totalt $n + (n-1) + \ldots + 2 + 1 = S(n)$ punkter i triangeln. Eftersom kvadraten är helt symmetrisk så är det lika många punkter i den övre gröna triangeln, och det är lätt att se att det är $n+1$ punkter på diagonalen.
 
-  Alltså måste det totala antalet punkter i kvadraten vara $2S(n) + (n+1)$ -- men vi vet också, så klart, att det är $(n+1)^2$. Så om vi löser detta för $S(n)$ får vi att
+  Alltså måste det totala antalet punkter i kvadraten vara $2S(n) + (n+1)$ -- men vi kan också räkna det totala antalet punkter genom att multiplicera två av kvadratens sidor, dvs $(n+1)\times(n+1)=(n+1)^2$. Om vi löser detta för $S(n)$ får vi att
+    $$2S(n) + (n+1)=(n+1)^2$$
     $$S(n) = \frac{(n+1)^2 - (n+1)}{2} = \frac{(n+1)((n+1)-1)}{2} = \frac{n(n+1)}{2}$$
   precis som vi önskade.
+  
+  Denna bevismetod kan även användas för att summera andra aritmetiska talföljder, dvs talföljder $a_{1},\cdots,a_{n}$ på formen $a_{i+1}=a_{i}+k$ där k är en reell konstant. Vi skapar återigen ett rutnät som denna gång är en rektangel som delas in i exakt två parallelltrapetser. Se följande figur. 
+  
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{graphics/86C79F60-B920-4AA3-A6CB-DEA00A8C58A6.jpeg}
+    \caption{Rutnät av punkter. Bevis för summan av aritmetriska tlföljder. }
+  \end{figure}
+  
+  Rektangelns höjd är $a_{1}+a_{n}$ (summan av det första och sista talet i talföljden) och dess bas är n. Rektangeln kan med denna information beräknas att ha $n\times(a_{1}+a_{n})$ prickar. Parallelltrapetsen består av hälften så många prickar som rektangeln, dvs $\frac{n\times(a_{1}+a_{n})}{2}$ prickar. Summan av en aritmetisk talföljd är alltså $\frac{n\times(a_{1}+a_{n})}{2}$.  
+  
 \end{example}
 
 \begin{example}
   Vad är summan av de första $n$ udda talen, det vill säga $\sum_{k=1}^n 2k-1$?
-
-  Svaret är $n^2$, som kan ses av nedanstående figur.
+  
+  Svaret på frågan finner vi men hjälp av följande figur, som likt exemplet innan består av ett kvadratiskt rutnät av prickar. 
+  
   \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{graphics/sum_of_odd_integers.png}
-    \caption{Bevis att summan av de första $n$ udda talen är $n^2$. Bilden är tagen ur vår kursbok.}
+    \includegraphics[width=0.5\textwidth]{graphics/Gauss square proof.jpg}
+    \caption{Ett rutnät av $n\times n$ punkter. Bevis att summan av de första $n$ udda talen är $n^2$.}
   \end{figure}
+  
+  Det totala antalet prickar i figuren är alltså $\sum_{k=1}^n 2k-1$ enligt resonnemanget i bilden ovan. Eftersom figuren är kvadratisk så kan vi även räkna antalet prickar i figuren genom att multiplicera sidorna $n\times n=n^2$. Svaret på frågan är därför $n^2$. 
 \end{example}
 
 \begin{example}\label{example_counting_all_subsets}
   Bevisa att $\sum_{k=0}^n \binom{n}{k} = 2^n$.
 
   \begin{proof}
-    Vi bevisar detta genom att bevisa att både vänster och höger led räknar antalet delmängder till en mängd av $n$ element, oavsett delmängdernas storlek.\sidenote[][]{Man kan också betrakta detta som att vi räknar antalet binära strängar av längd $n$ på två sätt, eftersom det finns en enkel bijektion mellan sådana och delmängder till en mängd $X$ av storlek $n$.
+    Vi bevisar detta genom att visa att både vänster och höger led räknar antalet delmängder till en mängd av $n$ element, oavsett delmängdernas storlek.\sidenote[][]{Man kan också betrakta detta som att vi räknar antalet binära strängar av längd $n$ på två sätt, eftersom det finns en enkel bijektion mellan sådana och delmängder till en mängd $X$ av storlek $n$.
     
     Specifikt så fixerar vi en numrering av elementen av $X$, och säger att givet en binär sträng $x_1x_2\ldots x_n$ så får vi en delmängd $A\subseteq X$ genom att det första elementet av $X$ ligger i $A$ om $x_1=1$, det andra om $x_2=2$, och så vidare. På motsvarande sätt kan vi konstruera en binär sträng givet en delmängd.}
 
@@ -99,7 +114,7 @@ I slutet av förra föreläsningen diskuterade vi kombinatoriska bevis, och bevi
   \begin{marginfigure}
     \includegraphics{graphics/pascals_triangle.png}
   \end{marginfigure}
-  $$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}.$$
+  $$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}.$$ 
 
   \begin{proof}[Algebraiskt bevis]
     \begin{align*}
@@ -107,17 +122,15 @@ I slutet av förra föreläsningen diskuterade vi kombinatoriska bevis, och bevi
       &= (n-1)!\left(\frac{k}{k!(n-k)!} + \frac{(n-k)}{k!(n-k)!}\right)\\
       &= (n-1)!\frac{k + (n - k)}{k!(n-k)!}\\
       &= \frac{n!}{k!(n-k)!} = \binom{n}{k}.
-    \end{align*}    
+    \end{align*}   
   \end{proof}
 
   \begin{proof}[Kombinatoriskt bevis]
     Låt $X$ vara en mängd av storlek $n$. Vi vet att $\binom{n}{k}$ räknar antalet delmängder av storlek $k$ till $X$. Låt oss komma på ett annat sätt att räkna antalet delmängder av storlek $k$, och se att det ger oss höger led.
-
-    Välj ett godtyckligt element $x \in X$. För varje delmängd $A$ till $X$ så innehåller den antingen $x$, eller så gör den inte det. För att skapa oss en delmängd $A$ av storlek $k$ som innehåller $x$ lägger vi först in $x$ i $A$, och sedan lägger vi till ytterligare $k-1$ element från de återstående $n-1$ elementen. Antalet sätt att göra det vet vi är precis $\binom{n-1}{k-1}$
-
-    Om vi i stället vill ha en delmängd $A$ som \emph{inte} innehåller $x$ så kan vi fritt välja $k$ element av de återstående $n-1$ elementen. Antalet sätt att göra det på vet vi är $\binom{n-1}{k}$.
-
-    Så additionsprincipen säger oss att antalet sätt att välja en delmängd som innehåller $x$ eller inte innehåller $x$ -- vilket ju är alla delmängder -- måste vara summan, alltså $\binom{n-1}{k-1} + \binom{n-1}{k}$, såsom önskat.
+    Välj ett godtyckligt element $x \in X$. Vi låter V beteckna alla delmängder till X som innehåller $x$, dvs $V=\{A\subseteq X:x\in A\} =\{ \{ x\} \cup B | B \subseteq X \backslash \{ x\} , |B|=k-1\}$, och vi låter H beteckna alla delmängder till X som inte innehåller x, dvs $H=\{A\subseteq X:x\notin A\} =\{A \subseteq X \backslash \{ x\} , |A|=k\}$. Vi ser att V och H är disjunkta och att unionen av dem är potensmängden av X. Idén är att räkna antalet delmängder av storlek k som tillhör V och H, och sedan använda additionsregeln för att räkna antalet delmängder av storlek k till X. 
+    V innehåller redan elementet x vilket gör att vi har n-1 element kvar att välja från och k-1 val kvar att göra. Antalet element av storlek k i V är därför $\binom{n-1}{k-1}$.
+    H innehåller inte elementet x vilket gör att vi har n-1 element att välja från och väljer ut k element. Antalet element av storlek k i H är alltså $\binom{n-1}{k}$. Notera att om n=k så är $\binom{n-1}{k}=0$ eftersom vi inte kan välja ut k element från k-1 element. 
+    Till sist använder vi additionsregeln och får att antalet delmängder av storlek k till X är $\binom{n-1}{k-1} +\binom{n-1}{k}$. Så $\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}$. 
   \end{proof}
 \end{proposition}
 
@@ -150,13 +163,18 @@ I slutet av förra föreläsningen diskuterade vi kombinatoriska bevis, och bevi
 
     Ett annat sätt att räkna detta är att dela upp efter hur många ettor ordet innehåller. Först väljer vi antalet ettor, sedan väljer vi var ettorna skall stå, och till sist väljer vi vad resten av bokstäverna skall vara för något.
 
-    Givet att vi vet att vi skall ha $k$ stycken ettor, och vi vet var de skall stå, så har vi $n-k$ bokstäver kvar att göra ett val för -- och nu har vi bara två val, eftersom vi inte får välja ettor utan bara nollor och treor. Så enligt multiplikationsprincipen multiplicerar vi antalet val vi har i varje fall och får att det finns $2^{n-k}$ sätt att fylla i resten av ordet med nollor och treor.
+    Givet att vi vet att vi skall ha $k$ stycken ettor, och vi vet var de skall stå, så har vi $n-k$ bokstäver kvar att göra ett val för -- och nu har vi bara två val, eftersom vi inte får välja ettor utan bara nollor och tvåor. Så enligt multiplikationsprincipen multiplicerar vi antalet val vi har i varje fall och får att det finns $2^{n-k}$ sätt att fylla i resten av ordet med nollor och tvåor.
 
     Givet att vi vet att vi skall ha $k$ stycken ettor, hur många olika strängar kan vi skapa? Antalet sätt att välja var ettorna skall stå är precis antalet kombinationer av $k$ element från mängden av platser, $[n]$, och vi vet att det är $\binom{n}{k}$. När vi väl valt var ettorna skall stå kan vi fylla i resten på $2^{n-k}$ sätt, som vi såg i föregående stycket, så multiplikationsprincipen ger oss att det måste finnas $\binom{n}{k}2^{n-k}$ strängar av längd $n$ med $k$ stycken ettor.
 
     Till slut vet vi att det totala antalet ternära strängar måste vara summan av detta över alla $k$, enligt additionsprincipen. Så om vi summerar detta får vi att det finns
     $$\sum_{k=0}^n \binom{n}{k}2^{n-k}$$
-    ternära strängar. Efter att ha tillämpat likheten $\binom{n}{k} = \binom{n}{n-k}$ och vänt på indexeringen i summan ser vi att detta är precis höger led i ekvationen vi gav.
+    ternära strängar. Efter att ha tillämpat likheten $\binom{n}{k} = \binom{n}{n-k}$ och vänt på indexeringen i summan ser vi att detta är precis höger led i ekvationen vi gav. (Alltså båda summor beskriver samma summa men vänt, så sista termen i andra summan är samma som första termen i första summan osv.)
+        $$\sum_{k=0}^n \binom{n}{n-k}2^{n-k}=\binom{n}{n}2^n+\binom{n}{n-1}2^{n-1}+\cdots+\binom{n}{1}2^1+\binom{n}{0}2^0$$
+    $$\sum_{k=0}^n \binom{n}{k}2^k=\binom{n}{0}2^0+\binom{n}{1}2^{1}+\cdots+\binom{n}{n-1}2^n-1+\binom{n}{n}2^n$$
+
+    Så 
+    $$\sum_{k=0}^n \binom{n}{n-k}2^{n-k}=\sum_{k=0}^n \binom{n}{k}2^k$$
   \end{proof}
 
   \begin{proof}[Algebraiskt bevis]
@@ -215,7 +233,7 @@ Antag att vi vill fördela ut $n$ stycken osärskiljbara objekt bland $k$ särsk
     Metoden för det här beviset brukar kallas för ett pinnar-och-stjärnor-argument.\sidenote[][]{Engelska \emph{stars and bars argument}.}
 
     Vi studerar ord ur alfabetet $\{*,|\}$ med $k-1$ stycken pinnar och $n$ stycken stjärnor. Till exempel om $n=6$ och $k=5$
-    $$**||*|*|**.$$
+    $$**||*|*|**$$
 
     Vi tolkar detta ordet som en fördelning av föremål till personer såsom följer: Person ett får alla  stjärnor innan första strecket, person två alla mellan första och andra strecket, och så vidare, tills person $k$ får alla stjärnor efter det sista strecket. I vårt exempel får alltså person ett två föremål, person två inga, person tre och fyra ett var, och person fem får två.
 
@@ -223,7 +241,7 @@ Antag att vi vill fördela ut $n$ stycken osärskiljbara objekt bland $k$ särsk
   \end{proof}
 \end{proposition}
 
-\begin{example}
+\begin{example}% test
   Hur många lösningar har ekvationen $x + y + z = 15$, ifall vi kräver att $x$, $y$, och $z$ alla skall vara positiva heltal?
 
   Vi kan se det här som en variant av problemet med att fördela osärskiljbara objekt mellan särskiljbara personer, där objekten är ettor och personerna är våra tre variabler. 
@@ -268,7 +286,7 @@ Antag att vi vill fördela ut $n$ stycken osärskiljbara objekt bland $k$ särsk
       X' = \{&x_1^1, x_1^2, \ldots, x_1^{k_1},\\
              &x_2^1, x_2^2, \ldots, x_2^{k_2},\\
              &\qquad\vdots\\
-             &x_r^1, x_r^2, \ldots, x_r^{k_3}\}.
+             &x_r^1, x_r^2, \ldots, x_r^{k_r}\}.
     \end{align*}
 
     Eftersom $X'$ har exakt $n$ bokstäver vet vi att antalet permutationer av det alfabetet är precis $n!$.
@@ -324,6 +342,105 @@ Antag att vi vill fördela ut $n$ stycken osärskiljbara objekt bland $k$ särsk
   Låt $m$ och $w$ vara positiva heltal. Ge ett kombinatoriskt bevis för att det, för varje $0 \leq k \leq m + w$, gäller att
   $$\sum_{j=0}^k \binom{m}{j}\binom{w}{k-j} = \binom{m + w}{k}.$$
 \end{xca}
+
+\newpage
+\section{Lösningsförslag}
+
+\begin{xca}
+\begin{proof}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[]{graphics/Kombinatorik F 2 ls1.png}
+  \end{figure}
+$\binom{n+1}{2}$ är antalet sätt vi kan välja ut delmängder av storlek $2$ från $n+1$ element. Ett sätt att räkna detta är att välja ett godtyckligt element och kolla antalet sätt som detta element kan paras med resten av de kvarvarande $n$ stycken elementen. Detta blir $\binom{n}{1}=n$ sätt eftersom vi vill välja ut ett till element och vi har $n$ element att välja mellan.\\
+Nästa steg är att välja ett nytt godtyckligt element och kolla antalet sätt osm detta element kan paras med resten av de $n-1$ kvarvarande elementen. Detta blir $\binom{n-1}{1}=n-1$ sätt.\\ Denna process upprepas tills alla element har valts och vi kan sedan använda additionsregels för att hitta totala antalet sätt att välja ut delmängder av storlek $2$ från $n+1$ element. \\
+Vi kan uttrycka detta som $\binom{n}{1}+\binom{n-1}{1}+\cdots + \binom{2}{1}+\binom{1}{1}=n+(n-1)+\cdots +2+1=\sum_{k=1}^nk$\\
+Exempel på hur processen tar formen av en triangel:
+ \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{graphics/kombinatorik ls1.png}
+  \end{figure}
+\end{proof}
+\end{xca}
+
+
+\begin{xca}
+Låt $X$ vara en mängd där $|X|=n$. Numrera elementen i $X$ från $1$ till $n$.\\
+
+Vi vill hitta en bijektion mellan antalet delmängder till $X$ och binära strängar av längd $n$.\\
+$"\rightarrow": $ Varje delmängd $ A\subseteq X $ kan göras om till en binär sträng av längd $n$, dvs $x_1,x_2,\ldots , x_n$, genom att låta $x_i=$ \Big \{ ${1,\, \textrm{ om } \, i\in x \atop 0, \, \textrm{ om }\, i \notin x}$ \\.
+$"\leftarrow": $ Dessa binära strängar kan göras om till delmängder igen genom att låta det $i$:te elementet i $X$ tillhöra delmängden omm $x_i=1$. Binära strängarna kan alltså ses som en unik kod som anger vilka element som är med i delmängden.\\
+
+Vi vet från föreläsning 1 att antalet binära strängar med $n$ element är $2^n$.\\
+Från bijektionen vet vi att: $$sum_{k=0}^{n}\binom{n}{k}=|\{A:A\subseteq X\}|=|\{\text{binära strängar av längd n}\}|=2^n$$
+\end{xca}
+
+
+\begin{xca}
+För att lösa uppgiften kan vi använda oss av kompositioner. Vi kan se problemet som att vi ska dela ut 43 osärskiljbara "objekt" mellan 3 särskiljbara "personer". Vi börjar att ge alla "personer" tillräckligt med "objekt" för att villkoren ska uppfyllas. I vårat fall har vi att x får 1 objekt, y får 17 objekt och z får 5 objekt. Det betyder att vi har totalt $43-(1+17+5)= 20$ "objekt" kvar att dela ut på 3 "personer". Vi löser detta med hjälp av proposition 11 (att det finns $\binom{n+k-1}{k-1}=\binom{n+k-1}{n}$ olika sätt att födela n osärskiljbara föremål mellan k särskiljbara personer). Notera att i propositionen finns det 2 olika sätt att lösa detta men det blir samma lösning på slutet så det spelar ingen roll vilken man väljer att räkna med.
+$$\binom{n+k-1}{k-1}=\binom{n+k-1}{n}$$ där n är antalet objekt och k antalet personer.
+$$\binom{n+k-1}{k-1}=\binom{20+3-1}{3-1}= \binom{22}{2}=\frac{22!}{2!20!}=231$$
+Och med det andra sättet:
+$$\binom{n+k-1}{n}=\binom{20+3-1}{20}= \binom{22}{20}=\frac{22!}{20!2!}=231$$
+Alltså kan vi lösa problemet på 231 olika sätt.
+\end{xca}
+
+\begin{xca}
+a) Ordet $54240244$ har:
+\begin{itemize}
+  \item En "5"
+  \item Fyra "4"
+  \item Två "2"
+  \item En "0"
+\end{itemize}
+Låt oss först placera ut $4$orna (det spelar ingen roll vilken man börjar med). Vi har totalt 8 platser och fyra stycken $4$or vilket ger oss $\binom{8}{4}$ olika sätt att placera ut $4$orna.\\
+Därefter vill vi placera ut nästa siffra. Låt oss fortsätta med $2$orna. Om vi vid varje omordning placerar ut $4$orna först kommer det alltid finnas 4 tomma platser kvar för resterande siffror oavsett vart $4$orna placerades. (vi vet inte vart dem placerades bara att 4 platser ockuperats vilket ger oss $8-4=4$ platser kvar). Därför har vi $\binom{4}{2}$ stycken val för $2$orna.\\
+Vi fortsätter med $5$orna. Med samma princip som innan har vi nu $8-4-2=2$ platser kvar alltså har vi $\binom{2}{1}$ olika sätt att placera ut $5$an.\\
+Sist är $0$an och nu har vi bara 1 plats kvar så det ger oss $\binom{1}{1}$ olika sätt att placera ut $0$an. Med hjälp av multiplikationsregeln får vi att:
+$$\binom{8}{4}\binom{4}{2}\binom{2}{1}\binom{1}{1}=\frac{8!}{4!4!}\frac{4!}{2!2!}\frac{2!}{1!1!}\frac{1!}{1!0!}$$
+$$=840$$
+Svar: Det finns 840 olika omordningar.\\
+b) Nu vill vi att $0$an inte ska vara först så vi börjar med att placera ut $0$. $0$ har då 7 platser att välja mellan, alla utom den första platsen. Vi får då $\binom{7}{1}$ lika val att placera ut $0$ (då vi har en $0$a).\\
+Vi fortsätter med nästa siffra, ex $4$. Dem har 7 platser kvar ($7-1=6$ platser efter att vi valt plats för $0$an, observera att  $4$or får vara på första platsen till skillnad från $0$an). Vi har  då $\binom{7}{4}$ olika sätt att placera ut $4$orna.\\
+För de resterande talen sker samma process som innan. $2$orna har 3 platser kvar så $\binom{3}{2}$ olika sätt att placera ut dem, och sist $\binom{1}{1}$ olika sätt för $5$an.\\
+Därför har vi:
+$$\binom{7}{1}\binom{7}{4}\binom{3}{2}\binom{1}{1}=\frac{7!}{1!6!}\frac{7!}{4!3!}\frac{3!}{2!1!}\frac{1!}{1!0!}$$
+$$=735$$
+Detta låter logiskt eftersom 735 är sju åttondelar av 840 och det borde finnas lika många omordningar för varje plats 0an kan befinna sig på, så om vi tar bort en plats borde det vara samma som att ta bort en åttondel.
+\end{xca}
+
+
+\begin{xca}
+Ternära strängar består av alfabetet $\{ 0, 1, 2\}$ så $X=\{ 0, 1, 2\}$
+
+\begin{column}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Position i & $1$ & $2$ & $3$ & $\cdots$ & $n$ & $n+1$ & $n+2$ & $n+3$ & $\cdots$ & $2n$  \\
+\hline
+Element $x_i$ & $x_1$ & $x_2$ & $x_3$ &$\cdots$ & $x_n$ & $x_{n+1}$ & $x_{n+2}$ & $x_{n+3}$ & $\cdots $ & $x_{2n}$ \\
+\hline
+\end{tabular}
+\end{column}
+Där $x_i=$\Bigg \{ ${0\, \textrm{eller }\, 2 \, \text{om }\, i \, \textrm{är }\, \textrm{jämn } \atop 0,\, 1,\, \textrm{eller }\, 2\, \textrm{om }\, i\, \textrm{är }\, \textrm{udda}}$
+
+Det finns $n$ stycken udda positioner. Varje udda position har 3 val (0, 1, eller 2).\\
+Det finns $n$ stycken jämna positioner. Varje jämn position har 2 val (0 eller 2).\\
+Det finns därför totalt $3^n\times 2^n$ sätt att välja ternära strängar enligt multiplikationsprincipen från föreläsning 1.\\
+Svar: $3^n\times 2^n$
+
+\end{xca}
+
+\begin{xca}
+\begin{proof}
+Låt A och B vara disjunkta mängder där $|A|=m$ och $|B|=w$. Höger led är då antalet delmängder av storlek $k$ till $X=A\cup B$. Vi vill visa att vänster led räknar samma sak.\\
+Delmängder till $X$ av storlek $k$ kommer innehålla element från $A$ och/eller från $B$. Säg att en delmängd innehåller $j$ element från $A$, då måste resten av elementen komma från $B$, dvs $k-j$ element.\\
+Multiplikationsprincipen säger att antalet sätt att välja $j$ element från $A$ (dvs\,$\binom{m}{j}$) multiplicerat med antalet sätt att välja $k-j$ element från $B$ (dvs\, $\binom{w}{k-j}$) är lika med antalet sätt vi kan välja $j$ element från $A$ och $k-j$ element från $B$ (dvs\, $\binom{m}{j} \binom{w}{k-j}$).\\
+Detta gäller för då $j\in \{0,1, \ldots , k \}$, vilket täcker alla sätt att välja ett visst antal element från $A$. \\
+Med hjälp av additionsprincipen får vi därför att summan av alla dessa fall, $\sum_{j=0}^k \binom{m}{j} \binom{w}{k-j}$, också är antalet delmängder av storlek k.
+\end{proof}
+\end{xca}
+
 
 %\bibliography{references}
 %\bibliographystyle{plainnat}
