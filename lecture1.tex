@@ -6,7 +6,6 @@
 
 \date{16 januari 2023}
 
-
 %\geometry{showframe} % display margins for debugging page layout
 
 \usepackage{graphicx} % allow embedded images
@@ -239,6 +238,15 @@ Det andra är kombinatoriskt:\sidenote[][]{Vad menar vi när vi säger att det h
 Bijektionen vi hittade här är själv ett \emph{kombinatoriskt} objekt, och det berättar mer för oss än bara att mängderna har lika många medlemmar. Man kan se det som att den är en \emph{anledning} till varför de har lika många mängder.
 
 Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- och likaså att bijektionerna ger oss mer förståelse för objekten vi studerar än vad ett algebraiskt bevis gör.}
+
+\begin{proof}
+	Det tredje beviset är logiskt identiskt med det andra, men i lite trevligare förpackning. Vi har redan sett hur man kan bevisa saker genom att räkna samma sak på två olika sätt. Ett specialfall av detta är att räkna hur många grupper, som uppfyller någon egenskap, man kan bilda, för att bevisa en kombinatorisk identitet. 
+
+	Antag att vi har $n$ datavetare \sidenote{Dessa kunde även vara matematikvetare, fysikvetare eller någon annan lämplig mängd människor} i en klass, och att $k$ av dessa ska bilda en grupp. Vi vill räkna hur många sådana grupper kan bildas. Notera att när vi väljer vilka $k$ datavetare som ska ingå i gruppen, väljer vi samtidigt vilka $n - k$ datavetare som inte ingår. 
+
+	Enligt proposition 18 finns det $n \choose k$ olika sätt att välja vilka $k$ datavetare som ingår och $n \choose n - k$ olika sätt att välja vilka som inte ingår. Men eftersom dessa beslut är desamma, följer det att $n \choose k $ $=$ $ n \choose n - k$, vilket skulle visas
+\end{proof}
+
 \begin{proof}
 	Låt $X$ vara en mängd med $n$ element. $\binom{n}{k}$ räknar antalet sätt att välja en delmängd $A \subseteq X$ av storlek $k$. Men varje sådan delmängd $A$ har ett komplement $X\setminus A$ av storlek $n-k$, och för varje delmängd av storlek $n-k$ kan vi få en av storlek $k$ genom att ta dess komplement.
 
@@ -362,8 +370,8 @@ Idén med just ett ``kombinatoriskt bevis'' kommer att återkomma flera gånger 
 		\item Hur många sätt finns det att välja ett objekt från $A$ och ett från $B$?
 		\item Vad är $\abs{A\times B}$?
 		\item Vad är $\abs{A \coprod B}$?
-		\item Vad är det största och minsta värde som $A \cup B$ kan ta?
-		\item Vad är det största och minsta värde som $A \cap B$ kan ta?
+		\item Vad är det största och minsta värde som $|A \cup B|$ kan ta?
+		\item Vad är det största och minsta värde som $|A \cap B|$ kan ta?
 	\end{enumerate}
 \end{xca}
 
@@ -498,7 +506,7 @@ Idén med just ett ``kombinatoriskt bevis'' kommer att återkomma flera gånger 
 
 		\item Det är antalet sätt att välja ett objekt ur $A$ eller ett objekt ur $B$, alltså $15 + 7 = 22$. Detta är den notation som används för att beskriva multiplikationsregeln.
 
-		\item Det största värdet $A \cup B$ kan anta är $15+7=22$. I detta fallet (största möjliga unionen) kommer alla element i $B$ vara olika från alla element i $A$, vilket gör att vår nya mängd kommer innehålla alla $7$ element i $B$ och alla $15$ element i $A$. 
+		\item Det största värdet $|A \cup B|$ kan anta är $15+7=22$. I detta fallet (största möjliga unionen) kommer alla element i $B$ vara olika från alla element i $A$, vilket gör att vår nya mängd kommer innehålla alla $7$ element i $B$ och alla $15$ element i $A$. 
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.7\textwidth]{graphics/F1/disjoint_sets_A_and_B.png}
@@ -506,7 +514,7 @@ Idén med just ett ``kombinatoriskt bevis'' kommer att återkomma flera gånger 
 			\label{fig:A_and_B_disjoint}
 		\end{figure}
 		
-		Det minsta värdet $A \cup B$ kan anta är $15$. I detta fallet (minsta möjliga unionen) kommer alla element i $B$ vara närvarande i $A$. Alltså kommer vår nya mängd vara lika med mängden $A$, eftersom $B$ också är närvarande i den mängden. 
+		Det minsta värdet $|A \cup B|$ kan anta är $15$. I detta fallet (minsta möjliga unionen) kommer alla element i $B$ vara närvarande i $A$. Alltså kommer vår nya mängd vara lika med mängden $A$, eftersom $B$ också är närvarande i den mängden. 
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.7\textwidth]{graphics/F1/set_B_contained_in_A.png}
@@ -514,9 +522,9 @@ Idén med just ett ``kombinatoriskt bevis'' kommer att återkomma flera gånger 
 			\label{fig:B_contained_in_A}
 		\end{figure}
 
-		\item Det största värdet som $A \cap B$ kan anta är $7$. I detta faller kommer alla element i $B$ vara närvarande i $A$, såsom i figur \ref{fig:B_contained_in_A}. Alltså kommer $A \cap B = B$, och vi får med alla element i $B$.
+		\item Det största värdet som $|A \cap B|$ kan anta är $7$. I detta faller kommer alla element i $B$ vara närvarande i $A$, såsom i figur \ref{fig:B_contained_in_A}. Alltså kommer $A \cap B = B$, och vi får med alla element i $B$.
 
-		Det minsta värdet som $A \cap B$ kan anta är $0$. I detta fallet så kommer alla element i $B$ vara skilda från alla element i $A$ och vårt snitt kommer då bli en tom mängd, såsom i figur \ref{fig:A_and_B_disjoint}.
+		Det minsta värdet som $|A \cap B|$ kan anta är $0$. I detta fallet så kommer alla element i $B$ vara skilda från alla element i $A$ och vårt snitt kommer då bli en tom mängd, såsom i figur \ref{fig:A_and_B_disjoint}.
 	\end{enumerate}
 
 	\begin{tips}
