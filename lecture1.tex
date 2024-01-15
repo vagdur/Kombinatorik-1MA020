@@ -247,6 +247,84 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 	Men vi vet att antalet delmängder av storlek $n-$ är $\binom{n}{n-k}$, och alltså måste $\binom{n}{k} = \binom{n}{n-k}$.
 \end{proof}
 
+\section{Kombinatoriska bevis}
+
+Idén med just ett ``kombinatoriskt bevis'' kommer att återkomma flera gånger i kursen, så låt oss ge ett par exempel till på hur ett sådant kan se ut.
+
+\begin{example}\label{example_triangular_numbers}
+  För $n\geq 0$, låt $S(n) = \sum_{k=1}^n k$. Vi vill bevisa att $S(n) = \frac{n(n+1)}{2}$.\sidenote[][]{Det sägs att den store matematikern Carl Friedrich Gauss en gång fick uppgiften att räkna ut $1+2+\ldots+100$ av en lat mellanstadielärare som ville hålla sina elever upptagna i en stund, och förbluffade sin lärare genom att hitta svaret på bara några sekunder och utan papper och penna.
+  
+  Han använde dock en annan metod än den vi använder, som inte involverade någon figur. Kan du komma på fler sätt att göra detta? (Eller Googla ``Gauss triangular numbers story'' om du bara vill veta svaret.)}
+
+  Vi studerar ett rutnät av $(n+1)\times(n+1)$ punkter, såsom i figuren.
+
+  \begin{figure}
+    \includegraphics{graphics/counting_triangular_numbers_by_square.png}
+    \caption[][2cm]{Ett rutnät av punkter. Figur tagen direkt från förra årets föreläsningsanteckningar.}
+  \end{figure}
+  
+  Vi ser på den nedre gröna triangeln, och försöker räkna antalet punkter i den. Vi ser att den vänstra kolumnen har $(n+1)-1 = n$ punkter, den näst vänstraste har $(n+1)-2=n-1$ punkter, och så vidare till den näst längst till höger som har en punkt, och kolumnen längst till höger har noll punkter i den gröna triangeln.
+
+  Alltså, om vi summerar över kolumnerna så får vi att det är totalt $n + (n-1) + \ldots + 2 + 1 = S(n)$ punkter i triangeln. Eftersom kvadraten så klart är helt symmetrisk är det lika många punkter i den övre gröna triangeln, och det är lätt att se att det är $n+1$ punkter på diagonalen.
+
+  Alltså måste det totala antalet punkter i kvadraten vara $2S(n) + (n+1)$ -- men vi vet också, så klart, att det är $(n+1)^2$. Så om vi löser detta för $S(n)$ får vi att
+    $$S(n) = \frac{(n+1)^2 - (n+1)}{2} = \frac{(n+1)((n+1)-1)}{2} = \frac{n(n+1)}{2}$$
+  precis som vi önskade.
+\end{example}
+
+\begin{example}
+  Vad är summan av de första $n$ udda talen, det vill säga $\sum_{k=1}^n 2k-1$?
+
+  Svaret är $n^2$, som kan ses av nedanstående figur.
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{graphics/sum_of_odd_integers.png}
+    \caption{Bevis att summan av de första $n$ udda talen är $n^2$. Bilden är tagen ur vår kursbok.}
+  \end{figure}
+\end{example}
+
+\begin{example}\label{example_counting_all_subsets}
+  Bevisa att $\sum_{k=0}^n \binom{n}{k} = 2^n$.
+
+  \begin{proof}
+    Vi bevisar detta genom att bevisa att både vänster och höger led räknar antalet delmängder till en mängd av $n$ element, oavsett delmängdernas storlek.\sidenote[][]{Man kan också betrakta detta som att vi räknar antalet binära strängar av längd $n$ på två sätt, eftersom det finns en enkel bijektion mellan sådana och delmängder till en mängd $X$ av storlek $n$.
+    
+    Specifikt så fixerar vi en numrering av elementen av $X$, och säger att givet en binär sträng $x_1x_2\ldots x_n$ så får vi en delmängd $A\subseteq X$ genom att det första elementet av $X$ ligger i $A$ om $x_1=1$, det andra om $x_2=2$, och så vidare. På motsvarande sätt kan vi konstruera en binär sträng givet en delmängd.}
+
+    För vänster led kan vi observera att antalet delmängder oavsett storlek är summan av antalet delmängder av varje given storlek. Vi vet sedan innan att en delmängd av storlek $k$ av en mängd av storlek $n$ kallas en kombination, och det finns $\binom{n}{k}$ stycken sådana. Alltså är det totala antalet delmängder $\sum_{k=0}^n \binom{n}{k}$, som önskat.
+
+    För höger led använder vi multiplikationsregeln. För varje element i vår mängd har vi två val -- antingen tar vi med elementet, eller inte -- och vi har totalt $n$ stycken element för vilka vi behöver göra detta val. Så om vi multiplicerar antalet val vi har varje gång får vi $2\cdot2\cdot\ldots\cdot2 = 2^n$ stycken delmängder, som önskat.
+  \end{proof}
+\end{example}
+
+\begin{proposition}[Pascals Identitet]
+  För $1 \leq k \leq n$ gäller det att\sidenote[][]{Den här likheten säger exakt att Pascals triangel faktiskt innehåller binomialkoefficienterna.}
+  
+  \begin{marginfigure}
+    \includegraphics{graphics/pascals_triangle.png}
+  \end{marginfigure}
+  $$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}.$$
+
+  \begin{proof}[Algebraiskt bevis]
+    \begin{align*}
+      \binom{n-1}{k-1} + \binom{n-1}{k} &= \frac{(n-1)!}{(k-1)!((n-1)-(k-1))!} + \frac{(n-1)!}{k!((n-1)-k)!}\\
+      &= (n-1)!\left(\frac{k}{k!(n-k)!} + \frac{(n-k)}{k!(n-k)!}\right)\\
+      &= (n-1)!\frac{k + (n - k)}{k!(n-k)!}\\
+      &= \frac{n!}{k!(n-k)!} = \binom{n}{k}.
+    \end{align*}    
+  \end{proof}
+
+  \begin{proof}[Kombinatoriskt bevis]
+    Låt $X$ vara en mängd av storlek $n$. Vi vet att $\binom{n}{k}$ räknar antalet delmängder av storlek $k$ till $X$. Låt oss komma på ett annat sätt att räkna antalet delmängder av storlek $k$, och se att det ger oss höger led.
+
+    Välj ett godtyckligt element $x \in X$. För varje delmängd $A$ till $X$ så innehåller den antingen $x$, eller så gör den inte det. För att skapa oss en delmängd $A$ av storlek $k$ som innehåller $x$ lägger vi först in $x$ i $A$, och sedan lägger vi till ytterligare $k-1$ element från de återstående $n-1$ elementen. Antalet sätt att göra det vet vi är precis $\binom{n-1}{k-1}$
+
+    Om vi i stället vill ha en delmängd $A$ som \emph{inte} innehåller $x$ så kan vi fritt välja $k$ element av de återstående $n-1$ elementen. Antalet sätt att göra det på vet vi är $\binom{n-1}{k}$.
+
+    Så additionsprincipen säger oss att antalet sätt att välja en delmängd som innehåller $x$ eller inte innehåller $x$ -- vilket ju är alla delmängder -- måste vara summan, alltså $\binom{n-1}{k-1} + \binom{n-1}{k}$, såsom önskat.
+  \end{proof}
+\end{proposition}
+
 \newpage
 
 \section{Övningar}
