@@ -1,10 +1,10 @@
-# ![UUs logotyp](./graphics/UU_logo_color.png "UUs logotyp") Kombinatorik (1MA020), Vårterminen 2023
+# ![UUs logotyp](./graphics/UU_logo_color.png "UUs logotyp") Kombinatorik (1MA020), Vårterminen 2024
 
 Välkommen till kursen i kombinatorik på kandidatnivå vid Uppsala Universitet. För allmän information om kursen - tenta, inlämningsuppgift, och planering av föreläsningarna, [se detta dokumentet](https://vagdur.github.io/Kombinatorik-1MA020/kursinformation.pdf).
 
-Boken för denna kursen finns [tillgänglig gratis online här](https://rellek.net/book/app-comb.html), i ett antal format. (Inklusive braille, för eventuella blinda studenter.) Tidigare aviserade jag att vi skulle skapa en version av boken med bara bitarna vi går igenom. Efter att ha använt boken mer, och sett hur föreläsningsanteckningarna utvecklats, har jag ändrat mig om den idén - kursen håller sig inte nära nog boken att det är meningsfullt att göra, och föreläsningsanteckningarna är mer utförliga än jag ursprungligen hade trott att de skulle bli.
+Boken för denna kursen finns [tillgänglig gratis online här](https://rellek.net/book/app-comb.html), i ett antal format. (Inklusive braille, för eventuella blinda studenter.) Vi kommer dock, som sagt i kursinformationen, inte att hålla oss så särskilt nära den boken, så det är mer av ett referensverk för vissa delar av kursen.
 
-Föreläsningsanteckningar för våra föreläsningar kommer också att länkas här, så snart de är skrivna. Material från förra utgåvan av kursen - som är till stor del handskrivet och på engelska - [finns redan tillgängligt](https://vagdur.github.io/Kombinatorik-1MA020/CombinatoricsCourse.pdf), men planen är att ni inte ska behöva förlita er på det. Förhoppningsvis håller den planen.
+Föreläsningsanteckningar för våra föreläsningar ligger nedan -- allteftersom kursen fortskrider lär de revideras en aning innan de ges, men några väsentliga förändringar förutser jag inte förutom i de sista tre föreläsningarna.
 
 # Föreläsningsanteckningar
 
@@ -30,10 +30,10 @@ Vi sammanfattar hela kursen kortfattat, vad varje föreläsning innehöll och ny
 2. [Formel- och räkneregelssamling](https://vagdur.github.io/Kombinatorik-1MA020/formulae.pdf)
 3. [Modelltenta](https://vagdur.github.io/Kombinatorik-1MA020/modelltenta.pdf)
 4. [Tenta från den 15 Mars 2023](https://vagdur.github.io/Kombinatorik-1MA020/tenta_15mars.pdf)
-5. [Lösningar till tenta från den 15 Mars 2023](https://vagdur.github.io/Kombinatorik-1MA020/solutions_march15_23.pdf) (Work In Progress)
+5. [Lösningar till tenta från den 15 Mars 2023](https://vagdur.github.io/Kombinatorik-1MA020/solutions_march15_23.pdf)
 
 Övningar med lösningsförslag: 
-1. Ett ställe att hitta sådana på är [anteckningarna från förra årets version av kursen](https://vagdur.github.io/Kombinatorik-1MA020/CombinatoricsCourse.pdf). Dessa innehåller inte bara övningar, utan också en del exempel som vi inte går igenom på föreläsningarna detta året - så de exemplen kan ju också användas som övningar, om ni försöker lösa exemplet själva innan ni läser hur han gjorde. 
+1. Ett ställe att hitta sådana på är [anteckningarna från förra föreläsarens version av kursen](https://vagdur.github.io/Kombinatorik-1MA020/CombinatoricsCourse.pdf). Dessa innehåller inte bara övningar, utan också en del exempel som vi inte går igenom på föreläsningarna detta året - så de exemplen kan ju också användas som övningar, om ni försöker lösa exemplet själva innan ni läser hur han gjorde. 
 2. [Den här sidan](https://www.math.wichita.edu/~hammond/math321/section-counting-binomial.html) innehåller en del övningar med lösningsförslag, men den överlappar bara med vår kurs i de första av våra föreläsningar.
 3. [Den här boken](https://discrete.openmathbooks.org/dmoi2/frontmatter.html) överlappar mer med vår kurs, och har "lösningar" på uppgifterna. Tyvärr verkar dessa ofta vara väldigt knapphändiga, men det är i alla fall något.
 
