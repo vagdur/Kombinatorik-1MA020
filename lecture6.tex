@@ -67,7 +67,7 @@ om vi kräver att alla $x_i$ är ickenegativa heltal. Det var ett första exempe
         &= \sum_{\substack{k \geq 0\\k \in 2\Z}} x^k\\
         &= \sum_{i=0}^{\infty} x^{2i}\\
         &= \sum_{i=0}^{\infty} (x^2)^i
-    \end{align*}
+    \end{align*}    
     och sista raden här kan vi känna igen som genererande funktionen av följden $(1,1,1,1,\ldots)$, \emph{utvärderad i} $x^2$. Så detta är lika med $\frac{1}{1-x^2}$.
 
     Så vad som återstår är alltså $a^4$, indikatorfunktionen för de udda talen. För att få fram dess genererande funktion kan vi använda vad vi just gjorde för de jämna talen:
@@ -87,7 +87,9 @@ om vi kräver att alla $x_i$ är ickenegativa heltal. Det var ett första exempe
     och ber vi vårt favorit-CAS\sidenote[][]{\emph{Computer Algebra System}, alltså till exempel \emph{WolframAlpha} eller något av dess öppna alternativ, såsom \emph{Sage}.} att Taylorutvidga detta uttryck så får vi att
     $$F_a(x) = x + 2x^2 + 5x^3 + 8x^4 + 14x^5 + 20x^6 + 30x^7 + 40x^8 + \ldots$$
     så att följden av antalet lösningar är
-    $$0,1,2,5,8,14,20,30,40,55,70,91,111,138,163,\ldots.$$
+    $$0,1,2,5,8,14,20,30,40,55,70,91,111,138,163,\ldots.$$ 
+
+
 \end{example}
 
 \begin{example}
@@ -133,14 +135,14 @@ Vårt nästa exempel handlar inte om att räkna lösningar till en ekvation, uta
 
   \begin{marginfigure}
     \includegraphics{graphics/checkerboard_tiling.png}
-    \caption{Ett sätt att göra detta då $n=8$. Figur tagen ur förra årets anteckningar.}
+    \caption{Ett sätt att göra detta då $n=8$.}
   \end{marginfigure}
 
   Låt $t_n$ vara antalet sätt vi kan täcka vårt schackbräde. Vi vill hitta en rekursion för detta antal. Vi ser enkelt att det finns ett enda sätt att göra det för $n=1$ -- bara en bricka får plats -- så $t_1 = 1$. För $n=2$ finns det två sätt, antingen lägger vi dem horisontellt eller vertikalt, så $t_2 = 2$.
 
   \begin{marginfigure}
     \includegraphics{graphics/checkerboard_tiling_n_2.png}
-    \caption{De två sätten att göra det på då $n=2$. Figur från förra årets föreläsningsanteckningar.}
+    \caption{De två sätten att göra det på då $n=2$.}
   \end{marginfigure}
 
   Om vi vill skapa oss en täckning av en $2\times n$-bräda, för något $n > 2$, kan vi göra på två sätt:
@@ -237,7 +239,7 @@ Vi har lärt oss att motsvarigheten till en faltning på den kombinatoriska sida
 
 \begin{definition}
   Antag att $\{a_k\}_{k=0}^\infty$ och $\{b_k\}_{k=0}^\infty$ är två följder. Då ges deras \emph{binomial-faltning} $a \ostar b$ av
-  $$(a \ostar b)_k = \sum_{i=0}^{k} \binom{k}{i} a_i b_{k_i}.$$
+  $$(a \ostar b)_k = \sum_{i=0}^{k} \binom{k}{i} a_i b_{k-i}.$$
 \end{definition}
 
 \begin{lemma}
@@ -265,7 +267,7 @@ Vi har lärt oss att motsvarigheten till en faltning på den kombinatoriska sida
   \end{proof}
 \end{lemma}
 
-På ett fullkomligt analogt sätt, användandes resultatet för ordinära genererande funktioner, fast med fler index, kan vi bevisa följande resultat:
+På ett fullkomligt analogt sätt, genom att använda resultatet för ordinära genererande funktioner, fast med fler index, kan vi bevisa följande resultat:
 \begin{lemma}
   Antag att $\{a^1_k\}_{k=0}^\infty, \{a^2_k\}_{k=0}^\infty, \ldots, \{a^d_k\}_{k=0}^\infty$ är följder. Då gäller det att\sidenote[][]{Kom ihåg att notationen $\binom{k}{k_1, k_2, \ldots, k_d}$ betecknar en \emph{multinomialkoefficient}.}
   $$(a^1 \ostar a^2 \ostar \ldots \ostar a^d)_k = \sum_{\substack{k_1, k_2, \ldots, k_d\\k_1 + k_2 + \ldots + k_d = k}} \left(\binom{k}{k_1, k_2, \ldots, k_d} \prod_{j=1}^{d} a^j_{k_j}\right)$$
@@ -359,15 +361,12 @@ Som vårt sista exempel för denna föreläsning tar vi motsvarigheten för expo
 \end{xca}
 
 \begin{xca}
-  Låt $\ell_k$ vara antalet strängar ur alfabetet $\{a,b,c\}$ av längd $k$, sådana att
+  Hur många strängar finns det ur alfabetet $\{a,b,c\}$, om vi kräver att
   \begin{itemize}
     \item det omedelbart efter varje $a$ följer ett $b$,\sidenote[][]{Ledtråd: För att hantera denna begränsning behöver vi göra ett ``variabelbyte''. Vad kan det tänkas betyda i denna kontext?}
     \item det finns ett jämnt antal $c$,
-    \item antalet $a$ är delbart med tre,
-    \item och varje $b$ föregås av ett $a$?
+    \item och antalet $a$ är delbart med tre?
   \end{itemize}
-
-  Finn genererande funktionen för följden $\ell_k$.
 \end{xca}
 
 \begin{xca}
@@ -388,7 +387,139 @@ Som vårt sista exempel för denna föreläsning tar vi motsvarigheten för expo
   Använd detta för att få fram en differentialekvation för $EG_B$ -- lös den för att få fram ett uttryck för exponentiella genererande funktionen för Bell-talen.\sidenote[][]{Som vanligt behöver ni inte faktiskt ange hur ni löser den -- bara skriv vad lösningen är.}\sidenote[][]{Ni har härmed lyckats plocka fram en EGF för en följd där vi faktiskt inte har något enkelt uttryck för vad varje enskild term blir -- det finns inget fint uttryck för $B_n$ i termer av $n$. Hade vi kunnat mer komplexanalys hade vi kunnat använda detta för att få fram skattningar för hur snabbt Belltalen växer, till exempel. (Svaret är: ``väldigt väldigt snabbt'', men vi hade kunnat vara precisare än så.)}
 \end{xca}
 
+\newpage
+\section{Lösningsförslag}
+
+\begin{solution}
+
+Låt $y_1 = x_1 + 7$, så att den nya begränsningen blir $y_1 \geq 0$. Vi får då \begin{align*}
+x_1 + x_2 + x_3 &= 578 \\
+y_1 - 7 + x_2 + x_3 &= 578 \\
+y_1 + x_2 + x_3 &= 585
+\end{align*}Låt sedan $a_k^1$ vara antalet lösningar till $y_1 = k$ med icke-negativt heltal $y_1$, $a_k^2$ vara antalet lösningar till $x_2 = k$ med icke-negativt jämna heltal $x_2$, och $a_k^3$ vara antalet lösningar till $x_3 = k$ med icke-negativa blåa/röda jämna och gula/gröna/lila udda heltal $x_3$.
+
+Vi får alltså, då $y \geq 0$ att $a_1 = \left(\frac{1}{1-x}\right)$, den genererande funktionen för heltalen. $a_2$ är bara de jämna talen, som vi redan vet har den genererande funktionen $a_2 = \frac{1}{1-x^2}$. För $a_3$ vill vi ha $2$ på de jämna positionerna och $3$ på de udda. Detta fås av $\frac{2}{1-x^2}+\frac{3x}{1-x^2}=\frac{2+3x}{1-x^2}$
+
+Vi får nu att $$F_a(x) = \left(\frac{1}{1-x}\right)\left(\frac{1}{1-x^2}\right)\left(\frac{2+3x}{1-x^2}\right)$$
+
+Stoppa in i CAS ger att antalet lösningar för $k=585$ är $215355$
+\end{solution}
+\begin{tips}
+För problem på denna form $\sum a_i = k$ gäller det bara att vara noggran så att man definierar sina $a_i$ korrekt. Har man en ``negativ begränsning'' som med $a_1 \geq -7$ i detta fall är det enklast att göra variabelbyte och justera ens $k$.
+\end{tips}
+\begin{solution}
+    
+$EG_b(x) = \sum_{k=0}^{\infty}b_k\frac{x^k}{k!} = \sum_{k=0}^{\infty}ka_k\frac{x^k}{k!} = \sum_{k=0}^{\infty}a_k\frac{x^k}{(k-1)!} = x\sum_{k=0}^{\infty}a_k\frac{x^{k-1}}{(k-1)!} = x\frac{d}{dx}\left(\sum_{k=0}^{\infty}a_k\frac{x^k}{k!}\right)=xF'$
+
+\end{solution}
+\begin{tips}
+Kom ihåg att man med exponentiella genererande funktioner lätt kan plocka på sig derivator.
+\end{tips}
+\begin{solution}
+Vi vill alltså först och främst se varför: $G(A(a)) = \frac{1}{x}\left(G(a) - T_0(a)\right)$.
+
+Vi tar och definerar vad A(a) och ${t_0}$ är i kontexten.
+  \begin{equation}
+    G(A(a)_k) = \sum_{i=0}^{k}a_{i+1}x^i
+  \end{equation}
+
+  \begin{equation}
+    T_0(a) = a_0
+  \end{equation}
+
+Vi kan nu skriva om detta som:
+
+  \begin{equation}
+      G(A(a)) = \sum_{i=0}^{k}a_{i+1}x^i = \frac{1}{x} \sum_{i=0}^{k}a_{i+1}x^{i+1}
+  \end{equation}
+
+  \begin{equation}
+      \frac{1}{x} \sum_{i=0}^{k}a_{i+1}x^{i+1} = \frac{1}{x} \sum_{i=1}^{k+1}a_{i}x^{i} = \frac{1}{x} (\sum_{i=0}^{k+1}a_{i}x^{i} -a_0)
+  \end{equation}
+
+Jämför det med det vi vill ha vilket är:
+
+  \begin{equation}
+      \frac{1}{x}\left(G(a) - T_0(a)\right) = \frac{1}{x} (\sum_{i=0}^{k}a_ix^i - a_0)
+  \end{equation}
+
+Eftersom att k går imot oändligheten så är det dock löst då det blir
+  \begin{equation}
+    \frac{1}{x} (\sum_{i=0}^{\infty}a_ix^i - a_0)
+  \end{equation}
+
+För både k+1 och k.
+
+Vi kollar nu på diagrammet
+
+    \begin{center}
+      \includegraphics[width=0.4\textwidth]{graphics/abstract_exercise_comm_diag.png}
+    \end{center}
+
+Ett sätt att visa att det är sant är att ta Kompositionerna $EG \circ D$ och $A \circ EG$ och se om de ger samma sak från F.
+
+\begin{equation}
+    EG(A(a)_k) = \sum_{i=0}^{\infty}\frac{a_{i+1}x^i}{i!}
+\end{equation}
+
+\begin{equation}
+    EG(a_k) = \sum_{i=0}^{k}\frac{a_ix^i}{i!}
+\end{equation}
+
+\begin{equation}
+    D(EG(a_k)) = \frac{d}{dx} \sum_{i=0}^{k}\frac{a_ix^i}{i!} = \sum_{i=1}^{k}\frac{a_ix^{i-1}}{(i-1)!}
+\end{equation}
+  
+\begin{equation}
+    \sum_{i=1}^{k}\frac{a_ix^{i-1}}{(i-1)!} = \sum_{i=0}^{k}\frac{a_{i+1}x^{i}}{i!}
+\end{equation}
+
+Alltså är 
+
+\begin{equation}
+    D(EG(a_k)) = \sum_{i=0}^{k}\frac{a_{i+1}x^{i}}{i!} =  EG(A(a)_k)
+\end{equation}
+
+Vilket var det vi skulle visa.
+\end{solution}
+
+\begin{solution}
+
+Sedan tidigare vet vi  att
+\begin{equation}
+    EG(A(a)_k) = D(EG(a_k))
+\end{equation}
+
+Om vi sätter $a = EG(a_k)$ får vi då
+
+\begin{equation}
+    EG(a_k) = \overrightarrow{1} - EG(A(a_k)) - EG(A(A(a_k)))
+\end{equation}
+
+Genom att använda det vi tidigare vet får vi då:
+
+\begin{equation}
+    EG(a_k) = \overrightarrow{1} - D(EG(a_k)) - D^2(EG(a_k))
+\end{equation}
+
+Om vi sätter $EG(a_k) = f $ får vi:
+
+\begin{equation}
+    f = \overrightarrow{1} - \frac{df}{dx} - \frac{d^2f}{dx^2}
+\end{equation}
+
+Nu ska vi använda fint matematiskt språk här, ``yeetar" vi in detta i vår favorit CAD Wolfram Alpha får vi:
+
+\begin{equation}
+    EG(a_k) = c_1 e^{-\frac{x}{2}} sin (\frac{\sqrt{3}x}{2})+c_2e^{-\frac{x}{2}}cos(\frac{\sqrt{3}x}{2}) + 1
+\end{equation}
+\end{solution}
+
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
 \end{document}
+
+
+
