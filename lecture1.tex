@@ -142,7 +142,7 @@ Självklart måste $\abs{X} \geq k$ för att det skall existera några permutati
 \begin{definition}
 	För $n = 1, 2,\ldots$, definiera $n! = n(n-1)\ldots2\cdot1$. Definiera $0! = 1$.\sidenote{Att vi låter $0!$ vara lika med ett är för att vi ser det som produkten av inga tal alls, vilket är bekvämt att se som att det blir $1$. Varför detta är så kommer vi kanske att återkomma till när vi pratar om rekursioner.}
 
-	För $k \leq n$, definiera $P(n,k) = \frac{n!}{(n-k)!}$. Lägg märke till att $P(n,n) = \frac{n!}{(n-n)!} = \frac{n!}{0!} = n!$.
+	För $0 \leq k \leq n$, definiera $P(n,k) = \frac{n!}{(n-k)!}$. Lägg märke till att $P(n,n) = \frac{n!}{(n-n)!} = \frac{n!}{0!} = n!$.
 \end{definition}
 
 \begin{proposition}\label{prop_Pnk_counts_permutations}
@@ -163,7 +163,7 @@ Självklart måste $\abs{X} \geq k$ för att det skall existera några permutati
 \begin{example}
 	På hur många olika sätt kan $n$ personer sitta runt ett runt bord?\sidenote{Det finns en liten ritning av detta i anteckningarna från föregående år, och jag lär rita den på den faktiska föreläsningen.}
 
-	Det finns två olika sätt vi kan se på frågan\sidenote{Detta är ett exempel av skillnaden mellan problem med etiketter och utan, vilket är ett generellt fenomen som kommer återkomma gång på gång. Här är det platserna runt bordet som kan ha etiketter eller inte. Var noggrann med att fundera kring vilken typ av } -- antingen är det skillnad på de olika stolarna runt bordet (vissa kan se ut genom fönstret, andra inte), så att vi får olika sätt att placera folk runt bordet genom att rotera hela placeringen, eller så är det enda som spelar roll ordningen de sitter i, och vi ser olika rotationer av samma ordning som samma sätt att sitta runt bordet.
+	Det finns två olika sätt vi kan se på frågan\sidenote{Detta är ett exempel av skillnaden mellan problem med etiketter och utan, vilket är ett generellt fenomen som kommer återkomma gång på gång. Här är det platserna runt bordet som kan ha etiketter eller inte.} -- antingen är det skillnad på de olika stolarna runt bordet (vissa kan se ut genom fönstret, andra inte), så att vi får olika sätt att placera folk runt bordet genom att rotera hela placeringen, eller så är det enda som spelar roll ordningen de sitter i, och vi ser olika rotationer av samma ordning som samma sätt att sitta runt bordet.
 
 	Om platserna har etiketter, så att det inte bara är ordningen som spelar roll, så kan vi numrera platserna från plats $1$ till plats $n$. Om vi kallar mängden med gäster för $X$ blir alltså varje placering ett $X$-ord -- vi kan skriva den som ``gäst ett, gäst två, etc.''. Och eftersom varje person bara kan sitta på en stol blir detta alltså en permutation -- och vi vet att det finns $n!$ permutationer av längd $n$ ur ett alfabete med $n$ bokstäver.
  
@@ -244,7 +244,7 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 
 	Delmängder av storlek $k$ och delmängder av storlek $n-k$ står alltså i ett-till-ett-korrespondens med varandra, det finns en bijektion mellan dem, så det måste finnas lika många av storlek $k$ som av storlek $n-k$.
 
-	Men vi vet att antalet delmängder av storlek $n-$ är $\binom{n}{n-k}$, och alltså måste $\binom{n}{k} = \binom{n}{n-k}$.
+	Men vi vet att antalet delmängder av storlek $n-k$ är $\binom{n}{n-k}$, och alltså måste $\binom{n}{k} = \binom{n}{n-k}$.
 \end{proof}
 
 \section{Kombinatoriska bevis}
