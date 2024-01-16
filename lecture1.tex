@@ -362,8 +362,8 @@ Idén med just ett ``kombinatoriskt bevis'' kommer att återkomma flera gånger 
 		\item Hur många sätt finns det att välja ett objekt från $A$ och ett från $B$?
 		\item Vad är $\abs{A\times B}$?
 		\item Vad är $\abs{A \coprod B}$?
-		\item Vad är det största och minsta värde som $A \cup B$ kan ta?
-		\item Vad är det största och minsta värde som $A \cap B$ kan ta?
+		\item Vad är det största och minsta värde som $\abs{A \cup B}$ kan ta?
+		\item Vad är det största och minsta värde som $\abs{A \cap B}$ kan ta?
 	\end{enumerate}
 \end{xca}
 
@@ -496,9 +496,9 @@ Idén med just ett ``kombinatoriskt bevis'' kommer att återkomma flera gånger 
 
 		\item Det är antalet sätt vi kan välja ett objekt ur $A$ och ett objekt ur $B$, alltså $15 \cdot 7=105$. Detta är den notation som används för att beskriva multiplikationsregeln, det är därför vi egentligen gör samma sak här som i förra uppgiften.
 
-		\item Det är antalet sätt att välja ett objekt ur $A$ eller ett objekt ur $B$, alltså $15 + 7 = 22$. Detta är den notation som används för att beskriva multiplikationsregeln.
+		\item Det är antalet sätt att välja ett objekt ur $A$ eller ett objekt ur $B$, alltså $15 + 7 = 22$. Detta är den notation som används för att beskriva additionsregeln.
 
-		\item Det största värdet $A \cup B$ kan anta är $15+7=22$. I detta fallet (största möjliga unionen) kommer alla element i $B$ vara olika från alla element i $A$, vilket gör att vår nya mängd kommer innehålla alla $7$ element i $B$ och alla $15$ element i $A$. 
+		\item Det största värdet $\abs{A \cup B}$ kan anta är $15+7=22$. I detta fallet (största möjliga unionen) kommer alla element i $B$ vara olika från alla element i $A$, vilket gör att vår nya mängd kommer innehålla alla $7$ element i $B$ och alla $15$ element i $A$. 
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.7\textwidth]{graphics/F1/disjoint_sets_A_and_B.png}
@@ -506,7 +506,7 @@ Idén med just ett ``kombinatoriskt bevis'' kommer att återkomma flera gånger 
 			\label{fig:A_and_B_disjoint}
 		\end{figure}
 		
-		Det minsta värdet $A \cup B$ kan anta är $15$. I detta fallet (minsta möjliga unionen) kommer alla element i $B$ vara närvarande i $A$. Alltså kommer vår nya mängd vara lika med mängden $A$, eftersom $B$ också är närvarande i den mängden. 
+		Det minsta värdet $\abs{A \cup B}$ kan anta är $15$. I detta fallet (minsta möjliga unionen) kommer alla element i $B$ vara närvarande i $A$. Alltså kommer vår nya mängd vara lika med mängden $A$, eftersom $B$ också är närvarande i den mängden. 
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.7\textwidth]{graphics/F1/set_B_contained_in_A.png}
@@ -514,9 +514,9 @@ Idén med just ett ``kombinatoriskt bevis'' kommer att återkomma flera gånger 
 			\label{fig:B_contained_in_A}
 		\end{figure}
 
-		\item Det största värdet som $A \cap B$ kan anta är $7$. I detta faller kommer alla element i $B$ vara närvarande i $A$, såsom i figur \ref{fig:B_contained_in_A}. Alltså kommer $A \cap B = B$, och vi får med alla element i $B$.
+		\item Det största värdet som $\abs{A \cap B}$ kan anta är $7$. I detta faller kommer alla element i $B$ vara närvarande i $A$, såsom i Figur~\ref{fig:B_contained_in_A}. Alltså kommer $\abs{A \cap B} = B$, och vi får med alla element i $B$.
 
-		Det minsta värdet som $A \cap B$ kan anta är $0$. I detta fallet så kommer alla element i $B$ vara skilda från alla element i $A$ och vårt snitt kommer då bli en tom mängd, såsom i figur \ref{fig:A_and_B_disjoint}.
+		Det minsta värdet som $\abs{A \cap B}$ kan anta är $0$. I detta fallet så kommer alla element i $B$ vara skilda från alla element i $A$ och vårt snitt kommer då bli en tom mängd, såsom i Figur~\ref{fig:A_and_B_disjoint}.
 	\end{enumerate}
 
 	\begin{tips}
