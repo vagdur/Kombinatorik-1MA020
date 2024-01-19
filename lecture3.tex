@@ -31,78 +31,8 @@
 
 \begin{abstract}
 \noindent
-Vi börjar med att diskutera induktion och induktionsbevis. Sedan nämner vi lådprincipen och ger några tillämpningar av den. Till slut påbörjar vi vår diskussion av inklusion-exklusion.
+Vi introducerar lådprincipen och ger några tillämpningar av den. Till slut påbörjar vi vår diskussion av inklusion-exklusion.
 \end{abstract}
-
-\section{Induktion}
-
-\begin{axiom}[Induktion för heltalen]
-  \sidenote[][]{Är detta en sats eller ett axiom? Det beror på vilka axiom du väljer att ta, och hur exakt du definierar vad du menar med ``heltalen''.
-  
-  Precis vilka axiom vi antar är inte något som vi skall gå in på i denna kursen, det hör snarare hemma i en kurs i logik. Vi nöjer oss att säga, i en sidnot för den intresserade, att enligt Peano är detta ett axiom, men om man resonerar i Zermelo-Fraenkel kan man bevisa att heltalen finns och har denna egenskap.}Antag att $A \subseteq \N$ är någon mängd av heltal. Ifall
-  \begin{enumerate}
-    \item $1 \in A$, och
-    \item för varje $n$, om $n \in A$, så är också $n + 1 \in A$,
-  \end{enumerate}
-  så är $A = \N$, det vill säga, alla heltal ligger i $A$.
-\end{axiom}
-
-Man brukar ofta föredra att tänka på induktion som att det handlar om egenskaper hos eller påståenden om tal -- då säger vi att vi har en egenskap $\phi$, och om vi kan bevisa $\phi(1)$ och kan bevisa att $\phi(n) \rightarrow \phi(n+1)$, så följer det att $\forall n \phi(n)$.
-
-Detta perspektiv är helt ekvivalent med det axiom vi just gav -- om vi låter $A$ vara mängden av tal med egenskapen $\phi$, eller låter $\phi$ vara egenskapen ``talet ligger i $A$''.
-
-\begin{example}
-  Bevisa att, för varje $n\geq 1$, $\sum_{i=0}^{n-1} 2^i = 2^n - 1$.
-
-  \begin{proof}
-    Låt $A$ vara mängden av alla $n$ sådana att $\sum_{i=0}^{n-1} 2^i = 2^n - 1$.
-
-    Vi ser enkelt att $1 \in A$, eftersom påståendet då blir att $2^0 = 2^1 - 1$, vilket ju är sant.
-
-    Låt oss visa att om $n \in A$ så är också $n+1$ i $A$. Så vi antar likheten för $n$, och vill visa att $\sum_{i=0}^{n} 2^i = 2^{n+1} - 1$. Så om vi skriver vänster led i denna likheten och manipulerar den så ser vi att
-    \begin{align*}
-      \sum_{i=0}^{n} 2^i &= \sum_{i=0}^{n-1} 2^i + 2^n\\
-      &= \left(2^n - 1\right) + 2^n = 2\cdot 2^n - 1 = 2^{n+1} - 1
-    \end{align*}
-    precis som önskat. Så induktionsprincipen ger oss att likheten håller för alla $n$.
-  \end{proof}
-\end{example}
-
-\begin{example}
-  Bevisa att det finns $n!$ permutationer av längd $n$ från ett alfabete med $n$ bokstäver.
-  
-  \begin{proof}
-    Att det finns exakt en permutation av längd ett från ett alfabete med en bokstav är uppenbart.
-
-    För induktionssteget, antag att vi vet att det finns $n!$ permutationer av längd $n$ från alfabetet $X$, där $\abs{X} = n$. Hur kan vi konstruera en permutation av längd $n+1$ från alfabetet $X\cup\{a\}$? Jo, vi börjar med att välja en permutation av $X$ -- vilket vi per induktionshypotesen kan göra på $n!$ sätt -- och väljer sedan var vi skall stoppa in $a$. Vi har $n+1$ alternativ för plats för $a$, så enligt multiplikationsprincipen har vi $(n+1)n! = (n+1)!$ sätt att skapa en permutation av vårt nya längre alfabete.
-  \end{proof}
-\end{example}
-
-\begin{remark}[Stark induktion]
-  I själva verket kan vi ta som induktionshypotes inte bara att $n \in A$, utan att $[n] \subseteq A$, det vill säga att alla heltal från $1$ till $n$ ligger i $A$. (Eller ``har egenskapen $\phi$'', om vi föredrar den formuleringen.) 
-  
-  Att göra det antagandet kallas för \emph{stark induktion} -- vilket egentligen är ett missvisande namn, eftersom det är ekvivalent med vanlig induktion, och alltså kan bevisa precis samma saker. Den är alltså inte ett dugg starkare i logisk mening -- men ibland ger den snyggare formuleringar av bevisen.
-\end{remark}
-
-\begin{theorem}[Välordningsprincipen]
-  För varje mängd $A \subseteq \N$ är antingen $A$ tom, eller så har $A$ ett minsta element.\sidenote[][]{Vi väljer att formulera det här som en sats som följer av induktionsprincipen -- i kursboken är de två separata påståenden, och förra årets anteckningar går i motsatt riktning och bevisar induktion baserat på välordning.S}
-
-  \begin{proof}
-    Antag att $A$ är en mängd av heltal utan minsta element -- vi bevisar med (stark) induktion att $A = \emptyset$, genom att bevisa att $A^c = \N$.
-
-    Att $1 \in A^c$ är uppenbart -- ett är det minsta heltalet, så vore ett i $A$ vore det trivialt ett minsta element i $A$.
-
-    Antag nu att $1, 2, \ldots, n \in A^c$. Alltså är inga av heltalen innan $n+1$ med i $A$, så om $n+1$ vore i $A$ skulle det vara $A$s minsta element. Så eftersom $A$ inte har ett minsta element kan inte $n+1$ ligga i $A$.
-
-    Alltså ger oss nu induktionsprincipen att $A^c = \N$, det vill säga $A = \emptyset$, såsom önskat.
-  \end{proof}
-\end{theorem}
-
-\begin{remark}
-  Detta ger upphov till en vanlig bevisteknik.\sidenote[][]{På engelska kallad \emph{proof by infinite descent}.} Antag att vi vill bevisa att alla heltal har en viss egenskap $\phi$. Vi antar då, för motsägelse, att det inte är så -- då måste det finnas ett minsta motexempel, enligt välordningsprincipen. 
-  
-  Sedan använder vi detta minsta motexempel för att konstruera ett ännu mindre motexempel, och får en motsägelse därur. Att vi kunde skapa ett mindre motexempel motsäger ju nämligen att det vi började med var det minsta exemplet.
-\end{remark}
 
 \section{Lådprincipen}
 
