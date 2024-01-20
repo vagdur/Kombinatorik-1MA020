@@ -33,75 +33,10 @@
 
 \begin{abstract}
 \noindent
-Vi börjar med att räkna antalet surjektioner med hjälp av inklusion-exklusion. Sedan använder vi det för att räkna antalet mängdpartitioner.
-
 Sedan skriver vi en stor tabell, och ser att merparten av alla de till synes disparata räkneproblem vi studerat faktiskt passar in i ett system.
 
 Till slut disktuerar vi en jobbigare variant av problemet med människor som sitter runt ett runt bord, och använder denna för att introducera konceptet av cykler i en permutation.
 \end{abstract}
-
-\section{Surjektioner}
-
-\begin{definition}
-  Låt $A$ och $B$ vara två mängder, och $f: A \to B$ en funktion. Vi definierar \emph{bilden} av $A$ som
-  $$f(A) = \left\{b \in B \given \exists a\in A: f(a) = b\right\},$$
-  det vill säga alla element i $B$ som träffas av något element i $A$ under $f$.
-
-  Funktionen $f$ är en \emph{surjektion} om $f(A) = B$. Om det finns en surjektion från $A$ till $B$ gäller det att $\abs{A} \geq \abs{B}$.\sidenote[][]{Detta är uppenbart för ändliga mängder $A$ och $B$ -- för oändliga mängder är detta definitionen av ordningen mellan kardinaltal.}
-\end{definition}
-
-\begin{definition}
-  För $n \geq m \geq 1$ ges \emph{Stirlings partitionstal}, också kallat \emph{Stirlingtalet av andra sorten}, av
-  $$\stirlingPart{n}{m} = \frac{1}{m!}\sum_{k=0}^{m}(-1)^k\binom{m}{k}(m-k)^n.$$
-\end{definition}
-
-\begin{theorem}\label{theorem_count_surjections}
-  Låt $A$ och $B$ vara ändliga mängder med $\abs{A} = n$, $\abs{B} = m$, och $n \geq m$. Antalet surjektioner från $A$ till $B$ ges av
-  $$S(n,m) = m!\stirlingPart{n}{m} = \sum_{k=0}^{m} (-1)^k \binom{m}{k}(m-k)^n.$$
-
-  \begin{proof}
-    Låt $X$ vara mängden av alla funktioner från $A$ till $B$, och för varje $b \in B$, låt $X_b$ vara mängden av funktioner från $A$ till $B$ som inte träffar $b$. Vi vill, som vanligt, räkna ut $\abs{X \setminus \bigcup_{b\in B} X_b} = \abs{X} - \abs{\bigcup_{b\in B} X_b}$.
-
-    Multiplikationsprincipen ger oss enkelt att $\abs{X} = m^n$ -- varje element i $A$ har $m$ val för var det skall skickas, och vi har $n$ stycken element att göra det valet för.
-
-    Inklusion-exklusion ger oss att
-    $$\abs{\bigcup_{b\in B} X_b} = \sum_{I \subseteq B} (-1)^{\abs{I} + 1}\abs{\bigcap_{b \in I} X_b}$$
-    och vad vi behöver räkna är antalet funktioner från $A$ till $B$ som undviker att träffa en viss mängd $I$. Ett specialfall ser vi omedelbart -- om $I = B$ måste snittet vara tomt, eftersom elementen i $A$ måste skickas \emph{någonstans}.
-
-    Att räkna dem är relativt enkelt -- en funktion från $A$ till $B$ som inte träffar en viss mängd $I \subset B$ är ju precis en funktion från $A$ till $B \setminus I$, och vi vet att det finns $\abs{B \setminus I}^{\abs{A}} = (m - \abs{I})^n$ sådana. Så vad vi får är att
-    $$\abs{\bigcup_{b\in B} X_b} = \sum_{I \subset B, I \neq B} (-1)^{\abs{I} + 1}(m - \abs{I})^n,$$
-    där summan är över delmängder \emph{inte lika med $B$} eftersom vi redan observerat att då $I = B$ blir det hela noll.
-
-    Så om vi grupperar den här summan efter storleken på $I$ vet vi att det finns $\binom{m}{k}$ stycken val av $I$ av storlek $k$ (och nu vet vi att $I \neq B$, så storlek $m$ är utesluten och summan går bara upp till $m-1$), så 
-    $$\abs{\bigcup_{b\in B} X_b} = \sum_{k=0}^{m-1} (-1)^{k + 1}\binom{m}{k}(m - k)^n$$
-    vilket ger oss resultatet, när vi stoppar in detta i $S(n,m) = \abs{X} - \abs{\bigcup_{b\in B} X_b}$.
-  \end{proof}
-\end{theorem}
-
-\begin{example}
-  Antag att en farmor stickat fem filtar åt sina tre barnbarn. På hur många sätt kan hon fördela filtarna, så att varje barn får åtminstone en filt? Eftersom de är handstickade är så klart filtarna \emph{särskiljbara}, så det här är inte ett exempel på de kompositioner vi såg i föreläsning två, utan ett exempel på surjektioner.
-
-  Vår sats säger oss att svaret är $3!\stirlingPart{5}{3} = 150$.
-\end{example}
-
-\section{Mängdpartitioner}
-
-Hur många sätt finns det att fördela $n$ objekt i $k$ stycken olika högar? Här har vi en ny variant på räkneproblem -- istället för att vi har objekt som är särskiljbara eller inte så har vi nu osärskiljbara \emph{lådor}.
-
-\begin{theorem}
-  Antag att vi har en mängd $X$ med $\abs{X} = n$. Ett sätt att dela upp denna mängd i $k$ osärskiljbara högar\sidenote[][]{Alltså, för den som vill vara formell, ett sätt att skriva $X = A_1 \cup A_2 \cup \ldots \cup A_k$ där $A_i \cap A_j = \emptyset$ för $i \neq j$, där etiketterna på våra $A_i$ inte spelar roll. Eller så kan man se det som en ekvivalensrelation på $X$ med $k$ delar.} kallas för en \emph{mängdpartition} av $X$ i $k$ delar.
-
-  Antalet sådana ges av
-  $$\stirlingPart{n}{k}.$$
-
-  \begin{proof}
-    Vi bevisar detta genom att räkna antalet surjektioner från $X$ till $[k]$ på två olika sätt.
-
-    Beteckna antalet mängdpartitioner av $X$ i $k$ delar med $m$. Vi kan skapa oss en surjektion från $X$ till $[k]$ genom att först dela upp $X$ i $k$ delar, och sedan ge etiketter från $1$ till $k$ till delarna. Vår surjektion blir då att vi skickar del $i$ till talet $i \in [k]$. Eftersom det finns $k!$ sätt att tilldela etiketterna (etiketteringen är en permutation av längd $k$ från $[k]$) säger oss Multiplikationsprincipen att det måste finnas $k!m$ surjektioner från $X$ till $[k]$.
-
-    Men vi vet också av Teorem \ref{theorem_count_surjections} att antalet surjektioner ges av $k!\stirlingPart{n}{k}$. Alltså måste $m = \stirlingPart{n}{k}$, som önskat.
-  \end{proof}
-\end{theorem}
 
 \section{Den tolvfaldiga vägen}
 
