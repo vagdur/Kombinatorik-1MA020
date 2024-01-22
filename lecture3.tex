@@ -121,11 +121,11 @@ Med denna definition gjord kan vi nu resonera algebraiskt om mängder och deras 
   Hur många heltalslösningar finns det till $x_1 + x_2 + x_3 = 20$, där $0 \leq x_1 \leq 8$, $0 \leq x_2 \leq 10$, och $0 \leq x_3 \leq 12$?
 
   Låt
-  $$X = \left\{(x_1, x_2, x_2) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_2 = 20\right\}$$
+  $$X = \left\{(x_1, x_2, x_2) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_3 = 20\right\}$$
   och låt
-  $$A_1 = \left\{(x_1, x_2, x_2) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_2 = 20, x_1 > 8\right\},$$
-  $$A_2 = \left\{(x_1, x_2, x_2) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_2 = 20, x_2 > 10\right\},$$
-  $$A_3 = \left\{(x_1, x_2, x_2) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_2 = 20, x_3 > 12\right\}$$
+  $$A_1 = \left\{(x_1, x_2, x_3) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_3 = 20, x_1 > 8\right\},$$
+  $$A_2 = \left\{(x_1, x_2, x_3) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_3 = 20, x_2 > 10\right\},$$
+  $$A_3 = \left\{(x_1, x_2, x_3) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_3 = 20, x_3 > 12\right\}$$
   vara mängder av \emph{dåliga} lösningar, som inte uppfyller våra krav.
 
   Vad vi vill göra är alltså att räkna ut $\abs{\left(A_1 \cup A_2 \cup A_3\right)^c} = \abs{X} - \abs{A_1 \cup A_2 \cup A_3}$. 
