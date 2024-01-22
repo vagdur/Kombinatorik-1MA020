@@ -31,152 +31,8 @@
 
 \begin{abstract}
 \noindent
-Vi börjar med att diskutera induktion och induktionsbevis. Sedan nämner vi lådprincipen och ger några tillämpningar av den. Till slut påbörjar vi vår diskussion av inklusion-exklusion.
+Vi introducerar inklusion-exklusion, och använder det för att räkna lösningar på ekvationer och antalet permutationer som är derangemang. Vi fortsätter med att räkna antalet surjektioner med hjälp av inklusion-exklusion. Sedan använder vi det resultatet om surjektioner för att räkna antalet mängdpartitioner.
 \end{abstract}
-
-\section{Induktion}
-
-\begin{axiom}[Induktion för heltalen]
-  \sidenote[][]{Är detta en sats eller ett axiom? Det beror på vilka axiom du väljer att ta, och hur exakt du definierar vad du menar med ``heltalen''.
-  
-  Precis vilka axiom vi antar är inte något som vi skall gå in på i denna kursen, det hör snarare hemma i en kurs i logik. Vi nöjer oss att säga, i en sidnot för den intresserade, att enligt Peano är detta ett axiom, men om man resonerar i Zermelo-Fraenkel kan man bevisa att heltalen finns och har denna egenskap.}Antag att $A \subseteq \N$ är någon mängd av heltal. Ifall
-  \begin{enumerate}
-    \item $1 \in A$, och
-    \item för varje $n$, om $n \in A$, så är också $n + 1 \in A$,
-  \end{enumerate}
-  så är $A = \N$, det vill säga, alla heltal ligger i $A$.
-\end{axiom}
-
-Man brukar ofta föredra att tänka på induktion som att det handlar om egenskaper hos eller påståenden om tal -- då säger vi att vi har en egenskap $\phi$, och om vi kan bevisa $\phi(1)$ och kan bevisa att $\phi(n) \rightarrow \phi(n+1)$, så följer det att $\forall n \phi(n)$.
-
-Detta perspektiv är helt ekvivalent med det axiom vi just gav -- om vi låter $A$ vara mängden av tal med egenskapen $\phi$, eller låter $\phi$ vara egenskapen ``talet ligger i $A$''.
-
-\begin{example}
-  Bevisa att, för varje $n\geq 1$, $\sum_{i=0}^{n-1} 2^i = 2^n - 1$.
-
-  \begin{proof}
-    Låt $A$ vara mängden av alla $n$ sådana att $\sum_{i=0}^{n-1} 2^i = 2^n - 1$.
-
-    Vi ser enkelt att $1 \in A$, eftersom påståendet då blir att $2^0 = 2^1 - 1$, vilket ju är sant.
-
-    Låt oss visa att om $n \in A$ så är också $n+1$ i $A$. Så vi antar likheten för $n$, och vill visa att $\sum_{i=0}^{n} 2^i = 2^{n+1} - 1$. Så om vi skriver vänster led i denna likheten och manipulerar den så ser vi att
-    \begin{align*}
-      \sum_{i=0}^{n} 2^i &= \sum_{i=0}^{n-1} 2^i + 2^n\\
-      &= \left(2^n - 1\right) + 2^n = 2\cdot 2^n - 1 = 2^{n+1} - 1
-    \end{align*}
-    precis som önskat. Så induktionsprincipen ger oss att likheten håller för alla $n$.
-  \end{proof}
-\end{example}
-
-\begin{example}
-  Bevisa att det finns $n!$ permutationer av längd $n$ från ett alfabete med $n$ bokstäver.
-  
-  \begin{proof}
-    Att det finns exakt en permutation av längd ett från ett alfabete med en bokstav är uppenbart.
-
-    För induktionssteget, antag att vi vet att det finns $n!$ permutationer av längd $n$ från alfabetet $X$, där $\abs{X} = n$. Hur kan vi konstruera en permutation av längd $n+1$ från alfabetet $X\cup\{a\}$? Jo, vi börjar med att välja en permutation av $X$ -- vilket vi per induktionshypotesen kan göra på $n!$ sätt -- och väljer sedan var vi skall stoppa in $a$. Vi har $n+1$ alternativ för plats för $a$, så enligt multiplikationsprincipen har vi $(n+1)n! = (n+1)!$ sätt att skapa en permutation av vårt nya längre alfabete.
-  \end{proof}
-\end{example}
-
-\begin{remark}[Stark induktion]
-  I själva verket kan vi ta som induktionshypotes inte bara att $n \in A$, utan att $[n] \subseteq A$, det vill säga att alla heltal från $1$ till $n$ ligger i $A$. (Eller ``har egenskapen $\phi$'', om vi föredrar den formuleringen.) 
-  
-  Att göra det antagandet kallas för \emph{stark induktion} -- vilket egentligen är ett missvisande namn, eftersom det är ekvivalent med vanlig induktion, och alltså kan bevisa precis samma saker. Den är alltså inte ett dugg starkare i logisk mening -- men ibland ger den snyggare formuleringar av bevisen.
-\end{remark}
-
-\begin{theorem}[Välordningsprincipen]
-  För varje mängd $A \subseteq \N$ är antingen $A$ tom, eller så har $A$ ett minsta element.\sidenote[][]{Vi väljer att formulera det här som en sats som följer av induktionsprincipen -- i kursboken är de två separata påståenden, och förra årets anteckningar går i motsatt riktning och bevisar induktion baserat på välordning.S}
-
-  \begin{proof}
-    Antag att $A$ är en mängd av heltal utan minsta element -- vi bevisar med (stark) induktion att $A = \emptyset$, genom att bevisa att $A^c = \N$.
-
-    Att $1 \in A^c$ är uppenbart -- ett är det minsta heltalet, så vore ett i $A$ vore det trivialt ett minsta element i $A$.
-
-    Antag nu att $1, 2, \ldots, n \in A^c$. Alltså är inga av heltalen innan $n+1$ med i $A$, så om $n+1$ vore i $A$ skulle det vara $A$s minsta element. Så eftersom $A$ inte har ett minsta element kan inte $n+1$ ligga i $A$.
-
-    Alltså ger oss nu induktionsprincipen att $A^c = \N$, det vill säga $A = \emptyset$, såsom önskat.
-  \end{proof}
-\end{theorem}
-
-\begin{remark}
-  Detta ger upphov till en vanlig bevisteknik.\sidenote[][]{På engelska kallad \emph{proof by infinite descent}.} Antag att vi vill bevisa att alla heltal har en viss egenskap $\phi$. Vi antar då, för motsägelse, att det inte är så -- då måste det finnas ett minsta motexempel, enligt välordningsprincipen. 
-  
-  Sedan använder vi detta minsta motexempel för att konstruera ett ännu mindre motexempel, och får en motsägelse därur. Att vi kunde skapa ett mindre motexempel motsäger ju nämligen att det vi började med var det minsta exemplet.
-\end{remark}
-
-\section{Lådprincipen}
-
-\begin{theorem}[Lådprincipen]\sidenote[][]{Också kallad Dirichlets lådprincip, efter den tyske matematikern Peter Gustav Lejeune Dirichlet. Eller på engelska ``the pigeonhole principle'' -- vilket onekligen är ett mer målande namn än vår svenska lådprincip.}
-  Om vi har $m$ stycken objekt som skall fördelas i $n$ lådor, och $m > n$, så kommer någon låda behöva innehålla mer än ett objekt.
-\end{theorem}
-
-\begin{example}
-  Om det finns tretton studenter i rummet måste åtminstone två av dem fylla år i samma månad. Här är studenterna objekten och årets månader lådorna.\sidenote[][]{Här önskar jag att kursen gick på engelska, så jag kunde skriva, såsom i förra årets anteckningar, att ``students are pigeons''.}
-\end{example}
-
-\begin{theorem}[Generaliserade lådprincipen]
-  Om vi har $m$ objekt som skall fördelas i $n$ lådor, och $m > kn$, så måste åtminstone en av lådorna innehålla minst $k+1$ objekt.
-\end{theorem}
-
-\begin{example}
-  Om det finns tjugofem studenter i rummet måste det finnas minst en månad i vilken tre eller fler av dem fyller år.
-\end{example}
-
-\begin{example}
-  Antag att fem punkter placeras i en liksidig triangel med sidlängd ett. Då finns det två punkter vars avstånd mellan varandra är högst $\frac{1}{2}$.
-
-  Dela upp triangeln i fyra bitar, enligt figuren.
-  \begin{figure}
-    \centering
-    \includegraphics[width = 0.3\textwidth]{graphics/pigeonhole_principle_equilat_triangle.png}
-    \caption{Figur tagen från förra årets föreläsningsanteckningar.}
-  \end{figure}
-  Lådprincipen säger oss att det måste finnas en av dessa bitar som innehåller minst två punkter. Men om de ligger i samma bit måste deras avstånd mellan varandra vara högst $\frac{1}{2}$.
-\end{example}
-
-\begin{example}
-  För varje mängd av fem punkter på en sfär finns det ett halvklot som innehåller minst fyra av punkterna.
-
-  Välj två av de fem punkterna godtyckligt och rita storcirkeln som passerar genom dem. Denna delar upp jorden i två halvklot, så lådprincipen säger oss att ett av dessa halvklot måste innehålla minst två av de återstående tre punkterna. Det halvklotet har alltså de två punkterna vi ritade storcirkeln genom och minst två punkter till, för totalt minst fyra.
-\end{example}
-
-\begin{example}\label{example_R33_is_6}
-  I varje grupp av sex personer finns det antingen en grupp av tre personer som alla är vänner eller en grupp av tre personer som alla inte är vänner.\sidenote[][]{Vi antar här att ``är vänner''-relationen är symmetrisk, det vill säga att om jag är vän med dig är du vän med mig. Förhoppningsvis är det antagandet sant på universitetet, även om det inte var sant i mellanstadiet.}
-
-  Välj en godtycklig person i gruppen. Enligt lådprincipen måste det antingen finnas tre personer som hon inte är vän med, eller tre personer som hon är vän med.
-
-  Ifall det finns tre personer som hon inte är vän med har vi två fall -- antingen är alla tre vänner med varandra, i vilket fall vi är klara, eller så finns det ett par av dem som inte känner varandra. Men i så fall bildar det paret, tillsammans med vår första person, en grupp av tre personer som alla inte känner varandra.
-
-  Ifall det finns tre personer som hon är vän med resonerar vi på samma vis. Antingen är ingen av de tre personerna vänner med varandra, i vilket fall vi hittat vår grupp, eller så finns det ett par som känner varandra, och i så fall bildar det paret tillsammans med vår första person en triangel som känner varandra.
-\end{example}
-
-Vad vi just studerat är det enklaste fallet av Ramseys sats.\sidenote[][]{Namngiven efter Frank P. Ramsey, som var en fascinerande person som hann bli vän med Wittgenstein och Keynes och finna viktiga resultat inom ekonomi, matematik, och filosofi innan sin bortgång vid 26 års ålder.} Låt oss definiera en lite mer allmän version av problemet.
-
-\begin{definition}
-  För varje par av positiva heltal $r$ och $s$ är $R(r,s)$ det minsta antalet personer man behöver bjuda in på en fest för att det skall finnas antingen en grupp av $r$ personer som alla känner varandra, eller en grupp av $s$ personer där ingen känner någon annan i gruppen.\sidenote[][]{Eller mer formellt, formulerat i termer av grafer: (Vi har inte introducerat sådana än, men nästan hälften av er har ju läst kursen i grafteori.)
-  
-  $R(r,s)$ är det minsta talet sådant att varje graf $G$ med minst $R(r,s)$ noder antingen innehåller en inducerad kopia av $K_r$ eller har en inducerad kopia av $K_s$ i $G^c$, komplementgrafen till $G$.}
-\end{definition}
-
-Vad Exempel \ref{example_R33_is_6} visade är alltså att $R(3,3) = 6$. Vad Ramseys sats säger i allmänhet är att $R(r,s)$ är ändligt.\sidenote[][]{Problemet att beräkna exakt vad $R(r,s)$ är är extremt svårt -- vi vet att $R(4,4) = 18$, men kan inte bestämma $R(5,5)$ mer exakt än att det är mellan $43$ och $48$.}
-
-\begin{theorem}[Ramseys sats]\label{ramseys_theorem}
-  För varje $r, s \geq 1$ är $R(r,s) < \infty$.
-\end{theorem}
-
-\begin{theorem}[Erd\H{o}s-Szekeres]
-  För alla $r,s \geq 1$ gäller det att varje följd av $(r-1)(s-1) + 1$ distinkta reella tal antingen innehåller en ökande delföljd av längd $r$ eller en minskande delföljd av längd $s$.
-
-  \begin{proof}
-    Kalla vår talföljd $n_1, n_2, \ldots, n_{(r-1)(s-1)+1}$. Ge varje $n_i$ en etikett $(a_i, b_i)$ som följer: $a_i$ är längden av den längsta ökande delföljden som slutar i $n_i$, och $b_i$ är längden av den längsta minskande delföljden som slutar i $n_i$.\sidenote[][]{Här menar vi med ``slutar i'' inte att de inte kan fortsättas längre med något $n_j$ för $j > i$, bara att vi mäter längden av följderna fram till $i$.}
-
-    Vi hävdar att alla tal $n_i$ får distinkta etiketter. Överväg paret $n_i, n_j$ för $i < j$ -- om $n_i < n_j$ kan vi fortsätta den längsta ökande delföljden som slutar i $n_i$ genom att lägga till $n_j$, så $a_j \geq a_i + 1$. Likaledes, om $n_i > n_j$ kan vi fortsätta den längsta minskande delföljden som slutar i $n_i$ genom att lägga till $n_j$, så $b_j \geq b_i + 1$.
-
-    Antag nu för motsägelse att det inte finns någon ökande delföljd av längd $r$, och ingen minskande delföljd av längd $s$. Då måste $1 \leq a_i \leq r-1$ och $1\leq b_i \leq s-1$ för alla $i$.\sidenote[][]{$a_i, b_i \geq 1$ eftersom $n_i$ självt är en delföljd som är både minskande och ökande.}
-
-    Alltså finns det $(r-1)(s-1)$ tillgängliga etiketter att tilldela till $(r-1)(s-1) + 1$ stycken objekt, och alla objekten måste få distinkta etiktter. Lådprincipen säger oss att detta är omöjligt, och vi har vår motsägelse.
-  \end{proof}
-\end{theorem}
 
 \section{Inklusion-exklusion}
 
@@ -265,11 +121,11 @@ Med denna definition gjord kan vi nu resonera algebraiskt om mängder och deras 
   Hur många heltalslösningar finns det till $x_1 + x_2 + x_3 = 20$, där $0 \leq x_1 \leq 8$, $0 \leq x_2 \leq 10$, och $0 \leq x_3 \leq 12$?
 
   Låt
-  $$X = \left\{(x_1, x_2, x_2) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_2 = 20\right\}$$
+  $$X = \left\{(x_1, x_2, x_3) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_3 = 20\right\}$$
   och låt
-  $$A_1 = \left\{(x_1, x_2, x_2) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_2 = 20, x_1 > 8\right\},$$
-  $$A_2 = \left\{(x_1, x_2, x_2) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_2 = 20, x_2 > 10\right\},$$
-  $$A_3 = \left\{(x_1, x_2, x_2) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_2 = 20, x_3 > 12\right\}$$
+  $$A_1 = \left\{(x_1, x_2, x_3) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_3 = 20, x_1 > 8\right\},$$
+  $$A_2 = \left\{(x_1, x_2, x_3) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_3 = 20, x_2 > 10\right\},$$
+  $$A_3 = \left\{(x_1, x_2, x_3) \in \Z_{\geq 0}^3 \given x_1 + x_2 + x_3 = 20, x_3 > 12\right\}$$
   vara mängder av \emph{dåliga} lösningar, som inte uppfyller våra krav.
 
   Vad vi vill göra är alltså att räkna ut $\abs{\left(A_1 \cup A_2 \cup A_3\right)^c} = \abs{X} - \abs{A_1 \cup A_2 \cup A_3}$. 
@@ -331,24 +187,73 @@ Med denna definition gjord kan vi nu resonera algebraiskt om mängder och deras 
   \end{proof}
 \end{theorem}
 
+\section{Surjektioner}
+
+\begin{definition}
+  Låt $A$ och $B$ vara två mängder, och $f: A \to B$ en funktion. Vi definierar \emph{bilden} av $A$ som
+  $$f(A) = \left\{b \in B \given \exists a\in A: f(a) = b\right\},$$
+  det vill säga alla element i $B$ som träffas av något element i $A$ under $f$.
+
+  Funktionen $f$ är en \emph{surjektion} om $f(A) = B$. Om det finns en surjektion från $A$ till $B$ gäller det att $\abs{A} \geq \abs{B}$.\sidenote[][]{Detta är uppenbart för ändliga mängder $A$ och $B$ -- för oändliga mängder är detta definitionen av ordningen mellan kardinaltal.}
+\end{definition}
+
+\begin{definition}
+  För $n \geq m \geq 1$ ges \emph{Stirlings partitionstal}, också kallat \emph{Stirlingtalet av andra sorten}, av
+  $$\stirlingPart{n}{m} = \frac{1}{m!}\sum_{k=0}^{m}(-1)^k\binom{m}{k}(m-k)^n.$$
+\end{definition}
+
+\begin{theorem}\label{theorem_count_surjections}
+  Låt $A$ och $B$ vara ändliga mängder med $\abs{A} = n$, $\abs{B} = m$, och $n \geq m$. Antalet surjektioner från $A$ till $B$ ges av
+  $$S(n,m) = m!\stirlingPart{n}{m} = \sum_{k=0}^{m} (-1)^k \binom{m}{k}(m-k)^n.$$
+
+  \begin{proof}
+    Låt $X$ vara mängden av alla funktioner från $A$ till $B$, och för varje $b \in B$, låt $X_b$ vara mängden av funktioner från $A$ till $B$ som inte träffar $b$. Vi vill, som vanligt, räkna ut $\abs{X \setminus \bigcup_{b\in B} X_b} = \abs{X} - \abs{\bigcup_{b\in B} X_b}$.
+
+    Multiplikationsprincipen ger oss enkelt att $\abs{X} = m^n$ -- varje element i $A$ har $m$ val för var det skall skickas, och vi har $n$ stycken element att göra det valet för.
+
+    Inklusion-exklusion ger oss att
+    $$\abs{\bigcup_{b\in B} X_b} = \sum_{I \subseteq B} (-1)^{\abs{I} + 1}\abs{\bigcap_{b \in I} X_b}$$
+    och vad vi behöver räkna är antalet funktioner från $A$ till $B$ som undviker att träffa en viss mängd $I$. Ett specialfall ser vi omedelbart -- om $I = B$ måste snittet vara tomt, eftersom elementen i $A$ måste skickas \emph{någonstans}.
+
+    Att räkna dem är relativt enkelt -- en funktion från $A$ till $B$ som inte träffar en viss mängd $I \subset B$ är ju precis en funktion från $A$ till $B \setminus I$, och vi vet att det finns $\abs{B \setminus I}^{\abs{A}} = (m - \abs{I})^n$ sådana. Så vad vi får är att
+    $$\abs{\bigcup_{b\in B} X_b} = \sum_{I \subset B, I \neq B} (-1)^{\abs{I} + 1}(m - \abs{I})^n,$$
+    där summan är över delmängder \emph{inte lika med $B$} eftersom vi redan observerat att då $I = B$ blir det hela noll.
+
+    Så om vi grupperar den här summan efter storleken på $I$ vet vi att det finns $\binom{m}{k}$ stycken val av $I$ av storlek $k$ (och nu vet vi att $I \neq B$, så storlek $m$ är utesluten och summan går bara upp till $m-1$), så 
+    $$\abs{\bigcup_{b\in B} X_b} = \sum_{k=0}^{m-1} (-1)^{k + 1}\binom{m}{k}(m - k)^n$$
+    vilket ger oss resultatet, när vi stoppar in detta i $S(n,m) = \abs{X} - \abs{\bigcup_{b\in B} X_b}$.
+  \end{proof}
+\end{theorem}
+
+\begin{example}
+  Antag att en farmor stickat fem filtar åt sina tre barnbarn. På hur många sätt kan hon fördela filtarna, så att varje barn får åtminstone en filt? Eftersom de är handstickade är så klart filtarna \emph{särskiljbara},\sidenote[][]{Och farmor är inte så blind att hon inte kan särskilja sina barnbarn.} så det här är inte ett exempel på de kompositioner vi såg i föreläsning två, utan ett exempel på surjektioner.
+
+  Vår sats säger oss att svaret är $3!\stirlingPart{5}{3} = 150$.
+\end{example}
+
+\section{Mängdpartitioner}
+
+Hur många sätt finns det att fördela $n$ objekt i $k$ stycken olika högar? Här har vi en ny variant på räkneproblem -- istället för att vi har objekt som är särskiljbara eller inte så har vi nu osärskiljbara \emph{lådor}.
+
+\begin{theorem}
+  Antag att vi har en mängd $X$ med $\abs{X} = n$. Ett sätt att dela upp denna mängd i $k$ osärskiljbara högar\sidenote[][]{Alltså, för den som vill vara formell, ett sätt att skriva $X = A_1 \cup A_2 \cup \ldots \cup A_k$ där $A_i \cap A_j = \emptyset$ för $i \neq j$, där etiketterna på våra $A_i$ inte spelar roll. Eller så kan man se det som en ekvivalensrelation på $X$ med $k$ delar.} kallas för en \emph{mängdpartition} av $X$ i $k$ delar.
+
+  Antalet sådana ges av
+  $$\stirlingPart{n}{k}.$$
+
+  \begin{proof}
+    Vi bevisar detta genom att räkna antalet surjektioner från $X$ till $[k]$ på två olika sätt.
+
+    Beteckna antalet mängdpartitioner av $X$ i $k$ delar med $m$. Vi kan skapa oss en surjektion från $X$ till $[k]$ genom att först dela upp $X$ i $k$ delar, och sedan ge etiketter från $1$ till $k$ till delarna. Vår surjektion blir då att vi skickar del $i$ till talet $i \in [k]$. Eftersom det finns $k!$ sätt att tilldela etiketterna (etiketteringen är en permutation av längd $k$ från $[k]$) säger oss Multiplikationsprincipen att det måste finnas $k!m$ surjektioner från $X$ till $[k]$.
+
+    Men vi vet också av Teorem \ref{theorem_count_surjections} att antalet surjektioner ges av $k!\stirlingPart{n}{k}$. Alltså måste $m = \stirlingPart{n}{k}$, som önskat.
+  \end{proof}
+\end{theorem}
+
 \section{Övningar}
 
 \begin{xca}
   Ge ett induktionsbevis av Teorem \ref{theorem_inclusion_exclusion}, teoremet där vi bevisar inklusion-exklusion-principen.
-\end{xca}
-
-\begin{xca}
-  Antag att du äger svarta, gråa, blåa, och vita strumpor. Tyvärr är du väldigt oorganiserad, så du förvarar dem inte i par. Varje morgon sträcker du dig ner i din strumplåda och tar upp strumpor slumpmässigt, en i taget, tills du har ett matchande par av någon färg.
-
-  Hur många strumpor kan du som mest behöva plocka upp?
-\end{xca}
-
-\begin{xca}
-  Man kan visa, med samma metod som vi använde i Exempel \ref{example_R33_is_6}, att
-  $$R(r,s) \leq R(r-1,s) + R(r, s-1)$$
-  för alla $r, s \geq 2$.
-
-  Använd denna olikhet för att bevisa Ramseys sats, Teorem \ref{ramseys_theorem}.\sidenote[][]{Ledtråd: Induktion. Vad kan basfallet tänkas vara?}
 \end{xca}
 
 \begin{xca}
@@ -362,6 +267,18 @@ Med denna definition gjord kan vi nu resonera algebraiskt om mängder och deras 
 
 \begin{xca}
   Antag att den fruktgalna administratören i vårt exempel till slut introducerat tio olika kategorier av frukt. Hur många termer kommer formeln för inklusion-exklusion ha när $n = 10$?
+\end{xca}
+
+\begin{xca}
+  Ge ett kombinatoriskt bevis för följande rekursion för Stirlings partitionstal
+  $$\stirlingPart{n}{k} = k\stirlingPart{n-1}{k} + \stirlingPart{n-1}{k-1}.$$
+\end{xca}
+
+\begin{xca}
+  Ge kombinatoriska bevis för att
+  $$\stirlingPart{n}{n-1} = \binom{n}{2}$$
+  och
+  $$\stirlingPart{n}{2} = 2^{n-1} - 1.$$
 \end{xca}
 
 %\bibliography{references}

@@ -232,12 +232,11 @@ Vi har också sett att de exponentiella genererande funktioner vi hittar för li
 
 \section{Binomial-faltningar och EGFer}
 
-Vi har lärt oss att motsvarigheten till en faltning på den kombinatoriska sidan är en produkt av genererande funktioner. Vad händer om vi i stället tar \emph{exponentiella} genererande funktioner? Situationen blir lite mer komplicerad.\sidenote[][-0.7cm]{Det verkar som att både kursboken och förra årets föreläsningsanteckningar sveper denna komplikation under mattan, på ett sätt som jag upplever som väldigt förvirrande. Det tog mig minst en timme att lista ut varför vad de gör inte är direkt felaktigt.
-\begin{center}\includegraphics[width=0.2\textwidth]{graphics/warning_sign.png}\end{center}}
+Vi har lärt oss att motsvarigheten till en faltning på den kombinatoriska sidan är en produkt av genererande funktioner. Vad händer om vi i stället tar \emph{exponentiella} genererande funktioner? Situationen blir lite mer komplicerad.
 
 \begin{definition}
   Antag att $\{a_k\}_{k=0}^\infty$ och $\{b_k\}_{k=0}^\infty$ är två följder. Då ges deras \emph{binomial-faltning} $a \ostar b$ av
-  $$(a \ostar b)_k = \sum_{i=0}^{k} \binom{k}{i} a_i b_{k_i}.$$
+  $$(a \ostar b)_k = \sum_{i=0}^{k} \binom{k}{i} a_i b_{k-i}.$$
 \end{definition}
 
 \begin{lemma}

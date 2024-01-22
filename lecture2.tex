@@ -31,7 +31,7 @@
 
 \begin{abstract}
 \noindent
-Vi fortsätter på förra föreläsningens idéer om kombinatoriska bevis och att räkna saker på två olika sätt. Sedan tillämpar vi detta på att bevisa binomialsatsen. Vi fortsätter med att diskutera omordningar och kompositioner, från vilket vi härleder \emph{multi}nomialsatsen.
+Vi bevisar binomialsatsen med ett kombinatoriskt bevis. Vi fortsätter med att diskutera omordningar och kompositioner, från vilket vi härleder \emph{multi}nomialsatsen. Sedan introducerar vi lådprincipen, och använder den för att bevisa ett resultat om Ramseytalen och Erd\H{o}s-Szekeres sats.
 \end{abstract}
 
 \section{Binomialsatsen}
@@ -203,6 +203,81 @@ Antag att vi vill fördela ut $n$ stycken osärskiljbara objekt bland $k$ särsk
   \end{proof}
 \end{theorem}
 
+\section{Lådprincipen}
+
+\begin{theorem}[Lådprincipen]\sidenote[][]{Också kallad Dirichlets lådprincip, efter den tyske matematikern Peter Gustav Lejeune Dirichlet. Eller på engelska ``the pigeonhole principle'' -- vilket onekligen är ett mer målande namn än vår svenska lådprincip.}
+  Om vi har $m$ stycken objekt som skall fördelas i $n$ lådor, och $m > n$, så kommer någon låda behöva innehålla mer än ett objekt.
+\end{theorem}
+
+\begin{example}
+  Om det finns tretton studenter i rummet måste åtminstone två av dem fylla år i samma månad. Här är studenterna objekten och årets månader lådorna.\sidenote[][]{Här önskar jag att kursen gick på engelska, så jag kunde skriva, såsom i förra föreläsarens anteckningar, att ``students are pigeons''.}
+\end{example}
+
+\begin{theorem}[Generaliserade lådprincipen]
+  Om vi har $m$ objekt som skall fördelas i $n$ lådor, och $m > kn$, så måste åtminstone en av lådorna innehålla minst $k+1$ objekt.
+\end{theorem}
+
+\begin{example}
+  Om det finns tjugofem studenter i rummet måste det finnas minst en månad i vilken tre eller fler av dem fyller år.
+\end{example}
+
+\begin{example}
+  Antag att fem punkter placeras i en liksidig triangel med sidlängd ett. Då finns det två punkter vars avstånd mellan varandra är högst $\frac{1}{2}$.
+
+  Dela upp triangeln i fyra bitar, enligt figuren.
+  \begin{figure}
+    \centering
+    \includegraphics[width = 0.3\textwidth]{graphics/pigeonhole_principle_equilat_triangle.png}
+    \caption{Figur tagen från förra föreläsarens föreläsningsanteckningar.}
+  \end{figure}
+  Lådprincipen säger oss att det måste finnas en av dessa bitar som innehåller minst två punkter. Men om de ligger i samma bit måste deras avstånd mellan varandra vara högst $\frac{1}{2}$.
+\end{example}
+
+\begin{example}
+  För varje mängd av fem punkter på en sfär finns det ett halvklot som innehåller minst fyra av punkterna.
+
+  Välj två av de fem punkterna godtyckligt och rita storcirkeln som passerar genom dem. Denna delar upp jorden i två halvklot, så lådprincipen säger oss att ett av dessa halvklot måste innehålla minst två av de återstående tre punkterna. Det halvklotet har alltså de två punkterna vi ritade storcirkeln genom och minst två punkter till, för totalt minst fyra.
+\end{example}
+
+\begin{example}\label{example_R33_is_6}
+  I varje grupp av sex personer finns det antingen en grupp av tre personer som alla är vänner eller en grupp av tre personer som alla inte är vänner.\sidenote[][]{Vi antar här att ``är vänner''-relationen är symmetrisk, det vill säga att om jag är vän med dig är du vän med mig. Förhoppningsvis är det antagandet sant på universitetet, även om det inte var sant i mellanstadiet.}
+
+  Välj en godtycklig person i gruppen. Enligt lådprincipen måste det antingen finnas tre personer som hon inte är vän med, eller tre personer som hon är vän med.
+
+  Ifall det finns tre personer som hon inte är vän med har vi två fall -- antingen är alla tre vänner med varandra, i vilket fall vi är klara, eller så finns det ett par av dem som inte känner varandra. Men i så fall bildar det paret, tillsammans med vår första person, en grupp av tre personer som alla inte känner varandra.
+
+  Ifall det finns tre personer som hon är vän med resonerar vi på samma vis. Antingen är ingen av de tre personerna vänner med varandra, i vilket fall vi hittat vår grupp, eller så finns det ett par som känner varandra, och i så fall bildar det paret tillsammans med vår första person en triangel som känner varandra.
+\end{example}
+
+Vad vi just studerat är det enklaste fallet av Ramseys sats.\sidenote[][]{Namngiven efter Frank P. Ramsey, som var en fascinerande person som hann bli vän med Wittgenstein och Keynes och finna viktiga resultat inom ekonomi, matematik, och filosofi innan sin bortgång vid 26 års ålder.} Låt oss definiera en lite mer allmän version av problemet.
+
+\begin{definition}
+  För varje par av positiva heltal $r$ och $s$ är $R(r,s)$ det minsta antalet personer man behöver bjuda in på en fest för att det skall finnas antingen en grupp av $r$ personer som alla känner varandra, eller en grupp av $s$ personer där ingen känner någon annan i gruppen.\sidenote[][]{Eller mer formellt, formulerat i termer av grafer:
+
+  $R(r,s)$ är det minsta talet sådant att varje graf $G$ med minst $R(r,s)$ noder antingen innehåller en inducerad kopia av $K_r$ eller har en inducerad kopia av $K_s$ i $G^c$, komplementgrafen till $G$.}
+\end{definition}
+
+Vad Exempel \ref{example_R33_is_6} visade är alltså att $R(3,3) = 6$. Vad Ramseys sats säger i allmänhet är att $R(r,s)$ är ändligt.\sidenote[][]{Problemet att beräkna exakt vad $R(r,s)$ är är extremt svårt -- vi vet att $R(4,4) = 18$, men kan inte bestämma $R(5,5)$ mer exakt än att det är mellan $43$ och $48$.}
+
+\begin{theorem}[Ramseys sats]\label{ramseys_theorem}
+  För varje $r, s \geq 1$ är $R(r,s) < \infty$.
+\end{theorem}
+
+\begin{theorem}[Erd\H{o}s-Szekeres]
+  För alla $r,s \geq 1$ gäller det att varje följd av $(r-1)(s-1) + 1$ distinkta reella tal antingen innehåller en ökande delföljd av längd $r$ eller en minskande delföljd av längd $s$.
+
+  \begin{proof}
+    Kalla vår talföljd $n_1, n_2, \ldots, n_{(r-1)(s-1)+1}$. Ge varje $n_i$ en etikett $(a_i, b_i)$ som följer: $a_i$ är längden av den längsta ökande delföljden som slutar i $n_i$, och $b_i$ är längden av den längsta minskande delföljden som slutar i $n_i$.\sidenote[][]{Här menar vi med ``slutar i'' inte att de inte kan fortsättas längre med något $n_j$ för $j > i$, bara att vi mäter längden av följderna fram till $i$.}
+
+    Vi hävdar att alla tal $n_i$ får distinkta etiketter. Överväg paret $n_i, n_j$ för $i < j$ -- om $n_i < n_j$ kan vi fortsätta den längsta ökande delföljden som slutar i $n_i$ genom att lägga till $n_j$, så $a_j \geq a_i + 1$. Likaledes, om $n_i > n_j$ kan vi fortsätta den längsta minskande delföljden som slutar i $n_i$ genom att lägga till $n_j$, så $b_j \geq b_i + 1$.
+
+    Antag nu för motsägelse att det inte finns någon ökande delföljd av längd $r$, och ingen minskande delföljd av längd $s$. Då måste $1 \leq a_i \leq r-1$ och $1\leq b_i \leq s-1$ för alla $i$.\sidenote[][]{$a_i, b_i \geq 1$ eftersom $n_i$ självt är en delföljd som är både minskande och ökande.}
+
+    Alltså finns det $(r-1)(s-1)$ tillgängliga etiketter att tilldela till $(r-1)(s-1) + 1$ stycken objekt, och alla objekten måste få distinkta etiktter. Lådprincipen säger oss att detta är omöjligt, och vi har vår motsägelse.
+  \end{proof}
+\end{theorem}
+
+
 \newpage
 
 \section{Övningar}
@@ -224,6 +299,20 @@ Antag att vi vill fördela ut $n$ stycken osärskiljbara objekt bland $k$ särsk
 \begin{xca}
   Låt $m$ och $w$ vara positiva heltal. Ge ett kombinatoriskt bevis för att det, för varje $0 \leq k \leq m + w$, gäller att
   $$\sum_{j=0}^k \binom{m}{j}\binom{w}{k-j} = \binom{m + w}{k}.$$
+\end{xca}
+
+\begin{xca}
+  Antag att du äger svarta, gråa, blåa, och vita strumpor. Tyvärr är du väldigt oorganiserad, så du förvarar dem inte i par. Varje morgon sträcker du dig ner i din strumplåda och tar upp strumpor slumpmässigt, en i taget, tills du har ett matchande par av någon färg.
+
+  Hur många strumpor kan du som mest behöva plocka upp?
+\end{xca}
+
+\begin{xca}
+  Man kan visa, med samma metod som vi använde i Exempel \ref{example_R33_is_6}, att
+  $$R(r,s) \leq R(r-1,s) + R(r, s-1)$$
+  för alla $r, s \geq 2$.
+
+  Använd denna olikhet för att bevisa Ramseys sats, Teorem \ref{ramseys_theorem}.\sidenote[][]{Ledtråd: Induktion. Vad kan basfallet tänkas vara?}
 \end{xca}
 
 %\bibliography{references}

@@ -8,7 +8,7 @@ Föreläsningsanteckningar för våra föreläsningar ligger nedan -- alltefters
 
 # Föreläsningsanteckningar
 
-1. [Föreläsning ett: Additions- och multiplikationsregeln, strängar, permutationer och kombinationer](https://vagdur.github.io/Kombinatorik-1MA020/lecture1.pdf) (Har lösningsförslag till uppgifter)
+1. [Föreläsning ett: Additions- och multiplikationsregeln, strängar, permutationer och kombinationer](https://vagdur.github.io/Kombinatorik-1MA020/lecture1.pdf) (Har [lösningsförslag](https://vagdur.github.io/Kombinatorik-1MA020/lecture1_solutions.pdf) till uppgifter, av studenter från förra året.)
 2. [Föreläsning två: Kombinatoriska bevis, binomialsatsen, kompositioner, och multinomialsatsen](https://vagdur.github.io/Kombinatorik-1MA020/lecture2.pdf)
 3. [Föreläsning tre: Induktion, lådprincipen, och inklusion-exklusion](https://vagdur.github.io/Kombinatorik-1MA020/lecture3.pdf)
 4. [Föreläsning fyra: Sammanfattning av alla räkneproblem, samt cykler](https://vagdur.github.io/Kombinatorik-1MA020/lecture4.pdf)
@@ -22,7 +22,7 @@ Föreläsningsanteckningar för våra föreläsningar ligger nedan -- alltefters
 
 Vi sammanfattar hela kursen kortfattat, vad varje föreläsning innehöll och nyckelord från den, i detta dokument:
 
-* [Sammanfattning av hela kursen](https://vagdur.github.io/Kombinatorik-1MA020/course_summary.pdf)
+* [Sammanfattning av hela kursen](https://vagdur.github.io/Kombinatorik-1MA020/course_summary.pdf) (Denna kommer att uppdateras lite grann för årets kurs - den är korrekt för förra årets.)
 
 # Annat material för kursen
 

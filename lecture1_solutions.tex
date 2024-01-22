@@ -1,0 +1,189 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Föreläsning 1, lösningsförslag på uppgifter $\cdot$ 1MA020}
+
+\author[Studenter]{Lösningsförslag av studenter, se \nolinkurl{contributors.md} för namn.}
+
+\date{16 januari 2024}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+
+\include{mathcommands.extratex}
+
+\begin{document}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+Denna fil innehåller lösningsförslag till övning ett till sex på föreläsning ett, skrivna av en grupp som läste kursen förra året.
+\end{abstract}
+
+\begin{solution}
+	Vi börjar med att rita upp en bild för situationen.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\textwidth]{graphics/F1/rectangular_table_with_numbered_chairs.png}
+		\caption{Ett långt bord med 24 numrerade stolar.}
+	\end{figure}
+
+    Enligt uppgiften behöver vi placera ut de fuskande eleverna på udda stolsplatser, alltså ska vi placera ut 10 elever på 12 platser. Detta kan göras på $P(12,10)$ sätt.
+	
+	Därefter har vi 14 elever kvar att placeras ut på de kvarvarande 14 platserna. Det kan göras på $P(14,14)$ sätt. 
+	
+	Det totala antalet sättet att placera ut alla elever blir därmed
+    $$P(12,10) P(14,14)=\frac{12! 14!}{2!}.$$
+
+    Anledningen till att vi använder permutationer i lösningen är för att vi ser både stolsplatserna och studenterna som särskiljbara.
+
+    \begin{tips}
+		Viktigt i liknande uppgifter är att identifiera ifall platserna, stolarna i det här fallet, är särskiljbara eller inte. Om de är särskiljbara, som i det här fallet, så använder vi oss av permutationer. Är de inte unika så får vi använda oss av kombinationer istället. I vår figur numrerar vi alltså stolsplatserna, så att vi kan se skillnad på dem på vilket nummer de har.
+
+    	Ett sätt att enklare förstå uppgiften är att vi ska dela ut stolsnummer till eleverna, istället för att placera ut eleverna på stolarna. Då kan det bli enklare att förstå varför det går att placera ut de 10 fuskande eleverna på de 12 udda platserna på $P(12,10)$ olika sätt -- $12$ stolsnummer ska delas ut till $10$ personer.
+	\end{tips}
+\end{solution}
+
+\begin{solution}
+	\begin{align*}
+		n \binom{n-1}{k-1} &= \frac{n(n-1)!}{(k-1)!(n-1-(k-1))!}\\
+		&= \frac{n(n-1)!}{(k-1)!(n-k)!}\\
+		&= \frac{k n!}{k!(n-k)!} = k\binom{n}{k}	
+	\end{align*}
+    
+	\begin{tips}
+		Expandera utrycket genom att använda definitionen av binomialkoefficienter
+		$$\binom{n}{k} = \frac{n!}{k!(n-k)!}.$$
+
+		Tänk på att $n$-fakultet kan skrivas som
+		$$n! = n(n-1)(n-2)...2\cdot 1$$ 
+		och att
+		$$\frac{n}{n!} = \frac{1}{(n-1)!}\qquad\text{ och }\qquad n(n-1)! = n!.$$
+	\end{tips}
+\end{solution}
+
+\begin{solution}
+	Från sidnoten får vi tipset att tänka på det som att välja en grupp med ledare. Vi försöker nu studera vänsterledet för sig och högerledet för sig för att kombinatoriskt bevisa likheten.
+
+    Vi kollar på vänsterledet först: Vi vill välja en grupp med $k$ personer i och vi har totalt $n$ stycken personer att välja på. Antalet sätt vi kan skapa denna gruppen på ges av $\binom{n}{k}$. Vi har alltså beräknat antalet sätt att skapa en grupp med $k$ personer. 
+	
+	Nu vill vi välja en ledare bland dessa personer. Vi har $k$ potentiella ledare, så multiplikationsregeln säger oss att vi får antalet sätt att välja en grupp med ledare genom att multiplicera antalet sätt att välja en grupp med antalet sätt att välja en ledare, alltså
+	$$k\binom{n}{k}.$$
+
+    Nu tittar vi på högerledet: Vi vill visa att högerledet också beräknar antalet sätt att skapa en grupp med $k$ personer varav en person är ledare. Vi har $n$ personer att välja på och vi ska ha en grupp på $k$ personer, varav en ska vara ledare. 
+	
+	Vi börjar med att välja en person som ska vara vår ledare, vilket vi kan göra på $n$ sätt. Sedan vill vi välja en grupp till den här ledaren. Vi har $n-1$ personer kvar att välja på och $k-1$ platser kvar att fylla upp i gruppen. Antalet sätt att skapa gruppen av resterande personer blir då
+	$$\binom{n-1}{k-1}.$$
+	
+	Så antalet sätt att skapa en grupp med en ledare och $k-1$ medlemmar (alltså totalt $k$ medlemmar) är
+	$$n \binom{n-1}{k-1}.$$
+
+	\begin{tips}
+		\begin{enumerate}
+			\item I denna uppgiften använde vi oss av att vi ska skapa grupper. Ett bra sätt att lösa liknande uppgifter är att se det som att vi ska skapa grupper med personer av olika slag. Det kan vara en grupp med en eller flera ledare, grupper av olika storlekar med olika många personer som ska väljas ut eller plockas bort med mera. Försök att skapa ett sammanhang.
+			\item Är det svårt att hitta ett sammanhang så försök att identifiera variablerna en efter en, så i detta fallet försök först att identifiera vad $k$ skulle kunna innebära och vad $\binom{n}{k}$ skulle kunna innebära. Försök också att starta med en sida, så antingen vänster led eller höger led. Identifiera de olika variablerna (till exempel i ett sammanhang) på den sidan och försök sedan skapa en matchning med andra sidan.
+			\item Ett sätt att se på det är som ett händelseförlopp. Betrakta vänster led i Övning \ref{xca:second_combinatorial_proof}: Först händer en sak -- vi väljer två av totalt $n$ stycken saker. Sedan, efter att vi gjort det ``sker'' andra parentesen som säger att vi nu väljer $k-2$ saker av en hög som nu är $2$ färre än den var förut. Genom detta kan vi försöka skapa oss en bild av ett händelseförlopp som dessa uttryck representerar. 
+		\end{enumerate}
+	\end{tips}
+\end{solution}
+
+\begin{solution}
+	Här kan vi tänka på ungefär samma sätt som uppgift 3, men nu är skillnaden att vi ska välja $2$ ledare istället för en.
+
+	Vi har en grupp på $n$ personer och vi vill välja ut en liten grupp med $k$ personer i varav $2$ kommer utses till ledare.
+
+	Vi börjar med vänsterledet: Vi har alltså $n$ personer och vi vill välja två stycken ledare av alla de $n$ personerna. Detta kan vi göra på
+	$$\binom{n}{2}$$
+	sätt.
+	
+	När det är gjort så har vi $n-2$ personer kvar som inte blivit valda, och av de $n-2$ personerna vill vi välja ut $k-2$ stycken för att skapa en grupp som tillsammans med de två ledarna skapar en grupp på $k$ personer.
+	
+	Gruppen på $k-2$ personer kan vi skapa på $\binom{n-2}{k-2}$ sätt, eftersom vi har $n-2$ personer kvar att välja bland. När vi då multiplicerar
+	$$\binom{n}{2}\binom{n-2}{k-2}$$
+	får vi alltså antalet sätt att forma en grupp med $k$ personer varav $2$ stycken är ledare. 
+
+	Vi kollar på högerledet: I högerledet tänker vi först att vi vill skapa en grupp med $k$ personer av de $n$ stycken möjliga personerna. Antalet sätt att göra detta på är $\binom{n}{k}$. När vi har skapat en grupp med $k$ personer i så vill vi välja två stycken ledare. Detta kan vi göra på
+	$$\binom{k}{2}$$
+	sätt eftersom vi har $k$ stycken möjliga ledare.  
+
+	Poängen är alltså att HL och VL bara gör saker i olika ordning. VL väljer ledarna först och gruppen sedan medans HL väljer gruppen först och sedan väljer ledarna i gruppen. Nu har vi visat att både vänsterledet och högerledet båda beräknar antalet sätt att forma en grupp med $k$ personer varav två personer är ledare, ur en grupp av totalt $n$ personer.
+
+	\begin{tips}
+		Du kan använda samma tips som för uppgift 3.
+	\end{tips}
+\end{solution}
+
+\begin{solution}
+	\begin{enumerate}
+		\item Det finns $\abs{A} + \abs{B} = 15 + 7 = 22$. stycken sätt att välja ett objekt från $A$ eller ett objekt från $B$. Du kan beräkna detta med additionsregeln. Det beror på att det inte spelar någon roll om vi väljer ett objekt ur $A$ eller ett ur $B$ vilket gör att man kan tänka att man bara lägger ihop alla element i samma mängd och tar en. Antalet möjliga val är ju då bara det totala antalet element.
+
+		\item Det finns $\abs{A}\abs{B}  = 15 \cdot 7= 105$ sätt att välja ett objekt från $A$ och ett objekt från $B$. Detta gäller från multiplikationsregeln. Detta kan man se som att om vi tar upp ett element ur högen $A$ finns det nu exakt $\abs{B}$ val ur $B$. Detta gäller för alla element i $A$ vilket gör att vi kan multiplicera med antalet i $B$ och det ger det totala antalet kombinationer.
+
+		\item Det är antalet sätt vi kan välja ett objekt ur $A$ och ett objekt ur $B$, alltså $15 \cdot 7=105$. Detta är den notation som används för att beskriva multiplikationsregeln, det är därför vi egentligen gör samma sak här som i förra uppgiften.
+
+		\item Det är antalet sätt att välja ett objekt ur $A$ eller ett objekt ur $B$, alltså $15 + 7 = 22$. Detta är den notation som används för att beskriva additionsregeln.
+
+		\item Det största värdet $\abs{A \cup B}$ kan anta är $15+7=22$. I detta fallet (största möjliga unionen) kommer alla element i $B$ vara olika från alla element i $A$, vilket gör att vår nya mängd kommer innehålla alla $7$ element i $B$ och alla $15$ element i $A$. 
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.7\textwidth]{graphics/F1/disjoint_sets_A_and_B.png}
+			\caption{$A \cup B$ blir som störst när de, såsom i figuren, är disjunkta.}
+			\label{fig:A_and_B_disjoint}
+		\end{figure}
+		
+		Det minsta värdet $\abs{A \cup B}$ kan anta är $15$. I detta fallet (minsta möjliga unionen) kommer alla element i $B$ vara närvarande i $A$. Alltså kommer vår nya mängd vara lika med mängden $A$, eftersom $B$ också är närvarande i den mängden. 
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.7\textwidth]{graphics/F1/set_B_contained_in_A.png}
+			\caption{$A\cup B$ blir som minst när $B$ ligger i $A$.}
+			\label{fig:B_contained_in_A}
+		\end{figure}
+
+		\item Det största värdet som $\abs{A \cap B}$ kan anta är $7$. I detta faller kommer alla element i $B$ vara närvarande i $A$, såsom i Figur~\ref{fig:B_contained_in_A}. Alltså kommer $\abs{A \cap B} = B$, och vi får med alla element i $B$.
+
+		Det minsta värdet som $\abs{A \cap B}$ kan anta är $0$. I detta fallet så kommer alla element i $B$ vara skilda från alla element i $A$ och vårt snitt kommer då bli en tom mängd, såsom i Figur~\ref{fig:A_and_B_disjoint}.
+	\end{enumerate}
+
+	\begin{tips}
+		\begin{enumerate}
+			\item I sådana uppgifter är det bra att fundera över hur additionsregeln och multiplikationsregeln kan appliceras.
+			\item Rita upp mängderna och de olika fallen, ligger mängderna i varandra (innehåller samma element), ligger de utanför varandra (innehåller inte samma element) eller ligger de delvis i varandra/utanför varandra?
+		\end{enumerate}
+	\end{tips}
+\end{solution}
+
+\begin{solution}
+
+	\begin{enumerate}[a)]
+		\item Additionsregeln ger att det finns $5 + 7 = 12$ sätt att välja en slips att ha på sig på intervjun.
+		\item Vi kan välja fritt mellan de seriösa slipsarna och de med komiskt tryck.
+		Alltså hur många sätt kan man välja två slipsar från tolv stycken slipsar.
+		Det blir antalet kombinationer 
+		$$\binom{12}{2} = \frac{12!}{2!(12-2)!} = \frac{12!}{2!\cdot 10!} = \frac{12\cdot 11}{2} = 66.$$
+		\item Svaret ges av multiplikationsreglen, då vi vill veta hur många sätt vi kan välja en slips från mängden av seriösa slipsar och en slips från mängden av komiska slipsar.
+		$$5\cdot 7 = 35.$$
+	\end{enumerate}
+
+	\begin{tips}
+		Tipsen till övning 5 gäller även för övning 6.
+	\end{tips}
+\end{solution}
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}
