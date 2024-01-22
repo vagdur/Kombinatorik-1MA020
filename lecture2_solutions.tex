@@ -1,0 +1,84 @@
+\documentclass{article}
+\title{Lösningsförslag - Föreläsning 2}
+\author{Kristoffer Kulju}
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+\include{mathcommands.extratex}
+
+\begin{document}
+\maketitle
+
+\section*{Övning 1}
+\begin{xca}
+  Hur många heltalslösningar finns det till $x + y + z = 43$, om vi kräver att $x \geq 1$, $y \geq 17$, och $z \geq 5$?
+\end{xca}
+
+Gör variabelbyten $x=\Tilde{x} + 1$, $y = \Tilde{y} + 15$ och $z=\tilde{z}+5$, där $\Tilde{x}, \Tilde{y}, \Tilde{z}\geq 0$. Insättning i $x+y+z=43$ ger oss $$
+\Tilde{x} + 1 + \Tilde{y} + 17 + \Tilde{z} + 5 = 43 \Rightarrow  \Tilde{x} +  \Tilde{y} +  \Tilde{z}= 20
+$$
+
+Notera att varje lösning $(\Tilde{x}, \Tilde{y}, \Tilde{z})$ motsvarar exakt en lösning $(x, y, z)$, så vi kan nu se problemet som följande: Hur många sätt kan vi dela ut $20$ stycken (oskiljbara) ettor mellan våra tre variabler? Som vi tidigare sett (i Proposition 7) kan detta göras på $n + k - 1 \choose k - 1$ olika sätt, där $n=20$ är antalet ettor och $k=3$ är antalet variabler. Alltså är antalet olika sätt lika med $20 + 3 - 1 \choose 3 - 1$ $=$ $22 \choose 2$ $=231$. 
+
+\section*{Övning 2}
+\begin{xca}
+  Hur många omordningar finns det av ordet $54240244$?
+
+  Hur många omordningar finns det av det ordet som inte börjar med en nolla?
+\end{xca}
+
+\subsection*{Delfråga 1}
+Vi har en nolla, två tvåor, fyra fyror och en femma. Längden på vårt ``ord'' är $8$. Eftersom tvåorna är sinsemellan oskiljbara och fyrorna är sinsemellan oskiljbara kan vi räkna ut svaret direkt med multinomialkoefficienten, så svaret är
+$${8 \choose 1, 1, 2, 4},$$
+vilket enligt formel är 
+$$\frac{8!}{1!\cdot1!\cdot2!\cdot4!} = \frac{40320}{48}=840.$$
+
+\subsection*{Delfråga 2}
+Vi bestämmer först hur många ord börjar med en nolla, och subraherar sedan detta antal från den totala antalet ord. Om vi vet att nollan kommer först, är vårt problem detsamma som att hitta antalet ord av längd $7$ som innehåller exakt en femma, två tvåor och fyra fyror. Igen kan vi direkt använda multinomialkoefficienten för att räkna ut att detta är
+$$\binom{7}{1, 2, 4} = \frac{7!}{1!\cdot 2!\cdot 4!}=\frac{5040}{48}=105,$$
+alltså är antalet ord som inte börjar med en nolla $840-105=735$. 
+
+Alternativt kan vi inse, då vi har exakt en nolla och att längden på alla ord är $8$, att det följer att $\frac{1}{8}$ av alla ord börjar med en nolla, så $1-\frac{1}{8}=\frac{7}{8}$ av orden börjar inte med en nolla, alltså är antalet ord som inte börjar med en nolla lika med $\frac{7}{8}\cdot 840=735$.
+
+\section*{Övning 3}
+\begin{xca}
+  Hur många ternära strängar av längd $2n$ finns det, där ettorna bara får dyka upp på udda positioner?
+\end{xca}
+
+Vi kan dela upp våra strängar i två strängar, den ``udda'' strängen, som består av de udda positionerna, och den ``jämna'' strängen, som består av de jämna positionerna. Båda strängarna består av $n$ bokstäver var. 
+
+Vi börjar med att undsöka hur många ``udda'' strängar vi kan bilda. Eftersom vi får använda ettan består vårt alfabet av tre bokstäver, så det finns enligt multiplikationsprincipen $3^n$ olika udda strängar. 
+
+På samma sätt finns det $2^n$ jämna strängar, eftersom vi nu bara har två bokstäver att jobba med. 
+
+Varje sträng av längd $2n$ byggs av en udda sträng och en jämn sträng, så enligt multiplikationsprincipen finns det $2^n\cdot 3^n=6^n$ strängar totalt. 
+
+Alternativt kan vi bygga vår sträng genom att betrakta ett bokstavspar (d.v.s. två bokstäver) i taget, en på udda position och en på jämn. Ett sådant bokstavspar är på formen $(b_u, b_j)\in \{2, 3\}\times \{1, 2, 3\}$. Eftersom $\abs{\{2, 3\}\times \{1, 2, 3\}}=6$, och vår sträng består av $n$ stycken sådana par, finns det $6^n$ olika strängar. 
+
+\section*{Övning 4}
+
+\begin{xca}
+  Låt $m$ och $w$ vara positiva heltal. Ge ett kombinatoriskt bevis för att det, för varje $0 \leq k \leq m + w$, gäller att
+  $$\sum_{j=0}^k \binom{m}{j}\binom{w}{k-j} = \binom{m + w}{k}.$$
+\end{xca}
+
+Vi börjar med att betrakta högerledet. Vi vet att $m + w \choose k$ är antalet sätt att bilda en kommitté som består av $k$ personer, utifrån $m + w$ personer. 
+
+Antag nu att våra $m + w$ personer består av $m$ stycken män och $w$ stycken kvinnor. Om vi vet att $j$ stycken män ingår i kommittén kan dessa väljas på $m \choose j$ olika sätt. De resterande $k - j$ kommittémedlemmarna är då kvinnor, och kan väljas på $w \choose k - j$ olika sätt. Det följer från multiplikationsprincipen att för ett givet $j$ att det finns ${k \choose j}{w \choose k - j}$ olika sätt att välja en kommitté. 
+
+Eftersom antalet män kan variera från $0$ till $k$, d.v.s. vår kommitté kan bestå av allt från inga män till enbart män, följer det från additionsprincipen att den totala mängden kommittéer är 
+$$\sum_{j=0}^{k} {k \choose j} {w \choose k - j}$$
+vilket avslutar beviset. 
+\end{document}
+
