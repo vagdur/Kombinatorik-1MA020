@@ -39,20 +39,17 @@ Notera att varje lösning $(\Tilde{x}, \Tilde{y}, \Tilde{z})$ motsvarar exakt en
 \end{xca}
 
 \subsection*{Delfråga 1}
-Vi har en nolla, två tvåor, fyra fyror och en femma. Längden på vårt ``ord'' är 8. Eftersom tvåorna är sinsemellan oskiljbara och fyrorna är sinsemellan oskiljbara, kan vi räkna ut svaret direkt med multinomialkoefficienten, d.v.s. svaret är $$
-8 \choose 1, 1, 2, 4 
-$$
-Vilket enligt formel är $$
-\frac{8!}{1!\cdot1!\cdot2!\cdot4!} = \frac{40320}{48}=840
-$$
+Vi har en nolla, två tvåor, fyra fyror och en femma. Längden på vårt ``ord'' är $8$. Eftersom tvåorna är sinsemellan oskiljbara och fyrorna är sinsemellan oskiljbara kan vi räkna ut svaret direkt med multinomialkoefficienten, så svaret är
+$${8 \choose 1, 1, 2, 4},$$
+vilket enligt formel är 
+$$\frac{8!}{1!\cdot1!\cdot2!\cdot4!} = \frac{40320}{48}=840.$$
+
 \subsection*{Delfråga 2}
-Vi bestämmer först hur många ord börjar med en etta, och subraherar sedan detta antal från den totala antalet ord. Om vi vet att ettan kommer först, är vårt problem detsamma som att hitta antalet ord av längd 7 som innehåller exakt en femma, två tvåor och fyra fyror. Igen kan vi direkt använda multinomialkoefficienten för att räkna ut att detta är $$
-7 \choose 1, 2, 4
-$$
-$=\frac{7!}{1!\cdot 2!\cdot 4!}=\frac{5040}{48}=105$, alltså är antalet ord som inte börjar med en etta $840-105=735$. 
+Vi bestämmer först hur många ord börjar med en nolla, och subraherar sedan detta antal från den totala antalet ord. Om vi vet att nollan kommer först, är vårt problem detsamma som att hitta antalet ord av längd $7$ som innehåller exakt en femma, två tvåor och fyra fyror. Igen kan vi direkt använda multinomialkoefficienten för att räkna ut att detta är
+$$\binom{7}{1, 2, 4} = \frac{7!}{1!\cdot 2!\cdot 4!}=\frac{5040}{48}=105,$$
+alltså är antalet ord som inte börjar med en nolla $840-105=735$. 
 
-
-Alternativt kan vi inse, då vi har exakt en etta och att längden på alla ord är 8, att det följer att $\frac{1}{8}$ av alla ord börjar med en etta, så $1-\frac{1}{8}=\frac{7}{8}$ av orden börjar inte med en etta, alltså är antalet ord som inte börjar med en etta lika med $\frac{7}{8}\cdot 840=735$
+Alternativt kan vi inse, då vi har exakt en nolla och att längden på alla ord är $8$, att det följer att $\frac{1}{8}$ av alla ord börjar med en nolla, så $1-\frac{1}{8}=\frac{7}{8}$ av orden börjar inte med en nolla, alltså är antalet ord som inte börjar med en nolla lika med $\frac{7}{8}\cdot 840=735$.
 
 \section*{Övninvg 3}
 \begin{xca}
