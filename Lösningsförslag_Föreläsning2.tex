@@ -51,21 +51,20 @@ alltså är antalet ord som inte börjar med en nolla $840-105=735$.
 
 Alternativt kan vi inse, då vi har exakt en nolla och att längden på alla ord är $8$, att det följer att $\frac{1}{8}$ av alla ord börjar med en nolla, så $1-\frac{1}{8}=\frac{7}{8}$ av orden börjar inte med en nolla, alltså är antalet ord som inte börjar med en nolla lika med $\frac{7}{8}\cdot 840=735$.
 
-\section*{Övninvg 3}
+\section*{Övning 3}
 \begin{xca}
   Hur många ternära strängar av längd $2n$ finns det, där ettorna bara får dyka upp på udda positioner?
 \end{xca}
 
-Vi kan dela upp våra strängar i två strängar, den "udda" strängen, som består av de udda positionerna, och den "jämna" strängen, som består av de jämna positionerna. Båda strängarna består av $n$ bokstäver var. 
+Vi kan dela upp våra strängar i två strängar, den ``udda'' strängen, som består av de udda positionerna, och den ``jämna'' strängen, som består av de jämna positionerna. Båda strängarna består av $n$ bokstäver var. 
 
-Vi börjar med att undsöka hur många "udda" strängar vi kan bilda. Eftersom vi får använda ettan består vårt alfabet av tre bokstäver,  finns det enligt multiplikationsprincipen $3^n$ olika udda strängar. 
+Vi börjar med att undsöka hur många ``udda'' strängar vi kan bilda. Eftersom vi får använda ettan består vårt alfabet av tre bokstäver, så det finns enligt multiplikationsprincipen $3^n$ olika udda strängar. 
 
 På samma sätt finns det $2^n$ jämna strängar, eftersom vi nu bara har två bokstäver att jobba med. 
 
 Varje sträng av längd $2n$ byggs av en udda sträng och en jämn sträng, så enligt multiplikationsprincipen finns det $2^n\cdot 3^n=6^n$ strängar totalt. 
 
-
-Alternativt kan vi bygga vår sträng genom att betrakta ett bokstavspar (d.v.s. två bokstäver) i taget, en på udda position och en på jämn. Ett sådant bokstavspar är på formen $(b_u, b_j)\in \{2, 3\}\times \{1, 2, 3\}$. Eftersom $|\{2, 3\}\times \{1, 2, 3\}|=6$, och vår sträng består av $n$ stycken sådana par, finns det $6^n$ olika strängar. 
+Alternativt kan vi bygga vår sträng genom att betrakta ett bokstavspar (d.v.s. två bokstäver) i taget, en på udda position och en på jämn. Ett sådant bokstavspar är på formen $(b_u, b_j)\in \{2, 3\}\times \{1, 2, 3\}$. Eftersom $\abs{\{2, 3\}\times \{1, 2, 3\}}=6$, och vår sträng består av $n$ stycken sådana par, finns det $6^n$ olika strängar. 
 
 \section*{Övning 4}
 
