@@ -75,12 +75,10 @@ Alternativt kan vi bygga vår sträng genom att betrakta ett bokstavspar (d.v.s.
 
 Vi börjar med att betrakta högerledet. Vi vet att $m + w \choose k$ är antalet sätt att bilda en kommitté som består av $k$ personer, utifrån $m + w$ personer. 
 
+Antag nu att våra $m + w$ personer består av $m$ stycken män och $w$ stycken kvinnor. Om vi vet att $j$ stycken män ingår i kommittén kan dessa väljas på $m \choose j$ olika sätt. De resterande $k - j$ kommittémedlemmarna är då kvinnor, och kan väljas på $w \choose k - j$ olika sätt. Det följer från multiplikationsprincipen att för ett givet $j$ att det finns ${k \choose j}{w \choose k - j}$ olika sätt att välja en kommitté. 
 
-Antag nu att våra $m + w$ personer består av $m$ stycken män och $w$ stycken kvinnor. Om vi vet att $j$ stycken män ingår i kommittén kan dessa väljas på $m \choose j$ olika sätt. De resterande $k - j$ kommittémedlemmarna är då kvinnor, och kan väljas på $w \choose k - j$ olika sätt. Det följer från multiplikationsprincipen att för ett givet $j$ att det finns $k \choose j$ $w \choose k - j$ olika sätt att välja en kommitté. 
-
-Eftersom antalet män kan variera från $0$ till $k$, d.v.s. vår kommitté kan bestå av allt från inga män till enbart män, följer det från additionsprincipen att den totala mängden kommittéer är $$
-\Sigma _{j=0} ^{k} {k \choose j} {w \choose k - j}
-$$
+Eftersom antalet män kan variera från $0$ till $k$, d.v.s. vår kommitté kan bestå av allt från inga män till enbart män, följer det från additionsprincipen att den totala mängden kommittéer är 
+$$\sum_{j=0}^{k} {k \choose j} {w \choose k - j}$$
 vilket avslutar beviset. 
 \end{document}
 
