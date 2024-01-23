@@ -1,0 +1,55 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Övningstillfälle 1: Programmeringsövningar $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
+
+\date{23 januari 2023}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+
+\include{mathcommands.extratex}
+
+\begin{document}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+Detta dokument innehåller en samling övningar i kombinatorik som kräver programmering: Vi utforskar alltså några olika saker med hjälp av stora mängder beräkningar.
+\end{abstract}
+
+Mycket av det vi diskuterat hittills i kursen har varit att räkna olika sätt att fördela särskiljbara eller osärskiljbara objekt mellan lådor, som likaledes kan vara särskiljbara eller osärskiljbara. I dessa övningar utforskar vi lite mer komplicerade varianter av samma sorts problem, där det vore för invecklat eller avancerat att bevisa resultat om dem under föreläsningarna, men vi ändå kan greppa problemet numeriskt.
+
+En sak som kommer återkomma senare i kursen, men som lär kunna vara mycket användbart redan nu, är kopplingen mellan sannolikheter och antal. Om vi tänker oss att vi har en urna full med $n$ stycken röda och blåa bollar, och vi vet att sannolikheten att få en röd boll om vi tar en slumpmässig boll är $p$, vet vi så klart också att \emph{antalet} röda bollar är $np$.
+
+Vi kan vända på det här resonemanget: Om $n$ är väldigt stort kommer det vara svårt att räkna precis hur många röda bollar det finns, eftersom vi behöver kolla på varje boll, men vi kan få en god skattning av ungefär hur många röda bollar det finns genom att helt enkelt slumpmässigt välja bollar och räkna ut vilken andel av de slumpmässigt valda bollarna som är röda. Den andelen kommer vara nära den sanna sannolikheten att få en röd boll, och den sannolikheten bestämmer i sin tur exakt hur många röda bollar det finns.
+
+När vi vill räkna saker på datorn får vi ibland använda samma princip: Det är ofta så att det finns alldeles för många objekt för att vi skall kunna representera allihop i datorns minne, eller att det vore alldeles för komplicerat att verkligen enumerera alla, men däremot är relativt enkelt att generera ett slumpmässigt objekt.\sidenote[][]{Notera dock att vi, för att detta skall fungera, måste generera varje objekt med samma sannolikhet: Om en del bollar är sannolikare att plockas upp än andra så fallerar hela vår metod. Så fundera över om er metod för att välja objekten verkligen ger samma sannolikhet till varje objekt.}
+
+\section{Bollar i urnor}
+
+\section{Lappar i urnor}
+
+\section{Matematiker i bussar}
+
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}
