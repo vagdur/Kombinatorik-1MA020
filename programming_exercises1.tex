@@ -85,6 +85,17 @@ När vi nu har koden för att göra det hela i allmänhet, låt oss studera ett 
         \end{bmatrix}.$$
 
         Nu har vi ju plötsligt en asymmetri mellan bollarna -- plockar vi upp en röd boll lägger vi bara tillbaka den, men plockar vi upp en blå boll målar vi den röd innan vi lägger tillbaka den. Hur många gånger kommer vi behöva plocka upp en boll innan det bara finns röda bollar kvar?
+
+        \item I vårt sista exempel vill vi jämföra två olika urnor. I bägge börjar vi med $[n_0, m_0]^T = [1,1]^T$. De två urnorna har övergångsmatriser
+        $$\begin{bmatrix}
+            6 & 1 \\
+            0 & 2 
+        \end{bmatrix}\qquad\text{respektive}\qquad\begin{bmatrix}
+            6 & 1 \\
+            0 & 1 
+        \end{bmatrix}.$$
+
+        Så de två fungerar nästan precis likadant, förutom att i den första ökar antalet blåa bollar med ett när vi plockar upp en blå boll, och i den andra lägger vi bara tillbaka den blå bollen igen. Frågan är denna: Kommer det vara en signifikant skillnad i hur snabbt antalet blåa bollar växer i de två modellerna?
     \end{enumerate}
 \end{xca}
 
