@@ -44,6 +44,50 @@ När vi vill räkna saker på datorn får vi ibland använda samma princip: Det 
 
 \section{Bollar i urnor}
 
+Vi fortsätter på temat med bollar i urnor,\sidenote[][]{Det är stereotypt av en anledning...} genom att studera en så kallad Pólya-urna. Modellen är som följer: Vi har en urna som innehåller $n_0$ röda bollar och $m_0$ blåa bollar. Sedan plockar vi upp en boll slumpmässigt: Om den är röd lägger vi tillbaka $r_r$ röda bollar och $r_b$ blåa bollar i urnan, och om den är blå lägger vi tillbaka $b_r$ röda bollar och $b_b$ blåa bollar. Vi kallar det nya antalet röda och blåa bollar $n_1$ och $m_1$, och fortsätter processen.
+
+Det kan vara nyttigt att formulera modellen i ett mer linjäralgebraiskt språk: Vi börjar med en vektor $[n_0, m_0]^T$ som vår initiala konfiguration, och sedan bestäms hur processen utvecklas av en \emph{övergångsmatris}
+$$\begin{bmatrix}
+    r_r & r_b \\
+    b_r & b_b 
+\end{bmatrix}.$$
+
+\begin{xca}
+    Skriv kod för att simulera denna processen, med parametrar enligt vår beskrivning ovan.
+\end{xca}
+
+När vi nu har koden för att göra det hela i allmänhet, låt oss studera ett par enkla exempel, och fundera på hur vi tror de kommer att bete sig.
+
+\begin{xca}
+    För varje av de nedanstående exemplen, fundera först utan att använda er kod på hur ni tror att svaret kommer att bli, och skriv ner ert resonemang. Gör sedan simuleringen och generera ett par lämpliga grafer för att illustrera vad som faktiskt hände. Stämde ert resonemang, eller var resultatet oväntat?
+
+    \begin{enumerate}
+        \item Vi börjar med $[n_0, m_0]^T = [1, 1]^T$, och har övergångsmatris
+        $$\begin{bmatrix}
+            2 & 0 \\
+            0 & 2 
+        \end{bmatrix}.$$
+
+        En lämplig figur att rita här kan vara hur andelen röda bollar -- alltså $\frac{n_t}{n_t + m_t}$ -- utvecklar sig över tiden, för olika realisationer av processen.
+
+        \item Vi börjar med något $[n_0, m_0]^T$, och har övergångsmatris
+        $$\begin{bmatrix}
+            1 & 2 \\
+            2 & 1 
+        \end{bmatrix}.$$
+
+        Kommer utvecklingen av andelen röda bollar alltid att se likadan ut om vi börjar med samma $n_0$ och $m_0$? Hur ser det ut om vi varierar våra startförutsättningar, med olika andelar röda bollar till en början?
+
+        \item Vi börjar med $[n_0, m_0]^T = [0, m]^T$, och har övergångsmatris
+        $$\begin{bmatrix}
+            1 & 0 \\
+            1 & 0 
+        \end{bmatrix}.$$
+
+        Nu har vi ju plötsligt en asymmetri mellan bollarna -- plockar vi upp en röd boll lägger vi bara tillbaka den, men plockar vi upp en blå boll målar vi den röd innan vi lägger tillbaka den. Hur många gånger kommer vi behöva plocka upp en boll innan det bara finns röda bollar kvar?
+    \end{enumerate}
+\end{xca}
+
 \section{Lappar i urnor}
 
 \section{Matematiker i bussar}
