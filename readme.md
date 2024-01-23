@@ -24,6 +24,10 @@ Vi sammanfattar hela kursen kortfattat, vad varje föreläsning innehöll och ny
 
 * [Sammanfattning av hela kursen](https://vagdur.github.io/Kombinatorik-1MA020/course_summary.pdf) (Denna kommer att uppdateras lite grann för årets kurs - den är korrekt för förra årets.)
 
+# Övningar för övningstillfällen
+
+1. Första övningstillfället har övningar (inte skrivna än) och [programmeringsövningar](https://vagdur.github.io/Kombinatorik-1MA020/programming_exercises1.pdf).
+
 # Annat material för kursen
 
 1. [Extra övningar](https://vagdur.github.io/Kombinatorik-1MA020/extra_exercises.pdf)
