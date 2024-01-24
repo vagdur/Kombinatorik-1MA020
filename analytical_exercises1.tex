@@ -1,0 +1,71 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Övningstillfälle 1: Programmeringsövningar $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
+
+\date{23 januari 2023}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+
+\include{mathcommands.extratex}
+
+\begin{document}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+Detta dokument innehåller en samling övningar i kombinatorik som inte kräver någon programmering, utan är avsedda att lösas med papper och penna.
+\end{abstract}
+
+\begin{xca}
+    Det finns $k$ stycken olika vykort i en butik, och du vill skicka ett vykort till varje av dina $n$ vänner.
+
+    \begin{enumerate}
+        \item Hur många sätt kan du göra detta på om det inte finns några ytterligare begränsningar?
+        \item Vad blir svaret om alla korten du skickar skall vara olika?
+        \item Vad blir svaret om du skall skicka två olika vykort till varje vän, men olika vänner kan få samma vykort?
+    \end{enumerate}
+\end{xca}
+
+\begin{xca}
+    Bevisa att $\binom{n}{k}$ och $\stirlingPart{n}{k}$ är polynom i $n$ om vi håller $k$ fixt.
+\end{xca}
+
+\begin{xca}
+    Ge ett kombinatoriskt bevis för följande likhet, där vi antar att $x$ är ett heltal:
+    $$\sum_{k = 0}^{n} \stirlingPart{n}{k}x(x-1)\ldots(x-k+1) = x^n.$$
+\end{xca}
+
+\begin{xca}
+    Låt $B_n$ beteckna det $n$te \emph{Bell-talet}, vilket ger antalet mängdpartitioner av en mängd av $n$ element oavsett antal delar.\sidenote[][]{Alltså är $$B_n = \sum_{k = 1}^{n} \stirlingPart{n}{k}.$$}
+
+    \begin{enumerate}[label = \roman*)]
+        \item Finn en rekursion för Bell-talen.
+        \item Bevisa att\sidenote[][]{Det är inte nödvändigtvis så att den enklaste lösningen använder rekursionen ni just funnit, även om ordningen på övningarna så klart antyder det.}
+        $$B_n = \frac{1}{e}\sum_{k = 0}^{\infty} \frac{k^n}{k!}.$$
+        \item Ge ett kombinatoriskt bevis för att
+        $$B_n = \sum_{\substack{k_1, k_2, \ldots, k_n \geq 0\\k_1 + 2k_2 + \ldots nk_n = n}} \frac{n!}{\prod_{i=1}^{n} k_i!(i!)^{k_i}}.$$
+    \end{enumerate}
+\end{xca}
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}
