@@ -26,7 +26,7 @@ Vi sammanfattar hela kursen kortfattat, vad varje föreläsning innehöll och ny
 
 # Övningar för övningstillfällen
 
-1. Första övningstillfället har övningar (inte skrivna än) och [programmeringsövningar](https://vagdur.github.io/Kombinatorik-1MA020/programming_exercises1.pdf).
+1. Första övningstillfället har [övningar](https://vagdur.github.io/Kombinatorik-1MA020/analytical_exercises1.pdf) och [programmeringsövningar](https://vagdur.github.io/Kombinatorik-1MA020/programming_exercises1.pdf).
 
 # Annat material för kursen
 
