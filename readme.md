@@ -28,6 +28,16 @@ Vi sammanfattar hela kursen kortfattat, vad varje föreläsning innehöll och ny
 
 1. Första övningstillfället har [övningar](https://vagdur.github.io/Kombinatorik-1MA020/analytical_exercises1.pdf) och [programmeringsövningar](https://vagdur.github.io/Kombinatorik-1MA020/programming_exercises1.pdf).
 
+# Ställen att hitta artiklar på
+
+Om man vill göra inlämningsuppgiften med att skriva en rapport om någon forskningsartikel är följande länkar tänkbara ställen att leta på. Dock kan det vara svårt att sålla för att välja - så be gärna om hjälp med att hitta rätt, antingen att hitta något inom ett visst ämne eller att bedöma svårighetsgraden i en viss artikel.
+
+1. [PCC23](https://sites.google.com/view/pcc2023) (Kombinatorik)
+2. [FoCM23](https://focm2023.pages.math.cnrs.fr/workshops/workshop-1/item/110-workshop-1-3.html) (Kombinatorik och grafteori)
+3. [SAND23](https://sand-conf.org/) (Temporala grafer, mer datavetenskap än matematik)
+4. [Direkt på arXiv](https://arxiv.org/list/math.co/recent) (Kombinatorik)
+5. [EuroComb23](https://iuuk.mff.cuni.cz/events/conferences/eurocomb23/) (Kombinatorik)
+
 # Annat material för kursen
 
 1. [Extra övningar](https://vagdur.github.io/Kombinatorik-1MA020/extra_exercises.pdf)
