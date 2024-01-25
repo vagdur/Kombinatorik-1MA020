@@ -45,7 +45,13 @@ Detta dokument innehåller en samling övningar i kombinatorik som inte kräver 
 \end{xca}
 
 \begin{xca}
-    Bevisa att $\binom{n}{k}$ och $\stirlingPart{n}{n-k}$ är polynom i $n$ om vi håller $k$ fixt.
+    Bevisa att $\binom{n}{k}$ och $\stirlingPart{n}{n-k}$ är polynom i $n$ om vi håller $k$ fixt.\sidenote[][-1cm]{Två ledtråd för partitionstalen:
+    \begin{enumerate}
+        \item Hur många av elementen kan hamna i en hög där de inte är enda elementet i högen?
+        \item Vi kan skriva
+        $$\stirlingPart{n}{n-k} = \sum_{j = 0}^{2k} a_{j,k}\binom{n}{j},$$
+        där $a_{j,k}$ är tal med en kombinatorisk tolkning, och enbart beror på $j$ och $k$ och inte på $n$.
+    \end{enumerate}}
 \end{xca}
 
 \begin{xca}
