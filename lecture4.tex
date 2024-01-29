@@ -40,7 +40,9 @@ Till slut disktuerar vi en jobbigare variant av problemet med människor som sit
 
 \section{Den tolvfaldiga vägen}
 
-När vi talade om kompositioner fördelade vi alltså osärskiljbara objekt i särskiljbara lådor -- och studerade både fallet där lådor fick vara tomma, och när de inte fick det. För surjektioner fördelar vi särskiljbara objekt i särskiljbara lådor, och kräver att varje låda får ett objekt.
+Vi har studerat ett antal olika räkneproblem hittills i denna kurs, från de relativt enkla -- antalet permutationer -- till de mer invecklade, som antalet surjektioner. Vi har ett antal gånger talat om ifall objekt skall vara särskiljbara eller osärskiljbara, och också ifall lådor får lov att vara tomma eller måste innehålla minst ett objekt.
+
+När vi talade om kompositioner fördelade vi osärskiljbara objekt i särskiljbara lådor -- och studerade både fallet där lådor fick vara tomma, och när de inte fick det. För surjektioner fördelade vi särskiljbara objekt i särskiljbara lådor, och kravet var att varje låda får ett objekt.
 
 Vi börjar ana ett mönster här i hur våra problem kan se ut. Vi kan ha
 \begin{enumerate}
@@ -57,8 +59,7 @@ och vi kan ha olika krav på hur objekten fördelas i lådorna
 \end{enumerate}
 så sammanfattningsvis har vi en tabell med tolv stycken tänkbara kombinatorikproblem. Det kommer visa sig att vi i själva verket redan studerat sju av dem.
 
-
-Under föreläsning två pratade vi om fördelningar av osärskiljbara objekt mellan särskiljbara personer, och gav en formel för deras antal i Proposition 11, men vi gav aldrig ett kort namn åt detta problem. Låt oss kalla en sådan fördelning för en \emph{multi-delmängd} till mängden av personer.
+Under föreläsning två pratade vi om fördelningar av osärskiljbara objekt mellan särskiljbara personer, och gav en formel för deras antal i Proposition 7, men vi gav aldrig ett kort namn åt detta problem. Låt oss kalla en sådan fördelning för en \emph{multi-delmängd} till mängden av personer.
 
 En \emph{multi-mängd} är som en vanlig mängd, fast den får innehålla ett och samma objekt mer än en gång. Så vi betraktar alltså fördelningen av objekt mellan personer som en multi-delmängd genom att tänka att varje person är med i multidelmängden lika många gånger som antalet objekt den fick.
 
@@ -79,9 +80,17 @@ Låt oss ge argument för varför varje av cellerna i denna tabell faktiskt är 
 
 Raden med bägge särskiljbara är den enklaste att fundera på. Om vi tar ett generellt $f$ räknar vi \emph{alla} funktioner från $N$ till $X$, utan begränsningar och utan att bekymra oss om särskiljbarhet. Ett annat ord för ``funktion från $N$ till $X$'' kan vara ``ord ur $X$ av längd $n$'' ifall vi tänker oss $N = [n]$. Att kräva att funktionen är injektiv är samma sak som att kräva att ingen bokstav dyker upp två gånger i ordet, vilket ju var vår definition av en permutation. Om det enda vi kräver är att funktionen är surjektiv är så klart vad vi räknar just surjektioner.
 
-I raden med osärskiljbara objekt så kan vi tänka oss objekten som bollar vi lägger i lådorna. Om vi kan acceptera varje fördelning av bollar -- lådor får vara tomma eller innehålla mer än en boll -- är ju detta precis vårt scenario med att fördela mynt bland personer, vilket vi just gett namnet multi-delmängder. Om varje låda bara får innehålla noll eller en boll, och vi inte kan se skillnad på bollarna, bestäms varje fördelning av bollar bara av vilka lådor som har en boll och vilka som inte har en -- alltså av en delmängd av lådorna, och delmängden måste ha samma storlek som antalet bollar. Kräver vi att varje låda måste få en boll är vi i fallet med kompositioner, som vi definierade kort i slutet av biten om multi-delmängder -- vi kan få en sådan genom att först ge varje person ett mynt och sedan fördela ut resten av mynten fritt, så vi härleder lätt den formeln ur formeln för multi-delmängder.
+I raden med osärskiljbara objekt så kan vi tänka oss objekten som bollar vi lägger i lådorna. Om vi kan acceptera varje fördelning av bollar -- lådor får vara tomma eller innehålla mer än en boll -- är ju detta precis vårt scenario med att fördela mynt bland personer, vilket vi just gett namnet multi-delmängder. 
 
-I raden med osärskiljbara lådor får vi i stället tänka oss att objekten är distinkta, men vi lägger dem i högar (och tillåter oss högst $x$ olika högar) istället för i lådor -- så vi kan inte se skillnad på olika högar annat än på deras innehåll. Ett av fallen, där vi kräver en surjektion, har vi just behandlat -- att varje av våra $x$ högar måste innehålla ett objekt gör bara att vi begränsar oss till att dela upp våra objekt i exakt $x$ högar, alltså att vi gör en mängdpartition av dem i $x$ delar. Om vi inte kräver att funktionen är surjektiv tillåter vi ``tomma högar'', vilka ju resulterar i att vi har en uppdelning i ett mindre antal faktiska högar. Så formeln är bara att vi summerar den tidigare formeln över varje möjligt antal högar.
+Om varje låda bara får innehålla noll eller en boll, och vi inte kan se skillnad på bollarna, bestäms varje fördelning av bollar bara av vilka lådor som har en boll och vilka som inte har en -- alltså av en delmängd av lådorna, och delmängden måste ha samma storlek som antalet bollar. 
+
+Kräver vi att varje låda måste få en boll är vi i fallet med kompositioner, som vi definierade kort i slutet av biten om multi-delmängder -- vi kan få en sådan genom att först ge varje person ett mynt och sedan fördela ut resten av mynten fritt, så vi härleder lätt den formeln ur formeln för multi-delmängder.
+
+I raden med osärskiljbara lådor får vi i stället tänka oss att objekten är distinkta, men vi lägger dem i högar (och tillåter oss högst $x$ olika högar) istället för i lådor -- så vi kan inte se skillnad på olika högar annat än på deras innehåll. 
+
+Om vi kräver att vår funktion är surjektiv, alltså att varje av våra $x$ högar måste innehålla ett objekt, så begränsar vi oss till att dela upp våra objekt i exakt $x$ högar, och det problemet har vi ju redan studerat: Det är alltså att vi gör en mängdpartition av objekten i $x$ delar. 
+
+Om vi inte kräver att funktionen är surjektiv tillåter vi ``tomma högar'', vilka ju resulterar i att vi har en uppdelning i ett mindre antal faktiska högar. Så formeln är bara att vi summerar den tidigare formeln över varje möjligt antal högar.
 
 Fallet med injektiva $f$ och osärskiljbara lådor är korkat. Vi vill alltså dela upp våra objekt i högst $x$ stycken högar, men kräver att varje hög har som mest ett objekt. Så om $n \leq x$ är detta möjligt -- varje objekt får sin egen hög -- annars är det omöjligt. Så det finns alltid noll eller ett sätt att göra detta på.
 
