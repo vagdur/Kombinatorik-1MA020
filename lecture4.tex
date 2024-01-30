@@ -119,6 +119,63 @@ Så i sista raden, när vi kräver att funktionen är surjektiv, alltså att vi 
 
 Slutligen är sista radens mellersta cell, när vi kräver att funktionen är injektiv, korkad av ungefär samma skäl som varför cellen ovanför var det. Vad vi kräver är alltså att ingen hög får ha mer än ett objekt -- så vi skall skriva $n$ som summan av högst $x$ stycken ettor! Om $n \leq x$ kan vi göra det på ett enda sätt -- vi skriver $n$ som summan av $n$ stycken ettor -- annars går det inte.
 
+\section{Udda och distinkta heltalspartitioner}
+
+Låt oss studera heltalspartitioner lite mer, genom att introducera ett problem som vi i denna föreläsning löser med ett elementärt bevis,\sidenote[][]{Det vill säga ett som inte kräver några av de verktyg vi kommer se senare i kursen -- det är inte alls elementärt i betydelsen ``enkelt att finna''.} men också kommer att återkomma till senare i kursen och lösa med hjälp av genererande funktioner.
+
+\begin{definition}
+  Ett sätt att skriva heltalet $n$ som en summa av ett godtyckligt antal positiva udda tal kallar vi för en \emph{udda} partition av $n$, och antalet sådana kallar vi för $p_o(n)$.\sidenote[][]{Så till exempel kan vi skriva $$25 = 5 + 5 + 5 + 3 + 3 + 1 + 1 + 1 + 1$$ för en udda partition av $25$.}
+
+  Ett sätt att skriva heltalet $n$ som en summa av ett godtyckligt antal positiva tal som alla är olika kallar vi för en \emph{distinkt} partition av $n$, och antalet sådana kallar vi för $p_d(n)$.\sidenote[][]{Så till exempel kan vi skriva $$25 = 10 + 6 + 5 + 4$$ för en distinkt partition av $25$.}
+\end{definition}
+
+\begin{theorem}\label{thm:odd_distinct_partitions}
+  Det gäller för varje $n \geq 1$ att $p_o(n) = p_d(n)$.
+
+  \begin{proof}
+    Vi bevisar detta genom att hitta en bijektion mellan udda partitioner och distinkta partitioner. Så antag att vi börjar med en udda partition
+    \begin{equation}\label{eqn:distinct_odd_starting_part}
+      n = \underbrace{\lambda_1 + \ldots + \lambda_1}_{n_1} + \underbrace{\lambda_2 + \ldots + \lambda_2}_{n_2} + \ldots + \underbrace{\lambda_k + \ldots + \lambda_k}_{n_k},
+    \end{equation}
+    där vi alltså skrivit $n$ som summan av $n_1$ stycken $\lambda_1$, $n_2$ stycken $\lambda_2$, och så vidare, där varje $\lambda_i$ är ett udda tal.\sidenote[][]{Och eftersom vi grupperat termerna i summan så så har vi också att $\lambda_i \neq \lambda_j$ för $i \neq j$.} Vi kan alltså lika väl skriva att
+    \begin{equation}\label{eqn:distinct_odd_step1}
+      n = n_1 \lambda_1 + n_2 \lambda_2 + \ldots + n_k \lambda_k.
+    \end{equation}
+
+    Vad vi gör nu är att vi skriver varje $n_i$ i dess binära representation, så att vi har\sidenote[][]{Här får man ha viss tolerans för många index, för att kunna uttrycka det hela exakt.}\sidenote[][]{Och här har vi alltså att $m_i^a \neq m_j^a$ för $i \neq j$ för något $a$, eftersom detta är en binär representation av talen.}
+    \begin{align*}
+      n_1 &= 2^{m_1^1} + 2^{m_2^1} + \ldots + 2^{m_{j_1}^1},\\
+      n_2 &= 2^{m_1^2} + 2^{m_2^2} + \ldots + 2^{m_{j_2}^2},\\
+      &\ldots\\
+      n_k &= 2^{m_1^k} + 2^{m_2^k} + \ldots + 2^{m_{j_k}^k}.
+    \end{align*}
+
+    Så om vi stoppar in dessa binära expansioner av talen $n_i$ i \eqref{eqn:distinct_odd_step1} och multiplicerar ut uttrycket får vi att
+    \begin{equation}\label{eqn:distinct_odd_bij_image}
+      n = 2^{m_1^1}\lambda_1 + 2^{m_2^1}\lambda_1 + \ldots + 2^{m_{j_1}^1}\lambda_1 + \ldots + 2^{m_1^k}\lambda_k + \ldots + 2^{m_{j_k}^k}\lambda_k.
+    \end{equation}
+
+    Vi hävdar att \eqref{eqn:distinct_odd_bij_image} är en \emph{distinkt} partition av $n$, och att funktionen som skickar partitionen \eqref{eqn:distinct_odd_starting_part} på partitionen \eqref{eqn:distinct_odd_bij_image} är en bijektion. Om vi kan visa detta kommer det alltså att följa att antalet udda och distinkta partitioner är lika.
+
+    Låt oss börja med att bevisa att \eqref{eqn:distinct_odd_bij_image} faktiskt är en distinkt partition. Om två av talen i den summan var lika hade det betytt att vi hade $2^{m_a^i}\lambda_i = 2^{m_b^j}\lambda_j$ för $a \neq b$ och/eller $i \neq j$. 
+    
+    Om dessa två tal är lika hade de också behövt ha precis samma primtalsfaktorer. Eftersom vi började med en udda partition är både $\lambda_i$ och $\lambda_j$ udda tal, och har inga tvåor i sin primtalsfaktorisering -- så vi måste ha $m_a^i = m_b^j$, och alltså också $\lambda_i = \lambda_j$. Men vi vet att $\lambda_i = \lambda_j$ enbart kan inträffa om $i = j$, och från att $i = j$ ser vi att vi har $m_a^i = m_b^i$, vilket vi ju sett bara inträffar om $a = b$. Så i själva verket har vi också $a = b$, och vi har en motsägelse. Alltså är alla termerna distinkta.
+
+    För att se att detta är en bijektion räcker det att se att denna funktion har en väldefinierad invers -- alltså att vi givet en partition i distinkta heltal alltid kan återskapa en partition i udda heltal, och att vi, om vi går först i ena riktningen och sedan andra, alltid kommer tillbaka dit vi startade.
+
+    Så antag att vi har en partition i distinkta heltal, säg
+    $$n = \mu_1 + \mu_2 + \ldots + \mu_k.$$
+    Vad vi gör är att vi bryter ut alla tvåor ur varje tal, så att vi skriver dem som en produkt av en potens av två och ett udda tal, alltså
+    $$n = 2^{\ell_1}\mu'_1 + 2^{\ell_2}\mu'_2 + \ldots + 2^{\ell_k}\mu'_k,$$
+    och sedan samlar ihop termer med samma värde på $\mu'_i$, så att vi får ett uttryck på formen\sidenote[][]{Också detta blir ett uttryck som är lite krångligt att skriva ner i full generalitet -- notera att vi implicit antagit att $\mu'_1 \neq \mu'_k$ i hur vi skrev detta, eftersom de inte är grupperade tillsammans, men det behöver så klart inte vara sant. Men för att undvika att skriva så hade vi behövt ännu ett lager av index...}
+    $$n = \mu'_1(2^{\ell'^1_1} + 2^{\ell'^1_2} + \ldots + 2^{\ell'^1_{j_1}}) + \ldots + \mu'_k(2^{\ell'^k_1} + 2^{\ell'^k_2} + \ldots + 2^{\ell'^k_{j_k}}).$$
+
+    Om vi nu helt enkelt skriver ner partitionen av $n$ i udda heltal $\mu'_i$, där varje uppträder det antal gånger som ges av summan av tvåpotenser, så får vi alltså
+    $$n = \underbrace{\mu'_1 + \ldots + \mu'_1}_{2^{\ell'^1_1} + 2^{\ell'^1_2} + \ldots + 2^{\ell'^1_{j_1}}} + \underbrace{\mu'_2 + \ldots + \mu'_2}_{2^{\ell'^2_1} + 2^{\ell'^2_2} + \ldots + 2^{\ell'^2_{j_2}}} + \ldots + \underbrace{\mu'_k + \ldots + \mu'_k}_{2^{\ell'^k_1} + 2^{\ell'^k_2} + \ldots + 2^{\ell'^k_{j_k}}},$$
+    vilket vi ser någorlunda enkelt kommer att skickas tillbaka på den distinkta partition vi började med av vår bijektion. Alltså har vi verkligen hittat en invers, och bijektionen är verkligen en bijektion.
+  \end{proof}
+\end{theorem}
+
 \section{Stirlingtalen av första sorten}
 
 I förra föreläsningen introducerade vi Stirlingtalen av \emph{andra} sorten, vilket ju leder en till att fråga vad den första sorten är. Så låt oss introducera ett problem till vilket dem är lösningen:
@@ -160,6 +217,16 @@ Till skillnad från Stirlings partitionstal finns det inte någon enkel formel f
 \end{remark}
 
 \section{Övningar}
+
+\begin{xca}
+  Antag att vi börjar med den udda partitionen
+  $$25 = 5 + 5 + 5 + 3 + 3 + 1 + 1 + 1 + 1.$$
+  Vilken distinkt partition skickas denna på av vår bijektion i Teorem \ref{thm:odd_distinct_partitions}?
+
+  Antag att vi börjar med den distinkta partitionen
+  $$30 = 12 + 6 + 5 + 4 + 3.$$
+  Vilken udda partition skickas på denna av vår bijektion? Räkna också, när du funnit den udda partitionen, ut bijektionen i motsatt riktning för att bekräfta att du får tillbaka vad vi startade med, så att vår invers verkligen är en invers.
+\end{xca}
 
 \begin{xca}
   Ge ett kombinatoriskt bevis för följande rekursion för Stirlings cykeltal
