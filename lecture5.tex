@@ -108,11 +108,17 @@ Som ett första exempel på detta, låt oss använda genererande funktioner för
     $$F_f(x) = \frac{1}{1 - x^2 - x}.$$
 \end{example}
 
-Det här tar oss alltså halvvägs till att ha gjort något intressant -- vi har gått från kombinatorik till genererande funktion, och manipulerat den kombinatoriska informationen algebraiskt för att få fram ny information om den genererande funktionen. Men vi är ju intresserade av den kombinatoriska sidan, så vi vill ju översätta den här informationen tillbaka till att säga något intressant om Fibonacciföljden.
+Det här tar oss alltså halvvägs till att ha gjort något intressant -- vi har gått från ett kombinatoriskt påstående, vår rekursion, till en formel för den genererande funktionen. Men vi är ju intresserade av den kombinatoriska sidan, så vi vill nu översätta den här informationen tillbaka till att säga något intressant om Fibonacciföljden.
 
-En sak man kan göra, men som vi inte skall lägga tid på\sidenote[][]{Vad man får göra är ofta att partialbråksuppdela den genererande funktionen, och att partialbråksuppdela är ju ungefär det tråkigaste man kan göra i matematiken, alltså varför vi skippar att faktiskt göra det.} i denna föreläsningen, är att räkna ut Taylorutvecklingen av denna genererande funktionen, och på så vis få fram en formel för det $n$te Fibonaccitalet.
+Vad vi kan göra är att räkna ut Taylorserien för den genererande funktionen vi just hittat. Vad kommer detta att säga oss? Jo, vi får då en formel som ser ut som
+$$F_f(x) = \frac{1}{1 - x^2 - x} = \sum_{k = 0}^{\infty} a_k x^k,$$
+men vi vet ju också att vi definierade vår genererande funktion genom att
+$$F_f(x) = \sum_{k = 0}^{\infty} f_kx^k.$$
+Så termerna i Taylorutvecklingen kommer vara precis Fibonaccitalen.
 
-Ifall man faktiskt genomför den räkningen kommer man att få följande resultat:
+Att faktiskt genomföra denna räkning är lite mer jobb än vi har lust att göra under föreläsningarna i denna kursen, men försök gärna göra den själva, om ni är roade av sådant. Eller använd valfritt CAS för att göra det, såsom Mathematica.
+
+Om man genomför den beräkningen kommer man i alla fall i slutändan få följande resultat:
 
 \begin{proposition}[Binets formel]
     Det gäller för Fibonaccitalen att
@@ -152,7 +158,14 @@ Ifall man faktiskt genomför den räkningen kommer man att få följande resulta
 
 \section{Produkter av genererande funktioner}
 
-Nästa sak vi skall diskutera är vad som händer om vi multiplicerar två genererande funktioner -- alltså vad det motsvarar på den kombinatoriska sidan.
+\begin{lemma}
+    Om $\{a_k\}_{k=0}^\infty$ och $\{b_k\}_{k=0}^\infty$ är två följder med genererande funktioner $F_a$ och $F_b$, så är den genererande funktionen för $\{a_k + b_k\}_{k=0}^\infty$, alltså $F_{a + b}$, lika med $F_a + F_b$.
+    \begin{proof}
+        $$F_{a + b}(x) = \sum_{k = 0}^{\infty} (a_k + b_k)x^k = \sum_{k = 0}^{\infty} a_k x^k + \sum_{k = 0}^{\infty} b_k x^k = F_a(x) + F_b(x).$$
+    \end{proof}
+\end{lemma}
+
+När man väl har sett detta lemma faller det sig ju naturligt att gissa att det också kommer gälla att den genererande funktionen för $a_k b_k$ kommer vara $F_a(x)F_b(x)$. Tyvärr faller det sig inte så enkelt, men det finns i alla fall en kombinatorisk operation som omvandlas till multiplikation av de genererande funktionerna.
 
 \begin{definition}
     Låt $\{a_k\}_{k=0}^\infty$ och $\{b_k\}_{k=0}^\infty$ vara två följder. \emph{Faltningen} av $a$ och $b$ betecknar vi med $a*b$, och $\{(a * b)_k\}_{k=0}^\infty$ ges av
@@ -174,8 +187,6 @@ Nästa sak vi skall diskutera är vad som händer om vi multiplicerar två gener
     $$(a*b)_k = \sum_{i=0}^{k} a_i b_{k-i} = \sum_{i=k-n}^{k} a_i$$
     så vad vi gör för att räkna ut $(a*b)_k$ är att vi tar summan av de senaste $n$ termerna i $a_k$.
 \end{example}
-
-Låt oss nu berätta vad som händer på den algebraiska sidan när vi faltar på den kombinatoriska sidan.
 
 \begin{theorem}\label{convolution_is_product_of_gen_funcs}
     Låt $\{a_k\}_{k=0}^\infty$ och $\{b_k\}_{k=0}^\infty$ vara två följder med generande funktioner $F_a$ och $F_b$. Den genererande funktionen för $a*b$ är då $F_a(x)F_b(x)$. Vi har alltså att
@@ -221,7 +232,7 @@ Vi tar nu och tillämpar detta maskineri vi byggt upp på ett faktiskt kombinato
 \begin{example}
     Låt $a_k$ vara antalet lösningar till
     $$x_1 + x_2 + x_3 + x_4 + x_5 = k$$
-    om vi kräver att alla $x_i$ är ickenegativa heltal. Finn den genererande funktionen till denna följd.
+    om vi kräver att alla $x_i$ är ickenegativa heltal.\sidenote[][]{Detta är bara problemet med att dela ut mynt till personer, som vi också kallat för problemet med multidelmängder.} Finn den genererande funktionen till denna följd.
 
     Låt, för $i = 1,2,\ldots,5$, $a^i$ vara följden av bara ettor, så $a_k^i = 1$ för alla $i$ och $k$.
     
@@ -242,19 +253,13 @@ Vi tar nu och tillämpar detta maskineri vi byggt upp på ett faktiskt kombinato
     $$F_a(x) = \left(\frac{1}{1-x}\right)^5.$$
 \end{example}
 
-Vi hade så klart gärna haft en explicit formel för antalet lösningar på den här ekvationen. Vi fuskar genom att redan veta vad svaret borde bli, och bevisa att den följden har samma genererande funktion som följden vi just studerade -- detta bevisar alltså att följderna är lika med varandra.
+Vi hade så klart gärna haft en explicit formel för antalet lösningar på den här ekvationen. Vi fuskar genom att redan veta vad svaret borde bli,\sidenote[][]{Formeln för antalet multidelmängder såg vi ju förra föreläsningen.} och bevisa att den följden har samma genererande funktion som följden vi just studerade -- detta bevisar alltså att följderna är lika med varandra.
 
 \begin{lemma}
     Fixera något heltal $n\geq 1$, och låt följden $\{a_k\}_{k=0}^\infty$ ges av
     $$a_k = \binom{n+k-1}{k}.$$
 
-    Den genererande funktionen för denna följden är\sidenote[][]{Så när vi visat detta exemplet kommer vi alltså att veta att antalet lösningar till
-    $$x_1 + x_2 + x_3 + x_4 + x_5 = k$$
-    i ickenegativa heltal är precis
-    $$\binom{k+4}{k}$$
-    eftersom vi vet att den genererande funktionen för antalet lösningar till den ekvationen var $\frac{1}{(1-x)^5}$.
-    
-    I just detta fallet visste vi ju dock redan det tack vare vår formel för antalet multi-delmängder.}
+    Den genererande funktionen för denna följden är
     $$F_a(x) = \frac{1}{(1-x)^n}.$$
 
     \begin{proof}
@@ -310,11 +315,9 @@ Vi hade så klart gärna haft en explicit formel för antalet lösningar på den
 \end{xca}
 
 \begin{xca}
-    Låt, om $\{a_k\}_{k=0}^\infty$ och $\{b_k\}_{k=0}^\infty$ är två följder, $a+b$ vara följden som ges av $(a+b)_k = a_k + b_k$. Bevisa att $F_{a+b}(x) = F_a(x) + F_b(x)$, så att addition på den kombinatoriska sidan motsvarar addition också på den algebraiska sidan.
-    
-    Bevisa sedan, om $\{c_k\}_{k=0}^\infty$ är en tredje följd, att
+    Antag att $\{a_k\}_{k=0}^\infty$, $\{b_k\}_{k=0}^\infty$, och $\{c_k\}_{k=0}^\infty$ är tre följder. Bevisa att
     $$a*(b + c) = a*b + a*c,$$
-    det vill säga att faltning distribuerar över addition.\sidenote[][]{Ledtråd: Använd genererande funktioner, specifikt vad ni bevisade i första halvan av uppgiften och Teorem \ref{convolution_is_product_of_gen_funcs}.}
+    det vill säga att faltning distribuerar över addition.\sidenote[][]{Ledtråd: Det här är lättare på den algebraiska sidan än på den kombinatoriska.}
 \end{xca}
 
 \begin{xca}
