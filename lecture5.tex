@@ -134,7 +134,7 @@ Om man genomför den beräkningen kommer man i alla fall i slutändan få följa
         \item För alla $m \geq 0$, $l \geq -m$ gäller det att
         $$\sum_{k=m}^{\infty} a_k x^{k + l} = x^l\left(\sum_{k=m}^{\infty} a_k x^{k}\right) = x^l\left(F_a(x) - \sum_{k=0}^{m-1} a_k x^k\right)$$
         \item Det gäller att\sidenote[][]{Denna räkneregel kan förstås generealiseras till att högre potenser av $k$ motsvarar högre derivator -- och om vi istället delar med någon potens av $k$ får vi primitiva funktioner till den genererande funktionen.}
-        $$\sum_{k=0}^{\infty} k a_k x^k = \frac{F_a'(x)}{x}.$$
+        $$\sum_{k=0}^{\infty} k a_k x^k = x F_a'(x).$$
         
     \end{enumerate}
     \begin{proof}
@@ -144,13 +144,13 @@ Om man genomför den beräkningen kommer man i alla fall i slutändan få följa
         $$\sum_{k=0}^{\infty} k a_k x^k = \sum_{k=1}^{\infty} k a_k x^k$$
         och sedan kommer vi ihåg att $\frac{\intd}{\dx} x^{k} = k x^{k-1}$, vilket ger oss att
         \begin{align*}
-            \sum_{k=1}^{\infty} k a_k x^k &= \frac{1}{x}\sum_{k=0}^{\infty} k a_k x^{k-1}\\
-            &= \frac{1}{x}\sum_{k=1}^{\infty} a_k \frac{\intd}{\dx} x^k
+            \sum_{k=1}^{\infty} k a_k x^k &= x\sum_{k=0}^{\infty} k a_k x^{k-1}\\
+            &= x\sum_{k=1}^{\infty} a_k \frac{\intd}{\dx} x^k
         \end{align*}
-        och vi minns att derivatan är en linjär operator, så vi kan flytta ut den ur summan och få
+        och vi minns att derivatan är en linjär operator, så vi kan flytta ut den ur summan\sidenote[][]{Ytterligare ett ställe där vi stänger av analytikern i vår hjärna, som protesterar att man inte alls i allmänhet får göra så för oändliga summor. Som formella uttryck är detta sant.} och få
         \begin{align*}
-            \frac{1}{x}\sum_{k=1}^{\infty} a_k \frac{\intd}{\dx} x^k &= \frac{1}{x} \frac{\intd}{\dx} \left(\sum_{k=1}^{\infty} a_k x^k\right)\\
-            &= \frac{1}{x}\frac{\intd}{\dx}\left(F_a(x) - a_0\right) = \frac{F_a'(x)}{x}
+            x\sum_{k=1}^{\infty} a_k \frac{\intd}{\dx} x^k &= x\frac{\intd}{\dx} \left(\sum_{k=1}^{\infty} a_k x^k\right)\\
+            &= x\frac{\intd}{\dx}\left(F_a(x) - a_0\right) = xF_a'(x)
         \end{align*}
         vilket är vad vi ville bevisa.
     \end{proof}
