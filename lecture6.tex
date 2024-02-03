@@ -222,7 +222,7 @@ Så allt vi faktiskt har gjort är att skala ner vår följd så att den inte v�
   Så vi kan antingen lösa den för hand eller med hjälp av vårt favorit-CAS, och finna lösningen
   $$\frac{1}{10} \left(\sqrt{5} e^{\left(\frac{\sqrt{5}}{2}+\frac{1}{2}\right) x}-\sqrt{5} e^{\left(\frac{1}{2}-\frac{\sqrt{5}}{2}\right) x}+5 e^{\left(\frac{\sqrt{5}}{2}+\frac{1}{2}\right) x}+5 e^{\left(\frac{1}{2}-\frac{\sqrt{5}}{2}\right) x}-10\right)$$
   vilket vår CAS\sidenote[][]{Eller vi, för hand, om vi inte är lata. Den enda funktionen som är involverad är ju $e^x$, så det är inget svårt att expandera, bara många termer att hålla ordning på.} låter oss se kan Taylorutvidgas till
-  $$\sum_{n=1}^{\infty} \frac{\left(5 - \sqrt{5}\right) \left(\frac{1 - \sqrt{5}}{2}\right)^n + \left(5 + \sqrt{5}\right) \left(\frac{1 + \sqrt{5}}{2}\right)^n}{10} \frac{x^n}{n!}$$
+  $$\sum_{n=1}^{\infty} \frac{1}{10}\left(\left(5 - \sqrt{5}\right) \left(\frac{1 - \sqrt{5}}{2}\right)^n + \left(5 + \sqrt{5}\right) \left(\frac{1 + \sqrt{5}}{2}\right)^n\right)\frac{x^n}{n!}$$
   vilket alltså ger oss en direkt formel för varje term i följden, i samma still som för Fibonaccitalen.
 \end{example}
 
