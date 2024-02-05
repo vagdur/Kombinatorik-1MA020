@@ -53,9 +53,14 @@ om vi kräver att alla $x_i$ är ickenegativa heltal. Det var ett första exempe
     $a_k^3$ vara antalet lösningar till $x_3=k$ i heltal mellan $0$ och $10$,
     och $a_k^4$ vara antalet lösningar till $x_4 = k$ i udda heltal.
 
-    Precis som i förra exemplet studerar vi nu faltningen av dessa fyra följder, och ser att
-    $$(a^1 * a^2 * a^3 * a^4)_k = \sum_{\substack{k_1, k_2, k_3, k_4\geq 0\\k_1 + k_2 + k_3 + k_4 = k}} a_{k_1}^1a_{k_2}^2a_{k_3}^3a_{k_4}^4 = a_k$$
-    eftersom $a_{k_1}^1a_{k_2}^2a_{k_3}^3a_{k_4}^4$ är en produkt av ettor och nollor -- att $k_1 + k_2 + k_3 + k_4 = k$ garanteras av definitionen av faltning, och sedan är varje term i produkten ett om värdet på $k_i$ är tillåtet av våra begränsningar, och noll annars. Så produkten är ett om summan är korrekt och varje enskild begränsning är uppfylld.
+    Precis som i det första exemplet studerar vi nu faltningen av dessa fyra följder, och ser att
+    $$(a^1 * a^2 * a^3 * a^4)_k = \sum_{\substack{k_1, k_2, k_3, k_4\geq 0\\k_1 + k_2 + k_3 + k_4 = k}} a_{k_1}^1a_{k_2}^2a_{k_3}^3a_{k_4}^4.$$
+    
+    Eftersom $a_{k_1}^1a_{k_2}^2a_{k_3}^3a_{k_4}^4$ är en produkt av ettor och nollor kommer det här uttrycket igen bara att räkna antalet termer, men nu antalet nollskiljda termer. Så vilka är de nollskiljda termerna i den här summan?
+    
+    Att $k_1 + k_2 + k_3 + k_4 = k$ garanteras av definitionen av faltning, och sedan är varje term i produkten ett om värdet på $k_i$ är tillåtet av våra begränsningar, och noll annars. Så $a_{k_1}^1$ är ett om det finns en lösning till $x_1 = k_1$ i ickenegativa heltal -- den är alltså alltid ett -- och $a_{k_2}^2$ är ett om det finns en lösning till $x_2 = k_2$ i \emph{jämna} ickenegativa heltal, alltså om $k_2$ är jämnt. 
+    
+    Vi kan resonera lika dant för $a^3$ och $a^4$, och vad vi har sett är att termen i summan är ett om $k_1 + k_2 + k_3 + k_4 = k$, och varje enskild begränsning på vad $k_i$ får vara är uppfylld. Så sammantaget måste vi ha att $(a^1 * a^2 * a^3 * a^4)_k = a_k$, precis som innan.
 
     Så precis som i förra exemplet kan vi få fram genererande funktionen för $a_k$, följden vi faktiskt är intresserade av, genom att plocka fram den genererande funktionen för de enklare följderna.
 
