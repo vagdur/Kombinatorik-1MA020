@@ -220,7 +220,7 @@ Låt oss avsluta denna föreläsning med ett enkelt resultat om dessa cykeltal.
 
 \begin{proposition}
   Det gäller för alla $n \geq 3$ att
-  $$\stirlingCycle{n}{n-3} = \frac{1}{6} (n - 2) (n - 1) n (n^3 - 31 n + 66).$$
+  $$\stirlingCycle{n}{n-3} = \frac{1}{6} (n - 2) (n - 1) n (n^3 - 6 n^2 + 11 n - 6).$$
 
   \begin{proof}
     Vi har alltså $n$ personer som skall placeras runt exakt $n - 3$ stycken runda bord, och inget av borden får bli tomt. Alltså kan vi börja med att välja $n - 3$ personer att placera ut runt borden, vilket kan göras på $\binom{n}{n - 3}$ sätt.
@@ -232,7 +232,7 @@ Låt oss avsluta denna föreläsning med ett enkelt resultat om dessa cykeltal.
       \item Vi kan låta varje person få sitt eget bord. Detta kan vi göra på $(n-3)(n-4)(n-5)$ sätt. Eftersom varje bord då bara har en eller två personer vid sig har vi ingen ordning av personerna runt borden att ta hänsyn till.
       \item Vi kan placera en person vid ett bord och två personer vid ett annat. För att göra detta behöver vi
       \begin{enumerate}
-        \item välja vilka två personer som får sitta vid bordet med tre, vilket kan göras på $\binom{3}{2} = 6$ sätt,
+        \item välja vilka två personer som får sitta vid bordet med tre, vilket kan göras på $\binom{3}{2} = 3$ sätt,
         \item välja ett bord för den som skall sitta vid ett bord med två, vilket vi kan göra på $n-3$ sätt,
         \item välja ett bord för de som skall sitta vid bordet med tre, vilket vi kan göra på $(n-4)$ sätt (eftersom ett bord redan är taget av den andre),
         \item och till sist välja en ordning på de två personerna som skall hamna på ett bord med tre, vilket vi kan göra på $2$ sätt.
@@ -242,8 +242,8 @@ Låt oss avsluta denna föreläsning med ett enkelt resultat om dessa cykeltal.
 
     Sammanställer vi allt detta, med additions- och multiplikationsprinciperna, så ser vi att vi fått att
     \begin{align*}
-      \stirlingCycle{n}{n-3} &= \binom{n}{n-3}\left((n-3)(n-4)(n-5) + 12(n-3)(n-4) + 6(n-3)\right)\\
-      &= \frac{1}{6} (n - 2) (n - 1) n (n^3 - 31 n + 66)
+      \stirlingCycle{n}{n-3} &= \binom{n}{n-3}\left((n-3)(n-4)(n-5) + 6(n-3)(n-4) + 6(n-3)\right)\\
+      &= \frac{1}{6} (n - 2) (n - 1) n (n^3 - 6 n^2 + 11 n - 6)
     \end{align*}
     såsom önskat.
   \end{proof}
