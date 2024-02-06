@@ -21,8 +21,7 @@
   \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
 
 \usepackage{graphicx}
-\usepackage{caption}
-\usepackage{subcaption}
+\usepackage{subfig}
 
 \usepackage{color,soul} % Highlights for text
 
@@ -338,16 +337,9 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
     
     \begin{figure}
         \centering
-        \begin{subfigure}{.45\textwidth}
-          \centering
-          \includegraphics[width=.9\linewidth]{graphics/noncrossing_partition.png}
-          \caption{$\{\{1,8,9\}, \{2,5,6,7\}, \{3,4\}\}$.}
-        \end{subfigure}%
-        \begin{subfigure}{.45\textwidth}
-          \centering
-          \includegraphics[width=.9\linewidth]{graphics/noncrossing_partition_two.png}
-          \caption{$\{\{1,3,4\},\{2\},\{5,6,9\},\{7,8\}\}$.}
-        \end{subfigure}
+        \subfloat[\centering $\{\{1,8,9\}, \{2,5,6,7\}, \{3,4\}\}$.]{{\includegraphics[width=.35\linewidth]{graphics/noncrossing_partition.png}}}\quad
+        \subfloat[\centering $\{\{1,3,4\},\{2\},\{5,6,9\},\{7,8\}\}$.]{{\includegraphics[width=.35\linewidth]{graphics/noncrossing_partition_two.png}}}
+        
         \caption{Två stycken ickekorsande mängdpartitioner.}
         \label{fig:two_noncrossing_partitions}
     \end{figure}
