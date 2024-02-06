@@ -285,7 +285,7 @@ Så vårt kombinatoriska bevis undvek helt att behöva fundera på rekursioner o
 Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker än bara just Dyck-stigar. I nästa föreläsning kommer vi se ett viktigt exempel. Nu, i slutet på denna, tar vi några mindre exempel.
 
 \begin{example}
-    Antalet sätt att skriva $2n$ matchande parenteser räknas av Catalantalen. Med matchande parenteser menar vi alltså ett uttryck som $(()(()))()(())$ -- och i ett uttryck som $)((()$ matchar de inte. Varje $($ måste ha en motsvarande $)$ senare i ordet, och varje $)$ måste ha ett matchande $($ senare i ordet.
+    Antalet sätt att skriva $2n$ matchande parenteser räknas av Catalantalen. Med matchande parenteser menar vi alltså ett uttryck som $(()(()))()(())$ -- och i ett uttryck som $)((()$ matchar de inte. Varje $($ måste ha en motsvarande $)$ senare i ordet, och varje $)$ måste ha ett matchande $($ tidigare i ordet.
 
     Hur bevisar vi att detta räknas av Catalantalen? Jo, vi ser att detta lyder samma rekursion som Dyck-stigarna gjorde. Varje uttryck med matchande parenteser måste börja med $($, och denna första startparentes måste matcha en slutparentes. Det som står inom dessa parenteser måste också vara ett matchande uttryck, och likaså det som står efter slutparentesen som matchar första parentesen.
 
