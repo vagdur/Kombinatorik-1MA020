@@ -115,10 +115,10 @@ vilket ser ut som något vi borde kunna använda för att räkna ut genererande 
     $$F_d(x) = \frac{1 - \sqrt{1 - 4x}}{2x}.$$
 
     \begin{proof}
-        Vi observerar att Lemma \ref{dyck_path_recursion_lemma} ger oss att för alla $n \geq 0$
+        Vi observerar att Lemma \ref{dyck_path_recursion_lemma} ger oss att för alla $n \geq 0$ så är
         $$d_{n+1} = (d*d)_n,$$
         så om vi tar genererande funktioner av bägge sidorna ser vi att vänster led blir
-        $$\sum_{n=0}^{\infty}d_{n+1}x^n = \frac{1}{x}\sum_{n=1}^{\infty} d_n x^n = \frac{F_d(x) - 1}{x}$$
+        $$\sum_{n=0}^{\infty}d_{n+1}x^n = \frac{1}{x}\sum_{n=0}^{\infty} d_{n+1} x^{n+1} = \frac{F_d(x) - 1}{x}$$
         och höger led blir
         $$F_{d * d}(x) = F_d(x)^2$$
         så att vi har att
