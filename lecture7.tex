@@ -176,9 +176,11 @@ Anledningen att vi gör allt detta arbetet är att det låter oss generalisera b
 
 Låt oss nu tillämpa vår nya kunskap på Dyckstigarna. Eftersom den genererande funktionen vi fann för deras antal involverade en kvadratrot kommer vi ju vilja tillämpa Newtons binomialsats i fallet med $r = \frac{1}{2}$, så låt oss börja med ett lemma om vad som händer i just det fallet.
 
-\begin{proposition}\label{ugly_dyck_path_formula}
-    Antalet Dyck-stigar av längd $2n$, $d_n$, ges av
-    $$d_n = 2 (-1)^{n}\binom{1/2}{n+1} 4^n.$$
+\begin{theorem}\label{theorem_dyck_paths_counted_by_catalan}
+    Antalet Dyck-stigar $d_n$ ges av
+    $$d_n = \frac{1}{n + 1}\binom{2n}{n}.$$
+
+    I själva verket är dessa tal så viktiga att de har sitt egna namn -- de kallas för \emph{Catalan-talen}.
 
     \begin{proof}
         Vi vet att den genererande funktionen för denna följd ges av
@@ -194,31 +196,36 @@ Låt oss nu tillämpa vår nya kunskap på Dyckstigarna. Eftersom den genererand
         \begin{align*}
             \frac{1 - \sqrt{1 - 4x}}{2x} &= \frac{\sum_{k=1}^{\infty} (-1)^{k-1} \binom{1/2}{k} 4^k x^k}{2x}\\
             &= \sum_{k=1}^{\infty} 2(-1)^{k-1} \binom{1/2}{k} 4^{k-1} x^{k-1}\\
-            &= \sum_{k=0}^{\infty} 2 (-1)^{k}\binom{1/2}{k+1} 4^k x^k
+            &= \sum_{k=0}^{\infty} 2 (-4)^{k}\binom{1/2}{k+1} x^k
         \end{align*}
-        vilket genom att jämföra koefficienter ger oss resultatet.
+        från vilket vi kan läsa av att
+        $$d_n = 2 (-4)^{n}\binom{1/2}{n+1}.$$
+
+        Låt oss nu försöka förenkla denna formel. Vi börjar med att skriva ut vad definitionen av $\binom{1/2}{n+1}$ är, och får att
+        \begin{align*}
+            d_n &= 2 (-4)^{n}\binom{1/2}{n+1}\\
+            &= 2 (-4)^n \frac{(1/2)^{\underline{n+1}}}{(n+1)!}\\
+            &= 2 (-4)^n \frac{(1/2)(1/2 - 1)(1/2 - 2)\ldots(1/2 - n)}{(n+1)!}\\
+            &= 2 (-4)^n \frac{(1/2)(-1/2)(-3/2)(-5/2)\ldots(-(2n-1)/2)}{(n+1)!}\\
+            &= (-4)^n \frac{(-1)^n 1\cdot3\cdot5\cdot\ldots\cdot(2n-1)}{2^n (n+1)!}\\
+            &= 2^n \frac{1}{(n+1)!}\left(\prod_{k \in [2n], k \not\in2\Z} k\right).
+        \end{align*}
+
+        Nu kan vi observera att
+        $$\prod_{k \in [2n], k \not\in2\Z} k = \left(\prod_{k \in [2n], k \not\in2\Z} k\right)\frac{\prod_{k \in [2n], k \in2\Z} k}{\prod_{k \in [2n], k \in2\Z} k} = \frac{(2n)!}{\prod_{k \in [2n], k \in2\Z} k}$$
+        och om vi bryter ut en tvåa ur varje term i produkten över alla jämna heltal ser vi att
+        $$\prod_{k \in [2n], k \in2\Z} k = 2^n n!$$
+        så sammantaget har vi sett att
+        $$\prod_{k \in [2n], k \not\in2\Z} k = \frac{(2n)!}{2^n n!}.$$
+
+        Om vi stoppar in detta i vårt uttryck för $d_n$ vi hade innan så ser vi att
+        \begin{align*}
+            d_n &= 2^n \frac{1}{(n+1)!}\left(\prod_{k \in [2n], k \not\in2\Z} k\right)\\
+            &= 2^n \frac{1}{(n+1)!}\frac{(2n)!}{2^n n!}\\
+            &= \frac{(2n)!}{(n+1)!(n!)} = \frac{1}{n+1} \frac{(2n)!}{n!n!} = \frac{1}{n+1}\binom{2n}{n},
+        \end{align*}
+        vilket är formeln vi ville bevisa.
     \end{proof}
-\end{proposition}
-
-Så vi har hittat \emph{en} formel, men den är inte särskilt vacker. Även om vi intellektuellt vet att den borde ge oss heltal är det inte alls uppenbart, med den fraktionella binomialkoefficienten och allt.
-
-Kan vi hitta en vackrare formel? Svaret är ja, och det finns flera sätt för oss att göra det. Om vi hade haft mer uthållighet med krångliga räkningar hade vi kunna bevisa följande lemma, vilket låter oss förenkla uttrycket vi fick i Proposition \ref{ugly_dyck_path_formula}:
-
-\begin{lemma}\label{lemma_onehalf_binom_coeff}
-    Det gäller att
-    $$\binom{1/2}{n} = \frac{(-1)^{n+1}}{4^n(2n-1)}\binom{2n}{n}.$$
-    \begin{proof}
-        Utelämnas. Om du verkligen vill se en räkning för detta finns det ett bevis för något snarlikt, som borde gå att förenkla till detta, på stackexchange.\cite{dyck_path_stackexchange}
-    \end{proof}
-\end{lemma}
-
-När vi tagit detta Lemma \ref{lemma_onehalf_binom_coeff} och stoppat in det i Proposition \ref{ugly_dyck_path_formula} får vi följande mycket vackrare formel:
-
-\begin{theorem}\label{theorem_dyck_paths_counted_by_catalan}
-    Antalet Dyck-stigar $d_n$ ges av
-    $$d_n = \frac{1}{n + 1}\binom{2n}{n}.$$
-
-    I själva verket är dessa tal så viktiga att de har sitt egna namn -- de kallas för \emph{Catalan-talen}.
 \end{theorem}
 
 Så vi har till slut hittat en fin formel för antalet Dyck-stigar, och alltså för Catalantalen. Tyvärr var vägen vi tog dit väldigt lerig, i botten på en hopväxt och snårig dal. Finns det ett mindre kladdigt sätt att hitta denna formel?\sidenote[][]{Vårt arbete med att ta fram denna formel för antalet Dyck-stigar illustrerar både för- och nackdelarna med metoden med genererande funktioner. Det är en pålitlig metod, med tydliga steg för vad vi vill göra -- efter att vi hittade rekursionen vi började med behövde vi aldrig egentligen vara kreativa, utan vi kom fram till målet genom att bara följa vårt recept.
