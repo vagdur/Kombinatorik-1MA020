@@ -178,7 +178,7 @@ Låt oss nu tillämpa vår nya kunskap på Dyckstigarna. Eftersom den genererand
 
 \begin{proposition}\label{ugly_dyck_path_formula}
     Antalet Dyck-stigar av längd $2n$, $d_n$, ges av
-    $$d_n = 2 (-1)^{n+1}\binom{1/2}{n+1} 4^n.$$
+    $$d_n = 2 (-1)^{n}\binom{1/2}{n+1} 4^n.$$
 
     \begin{proof}
         Vi vet att den genererande funktionen för denna följd ges av
@@ -192,9 +192,9 @@ Låt oss nu tillämpa vår nya kunskap på Dyckstigarna. Eftersom den genererand
         
         När $k=0$ så blir $\binom{1/2}{0} = \frac{(1/2)^{\underline{0}}}{0!} = \frac{1}{1}$, och alltså är hela nollte termen lika med ett. Så alltså gäller det att
         \begin{align*}
-            \frac{1 - \sqrt{1 - 4x}}{2x} &= \frac{\sum_{k=1}^{\infty} (-1)^k \binom{1/2}{k} 4^k x^k}{2x}\\
-            &= \sum_{k=1}^{\infty} 2(-1)^k \binom{1/2}{k} 4^{k-1} x^{k-1}\\
-            &= \sum_{k=0}^{\infty} 2 (-1)^{k+1}\binom{1/2}{k+1} 4^k x^k
+            \frac{1 - \sqrt{1 - 4x}}{2x} &= \frac{\sum_{k=1}^{\infty} (-1)^{k-1} \binom{1/2}{k} 4^k x^k}{2x}\\
+            &= \sum_{k=1}^{\infty} 2(-1)^{k-1} \binom{1/2}{k} 4^{k-1} x^{k-1}\\
+            &= \sum_{k=0}^{\infty} 2 (-1)^{k}\binom{1/2}{k+1} 4^k x^k
         \end{align*}
         vilket genom att jämföra koefficienter ger oss resultatet.
     \end{proof}
