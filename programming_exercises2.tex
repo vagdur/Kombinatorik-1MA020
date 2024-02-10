@@ -79,6 +79,23 @@ Som vi observerade redan i förra Övningstillfället så är det viktigt att v�
     Använd er kod för att, för varje $n$ mellan $1$ och $100$, skatta vad denna yta i genomsnitt blir, och rita upp en graf över hur den växer med $n$.
 \end{xca}
 
+\section{Genererande funktioner}
+
+\begin{xca}
+    Låt följden $d_{n,k}$ ges av att $d_{1,1} = d_{1,2} = 1$,
+    $$d_{1,k} = d_{1,k-1} + d_{1,k-2} \quad \forall k \geq 3,$$
+    samt
+    $$d_{n,k} = \sum_{i=1}^k d_{n-1,i}$$
+    för alla $n \geq 2$ och $k \geq 1$.
+
+    Beräkna\sidenote[][-3cm]{Poängen med denna uppgift är så klart att den naiva metoden för att räkna ut detta skulle ta orimligt mycket tid, så man behöver använda någon smartare metod för att göra räkningen. För att hantera de rent algebraiska bitarna av räkningen med genererande funktioner kan nog ett lämpligt CAS vara behjälpligt, dessutom.
+
+    Det finns antagligen mer än en möjlig metod, så här är två tips på möjliga riktningar: \emph{faltningar} och \emph{multivariata genererande funktioner}. (De senare har vi inte gått igenom i kursen, dock.)
+    
+    Den här övningen är definitivt svårare än den förra -- så en partiell lösning i vilken man t.ex. bara hittar en genererande funktion kan så klart ge partiella poäng.}
+    $$d_{50000, 10^{10}} \mod 998244353.$$
+\end{xca}
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
