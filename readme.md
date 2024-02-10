@@ -27,7 +27,7 @@ Vi sammanfattar hela kursen kortfattat, vad varje föreläsning innehöll och ny
 # Övningar för övningstillfällen
 
 1. Första övningstillfället har [övningar](https://vagdur.github.io/Kombinatorik-1MA020/analytical_exercises1.pdf) och [programmeringsövningar](https://vagdur.github.io/Kombinatorik-1MA020/programming_exercises1.pdf).
-2. Andra övningstillfället har [övningar](https://vagdur.github.io/Kombinatorik-1MA020/analytical_exercises2.pdf) (Ännu ej färdigskrivna) och [programmeringsövningar](https://vagdur.github.io/Kombinatorik-1MA020/programming_exercises2.pdf).
+2. Andra övningstillfället har [övningar](https://vagdur.github.io/Kombinatorik-1MA020/analytical_exercises2.pdf) och [programmeringsövningar](https://vagdur.github.io/Kombinatorik-1MA020/programming_exercises2.pdf).
 
 # Ställen att hitta artiklar på
 
