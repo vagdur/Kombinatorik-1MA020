@@ -34,6 +34,73 @@
 Detta dokument innehåller en samling övningar i kombinatorik som inte kräver någon programmering, utan är avsedda att lösas med papper och penna. Merparten av dessa problem är svårare än potentiella tentaproblem, eftersom de är avsedda att lösas i grupp över en längre tid, inte snabbt och individuellt i en tentasal.
 \end{abstract}
 
+\begin{xca}
+    Vi har en följd $\{f_n\}_{n=1}^\infty$ som ges av rekursionen
+    $$f(1) = 1,\quad f(2n) = f(n),\quad f(2n + 1) = f(n) + f(n + 1).$$
+
+    Låt $F$ vara den ordinära genererande funktionen för $f$,
+    alltså
+    $$F(x) = \sum_{n=1}^{\infty} f_n x^n.$$
+    
+    Visa att vi, om vi låter $G(x) = F(x)/x$, har att
+    $$G(x) = \left(1 + x + x^2\right)G(x^2),$$
+    och således har att
+    $$F(x) = \frac{1}{x}\prod_{j = 0}^{\infty} \left(1 + x^{2^j} + x^{2^{j+1}}\right).$$
+\end{xca}
+
+\begin{xca}
+    Låt $X$ vara en slumpvariabel som tar värdena $0, 1, 2,\ldots$ med sannolikheterna $p_0, p_1, p_2\ldots$ och så vidare.\sidenote[][]{Om du inte redan vet vad termerna i den här uppgiften betyder är detta ett bra tillfälle att fräscha upp ditt minne av grundläggande sannolikhetsteori -- det kommer att dyka upp senare i kursen. Visserligen kommer vi ge definitioner då, men antagandet kommer ändock att vara att ni har sett det innan och bara behöver en påminnelse.} Låt $P(x)$ vara genererande funktionen för följden $\{p_n\}_{n=0}^\infty$.
+
+    \begin{enumerate}
+        \item Finn uttryck för väntevärdet $\E{X}$ och standardavvikelsen $\sigma(X)$ enbart i termer av $P(x)$.
+        \item Antag att $Y$ dras från samma fördelning som $X$, oberoende av $X$. Vad är sannolikheten $p_n^{(2)}$ att deras summa blir $n$? Låt $P_2(x)$ vara den genererande funktionen för följden $p_n^{(2)}$, och finn ett uttryck för den i termer av $P(x)$.
+        \item Mer generellt, antag att $X_1, X_2, \ldots, X_k$ alla dras oberoende från vår givna fördelning. Låt
+        $$p_n^{(k)} = \Prob{X_1 + X_2 + \ldots + X_k = n},$$
+        och låt $P_k(x)$ vara den genererande funktionen för följden $p_n^{(k)}$. Uttryck denna i termer av $P(x)$.
+    \end{enumerate}
+\end{xca}
+
+\section{Räkna delmängder till $[n]$ utan konsekutiva medlemmar}
+
+Låt $f_n$ vara antalet delmängder till $[n]$ som inte innehåller både $k$ och $k+1$ för något $k$, och låt $f_{n,k}$ vara antalet delmängder av storlek $k$ till $[n]$ som inte innehåller både $k$ och $k+1$ för något $k$. Vi studerar nu dessa två talföljder i resten av våra övningar.
+
+\begin{xca}\label{xca:subsetcount_easy}
+    Finn en rekursion för $f_n$, och använd denna rekursion för att hitta ett enkelt uttryck för $f_n$.
+\end{xca}
+
+\begin{xca}\label{xca:subsetcount_hard_multivariate}
+    Finn en rekursion för $f_{n,k}$.
+    
+    Vi definierar den \emph{bivariata genererande funktionen} för denna följd genom följande dubbelsumma
+    $$F(x,y) = \sum_{n=1,k=1}^{\infty} f_{n,k} x^n y^k.$$
+    Använd rekursionen ni fann för $f_{n,k}$ för att finna en sluten form för $F$.\sidenote[][]{Vi kan använda samma metod som vi först använde för att hitta genererande funktionen för Fibonacci-talen -- och även i detta fall kommer svaret att bli en rationell funktion, men nu i $x$ och $y$.}
+\end{xca}
+
+\begin{xca}
+    Studera uttrycket
+    $$\left.\frac{\partial}{\partial y} F(x,y)\right|_{(x,1)},$$
+    alltså partialderivatan av $F$ med avseende på $y$, utvärderad i punkten $(x,1)$. Vad är koefficienten framför $x^n$ i detta uttryck?
+
+    Räkna sedan faktiskt ut denna derivata, och känn igen uttrycket ni får som en genererande funktion. Använd detta för att ge en ny likhet som involverar $f_{n,k}$.
+\end{xca}
+
+\begin{xca}\label{xca:subsetcount_hard_monovariate}
+    Finn en sluten form för $f_{n,k}$. Det finns två huvudsakliga sätt ni kan gå tillväga:
+    \begin{enumerate}
+        \item Studera funktionen $F(x,y)$ som ni redan hittat, och finn koefficienten för $x^n y^k$ i detta uttryck direkt.
+        \item Definiera istället den ordinära genererande funktionen $F_k(x)$ genom att
+        $$F_k(x) = \sum_{n=1}^{\infty} f_{n,k}x^n$$
+        för varje $k$, och använd rekursionen ni funnit för att finna ett uttryck för denna för varje $k$. Finn sedan koefficienten för $x^n$ i $F_k$ för varje par av $n$ och $k$.
+    \end{enumerate}
+\end{xca}
+
+\begin{xca}\label{xca:subsetcount_assemble}
+    Fyll i vad ni funnit i Övning~\ref{xca:subsetcount_easy} och Övning~\ref{xca:subsetcount_hard_monovariate} i den uppenbara likheten
+    $$f_n = \sum_{k=0}^{n} f_{n,k},$$
+    och observera att vi funnit en ny likhet för $f_n$.
+\end{xca}
+
+\noindent\textbf{Bonus:} Formlerna som vi härlett här med genererande funktioner är ju lockande enkla. Kan vi finna ett kombinatoriskt bevis för någon av dem?\sidenote[][]{Förutom för Övning~\ref{xca:subsetcount_easy} har jag inte själv funderat på denna frågan -- så det här är inte en del av övningarna. Men om någon hittar ett kombinatoriskt bevis av de senare formlerna vore det intressant att se.}
 
 %\bibliography{references}
 %\bibliographystyle{plainnat}
