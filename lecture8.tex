@@ -81,7 +81,7 @@ Vårt första ämne i denna föreläsning är grafer och träd, som kommer dyka 
 
     Ett \emph{träd} är en sammanhängande graf utan cykler. Ett \emph{rotat} träd är ett träd med en specifik nod utpekad som dess rot.\sidenote[][]{Så om trädet är oetiketterat kan vi alltså se vilken nod som är roten, men resten av noderna kan vi inte se skillnad på, bara vilka som hänger ihop med vilka med kanter.} I ett rotat träd har varje nod utom roten själv en granne som är närmre roten än sig\sidenote[][]{Eller är roten.}, vilken vi kallar dess \emph{förälder}. Alla dess andra grannar kallar vi dess \emph{barn}. En nod utan barn kallar vi för ett \emph{löv}, och en nod som inte är ett löv kallar vi för \emph{intern}.
 
-    Ifall det spelar roll i vilken ordning vi ritat noderna kallar vi trädet \emph{ordnat}, se figur \ref{fig:distinct_only_as_ordered}.
+    Ifall det spelar roll i vilken ordning vi ritat noderna kallar vi trädet \emph{ordnat}, se Figur~\ref{fig:distinct_only_as_ordered}.
 
     \begin{marginfigure}
         \centering
@@ -281,7 +281,7 @@ För att kunna ge detta bevis behöver vi definiera några till koncept.
 
     Så om vi kan hitta en formel för $N(F_k)$ är vi klara. Vi gör detta genom att räkna $N^*(F_k)$ på två olika sätt. Först går vi från $F_k$ till $F_1$, och sedan i motsatt riktning.
 
-    Givet ett $F_k$, hur många val har vi av av $F_{k-1}$? Eftersom $F_{k-1}$ ska ha ett träd färre, måste vi foga ihop två träd med en kant. Den här kanten kan utgå från vilken nod som helst, och skall träffa en av de $k-1$ rötterna till andra träd än det träd noden själv är i.\sidenote[][]{Den måste träffa en rot för att riktningen på kanterna skall förbli konsekvent -- om den träffade en ickerot hade vi fått en nod som är slutnod för två kanter, och alltså har två föräldrar, vilket vi inte tillåter.} I figur \ref{fig:two_rooted_forests} kan vi till exempel få $F_2$ från $F_3$ genom att rita dit en kant från $3$ till $7$, som är roten för sitt träd.
+    Givet ett $F_k$, hur många val har vi av av $F_{k-1}$? Eftersom $F_{k-1}$ ska ha ett träd färre, måste vi foga ihop två träd med en kant. Den här kanten kan utgå från vilken nod som helst, och skall träffa en av de $k-1$ rötterna till andra träd än det träd noden själv är i.\sidenote[][]{Den måste träffa en rot för att riktningen på kanterna skall förbli konsekvent -- om den träffade en ickerot hade vi fått en nod som är slutnod för två kanter, och alltså har två föräldrar, vilket vi inte tillåter.} I Figur~\ref{fig:two_rooted_forests} kan vi till exempel få $F_2$ från $F_3$ genom att rita dit en kant från $3$ till $7$, som är roten för sitt träd.
 
     Vi kan alltså välja $F_{k-1}$ givet $F_k$ på $n(k-1)$ sätt. Precis samma argument ger att vi kan välja $F_{k-2}$ givet $F_{k-1}$ på $n(k-2)$ sätt, och så vidare. Så totalt kan vi välja vår följd $F_k, F_{k-1}, \ldots, F_1$ på
     $$N^*(F_k) = n^{k-1}(k-1)!$$
@@ -329,7 +329,7 @@ För att kunna ge detta bevis behöver vi definiera några till koncept.
 \end{xca}
 
 \begin{xca}
-    Betrakta figur \ref{fig:five_graphs_for_exercise}, med fem olika riktade etiketterade grafer ritade. Vilka grafer är delgrafer till vilka?
+    Betrakta Figur~\ref{fig:five_graphs_for_exercise}, med fem olika riktade etiketterade grafer ritade. Vilka grafer är delgrafer till vilka?
 
     \begin{figure}
         \centering
