@@ -180,7 +180,7 @@ Så vi ser i alla fall att vår formel gäller för $n$ upp till fem. Vi väljer
 \begin{proof}[Prüfers bevis av Cayleys formel (1918)]
     Vi vill visa på en bijektion mellan mängden av etiketterade träd på $n$ noder och mängden av ord av längd $n-2$ ur alfabetet $[n]$. Att den senare mängden har rätt antal element vet vi sedan innan, så om vi kan hitta en bijektion är vi klara.
 
-    Vi börjar med att berätta hur vi skapar vårt ord givet ett etiketterat träd.\sidenote[][-0.5cm]{Detta ord kallas för trädets \emph{Prüferkod}.} Vi letar upp det löv\sidenote[][]{Strikt sett har vi hittills bara definierat \emph{löv} för rotade träd -- och de träd vi studerar här har ju ingen rot-nod. Med ``löv'' menar vi här ``nod med bara en granne''.} som har lägst etikett, skriver dess etikett som första bokstav i vårt ord, och tar sedan bort noden ur trädet.
+    Vi börjar med att berätta hur vi skapar vårt ord givet ett etiketterat träd.\sidenote[][-0.5cm]{Detta ord kallas för trädets \emph{Prüferkod}.} Vi letar upp det löv\sidenote[][]{Strikt sett har vi hittills bara definierat \emph{löv} för rotade träd -- och de träd vi studerar här har ju ingen rot-nod. Med ``löv'' menar vi här ``nod med bara en granne''.} som har lägst etikett, skriver etiketten på lövets granne som första bokstav i vårt ord, och tar sedan bort lövet ur trädet.
 
     \begin{figure}
         \centering
