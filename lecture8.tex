@@ -99,7 +99,7 @@ Vårt första ämne i denna föreläsning är grafer och träd, som kommer dyka 
 
 Låt oss nu återse en gammal vän, Catalantalen.
 
-\begin{proposition}
+\begin{proposition}\label{prop:ROBUT_count}
     Antalet rotade ordnade binära oetiketterade träd med $n$ stycken interna noder ges av Catalantalen.
 
     \begin{proof}
@@ -119,7 +119,7 @@ Låt oss nu återse en gammal vän, Catalantalen.
 
 I själva verket räknas också godtyckliga oetiketterade ordnade träd av Catalantalen, utan något krav på att de skall vara binära.
 
-\begin{proposition}
+\begin{proposition}\label{prop:ROUT_count}
     Antalet rotade ordnade oetiketterade träd på $n+1$ noder ges av Catalantalen.\sidenote[][]{Notera att vi här räknar \emph{alla} noder, inte bara de interna, som vi gjorde för de binära träden.}
 
     \begin{proof}
@@ -316,6 +316,12 @@ För att kunna ge detta bevis behöver vi definiera några till koncept.
     \end{figure}
 
     Hur många olika sätt finns det att sätta etiketter på detta träd?\sidenote[][-1.1cm]{Vi resonerade om detta för några små träd precis efter att vi introducerade Cayleys formel, men här har vi alltså ett mer generellt fall.} Ge en formel som gäller för alla $i, j, k = 0, 1, 2,\ldots$.\sidenote[][]{Finns det några specialfall för särskilda kombinationer av värden på $i$, $j$, och $k$?}
+\end{xca}
+
+\begin{xca}
+    Vi visade i Proposition~\ref{prop:ROBUT_count} att antalet rotade ordnade binära oetiketterade träd på $n-1$ interna noder ges av Catalantalen, och i Proposition~\ref{prop:ROUT_count} att antalet rotade ordnade oetiketterade träd på $n+1$ noder ges av Catalantalen. Alltså måste det specifikt finnas lika många av dessa två olika sorters träd.
+
+    Finn en explicit bijektion mellan dessa mängder av träd.\sidenote[][]{Om ni vill ha en ledtråd kan ni leta upp hur programspråket Lisp representerar träd.}
 \end{xca}
 
 \begin{xca}
