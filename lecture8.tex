@@ -273,6 +273,8 @@ För att kunna ge detta bevis behöver vi definiera några till koncept.
 
     Nyckelidén i vårt bevis är \emph{klyvande följder} av rotade skogar. Vi säger att en följd $F_1, F_2,\ldots, F_k$ av rotade skogar på $n$ noder är \emph{klyvande} om varje $F_i$ består av $i$ stycken träd, och $F_{i}$ innehåller $F_{i+1}$ för varje $i$.
 
+    Vad som händer i den här definitionen är alltså att vi börjar med ett träd $F_1$, sedan klyver vi detta träd i två genom att ta bort en kant och får skogen $F_2$, och sedan klyver vi ett av träden i $F_2$ genom att ta bort ytterligare en kant och får skogen $F_3$ på tre träd, och så vidare.
+
     Låt nu $F_k \in \mathcal{F}_{n,k}$ vara en fix skog, och beteckna
     \begin{itemize}
         \item antalet rotade \emph{träd} som innehåller $F_k$ med $N(F_k)$, och
