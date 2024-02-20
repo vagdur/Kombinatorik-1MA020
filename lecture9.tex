@@ -109,8 +109,8 @@ Vi kan också använda våra kunskaper från tidigare föreläsningar för att l
     Så vi kan räkna ut att
     \begin{align*}
         \Prob{\text{Ingen har sin egen jacka}} &= \Prob{\left\{\omega \in S_n: \omega(i) \neq i\, \forall i\right\}}\\
-        &= \sum_{\omega \in S_n: \omega(i) \neq i\, \forall i} \mu(\omega)\\
-        &= \sum_{\omega \in S_n: \omega(i) \neq i\, \forall i} \frac{1}{n!}\\
+        &= \sum_{\substack{\omega \in S_n\\\omega(i) \neq i\, \forall i}} \mu(\omega)\\
+        &= \sum_{\substack{\omega \in S_n\\\omega(i) \neq i\, \forall i}} \frac{1}{n!}\\
         &= \frac{1}{n!}\abs{\left\{\omega \in S_n: \omega(i) \neq i\, \forall i\right\}}\\
         &= \frac{1}{n!}n!\sum_{k=0}^{n} \frac{(-1)^k}{k!} = \sum_{k=0}^{n} \frac{(-1)^k}{k!}
     \end{align*}
@@ -154,7 +154,7 @@ Rent konkret gör vi detta med följande definition:
     $$\Prob{A} = \sum_{i=1}^{k} \Prob{A \given B_i}\Prob{B_i}.$$
 
     I en enkel form får vi alltså för \emph{alla} par av händelser $A$ och $B$ att
-    $$\Prob{A} = \Prob{A \given B}\Prob{B} + \Prob{A \given B^c}\Prob{B}.$$
+    $$\Prob{A} = \Prob{A \given B}\Prob{B} + \Prob{A \given B^c}\Prob{B^c}.$$
 \end{lemma}
 
 \begin{example}
@@ -217,7 +217,7 @@ Vår första tillämpning är på Ramseytalen, som vi redan sett innan som ett e
 \begin{definition}
     Tänk att vi tar den fullständiga grafen $K_n$\sidenote[][]{Alltså grafen som har $n$ noder, och varje par av noder har en kant mellan dem.} och målar alla dess kanter antingen röda eller blå.
 
-    \emph{Ramseytalet} $R(k,\ell)$ är det minsta heltalet $n$ sådant att det måste finnas antingen en delmängd av $k$ noder i $K_n$ sådana att alla kanter mellan dem är röda, eller en delmängd av $\ell$ noder sådana att alla kanter mellan dem är blå. Vi kallar sådana delmängder för \emph{monokromatiska delgrafer}.
+    \emph{Ramseytalet} $R(k,\ell)$ är det minsta heltalet $n$ sådant att det måste finnas antingen en delmängd av $k$ noder i $K_n$ sådana att alla kanter mellan dem är röda, eller en delmängd av $\ell$ noder sådana att alla kanter mellan dem är blå. Vi kallar sådana delmängder för \emph{monokromatiska} delmängder.
 \end{definition}
 
 Vi konstaterade när vi först introducerade dessa tal att det är svårt att bevisa saker om dem bortom att de är ändliga, vilket är vad vi gjorde i en övning då. Nu har vi kommit långt nog att vi kan bevisa en faktisk olikhet för dem.
@@ -230,7 +230,7 @@ Vi konstaterade när vi först introducerade dessa tal att det är svårt att be
     för alla $k\geq 3$.
 
     \begin{proof}
-        Hur bevisar man att $R(k,k)$ måste vara större än ett visst givet $n$? Jo, Ramseytalet är ju per definition det minsta $n$ sådant att alla färgningar av kanterna till $K_n$ har en monokromatisk delgraf av storlek $k$. Alltså måste vi påvisa någon färgning av kanterna till $K_n$ som inte har en monokromatisk delgraf av någondera färgen.
+        Hur bevisar man att $R(k,k)$ måste vara större än ett visst givet $n$? Jo, Ramseytalet är ju per definition det minsta $n$ sådant att alla färgningar av kanterna till $K_n$ har en monokromatisk delgraf av storlek $k$. Alltså måste vi påvisa någon färgning av kanterna till $K_n$ som inte har en monokromatisk delmängd av någondera färgen.
 
         Det här låter ju som något som kräver en väldigt smart konstruktion. Det stämmer -- i själva verket en så smart konstruktion att vi inte faktiskt förmår hitta den.
 
@@ -238,16 +238,16 @@ Vi konstaterade när vi först introducerade dessa tal att det är svårt att be
 
         Så, vi tänker oss att vi singlar en slant för varje kant i $K_n$, där myntets två sidor är ``röd'' och ``blå'' -- och våra slantsinglingar är oberoende av varandra. Vårt utfallsrum blir då lika med mängden av funktioner från $E(K_n)$, kanter i $K_n$, till mängden $\{\text{röd}, \text{blå}\}$, där varje blir lika sannolik. Vi kallar våra funktioner $\omega$, och låter alltså $\omega(i,j)$ vara färgen på kanten mellan $i$ och $j$.
 
-        Vad är sannolikheten att vår resulterande graf har en monokrom delgraf av storlek $k$? Jo, om vi för varje delmängd $A$ till $[n]$ av storlek $k$ låter $R_A$ vara händelsen att $A$ är monokromt röd och $B_A$ vara händelsen att $B_A$ är monokromt blå,\sidenote[][]{Vill man vara rigorös låter vi alltså
+        Vad är sannolikheten att vår resulterande färgning har en monokrom delmängd av storlek $k$? Jo, om vi för varje delmängd $A$ till $[n]$ av storlek $k$ låter $R_A$ vara händelsen att $A$ är monokromt röd och $B_A$ vara händelsen att $A$ är monokromt blå,\sidenote[][]{Vill man vara rigorös låter vi alltså
         $$R_A = \left\{\omega: \forall i, j \in A: \omega(i,j) = \text{röd}\right\}$$
         och
-        $$B_A = \left\{\omega: \forall i, j \in A: \omega(i,j) = \text{blå}\right\}.$$} så blir händelsen att det finns \emph{någon} monokrom delgraf av den storleken precis\sidenote[][]{Den här notationen kan vara aningen förvirrande innan man tänkt efter -- vi tar en union av en samling mängder, där \emph{index} för summan också är mängder. Men det vi tar unionen över är händelserna $R_A \cup B_A$, inte indexen $A$.}
+        $$B_A = \left\{\omega: \forall i, j \in A: \omega(i,j) = \text{blå}\right\}.$$} så blir händelsen att det finns \emph{någon} monokrom delgraf av den storleken precis\sidenote[][]{Den här notationen kan vara aningen förvirrande innan man tänkt efter -- vi tar en union av en samling mängder, där \emph{index} för unionen också är mängder. Men det vi tar unionen över är händelserna $R_A \cup B_A$, inte indexen $A$.}
         $$\bigcup_{A \in \binom{[n]}{k}} R_A \cup B_A.$$
 
         Hittills verkar det ju inte som att vi gjort några större framsteg -- vi har gått från att behöva göra en väldigt smart konstruktion till att behöva förstå en väldigt invecklad mängd av funktioner, som definierats som en union med index i en bunt mängder... Det är här Unionsbegränsningen visar sin kraft, och låter oss lösa ett mycket mycket enklare problem -- för om vi tillämpar den så får vi ju att
         $$\Prob{\bigcup_{A \in \binom{[n]}{k}} R_A \cup B_A} \leq \sum_{A\in \binom{[n]}{k}} \Prob{R_A} + \Prob{B_A}.$$
 
-        Vi behöver alltså inte alls förstå oss på den komplicerade unionen, vi behöver bara förstå sannolikheterna för $R_A$ och $B_A$ -- och de är mycket enklare, eftersom de ju specificerar precis var den monokroma delgrafen skall finnas: Den skall ligga i $A$.
+        Vi behöver alltså inte alls förstå oss på den komplicerade unionen, vi behöver bara förstå sannolikheterna för $R_A$ och $B_A$ -- och de är mycket enklare, eftersom de ju specificerar precis vilken den monokroma delmängden skall vara: Den skall vara $A$.
 
         Så vad är sannolikheten att just $A$ innehåller enbart röda kanter, alltså sannolikheten för $R_A$? Jo, den innehåller totalt $\binom{k}{2}$ kanter, och för varje av dessa kanter måste myntet visa den röda sidan. Eftersom våra slantsinglingar är oberoende måste sannolikheten att alla blir röda vara produkten av sannolikheterna för varje mynt att bli rött. Alltså tar vi produkten av $\binom{k}{2}$ stycken $1/2$, och får att
         $$\Prob{R_A} = 2^{-\binom{k}{2}}$$
@@ -260,7 +260,7 @@ Vi konstaterade när vi först introducerade dessa tal att det är svårt att be
         \end{align*}
         och här kan vi känna igen uttrycket vi antog i formuleringen av satsen var mindre än ett.
 
-        Alltså har vi bevisat att sannolikheten att vår slumpmässiga färgning av $K_n$ har en monokromatisk delgraf är mindre än ett -- så sannolikheten att den inte har det är större än noll. Men om sannolikheten för detta är större än noll måste det specifikt finnas ett utfall som inte har en monokromatisk delgraf -- så vi har hittat vårt exempel på en sådan färgning, helt utan att explicit konstruera det.
+        Alltså har vi bevisat att sannolikheten att vår slumpmässiga färgning av $K_n$ har en monokromatisk delmängd är mindre än ett -- så sannolikheten att den inte har det är större än noll. Men om sannolikheten för detta är större än noll måste det specifikt finnas ett utfall som inte har en monokromatisk delmängd -- så vi har hittat vårt exempel på en sådan färgning, helt utan att explicit konstruera det.
     \end{proof}
 \end{proposition}
 
@@ -312,7 +312,7 @@ Vi konstaterade när vi först introducerade dessa tal att det är svårt att be
     Vad är sannolikheten att du får precis $k$ stycken krona?\sidenote[][]{Ledtråd: Betrakta ditt utfallsrum som samlingen av ord av längd $n$ ur alfabetet $\{\text{krona},\text{klave}\}$. Vad bör $\mu(\omega)$ vara för varje givet $\omega$?}
 \end{xca}
 
-\begin{xca}[Svår, frivillig på inlämningsuppgiften]
+\begin{xca}
     Antag att vi har en samling av händelser $A_1, A_2, \ldots, A_n$, och låt, för varje $1 \leq k \leq n$,
     $$\chi_k = \sum_{j=1}^{k} (-1)^{j+1}\sum_{\substack{I \subseteq [n]\\\abs{I} = j}} \Prob{\bigcap_{i\in I} A_i}.$$
     
@@ -324,10 +324,7 @@ Vi konstaterade när vi först introducerade dessa tal att det är svårt att be
     $$\Prob{\bigcup_{i=1}^n A_i} = \chi_n.$$
 
     Bevisa att vi i allmänhet har att
-    $$\Prob{\bigcup_{i=1}^n A_i} \leq \chi_k$$
-    för udda $k$ och
-    $$\Prob{\bigcup_{i=1}^n A_i} \geq \chi_k$$
-    för jämna $k$.
+    $$\Prob{\bigcup_{i=1}^n A_i} \leq \chi_k\quad\text{för udda } k\text{ och}\qquad\Prob{\bigcup_{i=1}^n A_i} \geq \chi_k\quad\text{för jämna }k.$$
 \end{xca}
 
 %\bibliography{references}
