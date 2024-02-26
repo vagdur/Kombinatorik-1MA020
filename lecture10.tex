@@ -332,29 +332,30 @@ Ett exempel på en lokal struktur är ifall vi har isolerade noder -- om vi tän
         så vad vi behöver räkna ut är sannolikheten att en viss given nod är isolerad.
 
         Detta är en relativt enkel beräkning -- det finns $n-1$ noder som $i$ hade kunnat ha en kant till, och varje kant finns med sannolikhet $p$, oberoende av varje annan kant. Alltså är sannolikheten att inga av kanterna finns $(1-p)^{n-1}$, och vi har att
-        $$\E{\abs{I}} = \sum_{i=1}^{n} \Prob{I_i} = n(1-p)^{n-1}$$
-        och Markovs olikhet ger oss nu, för varje $C > 0$, att
+        $$\E{\abs{I}} = \sum_{i=1}^{n} \Prob{I_i} = n(1-p)^{n-1}.$$
+        
+        Markovs olikhet ger oss nu, för varje $C > 0$, att
         \begin{equation}\label{eq_markov_isolated_verts}
-            \Prob{\abs{I} > C\nu} < \frac{1}{C}.
+            \Prob{\abs{I} > C\E{\abs{I}}} < \frac{1}{C}.
         \end{equation}
 
-        Hur omvandlar vi detta till det resultat vi vill ha? Om vi tar ett väldigt litet $\epsilon$ och låter $C = \frac{1 - \epsilon}{\nu}$ så blir \eqref{eq_markov_isolated_verts} till
-        $$\Prob{\abs{I} > 1 - \epsilon} < \frac{\nu}{1 - \epsilon}.$$
+        Hur omvandlar vi detta till det resultat vi vill ha? Om vi tar ett väldigt litet $\epsilon$ och låter $C = \frac{1 - \epsilon}{\E{\abs{I}}}$ så blir \eqref{eq_markov_isolated_verts} till
+        $$\Prob{\abs{I} > 1 - \epsilon} < \frac{\E{\abs{I}}}{1 - \epsilon}.$$
 
         Eftersom $\abs{I}$ självklart enbart tar heltalsvärden är händelsen i vänster led precis samma händelse som händelsen att $\abs{I} \geq 1$, det vill säga $I \neq \emptyset$.\sidenote[][]{Varje tänkbart värde på $\abs{I}$ som är större än $1-\epsilon$ är också $\geq 1$, och vice versa.} Så om vi ersätter vänster led med detta får vi att
-        $$\Prob{I \neq \emptyset} < \frac{\nu}{1-\epsilon}$$
+        $$\Prob{I \neq \emptyset} < \frac{\E{\abs{I}}}{1-\epsilon}$$
         och här kan vi utan problem ta gränsvärdet $\epsilon \to 0$ och få\sidenote[][]{Notera att vi, när vi tar gränsvärdet här, måste ersätta $<$ med $\leq$ -- för oss är det inget problem eftersom vi oavsett skall visa att $\nu$ går mot noll.}
-        $$\Prob{I \neq \emptyset} \leq \nu.$$
+        $$\Prob{I \neq \emptyset} \leq \E{\abs{I}}.$$
 
-        Så det enda som återstår att göra är att visa att $\nu$ går mot noll. Enligt satsens antaganden har vi att $p > c\frac{\log(n)}{n}$, så vi kan räkna att
+        Så det enda som återstår att göra är att visa att $\E{\abs{I}}$ går mot noll. Enligt satsens antaganden har vi att $p > c\frac{\log(n)}{n}$, så vi kan räkna att
         \begin{align*}
-            \lim_{n\to\infty} \nu &= \lim_{n\to\infty} n(1-p)^{n-1}\\
+            \lim_{n\to\infty} \E{\abs{I}} &= \lim_{n\to\infty} n(1-p)^{n-1}\\
             &\leq \lim_{n\to\infty} n\left(1 - c\frac{\log(n)}{n}\right)^{n-1}\\
             &= \lim_{n\to\infty} \frac{n}{1 - c\frac{\log(n)}{n}}\left(1 - \frac{c\log(n)}{n}\right)^{n}\\
             &= \lim_{n\to\infty} n\underbrace{\frac{1}{1 - c\frac{\log(n)}{n}}}_{\to\, 1\text{ när }n\,\to\,\infty}\left(\underbrace{\left(1 - \frac{c}{n/\log(n)}\right)^{\frac{n}{\log(n)}}}_{\to\, e^{-c}\text{ när }n\,\to\, \infty}\right)^{\log(n)}\\
             &= \lim_{n \to \infty} n \left(e^{-c}\right)^{\log(n)} = \lim_{n \to \infty} n^{1-c}
         \end{align*}
-        och eftersom $c > 1$ går detta mot noll, såsom önskat.\sidenote[][-2cm]{I steget mellan rad fyra och fem går vi väldigt snabbt fram -- egentligen hade man behövt kolla att
+        och eftersom $c > 1$ går detta mot noll, såsom önskat.\sidenote[][-2.8cm]{I steget mellan rad fyra och fem går vi väldigt snabbt fram -- egentligen hade man behövt kolla att
         $$f(n,c) = \left(1 - \frac{c}{n/\log(n)}\right)^{\frac{n}{\log(n)}}$$
         går mot $e^{-c}$ snabbt nog att vi får lov att göra den substitutionen. Som tur är gäller det att $f(n,c) - e^{-c}$ är ungefär $\frac{\log(n)}{n}$ -- specifikt
         $$\frac{e^{-c} - f(n,c)}{\frac{\log(n)}{n}} \to \frac{c^2}{2e^c}$$
