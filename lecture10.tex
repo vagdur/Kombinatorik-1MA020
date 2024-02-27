@@ -293,12 +293,12 @@ Hittills har vi sett ett sätt som väntevärden och sannolikheter kan samspela 
 Detta låter oss alltså svara på en fråga om ett väntevärde genom att räkna ut en bunt sannolikheter. Hur gör vi om det vi verkligen är intresserade av är en sannolikhet?
 
 \begin{lemma}[Markovs olikhet]
-    Om en icke-negativ\sidenote[][]{Det vill säga, $X(\omega) \geq 0$ för alla $\omega \in \Omega$ -- den tar aldrig ett negativt värde.} slumpvariabel $X$ har väntevärde $\nu$ gäller det för varje $C > 0$ att\sidenote[][]{Eller ekvivalent att
+    Om en icke-negativ\sidenote[][]{Det vill säga, $X(\omega) \geq 0$ för alla $\omega \in \Omega$ -- den tar aldrig ett negativt värde.} slumpvariabel $X$ har väntevärde $\nu$ gäller det för varje $C > 0$ att\sidenote[][0.5cm]{Eller ekvivalent att
     $$\Prob{X > C} \leq \frac{\nu}{C}.$$}
     $$\Prob{X > C\nu} < \frac{1}{C}.$$
 
     \begin{proof}
-        Vi kan räkna att\sidenote[][]{Var i beviset använder vi antagandet att $X$ är ickenegativ?}
+        Vi kan räkna att\sidenote[][0.5cm]{Var i beviset använder vi antagandet att $X$ är ickenegativ?}
         \begin{align*}
             \nu = \E{X} &= \sum_{\omega \in \Omega} X(\omega)\mu(\omega)\\
             &\geq \sum_{\substack{\omega \in \Omega\\X(\Omega) > C\nu}} X(\omega)\mu(\omega)\\
