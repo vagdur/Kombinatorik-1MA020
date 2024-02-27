@@ -59,7 +59,7 @@ Hur väl kan vi lösa det här problemet? Ibland är det väldigt svårt -- om v
 
 Det visar sig att nyckelegenskapen för att kunna göra det här väl är att grafen inte får ha för många kanter relativt antalet noder -- vilket väl inte är allt för överraskande, om man tänker efter.
 
-För att kunna ge en precis variant av det påståendet behöver vi en definition och en sats från grafteorin.
+För att kunna ge en precis variant av det påståendet behöver vi en definition och en sats från grafteorin. Vi utelämnar beviset för satsen, eftersom det inte använder någon sannolikhetsteori.
 
 \begin{definition}
   En Hamiltoncykel i en graf är en cykel som innehåller alla noder exakt en gång. Givet $G = ([n],E)$ kan vi alltså se det som en permutation $\sigma \in S_n$ sådan att $\{\sigma(i),\sigma(i+1)\}$ är en kant för alla $i$, och $\{\sigma(1), \sigma(n)\} \in E$.
@@ -67,17 +67,13 @@ För att kunna ge en precis variant av det påståendet behöver vi en definitio
 
 \begin{theorem}[Diracs sats]\sidenote[][]{Inte fysikern, en annan Dirac.}
   Om varje nod i $G = ([n], E)$ har grad\sidenote[][]{Antal grannar.} minst $\frac{n}{2}$ så finns det en Hamiltoncykel i $G$.
-
-  \begin{proof}
-    Hade gärna inkluderat ett, men vi har inte riktigt tid med det -- och hittade inget probabilistiskt bevis för detta, så det passar inte helt.
-  \end{proof}
 \end{theorem}
 
 Vi kan använda denna sats för att bevisa följande resultat:
 
 \begin{proposition}
   Låt $G = ([n], E)$ vara en graf på ett jämnt antal noder, och antag att varje nod har grad högst $\frac{n}{2}$. Då existerar det en delmängd $A \in \binom{[n]}{n/2}$ sådan att
-  $$E(A, A^c) \leq \frac{\abs{E}}{2}.$$ 
+  $$\abs{E(A, A^c)} \leq \frac{\abs{E}}{2}.$$ 
 
   \begin{proof}
     Låt $G'$ vara komplementgrafen till $G$ -- alltså grafen där det finns en kant mellan varje par av noder som \emph{inte} har en kant mellan sig i $G$, och som inte har en kant mellan par av noder som har en kant i $G$.
@@ -98,9 +94,9 @@ Vi kan använda denna sats för att bevisa följande resultat:
     Vad är sannolikheten att en viss fix kant $e = \{u, v\}$ går mellan $A$ och $A^c$? Jo, det händer precis när vi valt att $u \in A$ och $v \in A^c$, eller vice versa. Så vi kan räkna att\sidenote[][]{Vi utnyttjar att de är disjunkta händelser för att gå från $\Prob{(u \in A, v \in A^c) \cup (u \in A^c, v \in A)}$ till summan av de två sannolikheterna.}
     $$\Prob{\{u,v\} \in E(A, A^c)} = \Prob{u \in A, v \in A^c} + \Prob{u \in A^c, v \in A}.$$
     
-    Nyckeln nu, och anledningen att vi krånglade med Hamiltoncykeln och hopparningen, är att händelserna $u\in A$ och $v\in A^c$ måste vara oberoende. Om $u$ är i $A$ eller inte beror på en myntsingling vi gjorde för $u$ och noden den parades ihop med -- så om vi kallar dess partner för $w$ så är $u \in A$ och $w \in A$ inte oberoende, men för alla $v \neq w$ är $u \in A$ oberoende från $v \in A$.
+    Nyckeln nu, och anledningen att vi krånglade med Hamiltoncykeln och matchningen, är att händelserna $u\in A$ och $v\in A^c$ måste vara oberoende. Om $u$ är i $A$ eller inte beror på en myntsingling vi gjorde för $u$ och noden den parades ihop med -- så om vi kallar dess partner för $w$ så är $u \in A$ och $w \in A$ inte oberoende, men för alla $v \neq w$ är $u \in A$ oberoende från $v \in A$.
 
-    Så hur vet vi att vårt par $u, v$ i vår räkning inte råkar vara hopparade, så att det inte är oberoende ifall de ligger i $A$ eller ej? Jo, vi vet ju att det går en kant mellan $u$ och $v$ -- det är därför vi är intresserade av dem -- men det går ingen kant mellan något par av hopparade noder.
+    Så hur vet vi att vårt par $u, v$ i vår räkning inte råkar ha parats ihop, så att händelserna att de ligger i $A$ inte är oberoende? Jo, vi vet ju att det går en kant mellan $u$ och $v$ -- det är därför vi är intresserade av dem -- men det går ingen kant mellan något par av noder vi parat ihop.
 
     Alltså kan vi fortsätta vår räkning och få
     \begin{align*}
@@ -114,7 +110,7 @@ Vi kan använda denna sats för att bevisa följande resultat:
       &= \sum_{e \in E} \frac{1}{2} = \frac{\abs{E}}{2}.
     \end{align*}
 
-    Enligt vårt sedvanliga argument att väntevärdet omöjligen kan vara mindre än varje specifikt utfall måste det alltså finnas ett specifikt $A$ sådant att $E(A, A^c) \leq \E{E(A,A^c)} = \frac{\abs{E}}{2}$ och vi har bevisat satsen.
+    Enligt vårt sedvanliga argument att väntevärdet omöjligen kan vara mindre än varje specifikt värde måste det alltså finnas ett specifikt $A$ sådant att $E(A, A^c) \leq \E{E(A,A^c)} = \frac{\abs{E}}{2}$ och vi har bevisat satsen.
   \end{proof}
 \end{proposition}
 
@@ -141,7 +137,9 @@ Låt oss återigen ge ett lemma som vi inte bevisar.
       $$3\abs{V} - 6 \geq \abs{E}.$$
     \end{lemma}
     
-    Hur bevisar man Eulers formel? Den är ett specialfall av Eulerkarakteristiken av en polyeder. För en väldigt lång och intressant diskussion av just hur man bevisar detta, och primärt vad det faktiskt innebär att bevisa något, se Imre Lakatos bok \emph{Proofs and Refutations}, som handlar enbart om just det.}
+    Hur bevisar man Eulers formel? Den är ett specialfall av Eulerkarakteristiken av en polyeder. För en väldigt lång och intressant diskussion av just hur man bevisar detta, och primärt vad det faktiskt innebär att bevisa något, se Imre Lakatos bok \emph{Proofs and Refutations}, som handlar enbart om just det.
+    
+    Vill man ha en kortare diskussion av detta kan man se till exempel föreläsningsanteckningarna för kursen i grafteori vid detta universitet -- just ämnet med planära grafer är en av de vackrare delarna av den kursen.}
   \end{proof}
 \end{lemma}
 
@@ -207,15 +205,15 @@ Kretskorten har nämligen många olika komponenter, som vi kan tänka oss som no
 
 \section{Oberoende mängder i triangelfria grafer}
 
-Vi har redan innan visat resultat om antalet oberoende mängder i en graf -- på en föreläsning visade vi Caro-Weis sats, och i en övning ger vi ett annat resultat om oberoende mängder med ett annat bevis.
+Vi har redan innan visat resultat om antalet oberoende mängder i en graf -- förra föreläsningen visade vi Caro-Weis sats, och i en övning ger vi ett annat resultat om oberoende mängder med ett annat bevis.
 
 Låt oss nu ge ytterligare ett resultat om oberoende mängder, denna gång under antagandet att grafen inte har några trianglar. Att detta borde hjälpa oss att hitta större oberoende mängder är någorlunda intuitivt -- i en triangel kan vi ju bara ha med högst ett av de tre hörnen i vår oberoende mängd. Att inte innehålla någon triangel är dessutom en begränsning på antalet kanter grafen kan innehålla 
 \sidenote[][]{Detta är Turáns sats -- en graf på $n$ noder som inte innehåller några trianglar kan inte ha mer än $\frac{n^2}{4}$ kanter. 
 
 Detta maximala antal kanter uppnås för övrigt av att ta en graf som har två grupper $A$ och $B$ av $n/2$ noder var, och rita varje kant $\{a,b\}$ mellan $A$ och $B$ och inga kanter inuti varken $A$ eller $B$.
 
-En sådan graf kallas för \emph{bipartit}, och har ju faktiskt en väldigt stor oberoende mängd.}
--- och desto färre kanter desto enklare blir det ju att hitta en oberoende mängd, eftersom varje kant ju säger att ``du får bara ta en av dessa två noder till din oberoende mängd''.
+En sådan graf kallas för \emph{bipartit}, och en sådan har en väldigt stor oberoende mängd -- både $A$ och $B$ blir ju oberoende i denna graf.}
+-- och desto färre kanter desto enklare blir det ju att hitta en oberoende mängd, eftersom varje kant säger att ``du får bara ta en av dessa två noder till din oberoende mängd''.
 
 Så resultatet vi ger säger oss något om hur stor oberoende mängd vi kan få om vi inte innehåller en triangel, och dessutom vet att varje nod har låg grad.
 
@@ -236,8 +234,8 @@ Det visar sig att vi kan svara på dessa frågor, och ge exakta uttryck, men det
   så att $H_v$ alltså är hela $G$ förutom just $v$ och dess grannar.
   
   Vi skriver $N_v(S)$ för mängden av grannar till en nod i $S \cap H_v$,\sidenote[][-1.5cm]{Alltså mängden noder vi inte kan lägga till till $S \cap H_v$ utan att den slutar vara en oberoende mängd.} alltså
-  $$N(S) = \bigcup_{v \in S \cap H_v} N(v)$$
-  och vi låter $P_v = N(v) \setminus N(S)$ -- så att $P_v$ är mängden av grannar till $v$ som hade kunnat läggas till till $S$.
+  $$N_v(S) = \bigcup_{v \in S \cap H_v} N(v)$$
+  och vi låter $P_v = N(v) \setminus N_v(S)$ -- så att $P_v$ är mängden av grannar till $v$ som hade kunnat läggas till till $S$.
 
   Då gäller det för varje $v$ att
   \sidenote[][-2.5cm]{Den uppmärksamma läsaren bör vara skeptisk mot vad vi just skrivit här, både i vänster och höger led.
@@ -270,7 +268,7 @@ Det visar sig att vi kan svara på dessa frågor, och ge exakta uttryck, men det
 
     Hur många sätt finns det att utvidga $S$ om vi säger att $v \not\in S$? Jo, för varje granne till $v$ ligger den antingen i $N_v(S)$, och får inte läggas till, eller så ligger grannen i $N_v(S)^c$ och vi får lov att lägga till den. 
     
-    Eftersom grafen inte innehåller några trianglar finns det inga kanter mellan några två noder i $N(v)$ -- alltså kan våra val av noder ur $N(v) \cap N_v(S)^c$ att lägga till till $S$ inte blockera varandra, så varje delmängd till $N(v) \cap N_v(S)^c$ är ett giltigt val.
+    Eftersom grafen inte innehåller några trianglar finns det inga kanter mellan något par av noder i $N(v)$ -- alltså kan våra val av noder ur $N(v) \cap N_v(S)^c$ att lägga till till $S$ inte blockera varandra, så varje delmängd till $N(v) \cap N_v(S)^c$ är ett giltigt val.
 
     Alltså finns det $2^{\abs{N(v) \cap N_v(S)^c}}$ sätt att utvidga $S$ till hela $G$ sådana att $v \not \in S$.
 
