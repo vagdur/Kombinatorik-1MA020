@@ -187,14 +187,14 @@ Anledningen att vi ger den här olikheten är att vi faktiskt kan enkelt härled
       &= \sum_{\{u,v\}\in E(G)} \Prob{u \in V(H)}\Prob{v \in V(H)} = \abs{E(G)}p^2 = ep^2.
     \end{align*}
 
-    Hur hanterar vi $\E{cr(H)}$? Jo, vi tar en ritning av $G$ som har precis $cr(G)$ korsningar, och räknar hur många av de korsningarna som är kvar när vi suddat ut alla noder och kanter utanför $H$.
+    Hur hanterar vi $\E{cr(H)}$? Jo, vi tar en ritning av $G$ som har precis $cr(G)$ korsningar, och räknar hur många av de korsningarna som är kvar när vi suddat ut alla noder och kanter utanför $H$. Det här ger oss en övre begränsning på $cr(H)$ -- det är ju tänkbart att det finns en bättre ritning av $H$ än att bara rita varje nod och kant på samma sätt som de var ritade i $G$.
 
     För att korsningen skall vara kvar krävs det så klart att bägge kanterna i korsningen är kvar -- och vi har sett att sannolikheten att en enda kant är kvar är $p^2$, så eftersom kanter är kvar oberoende av varandra\sidenote[][]{Förutom om de utgår från samma nod -- men vi kan aldrig tvingas att rita två kanter som utgår från samma nod så att de korsas. (Detta är ganska uppenbart men inte helt trivialt -- fundera ett ögonblick på varför det är sant.)} är sannolikheten att en korsning blir kvar $p^4$.
 
-    Så enligt samma logik som i de andra fallen får vi att $\E{cr(H)} = cr(G)p^4$, så om vi sätter in resultatet av våra räkningar i \eqref{eq:H_expectations_ineq} så får vi att
-    $$p^3cr(G) \geq p^2e - 3pn + 6$$
+    Så enligt samma logik som i de andra fallen får vi att $\E{cr(H)} \leq cr(G)p^4$, så om vi sätter in resultatet av våra räkningar i \eqref{eq:H_expectations_ineq} så får vi att
+    $$p^4cr(G) \geq p^2e - 3pn + 6$$
     så om vi nu väljer $p = \frac{4n}{e}$ så får vi alltså
-    $$\left(\frac{4n}{e}\right)^3cr(G) \geq \frac{(4n)^2}{e} - 3\frac{4n^2}{e} + 6 > \frac{(4n)^2}{e} - 3\frac{4n^2}{e}$$
+    $$\left(\frac{4n}{e}\right)^4 cr(G) \geq \frac{(4n)^2}{e} - 3\frac{4n^2}{e} + 6 > \frac{(4n)^2}{e} - 3\frac{4n^2}{e}$$
     vilket förenklar till påståendet vi sade vi skulle bevisa.
   \end{proof}
 \end{theorem}
