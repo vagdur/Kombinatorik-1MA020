@@ -205,6 +205,73 @@ Kretskorten har nämligen många olika komponenter, som vi kan tänka oss som no
 
 \section{Längsta ökande delföljden i en permutation}
 
+Hittills har vi bara definierat vad vi menar med betingad sannolikhet, inte betingade väntevärden. Tolkningen av dessa är precis vad man hade förväntat sig -- väntevärdet av $X$ betingat på en händelse $A$ är precis det genomsnittliga värdet $X$ tar då $A$ inträffat. Den formella definitionen är som följer:
+
+\begin{definition}
+  För varje slumpvariabel $X$ och varje händelse $A$ ges väntevärdet av $X$ betingat på $A$ av
+  $$\E{X \given A} = \sum_{y \in X(\Omega)} y \Prob{X = y \given A}.$$
+\end{definition}
+
+För en given permutation $\sigma$ av $[n]$ kan vi studera dess ökande och minskande delföljder, såsom vi gjorde i Erd\H{o}s-Székeres sats när vi studerade lådprincipen.
+
+Om vi tar en likformigt slumpmässig permutation, hur lång kommer dess längsta ökande delföljd att vara?
+
+\begin{theorem}
+  Om $\sigma_n$ är en likformigt slumpmässig permutation av $[n]$, och $L_n$ är längden hos dess längsta ökande delföljd, gäller det att
+  $$\E{L_n} = \Theta\left(\sqrt{n}\right),$$
+  det vill säga asymptotiskt är $\E{L_n}$ ungefär $\sqrt{n}$.\sidenote[][]{Formellt är vad vi visar att
+  $$\frac{\E{L_n}}{\sqrt{n}} \in [1 - \epsilon(n),e + \epsilon(n)]$$
+  för varje $n$, där $\epsilon(n)$ är en funktion som går till noll med $n$, och $e \approx 2.171828$.}
+
+  \begin{proof}
+    Låt oss börja med den övre begränsningen av $\E{L_n}$. Att räkna ut ett väntevärde av ett maximum är i allmänhet svårt, så vi behöver någon klokt vald metod för att övre begränsa det här uttrycket.
+
+    Vad vi tänker oss är att vi delar upp i två olika fall -- antingen är den längsta ökande delföljden ``kort'' eller så är den ``lång''. Låt oss säga att den är kort om $L_n \leq \ell$ för något $\ell$ vi väljer senare. Vi har då alltså, genom lagen om total sannolikhet,\sidenote[][]{
+      Vi har ju egentligen bara bevisat denna för sannolikheter för händelser, inte för väntevärden av slumpvariabler. Så vi ger det som en övning:
+      \begin{xca}
+        Bevisa att det, för varje slumpvariabel $X$ och varje händelse $A$, gäller att 
+        $$\E{X} = \E{X \given A}\Prob{A} + \E{X \given A^c}\Prob{A^c}.$$
+      \end{xca}
+    } att
+    $$\E{L_n} = \E{L_n \given L_n < \ell}\Prob{L_n < \ell} + \E{L_n \given L_n \geq \ell}\Prob{L_n \geq \ell}.$$
+
+    Nu kan vi hitta olika rimliga övre begränsningar för de två olika termerna. När $L_n$ är ``litet'' kan vi skatta dess längd som $\ell$, och sannolikheten att den blir liten som ett. När $L_n$ är ``stort'' kan vi skatta $L_n$ som $n$, men väljer att vara smartare för att begränsa den lilla sannolikheten $\Prob{L_n \geq \ell}$. Alltså har vi att
+    $$\E{L_n} \leq \ell + n \Prob{L_n \geq \ell}.$$
+
+    Låt nu $X_n$ vara antalet ökande delföljder av längd $\ell$, så att vi har att $\Prob{L_n \geq \ell} = \Prob{X_n > 0}$. Enligt samma resonemang med Markovs olikhet som vi använde när vi räknade isolerade noder i en Erd\H{o}s-Rényi-graf har vi att $\Prob{X_n > 0} \leq \E{X_n}$.
+
+    Så om vi, för varje $A = \{a_1, a_2, \ldots, a_\ell\}\in \binom{[n]}{\ell}$, låter $I_A$ vara händelsen att delföljden $\sigma(a_1), \sigma(a_2), \ldots, \sigma(a_\ell)$ är ökande, så har vi alltså att
+    $$\E{X_n} = \E{\sum_{A \in \binom{[n]}{\ell}} \ind{I_A}} = \sum_{A \in \binom{[n]}{\ell}} \Prob{I_A}.$$
+
+    Vad är sannolikheten att en viss delföljd är ökande? Jo, det finns totalt $\ell!$ sätt att ordna elementen i delföljden, och bara ett av dem är i ökande ordning. Så sammantaget har vi\sidenote[][]{Här använder vi olikheten $$\ell! \geq e\left(\frac{\ell}{e}\right)^\ell$$ i ett av stegen.} att
+    \begin{align*}
+      \E{L_n} &\leq \ell + n\Prob{L_n \geq \ell}\\
+      &= \ell + n \Prob{X_n > 0} \leq \ell + n \E{X_n}\\
+      &= \ell + n \sum_{A \in \binom{[n]}{\ell}} \frac{1}{\ell!} = \ell + n \frac{\binom{n}{\ell}}{\ell!}\\
+      &= \ell + \frac{n (n!)}{(n-\ell)!(\ell!)^2} \leq \ell + \frac{n^{\ell + 1}}{(\ell!)^2}\\
+      &\leq \ell + n \frac{n^\ell}{\left(e \left(\frac{\ell}{e}\right)^\ell\right)^2}
+      \leq \ell + n\left(\frac{e\sqrt{n}}{\ell}\right)^{2\ell}.
+    \end{align*}
+    Vi kan nu komma ihåg att vi i början av beviset sade att vi skulle välja $\ell$ senare -- och nu ser vi vad vi bör välja $\ell$ som. Specifikt tar vi $\ell = e\sqrt{n} + \epsilon(n)$ för något $\epsilon(n)$ som går till noll med $n$. Då kommer uttrycket inuti exponenten att vara mindre än ett, och således gå till noll, så precis som önskat kommer vi ha att
+    $$\E{L_n} \leq e\sqrt{n} + o(1).$$
+
+    För att få vår undre begränsning återanvänder vi en stor del av resonemanget vi hade för att bevisa Erd\H{o}s-Székeres sats. Såsom i den satsen kommer vi vara intresserade både av den längsta ökande och den längsta \emph{minskande} delföljden. Vi observerar att fördelningen för längden av den längsta ökande delföljden och för den längsta minskande delföljden måste vara exakt samma, så vi kan, om vi låter $M_n$ vara längden av den länsta \emph{minskande} delföljden i $\sigma_n$, räkna att
+    \begin{align*}
+      \E{L_n} &= \frac{\E{L_n} + \E{L_n}}{2}\\
+      &= \frac{\E{L_n} + \E{M_n}}{2}\\
+      &= \E{\frac{L_n + M_n}{2}} \geq \E{\sqrt{L_n M_n}},
+    \end{align*}
+    där vi i sista steget använde olikheten mellan det geometriska och aritmetiska medelvärdet.\sidenote[][]{D.v.s. i allmänhet att
+    $$\frac{a + b}{2} \geq \sqrt{ab}.$$}
+
+    Så om vi kan bevisa att $L_n M_n \geq n$ för alla permutationer $\sigma$ så är vi klara. Så låt nu, likt i beviset för Erd\H{o}s-Székeres sats, $L_n^k$ vara längden av den längsta ökande delföljden som slutar i $k$, och $M_n^k$ vara längden av den längsta minskande delföljden som slutar i $k$.
+
+    Vad vi observerar är att paren $(L_n^k, D_n^k)$ alla måste vara distinkta från varandra. Ifall vi har $j < k$ måste vi ha antingen $\sigma(j) < \sigma(k)$, och då kan vi förlänga den längsta ökande delföljden som slutar i $j$ genom att lägga till $\sigma(k)$ och sluta i $k$, så att $L_n^j < L_n^k$, eller så har vi $\sigma(j) > \sigma(k)$, och då kan vi genomföra precis samma argument för att få $M_n^j < M_n^k$.
+
+    Alltså måste följden $(L_n^k, D_n^k)$ ha $n$ distinkta element. Dessutom måste alla dessa par så klart ligga i mängden $[L_n] \times [D_n]$ -- så denna mängd måste ha minst $n$ element. Alltså är $L_n D_n \geq n$, och vi är klara.
+  \end{proof}
+\end{theorem}
+
 \section{Övningar}
 
 \begin{xca}
