@@ -1,0 +1,58 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Lösningsförslag för tentamen i kombinatorik, 15 Mars 2023 $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
+
+\date{15 mars 2023}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+
+\include{mathcommands.extratex}
+\setlength{\extrarowheight}{12pt}
+
+\begin{document}
+
+\definecolor{darkgreen}{rgb}{0.0627, 0.4588, 0.1451}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+
+Denna fil ger lösningar på uppgifterna i modelltentan för kursen.
+\end{abstract}
+
+\section{Fråga 1a}
+
+Vi tolkar höger led som att vi har en grupp av $m + w$ personer, och vi skall välja en samling av $k$ av dessa.
+
+Vänster led tolkar vi som att $m$ av dessa personer är män och $w$ av dessa personer är kvinnor. För att välja totalt $k$ personer kan vi börja med att välja hur många skall vara män, och kalla detta antal för $j$, vilket kan vara mellan $0$ och $k$. Sedan skall vi alltså välja $j$ män, av totalt $m$, och $k - j$ kvinnor, av totalt $w$, för att bilda vår grupp av $j + k - j = k$ personer.
+
+\section{Fråga 1b}
+
+Vi tolkar vänster led som att vi har en grupp av $z$ barn, och $n$ av dessa skall få en glass, och $m$ skall få en godispåse. Det är möjligt att något av barnen får både och -- vi gör två separata val för att välja gruppen som får glass och gruppen som får godis, således multiplikationen.
+
+I höger led tänker vi oss att vi väljer antalet barn som skall få både en glass och godis, och kallar detta antal för $k$. $k$ kan variera fritt mellan $k = 0$, alltså inget barn får både och, till $k = n$, alltså att varje barn som får glass också får godis.\sidenote[][]{Notera här att vi lika gärna hade kunnat välja $m$ som vårt övre summeringsindex, eller $\min n, m$.}
+
+Har vi väl valt hur många som skall få bägge, vet vi att det måste vara totalt $n + m - k$ barn som får någonting, och av dessa måste $n - k$ barn få enbart glass och $m - k$ barn enbart godis. Så vi kan börja med att välja vilka barn som får någonting, vilket kan göras på $\binom{z}{m + n - k}$ sätt, och sedan fördela ut de tre rollerna ``enbart glass'', ``enbart godis'', och ``både glass och godis'' mellan dessa barn, och antalet sätt att göra detta på räknas av multinomialkoefficienten $\binom{n + m - k}{k, n-k, m-k}$.
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}
