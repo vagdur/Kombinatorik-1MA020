@@ -52,6 +52,85 @@ I höger led tänker vi oss att vi väljer antalet barn som skall få både en g
 
 Har vi väl valt hur många som skall få bägge, vet vi att det måste vara totalt $n + m - k$ barn som får någonting, och av dessa måste $n - k$ barn få enbart glass och $m - k$ barn enbart godis. Så vi kan börja med att välja vilka barn som får någonting, vilket kan göras på $\binom{z}{m + n - k}$ sätt, och sedan fördela ut de tre rollerna ``enbart glass'', ``enbart godis'', och ``både glass och godis'' mellan dessa barn, och antalet sätt att göra detta på räknas av multinomialkoefficienten $\binom{n + m - k}{k, n-k, m-k}$.
 
+\section{Fråga 2}
+
+Se anteckningarna för föreläsning fyra.
+
+\section{Fråga 3}
+
+Detta gör vi i föreläsning fem, dels på ett sätt i själva föreläsningen, och sedan på ett annat sätt i en av övningarna till föreläsningen.
+
+\section{Fråga 4}
+
+Se anteckningarna för föreläsning fem.
+
+\section{Fråga 5}
+
+Se anteckningarna för föreläsning sju.
+
+\section{Fråga 6a}
+
+Se anteckningarna för föreläsning åtta.
+
+\section{Fråga 6b}
+
+För att skapa oss en etikettering av denna graf kan vi tänka oss att vi börjar med den inre cirkeln. Det finns $\binom{2n}{n}$ sätt att välja vilka tal som skall stå på etiketterna för denna inre cirkel.
+
+På grund av rotationssymmetrin är antalet sätt att placera ut etiketterna på denna inre cirkel precis samma som antalet sätt att placera ut personer runt ett runt bord, vilket ju är ett problem vi studerade i första föreläsningen, och konstaterade att det kan göras på $(n-1)!$ sätt.
+
+Har vi väl valt en etikettering på den inre cirkeln är alla de yttre platserna särskiljbara -- vi kan se skillnad på dem genom att se skillnad på etiketterna hos noden i den inre cirkeln som de kopplar till. Alltså är alla olika sätt att placera ut etiketter särskiljbara, och det finns $n!$ sätt att göra detta på.
+
+Så svaret vi får blir alltså
+$$\binom{2n}{n}(n-1)!n! = \frac{(2n)!}{(n!)^2}\frac{n!}{n}n! = \frac{(2n)!}{n}.$$
+
+\section{Fråga 7a)}
+
+Låt $G = ([n], E)$ vara vår graf. För varje nod $v$ och varje mängd $A \in \binom{[n]}{k}$ av $k$ stycken noder, låt $S_{v, A}$ vara händelsen att noden $v$ har en kant till varje nod i $A$, så att dessa tillsammans bildar en $k$-stjärna.
+
+Det är tydligt att $\Prob{S_{v,A}} = p^k$ för varje $(v, A)$, eftersom vad vi kräver är precis att $k$ stycken kanter skall vara närvarande, och kanter är närvarande oberoende av varandra i en Erd\H{o}s-Rényi-graf.
+
+Om $X_k$ är antalet $k$-stjärnor i $G$ kan vi alltså räkna att
+\begin{align*}
+    \E{X_k} &= \E{\sum_{v \in V}\sum_{A \in \binom{[n]}{k}} \ind{S_{v,A}}}\\
+    &= \sum_{v \in V}\sum_{A \in \binom{[n]}{k}} \Prob{S_{v,A}}\\
+    &= \sum_{v \in V}\sum_{A \in \binom{[n]}{k}} p^k = n\binom{n}{k}p^k.
+\end{align*}
+
+\section{Fråga 7b}
+
+Om det finns någon nod $v$ vars grad är åt minstone $k$ kan vi välja den noden som mitten i vår stjärna och $k$ stycken av dess grannar som löven i stjärnan. Alltså är händelsen att $\max_{v \in [n]} d_v \geq k$ precis samma händelse som att $X_k > 0$.\sidenote[][-2cm]{Denna uppgift har dykt upp på en av omtentorna -- då hade den just detta steg inkluderat i formuleringen av frågan, så man bara behövde göra a-delen och resten av räkningen i denna del.}
+
+Så med hjälp av Markovs olikhet och vad vi gjorde i förra delen av uppgiften kan vi räkna att\sidenote[][]{Notera här att vi behöver hantera den lilla detaljen att $\alpha n$ kanske inte är ett heltal genom att avrunda -- eftersom så klart $d_v$ också enbart tar heltalsvärden är detta inget faktiskt problem.}
+\begin{align*}
+    \Prob{\max_{v \in V} d_v \geq \alpha n} &= \Prob{X_{\ceil{\alpha n}} > 0}\\
+    &\leq \E{X_{\ceil{\alpha n}}} = n\binom{n}{\ceil{\alpha n}}p^{\ceil{\alpha n}}.
+\end{align*}
+
+Så vad vi har att visa är alltså att
+$$\lim_{n \to \infty} n\binom{n}{\ceil{\alpha n}}p^{\ceil{\alpha n}} = 0$$
+om $p = \frac{c}{n}$ för något $c > 0$.
+
+För att räkna ut detta gränsvärde\sidenote[][]{Kursen handlar ju om kombinatorik, inte om att räkna ut gränsvärden, så på en riktig tenta hade man inte fått mycket om något avdrag på sin lösning om man var väldigt kort i det här steget, eller inte hittade rätt sätt att lösa gränsvärdet alls.
+
+Att hitta detta sätt att beräkna gränsvärdet är varken lätt eller något som förväntas på en tenta -- men inkluderat i lösningsförslaget för att det skall vara fullständigt.} använder vi oss av att
+$$\binom{n}{k} = \frac{n(n-1)\ldots(n-(n-(k-1)))}{k!} \leq \frac{n^k}{k!}.$$
+
+Med denna räkning i handen ser vi att
+\begin{align*}
+    n\binom{n}{\ceil{\alpha n}}p^{\ceil{\alpha n}} &= n\binom{n}{\ceil{\alpha n}}\left(\frac{c}{n}\right)^{\ceil{\alpha n}}\\
+    &\leq n\frac{n^{\ceil{\alpha n}}}{(\ceil{\alpha n})!}\left(\frac{c}{n}\right)^{\ceil{\alpha n}}\\
+    &= n \frac{c^{\ceil{\alpha n}}}{(\ceil{\alpha n})!}\\
+    &= c \frac{n}{\ceil{\alpha n}} \frac{c^{\ceil{\alpha n} - 1}}{(\ceil{\alpha n}-1)!}\\
+    &\leq \frac{c}{\alpha}\frac{c^{\ceil{\alpha n} - 1}}{(\ceil{\alpha n}-1)!} \to 0.
+\end{align*}
+
+Att detta uttryck faktiskt går mot noll följer av standardgränsvärdet
+$$\lim_{x \to \infty} \frac{c^x}{x!} = 0.$$
+
+\section{Fråga 8}
+
+Detta är första satsen i föreläsning 11.
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
