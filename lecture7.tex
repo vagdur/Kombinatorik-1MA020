@@ -147,7 +147,7 @@ Svaret på den frågan är ja, men det kräver ett lemma vi inte sett ännu.
 
 \begin{definition}
     För varje $x\in \R$ och varje $k \in \Z^{\geq 0}$ ges den \emph{fallande fakulteten} $x^{\underline{k}}$ av\sidenote[][]{Så produkten har $k$ termer. I fallet med $k=0$ får vi en tom produkt, vilket vi konventionellt anser är ett, så $x^{\underline{0}} = x^{\overline{0}} = 1$ för alla $x$.}
-    $$x^{\underline{k}} = x(x-1)(x-2)\ldots(x-k-1)$$
+    $$x^{\underline{k}} = x(x-1)(x-2)\ldots(x-(k-1))$$
     och den \emph{stigande fakulteten} $x^{\overline{k}}$ av
     $$x^{\overline{k}} = x(x+1)(x+2)\ldots(x+k-1).$$
 
@@ -167,7 +167,7 @@ Anledningen att vi gör allt detta arbetet är att det låter oss generalisera b
 
 \begin{theorem}[Newtons binomialsats]
     För alla $x$ och $y$ och $r \in \R$ gäller det att
-    $$(x + y)^r = \sum_{k=0}^{\infty} \binom{x}{k} x^{r-k} y^k$$
+    $$(x + y)^r = \sum_{k=0}^{\infty} \binom{r}{k} x^{r-k} y^k$$
 
     \begin{proof}
         Taylorutveckla.\sidenote[][]{Ett bevis återfinns lätt med google, men eftersom det inte egentligen har något med kombinatorik att göra utelämnar vi det i denna kursen.}
