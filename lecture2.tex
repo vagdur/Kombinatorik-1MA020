@@ -121,8 +121,14 @@ Antag att vi vill fördela ut $n$ stycken osärskiljbara objekt bland $k$ särsk
     \end{table}
 \end{example}
 
+\begin{definition}
+  En \emph{multi-mängd} är en mängd där ett objekt kan vara med mer än en gång.\sidenote[][]{Alltså är $\{1,1,2\}$ en annan multimängd än $\{1,2\}$, trots att de är samma som mängder.} En \emph{multi-delmängd} till en (multi-)mängd är en delmängd som kan innehålla samma objekt ur mängden flera gånger.\sidenote[][]{Så till exempel är $\{a,b,a,c\}$ en multidelmängd till $\{a,b,c,d\}$.}
+
+  Vi kan betrakta ett sätt att fördela $n$ stycken osärskiljbara föremål mellan $k$ särskiljbara personer som ett sätt att välja en multi-delmängd av storlek $n$ ur mängden av personer. Vi kan också ekvivalent betrakta det som ett sätt att skriva $n$ som summan av $k$ stycken ickenegativa heltal där ordningen i summan spelar roll.\sidenote[][]{Alltså att $1 + 0 + 3$ och $0 + 1 + 3$ är olika sätt att skriva $4$.}
+\end{definition}
+
 \begin{proposition}\label{proposition_indist_objs_dist_persons}
-  Det finns $\binom{n+k-1}{k-1} = \binom{n+k-1}{n}$ sätt att fördela $n$ osärskiljbara föremål mellan $k$ särskiljbara personer.
+  Det finns $\binom{n+k-1}{k-1} = \binom{n+k-1}{n}$ multi-delmängder av storlek $n$ till en mängd med $k$ element.Detta räknar alltså också sätt att fördela $n$ osärskiljbara föremål mellan $k$ särskiljbara personer.
 
   \begin{proof}
     Metoden för det här beviset brukar kallas för ett pinnar-och-stjärnor-argument.\sidenote[][]{Engelska \emph{stars and bars argument}.}
