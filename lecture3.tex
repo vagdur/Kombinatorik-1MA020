@@ -57,7 +57,10 @@ Formeln du kommer på efter att ha studerat ditt Venndiagram är att
 Innan den fruktgalna administratören hinner lägga till ännu en absurd kategori av frukt undsätter dig din kombinatoriklärare med följande sats:
 \begin{theorem}[Inklusion-exklusion]\label{theorem_inclusion_exclusion}
   För varje samling av mängder $A_1, \ldots, A_n$ gäller det att
-  $$\abs{\bigcup_{i=1}^n A_i} = \sum_{k=1}^{n} (-1)^{k-1}\left(\sum_{\substack{I \subseteq [n]\\\abs{I} = k}} \abs{\bigcap_{i \in I} A_i}\right),$$
+  \begin{align*}
+    \abs{\bigcup_{i=1}^n A_i} &= \sum_{\substack{I \subseteq [n]\\I\neq\emptyset}} (-1)^{\abs{I}+1}\abs{\bigcap_{i \in I} A_i}\\
+    &=\sum_{k=1}^{n} (-1)^{k-1}\left(\sum_{\substack{I \subseteq [n]\\\abs{I} = k}} \abs{\bigcap_{i \in I} A_i}\right),
+  \end{align*}
   eller, uttryckt mindre kompakt, att
   \begin{align*}
     \abs{\bigcup_{i=1}^n A_i} = \sum_{i=1}^n &\abs{A_i}\\
@@ -71,7 +74,7 @@ Innan den fruktgalna administratören hinner lägga till ännu en absurd kategor
 Innan vi bevisar detta behöver vi definiera ett väldigt nyttigt verktyg som vi kommer använda i beviset.
 
 \begin{definition}
-  Antag att $A \subseteq X$ är två mängder. Vi definierar \emph{indikatorfunktionen} $\indSet{A}: X \to \{0,1\}$ \emph{för mängden $A$} som
+  Antag att vi har två mängder $A$ och $X$, med $A \subseteq X$. Vi definierar \emph{indikatorfunktionen} $\indSet{A}: X \to \{0,1\}$ \emph{för mängden $A$} som
   $$\indSet{A}(x) = \begin{cases}
     1  & x \in A \\
     0 & x \not\in A.
@@ -81,7 +84,7 @@ Innan vi bevisar detta behöver vi definiera ett väldigt nyttigt verktyg som vi
   \begin{itemize}
     \item $\indSet{A}(x)\indSet{B}(x) = \indSet{A\cap B}(x)$
     \item $1 - \indSet{A}(x) = \indSet{X \setminus A}(x)$
-    \item $\abs{A} = \sum_{x \in A} \indSet{A}(x)$
+    \item $\abs{A} = \sum_{x \in X} \indSet{A}(x)$
     \item $(\indSet{A}(x))^n = \indSet{A}(x)$ för alla $n \neq 0$.
   \end{itemize}
 \end{definition}
@@ -98,23 +101,25 @@ Med denna definition gjord kan vi nu resonera algebraiskt om mängder och deras 
   och observera att det måste vara identiskt noll. För varje element $x\in X$ ligger ju i något $A_i$, så produkten innehåller en term $\indSet{X}(x) - \indSet{A_i}(x) = 1 - 1 = 0$.
 
   Vad får vi om vi multiplicerar ut detta uttrycket? Jo, vi får en term per mängd $I \subseteq [n]$, där vi valt sidan $\indSet{X}(x)$ för $i\not\in I$ och valt sidan $-\indSet{A_i}(x)$ för $i \in I$.\sidenote[][]{Jämför med hur vi resonerade om att multiplicera ut en produkt när vi bevisade binomialsatsen.} Vi vet att uttrycket är noll, så vad vi får är likheten
-  $$\sum_{I \subseteq [n]} \left(\indSet{X}(x)\right)^{n - \abs{I}}\prod_{i\in I}\left(-\indSet{A_i}(x)\right) = 0$$
-  och om vi skriver termerna för $I = \emptyset$ och $I = [n]$ separat har vi likheten
-  $$\prod_{i=1}^{n} (-\indSet{A_i}(x)) + \left(\sum_{\substack{I \subset [n]\\\emptyset \neq I \neq [n]}} \left(\indSet{X}(x)\right)^{n - \abs{I}}\prod_{i\in I}\left(-\indSet{A_i}(x)\right)\right) + \left(\indSet{X}(x)\right)^n = 0$$
+  $$\sum_{I \subseteq [n]} \left(\indSet{X}(x)\right)^{n - \abs{I}}\prod_{i\in I}\left(-\indSet{A_i}(x)\right) = 0.$$
 
-  Vi vet av våra räkneregler för indikatorfunktioner att $\indSet{X}(x)^{n-\abs{I}} = \indSet{X}(x)$, eftersom vi plockat ut termen där exponentn blir noll. Den återstående $\indSet{X}(x)$ kan vi bli av med via en annan räkneregel -- vi vet att $\indSet{X}(x)\indSet{A_i}(x) = \indSet{X \cap A_i}(x) = \indSet{A_i}(x)$, eftersom $A_i \subseteq X$, och vi kan göra detta eftersom vi plockat ut termen där vi inte har någon $A_i$ att absorbera in den i. 
-  
-  Om vi tillämpar dessa förenklingar, flyttar ut minustecknet ur produkten och ser att $\indSet{X}(x)^n = \indSet{X}$, blir vad som återstår
-  $$(-1)^n\prod_{i=1}^{n} \indSet{A_i}(x) + \sum_{\substack{I \subset [n]\\\emptyset \neq I \neq [n]}} (-1)^{\abs{I}}\prod_{i\in I}\left(\indSet{A_i}(x)\right) + \indSet{X}(x) = 0.$$
-  
-  Nu kan vi flytta ihop första och andra termen under en summa, eftersom bägge inte innehåller någon $\indSet{X}(x)$. Om vi gör det, och flyttar över den summan på andra sidan, så får vi att
-  $$\indSet{X}(x) = \sum_{\substack{I \subseteq [n]\\I \neq \emptyset}} (-1)^{\abs{I} + 1}\left(\prod_{i\in I} \indSet{A_i}(x)\right).$$
+  Om vi nu flyttar över termen i denna summa där $I = \emptyset$ på andra sidan likhetstecknet, och bryter ut minustecknen ur produkten, blir detta
+  $$\sum_{\substack{I \subseteq [n]\\I\neq\emptyset}} \left(\indSet{X}(x)\right)^{n - \abs{I}} (-1)^{\abs{I}+1} \prod_{i\in I}\indSet{A_i}(x) = \left(\indSet{X}(x)\right)^n.$$
 
-  Om vi använder räkneregeln att $\indSet{A}(x)\indSet{B}(x) = \indSet{A\cap B}(x)$ på produkten här och sedan summerar likheten över alla $x\in X$ så får vi att
-  $$\sum_{x\in X} \indSet{X}(x) = \sum_{\substack{I \subseteq [n]\\I \neq \emptyset}} (-1)^{\abs{I} + 1}\left(\sum_{x\in X} \indSet{\bigcap_{i\in I} A_i}(x)\right)$$
-  vilket, om vi använder oss av att $\sum_{x\in X} \indSet{A}(x) = \abs{A}$, blir
-  $$\abs{X} = \sum_{\substack{I \subseteq [n]\\I \neq \emptyset}} (-1)^{\abs{I} + 1}\abs{\bigcap_{i\in I} A_i}$$
-  vilket vi någorlunda enkelt ser är ett annat sätt att skriva formeln vi var ute efter.
+  I höger led kan vi omedelbart använda en av våra räkneregler för att se att det är $\indSet{X}(x)$, vilket är vad vi ville ha, så det återstår att förenkla vänster led.
+
+  Vi börjar med att använda oss utav att $\indSet{A}(x)\indSet{B}(x) = \indSet{A\cap B}(x)$ för att bli av med produkten, så att vi får
+  $$\sum_{\substack{I \subseteq [n]\\I\neq\emptyset}} \left(\indSet{X}(x)\right)^{n - \abs{I}} (-1)^{\abs{I}+1} \indSet{\bigcap_{i\in I} A_i}(x) = \indSet{X}(x).$$
+
+  Vi hävdar nu att vi helt kan stryka termen $\left(\indSet{X}(x)\right)^{n - \abs{I}}$ ur uttrycket. Om $I = [n]$ är denna term helt enkelt $\left(\indSet{X}(x)\right)^0 = 1$, så vi kan trivialt stryka den. Om $I \neq [n]$ kan vi först använda vår räkneregel om exponenter av indikatorfunktioner och få att $\left(\indSet{X}(x)\right)^{n - \abs{I}} = \indSet{X}(x)$, och sedan observera att $X \cap \bigcap_{i\in I} A_i = \bigcap_{i\in I} A_i$, eftersom $\bigcap_{i\in I} A_i \subseteq X$. Alltså ger vår räkneregel om produkter av indikatorfunktioner att vi kan stryka faktorn $\indSet{X}(x)$.
+
+  Vad vi har sett nu är alltså att
+  $$\sum_{\substack{I \subseteq [n]\\I\neq\emptyset}} (-1)^{\abs{I}+1} \indSet{\bigcap_{i\in I} A_i}(x) = \indSet{X}(x),$$
+  så tar vi summan av denna likheten över alla $x \in X$ och flyttar in den så långt vi kan så ser vi att
+  $$\sum_{\substack{I \subseteq [n]\\I\neq\emptyset}} (-1)^{\abs{I}+1} \sum_{x\in X}\indSet{\bigcap_{i\in I} A_i}(x) = \sum{x \in X}\indSet{X}(x),$$
+  vilket om vi tillämpar vår regel om summor av indikatorfunktioner till slut ger oss ett uttryck med storlekar på mängder, nämligen
+  $$\sum_{\substack{I \subseteq [n]\\I\neq\emptyset}} (-1)^{\abs{I}+1} \abs{\bigcap_{i\in I} A_i} = \abs{X} = \abs{\bigcup_{i \in I} A_i},$$
+  vilket ju är precis det första uttrycket i satsen. Att detta är lika med det andra uttrycket följer av att gruppera summan efter storleken på $I$.
 \end{proof}
 
 \begin{example}
