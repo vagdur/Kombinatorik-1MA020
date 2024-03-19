@@ -1,0 +1,218 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Tentamen i kombinatorik, 11 Mars 2024 $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{Jag kommer att besöka tentasalen för frågor. Om ni behöver nå mig för frågor om tentan utanför den tiden kan ni nå mig på \texttt{072-373 32 90}.}}
+
+\date{11 Mars 2024}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+\include{mathcommands.extratex}
+\setlength{\extrarowheight}{12pt}
+
+\begin{document}
+
+\definecolor{darkgreen}{rgb}{0.0627, 0.4588, 0.1451}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+Lycka till! {\vspace{0cm}\includegraphics[height=0.08\textwidth]{burning-heart-emoji.png} \includegraphics[height=0.08\textwidth]{lily-emoji.png}}
+\end{abstract}
+
+\section{Fråga 1} %föreläsning 2
+
+Erd\H{o}s-Székeres sats säger följande:
+
+\begin{theorem}
+  För alla $r, s \geq 1$ gäller det att varje följd av $(r-1)(s-1) + 1$ distinkta reella tal antingen innehåller en ökande delföljd av längd $r$ eller en minskande delföljd av längd $s$.
+\end{theorem}
+
+Bevisa detta påstående.\sidenote[][]{Ledtråd: Lådprincipen.}
+
+\section{Fråga 2} %föreläsning 1
+
+\textbf{Del a):} Ge ett kombinatoriskt bevis för att
+$$\sum_{k=0}^{n} k\binom{n}{k} = n 2^{n-1}.$$
+
+\noindent\textbf{Del b):} Ge ett kombinatoriskt bevis för att
+$$\binom{n}{2}\binom{n-2}{3}\binom{n-5}{k-5} = \binom{n}{k}\binom{k}{2}\binom{k-2}{3}.$$
+
+\section{Fråga 3} %föreläsning 6
+
+\textbf{Del a):} Givet en följd $a_0, a_1, \ldots$, definiera dess exponentiella genererande funktion.
+
+\noindent\textbf{Del b):} Vad är Fibonaccitalen? Använd rekursionen för dem för att härleda en differentialekvation som löses av den exponentiella genererande funktionen för Fibonaccitalen.
+
+\section{Fråga 4} %föreläsning 9
+
+\textbf{Del a):} Definiera vad som menas med en händelse, med en slumpvariabel, och med väntevärdet för en slumpvariabel. Bevisa att väntevärdet är linjärt, alltså att
+$$\E{aX + bY} = a\E{X} + b\E{Y}$$
+för alla slumpvariabler $X$ och $Y$ och alla $a, b \in \R$.
+
+\noindent\textbf{Del b):} Unionsbegränsningen är följande olikhet för en samling händelser $A_1, A_2, \ldots, A_n$:
+$$\Prob{\bigcup_{i=1}^n A_i} \leq \sum_{i=1}^{n} \Prob{A_i}.$$
+Kräver denna olikhet att händelserna är oberoende?
+
+Ge ett bevis för denna olikhet.\sidenote[][]{Vi har sett tre olika bevis i kursen, ett i föreläsningen och två till i övningarna till föreläsningarna. Vilket korrekt bevis som helst är så klart ett korrekt svar på denna fråga.}
+
+\section{Fråga 5} %föreläsning 4
+
+Vi sammanfattade merparten av våra räkneproblem i kursen i en stor tabell, som vi kallade den ``tolvfaldiga vägen''. Denna tabell finns med i formelsamlingen.
+
+\noindent\textbf{Del a):}
+
+Välj sju av cellerna i denna tabell, och motivera varför just det problemet hör hemma i den cellen.\sidenote[][]{Du behöver alltså inte, i denna del, förklara eller bevisa formeln -- bara ge en tolkning av problemet som förklarar varför det passar in i den cellen.}
+
+\noindent\textbf{Del b):}
+
+Välj tre av cellerna\sidenote[][]{Förutom de på sista raden, och mellersta i näst sista raden -- vi har ju ingen formel för heltalspartitioner, och de två ``dumma cellerna'' är inte intressanta.} och bevisa att formeln vi ger stämmer. Du får lov att, i dina bevis, antaga att alla andra formler i tabellen redan är kända.
+
+\section{Fråga 6} %föreläsning 11
+
+En $k$-cykel i en graf $G = (V,E)$ är en följd $v_1, v_2, \ldots, v_k$ av $k$ stycken noder i grafen, sådan att $v_{i-1}$ och $v_i$ är grannar för varje $i$, och $v_1$ och $v_k$ är grannar.
+
+\textbf{Del a):} Vad är en Erd\H{o}s-Rényi-graf med parameterar $n$ och $p$? Ge en definition. Räkna sedan ut väntevärdet av antalet $k$-cykler i en $G(n,p)$-graf.
+
+\noindent\textbf{Del b):} Bevisa att sannolikheten att det finns en $k$-cykel i en $G\left(n, \frac{c}{n}\right)$-graf går mot noll med $n$ för varje fixt $c > 0$.
+
+\section{Fråga 7} %föreläsning 5
+
+Betrakta ekvationen
+$$x_1 + x_2 + x_3 + x_4 = n$$
+där vi kräver att alla variablerna är ickenegativa heltal, och att
+\begin{itemize}
+  \item $x_1$ är ett udda tal,
+  \item $x_2$ är ett jämnt tal,
+  \item $2 \leq x_3 \leq 9$,
+  \item och $x_4$ kan vara vilket tal som helst, men det kan vara målat grönt, lila, vitt, eller rött.
+\end{itemize}
+
+Beteckna antalet distinkta lösningar\sidenote[][]{Lösningar med olika färg på $x_4$ betraktar vi alltså som olika.} som uppfyller våra krav med $\ell_n$.
+
+Beräkna genererande funktionen för följden $\{\ell_n\}_{n=0}^\infty$.
+
+\section{Fråga 8} %föreläsning 10
+
+Antag att $v_1, v_2, \ldots, v_n \in \{-1,1\}^n$, det vill säga varje $v_i$ är en följd av $n$ stycken $\pm 1$or. Vi kan betrakta dessa som enhetsvektorer i $\R^n$, så att det blir väldefinierat att multiplicera dessa med reella tal och addera dem.
+
+Bevisa\sidenote[][]{Ledtråd: Detta är en övning på probabilistiska metoden.} att det finns en följd $\eta_1, \eta_2, \ldots, \eta_n$, med $\eta_i = \pm 1$ för varje $i$, sådan att
+$$\norm{\sum_{i=1}^{n} \eta_i v_i} \leq \sqrt{n},$$
+där vi menar den vanliga euklidiska normen av en vektor, det vill säga
+$$\norm{\sum_{i=1}^{n} \eta_i v_i} = \sqrt{\sum_{j=1}^{n} \left(\sum_{i=1}^{n} \eta_{i}v_{i,j}\right)^2}.$$
+
+\pagebreak
+
+\section{Formelsamling}
+
+\section{Den tolvfaldiga vägen}
+
+\begin{fullwidth}
+  \begin{tabularx}{\linewidth}{l|ccc}
+    & Generellt $f$ & Injektivt $f$ & Surjektivt $f$\\
+    \midrule
+    Bägge särskiljbara & \specialcell{Ord ur $X$ av längd $n$\\ $x^n$} & \specialcell{Permutation ur $X$ av längd $n$\\ $\frac{x!}{(x-n)!}$} & \specialcell{Surjektion från $N$ till $X$\\$x!\stirlingPart{n}{x}$} \\
+    Osärskiljbara objekt & \specialcell{Multi-delmängd av $X$\\ av storlek $n$\\$\binom{n + x - 1}{n}$} & \specialcell{Delmängd av $X$ av storlek $n$\\$\binom{x}{n}$} & \specialcell{Kompositioner av $n$\\av längd $x$\\$\binom{n - 1}{n - x}$} \\
+    Osärskiljbara lådor & \specialcell{Mängdpartition av $N$\\ i $\leq x$ delar \\$\sum_{k=1}^{x} \stirlingPart{n}{k}$} & \specialcell{Mängdpartition av $N$\\ i $\leq x$ delar av storlek $1$\\$1$ om $n \leq x$, $0$ annars} & \specialcell{Mängdpartition av $N$\\i $x$ delar\\$\stirlingPart{n}{x}$} \\
+    Bägge osärskiljbara & \specialcell{Heltalspartition av $n$ i $\leq x$ delar\\$p_x(n + x)$} & \specialcell{Sätt att skriva $n$ som\\summan av $\leq x$ ettor\\$1$ om $n \leq x$, $0$ annars} & \specialcell{Heltalspartitioner av $n$\\ i $x$ delar \\$p_x(n)$} 
+  \end{tabularx}
+\end{fullwidth}
+
+\section{Räkneregler för genererande funktioner}
+
+\begin{lemma}[Räkneregler för genererande funktioner]
+  Antag att vi har en följd $\{a_k\}_{k=0}^\infty$, med genererande funktion $F_a$. Då gäller det att
+    \begin{enumerate}
+        \item För varje $j \geq 1$ är
+        $$\sum_{k = j}^{\infty} a_k x^k = \left(\sum_{k=0}^{\infty}a_k x^k\right) - \left(\sum_{k=0}^{k=j-1} a_kx^k\right) = F_a(x) - \sum_{k=0}^{k=j-1} a_kx^k$$
+        \item För alla $m \geq 0$, $l \geq -m$ gäller det att
+        $$\sum_{k=m}^{\infty} a_k x^{k + l} = x^l\left(\sum_{k=m}^{\infty} a_k x^{k}\right) = x^l\left(F_a(x) - \sum_{k=0}^{m-1} a_k x^k\right)$$
+        \item Det gäller att\sidenote[][]{Denna räkneregel kan förstås generealiseras till att högre potenser av $k$ motsvarar högre derivator -- och om vi istället delar med någon potens av $k$ får vi primitiva funktioner till den genererande funktionen.}
+        $$\sum_{k=0}^{\infty} k a_k x^k = x F_a'(x).$$
+    \end{enumerate}
+\end{lemma}
+
+\section{Vanliga genererande funktioner}
+
+\begin{tabularx}{\linewidth}{cc}
+  Följd & Genererande funktion\\
+  \midrule
+  $(1, 0, 0, \ldots)$ & $1$\\
+  $(1,1,1,\ldots)$ & $\frac{1}{1-x}$\\
+  $a_k = 1$ om $k \leq n$, $0$ annars & $\frac{1 - x^{n+1}}{1 - x}$\\
+  Fixt $n$, $a_k = \binom{n}{k}$ & $(1+x)^n$\\
+  Fixt $n$, $a_k = \binom{n+k-1}{k}$ & $\frac{1}{(1-x)^n}$\\
+  \specialcell{Fibonaccitalen\\$f_0 = f_1 = 1$, $f_{k+1} = f_k + f_{k-1}$ för $k \geq 1$} & $\frac{1}{1 - x - x^2}$\\
+  \specialcell{Indikatorfunktion för jämna talen\\$(1,0,1,0,1,0,\ldots)$} & $\frac{1}{1-x^2}$\\
+  Catalantalen & $\frac{1 - \sqrt{1 - 4x}}{2x}$
+\end{tabularx}
+
+\begin{tabularx}{0.9\linewidth}{cc}
+  Följd & Exponentiell genererande funktion\\
+  \midrule
+  $(1, 0, 0, \ldots)$ & $1$\\
+  $(1, 1, 1, \ldots)$ & $e^x$\\
+  $(0!, 1!, 2!, 3!, \ldots)$ & $\frac{1}{1-x}$\\
+  Fixt $n$, $a_k = \frac{n!}{(n-k)!}$ & $(1 + x)^n$
+\end{tabularx}
+
+\section{Sannolikhetsteori}
+
+\begin{lemma}
+  Det gäller för alla händelser $A$ och $B$ att
+  \begin{itemize}
+      \item per definition är $\Prob{A} = \sum_{\omega \in A} \mu(\omega)$,
+      \item så $\Prob{A^c} = 1 - \Prob{A}$,
+      \item och om $A$ och $B$ har tomt snitt, $A\cap B = \emptyset$, så är $\Prob{A \cup B} = \Prob{A} + \Prob{B}$,
+      \item och om de inte nödvändigtvis har tomt snitt har vi att
+      $$\Prob{A \cup B} = \Prob{A} + \Prob{B} - \Prob{A \cap B}.$$
+      \item $\Prob{A \cap B} = \Prob{A \given B}\Prob{B}$,
+      \item och per definition är $A$ och $B$ oberoende precis när $\Prob{A \cap B} = \Prob{A}\Prob{B}$.
+  \end{itemize}
+\end{lemma}
+
+\begin{lemma}
+  Om $(\Omega, \mu)$ är något sannolikhetsrum, $A \subseteq \Omega$ någon händelse, och $X, Y: \Omega \to \R$ samt $Z: \Omega \to V$ är slumpvariabler som tar värden i $\R$ och i någon godtycklig mängd $V$, så gäller att:
+  \begin{enumerate}
+      \item $$\E{X} = \sum_{x \in X(\Omega)} x \Prob{X = x} = \sum_{\omega \in \Omega} X(\omega)\mu(\omega).$$
+      \item För alla $a, b \in \R$ så är
+      $$\E{aX + bY} = a\E{X} + b\E{Y}.$$
+      Väntevärdet är alltså en linjär funktional.
+      \item $$\Prob{A} = \E{\indSet{A}}.$$
+      \item Om $X(\omega) \leq C$ för varje $\omega$, eller ekvivalent om $\Prob{X \leq C} = 1$, så är $\E{X} \leq C$.
+      \item Om $\E{X} = C$ så finns det åtminstone ett $\omega$ sådant att $X(\omega) \geq C$.
+      \item Om $Z$ är likformigt fördelad på $V$ så gäller det för varje delmängd $W \subseteq V$ att
+      $$\Prob{Z \in W} = \frac{\abs{W}}{\abs{V}}.$$
+  \end{enumerate}
+\end{lemma}
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}

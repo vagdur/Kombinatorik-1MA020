@@ -48,6 +48,7 @@ Om man vill göra inlämningsuppgiften med att skriva en rapport om någon forsk
 4. [Lösningar till modelltenta](https://vagdur.github.io/Kombinatorik-1MA020/solutions_model_exam.pdf)
 5. [Tenta från den 15 Mars 2023](https://vagdur.github.io/Kombinatorik-1MA020/tenta_15mars.pdf)
 6. [Lösningar till tenta från den 15 Mars 2023](https://vagdur.github.io/Kombinatorik-1MA020/solutions_march15_23.pdf)
+7. [Tenta från den 11 Mars 2024](https://vagdur.github.io/Kombinatorik-1MA020/tenta_11mars.pdf)
 
 Övningar med lösningsförslag: 
 1. Ett ställe att hitta sådana på är [anteckningarna från förra föreläsarens version av kursen](https://vagdur.github.io/Kombinatorik-1MA020/CombinatoricsCourse.pdf). Dessa innehåller inte bara övningar, utan också en del exempel som vi inte går igenom på föreläsningarna detta året - så de exemplen kan ju också användas som övningar, om ni försöker lösa exemplet själva innan ni läser hur han gjorde. 
