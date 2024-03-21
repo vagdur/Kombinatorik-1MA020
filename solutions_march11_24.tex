@@ -106,17 +106,19 @@ Oavsett, se föreläsning 4 för bägge delarna av denna uppgift.
 
 En Erd\H{o}s-Rényi-graf med parameterar $n$ och $p$ är en graf på $n$ noder, där varje möjlig kant är med med sannolikhet $p$, oberoende av varandra.
 
-Vi kan skapa en $k$-cykel genom att först välja en mängd av $k$ stycken noder, och sedan välja en cyklisk ordning\sidenote[][]{Med detta menar vi alltså en permutation av dem, men vi betraktra till exempel $1234$ och $4123$ som samma ordning, eftersom de ser likadana ut när vi skriver dem i en cirkel -- tänk på exemplet tidigt i kursen med att placera människor kring ett runt bord.} av dem. Så låt, för varje mängd $A \in {[n] \choose k}$ och varje cyklisk ordning $\pi$, $C_{A,\pi}$ vara händelsen att noderna i $A$ bildar en cykel i ordning $\pi$.
+Vi kan skapa en $k$-cykel genom att först välja en mängd av $k$ stycken noder, och sedan välja en cyklisk ordning\sidenote[][]{Med detta menar vi alltså ett sätt att sätta personer runt ett runt bord, där vi inte heller kan se skillnad på medurs och moturs. Så vi kan se detta som en permutation där vi betraktar $1234$ och $2341$ som samma, eftersom bordet är runt, och också betraktar $1234$ och $4321$ som samma, eftersom medurs och moturs ger samma cykel. Tänk på exemplet tidigt i kursen med att placera människor kring ett runt bord.
+
+Den här komplikationen med att olika permutationer kan ge samma cykel var inte avsedd i uppgiften, utan är något jag först insåg under rättningen och när jag skulle skriva lösningsförslagen, så inga större poängavdrag för att missa den.} av dem. Så låt, för varje mängd $A \in {[n] \choose k}$ och varje cyklisk ordning $\pi$, $C_{A,\pi}$ vara händelsen att noderna i $A$ bildar en cykel i ordning $\pi$.
 
 Om vi låter $X$ vara antalet $k$-cykler i vår graf har vi alltså att
-$$X = \sum_{A, \pi} \ind{C_{A,\pi}}$$,
+$$X = \sum_{A, \pi} \ind{C_{A,\pi}},$$
 så vi kan med väntevärdets linjäritet räkna ut att
 $$\E{X} = \E{\sum_{A, \pi} \ind{C_{A,\pi}}} = \sum_{A, \pi} \E{\ind{C_{A,\pi}}} = \sum_{A, \pi} \Prob{C_{A,\pi}}.$$
 
 Vi ser enkelt att sannolikheten för varje given händelse $C_{A,\pi}$ måste vara precis $p^k$, eftersom det är exakt $k$ stycken kanter som måste vara med i grafen för att de noderna skall bilda en cykel i den ordningen.
 
-Vi vet också att det finns $n \choose k$ sätt att välja $A$, och det finns $(k-1)!$ sätt att välja $\pi$.\sidenote[][]{Det finns $k!$ sätt att välja en permutation, men sedan finns det $k$ stycken olika permutationer som motsvarar varje given cyklisk ordning, genom att välja en plats längs det runda bordet att börja skriva permutationen. Se exemplet i början av kursen om att placera personer runt runda bord.} Alltså har vi att
-$$\E{X} = \sum_{A, \pi} \Prob{C_{A,\pi}} = {n \choose k}(k-1)!p^k = \frac{n!}{k (n-k)!} p^k.$$
+Vi vet också att det finns $n \choose k$ sätt att välja $A$, och det finns $(k-1)!/2$ sätt att välja $\pi$.\sidenote[][]{Det finns $k!$ sätt att välja en permutation, men sedan finns det $2k$ stycken olika permutationer som motsvarar varje given cyklisk ordning, genom att välja en plats längs det runda bordet att börja skriva permutationen och välja att skriva medurs eller moturs.} Alltså har vi att
+$$\E{X} = \sum_{A, \pi} \Prob{C_{A,\pi}} = {n \choose k}\frac{(k-1)!}{2}p^k = \frac{n!}{2 k (n-k)!} p^k.$$
 
 \section{Fråga 6b)}
 
