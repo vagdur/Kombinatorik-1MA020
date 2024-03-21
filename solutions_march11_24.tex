@@ -155,6 +155,34 @@ där vi återigen använt att vi vet genererande funktionen för $(1,1,1,\ldots)
 Så sammantaget blir vårt svar att
 $$F_\ell(x) = \left(\frac{1}{1 - x^2}\right)\left(\frac{1}{1 - x} - \frac{1}{1 - x^2}\right)\left(\frac{1 - x^{10}}{1-x} - \frac{1 - x^2}{1 - x}\right)\left(\frac{4}{1 - x}\right).$$
 
+\section{Fråga 8}
+
+{\large \textbf{Varning:}} Även i denna övning är det ett litet fel: Vektorerna man ombeds betrakta som enhetsvektorer är så klart inte det. Vi ger ändock en lösning på denna uppgift med den avsedda metoden, för att illustrera hur en så bra lösning som möjligt hade kunnat se ut.
+
+Vi ges av ledtråden att vi skall använda probabilistiska metoden, så låt oss anta att varje $\eta_i$ tar värdena $1$ och $-1$ med lika sannolikhet oberoende av varandra, och räkna ut väntevärdet av kvadraten av normen av den givna summan.
+
+Vi använder notationen som är bekant från linjär algebra här, men samma räkningar hade så klart gått att göra utan sådan notation, de hade bara blivit lite otympligare att skriva och tänka på. Specifikt använder vi oss av att $\norm{v}^2 = \inpr{v}{v}$, och linjäritet hos väntevärdet och inre produkten.
+
+\begin{align*}
+  \E{\norm{\sum_{i=1}^{n} \eta_i v_i}^2} &= \E{\inpr{\sum_{i=1}^{n} \eta_i v_i}{\sum_{i=1}^{n} \eta_i v_i}}\\
+  &= \E{\sum_{i = 1}^{n} \sum_{j = 1}^{n} \eta_i \eta_j \inpr{v_i}{v_j}}\\
+  &= \sum_{i = 1}^{n} \sum_{j = 1}^{n} \E{\eta_i \eta_j} \inpr{v_i}{v_j}.
+\end{align*}
+
+I det här steget har vi alltså reducerat problemet med att studera normen för den här summan av plus och minus våra vektorer till att bara studera väntevärdet av produkterna av våra $\eta_i$. Nyckelinsikten här är att $\E{\eta_i \eta_j} = 0$ om $i \neq j$, och $\E{\eta_i^2} = 1$ för varje $i$. Så vi kan fortsätta räkningen ovan genom att skriva
+\begin{align*}
+  \E{\norm{\sum_{i=1}^{n} \eta_i v_i}^2} &= \sum_{i = 1}^{n} \sum_{j = 1}^{n} \E{\eta_i \eta_j} \inpr{v_i}{v_j}\\
+  &= \sum_{i=1}^{n} \inpr{v_i}{v_i} = \sum_{i=1}^{n} \norm{v_i}^2,
+\end{align*}
+så alltså måste det enligt vårt vanliga argument om att väntevärdet inte är större än varje möjligt utfall finnas ett deterministiskt val av $\eta_i$ sådant att
+$$\norm{\sum_{i=1}^{n} \eta_i v_i}^2 \leq \sum_{i=1}^{n} \norm{v_i}^2,$$
+och tar vi roten ur detta får vi att
+\begin{equation}\label{Q8:1}
+  \norm{\sum_{i=1}^{n} \eta_i v_i} \leq \sqrt{\sum_{i=1}^{n} \norm{v_i}^2}.
+\end{equation}
+
+Hade våra vektorer $v_i$ faktiskt varit enhetsvektorer, såsom vi inkorrekt påstod i formuleringen av uppgiften, hade höger led i denna olikhet varit precis $\sqrt{n}$, vilket är vad uppgiften gav oss. Nu får vi istället nöja oss med det aningen mindre vackra uttrycket i \eqref{Q8:1}.
+
 %\bibliography{references}
 %\bibliographystyle{plainnat}
 
