@@ -130,6 +130,30 @@ blir noll.
 
 Tyvärr är inte detta gränsvärde noll. Om man antingen inte noterar detta och bara inkorrekt påstår att det blir noll,\sidenote[][]{Kursen handlar ju inte om att räkna ut gränsvärden, så att göra fel på den biten ska inte kosta en några poäng.} eller noterar detta och påpekar att det är fel i uppgiften, så får man full poäng på denna uppgift.
 
+\section{Fråga 7}
+
+Vi använder vår sedvanliga metod, som vi lärt oss under föreläsningarna, och konstaterar att om vi låter $\ell^i_n$ vara antalet lösningar till ekvationen $x_i = n$ under våra begränsningar på de olika variablerna, gäller det att
+$$\ell_n = (\ell^1 * \ell^2 * \ell^3 * \ell^4)_n,$$
+så att
+$$F_\ell(x) = F_{\ell^1}(x)F_{\ell^2}(x)F_{\ell^3}(x)F_{\ell^4}(x),$$
+och vad vi behöver räkna ut är de genererande funktionerna för dessa följder.
+
+Vi börjar med följden $\ell^2 = (1,0,1,0,\ldots)$, och ser i vår formelsamling att $F_{\ell^2}(x) = \frac{1}{1 - x^2}$.
+
+För följden $\ell^1 = (0,1,0,1,\ldots)$ finns det ett stort antal möjliga trick för att härleda vad den borde vara -- det finns en metod i exemplet i föreläsningarna, så låt oss använda en annan här. Vi kan observera att $(0,1,0,1,\ldots) = (1,1,1,1,\ldots) - (1,0,1,0,1,\ldots)$, så om vi tar genererande funktioner på bägge sidor av denna likheten, och använder att vi vet att genererande funktionen för bara ettor är $\frac{1}{1-x}$ och att vi just såg att genererande funktionen för indikatorföljden av jämna tal är $\frac{1}{1 - x^2}$, så får vi att
+$$F_{\ell^1}(x) = \frac{1}{1 - x} - \frac{1}{1 - x^2}.$$
+
+För följden $\ell^3$ kan vi observera att
+$$(0,0,\underbrace{1,\ldots,1}_{7\text{ stycken}},0,\ldots) = (\underbrace{1,\ldots,1,}_{10\text{ stycken}}0,\ldots) - (1,1,0,0,\ldots)$$
+och för följder av ettor och sedan nollor vet vi ur formelsamlingen vad deras genererande funktioner är, så detta ger oss att
+$$F_{\ell^3}(x) = \frac{1 - x^{10}}{1-x} - \frac{1 - x^2}{1 - x}.$$
+
+Slutligen, för följden $\ell^4 = (4,4,4,\ldots)$ så ser vi att
+$$F_{\ell^4}(x) = \sum_{k=0}^{\infty} 4 x^k = 4 \sum_{k=0}^{\infty} x^k = \frac{4}{1 - x},$$
+där vi återigen använt att vi vet genererande funktionen för $(1,1,1,\ldots)$.
+
+Så sammantaget blir vårt svar att
+$$F_\ell(x) = \left(\frac{1}{1 - x^2}\right)\left(\frac{1}{1 - x} - \frac{1}{1 - x^2}\right)\left(\frac{1 - x^{10}}{1-x} - \frac{1 - x^2}{1 - x}\right)\left(\frac{4}{1 - x}\right).$$
 
 %\bibliography{references}
 %\bibliographystyle{plainnat}
