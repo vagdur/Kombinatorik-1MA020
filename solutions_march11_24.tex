@@ -122,8 +122,14 @@ $$\E{X} = \sum_{A, \pi} \Prob{C_{A,\pi}} = {n \choose k}\frac{(k-1)!}{2}p^k = \f
 
 \section{Fråga 6b)}
 
+{\large \textbf{Varning:}} Tyvärr var det ett fel i denna uppgiften -- påståendet ni ombeds bevisa är inte sant! För att påståendet skall bli sant måste vi låta $k$ växa med $n$ med någon viss hastighet,\sidenote[][]{Övning för den nyfikne: Hur litet kan vi välja $k(n)$ i termer av $n$ så att väntevärdet faktiskt går mot noll?} vilket jag missade när jag skapade denna uppgiften genom att modifiera en annan tidigare uppgift. Mea culpa. Nedan ger jag den ``lösning'' som hade gett maximal poäng på tentan.
+
 Markovs olikhet säger oss att $\Prob{X > 0} \leq \E{X}$, så för att visa att sannolikheten att det finns en $k$-cykel går mot noll räcker det att visa att väntevärdet vi räknade ut ovan går mot noll. Om vi stoppar in $p = \frac{c}{n}$ i den räkningen får vi att vi vill visa att
-$$\lim_{n \to \infty} \frac{n! c^k}{n^k k (n-k)!}$$
+$$\lim_{n \to \infty} \frac{n! c^k}{2 n^k k (n-k)!} = \frac{c^k}{2k}\lim_{n \to \infty} \frac{n!}{n^k (n-k)!}$$
+blir noll.
+
+Tyvärr är inte detta gränsvärde noll. Om man antingen inte noterar detta och bara inkorrekt påstår att det blir noll,\sidenote[][]{Kursen handlar ju inte om att räkna ut gränsvärden, så att göra fel på den biten ska inte kosta en några poäng.} eller noterar detta och påpekar att det är fel i uppgiften, så får man full poäng på denna uppgift.
+
 
 %\bibliography{references}
 %\bibliographystyle{plainnat}
