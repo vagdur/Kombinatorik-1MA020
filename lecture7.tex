@@ -147,11 +147,11 @@ Svaret på den frågan är ja, men det kräver ett lemma vi inte sett ännu.
 
 \begin{definition}
     För varje $x\in \R$ och varje $k \in \Z^{\geq 0}$ ges den \emph{fallande fakulteten} $x^{\underline{k}}$ av\sidenote[][]{Så produkten har $k$ termer. I fallet med $k=0$ får vi en tom produkt, vilket vi konventionellt anser är ett, så $x^{\underline{0}} = x^{\overline{0}} = 1$ för alla $x$.}
-    $$x^{\underline{k}} = x(x-1)(x-2)\ldots(x-k-1)$$
+    $$x^{\underline{k}} = x(x-1)(x-2)\ldots(x-(k-1))$$
     och den \emph{stigande fakulteten} $x^{\overline{k}}$ av
     $$x^{\overline{k}} = x(x+1)(x+2)\ldots(x+k-1).$$
 
-    Om $x$ är ett heltal ges alltså $x^{\underline{k}}$ av $\frac{x!}{k!}$ och $x^{\overline{k}}$ av $\frac{(x+k-1)!}{(x-1)!}$.
+    Om $x$ är ett heltal ges alltså $x^{\underline{k}}$ av $\frac{x!}{(x-k)!}$ och $x^{\overline{k}}$ av $\frac{(x+k-1)!}{(x-1)!}$.
 \end{definition}
 
 Vi kan särskilt notera att när $x$ är ett heltal ges antalet permutationer av längd $k$ ur ett alfabete med $x$ bokstäver alltså av $x^{\underline{k}}$, och således har vi också att
