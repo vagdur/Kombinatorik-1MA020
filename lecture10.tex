@@ -261,7 +261,7 @@ Den matematiska formaliseringen av det här är så klart i termer av grafer, s�
 
         För att konstruera ett sådant sätt att etikettera $G$ börjar vi med att välja vilka tal som skall stå på $i$ och dess grannar -- detta kan vi göra på $\binom{n}{d_i + 1}$ sätt, eftersom vi skall ha $d_i$ etiketter på dess grannar och en etikett på den själv.
 
-        Sedan väljer vi hur vi placerar dessa etiketter på $d_i$ och $N(i)$ -- vi måste så klart välja att placera det lägsta av talen på $i$, men de återstående $d_i$ talen kan vi placera ut fritt\sidenote[][]{Det är här som vår teknik med väntevärdets linjäritet verkligen lönar sig -- vi har kunnat zooma in bara på $i$, och behöver inte bry oss om vad som händer utanför just $i$. Hade vi inte gjort det hade vi kanske behövt bekymra oss om kanter mellan $i$s grannar här, och inte kunnat placera ut etiketterna helt fritt.}, och alltså på $d_i!$ sätt.
+        Sedan väljer vi hur vi placerar dessa etiketter på $i$ och $N(i)$ -- vi måste så klart välja att placera det lägsta av talen på $i$, men de återstående $d_i$ talen kan vi placera ut fritt\sidenote[][]{Det är här som vår teknik med väntevärdets linjäritet verkligen lönar sig -- vi har kunnat zooma in bara på $i$, och behöver inte bry oss om vad som händer utanför just $i$. Hade vi inte gjort det hade vi kanske behövt bekymra oss om kanter mellan $i$s grannar här, och inte kunnat placera ut etiketterna helt fritt.}, och alltså på $d_i!$ sätt.
 
         Till slut väljer vi hur vi placerar resten av etiketterna på noderna utanför $i$s grannskap -- detta kan vi också göra helt fritt, så på $(n - d_i - 1)!$ sätt. Så totalt har vi sett att det finns
         $$\binom{n}{d_i + 1} d_i! (n - d_i - 1)!$$
