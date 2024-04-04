@@ -153,12 +153,21 @@ För att göra det här verkligt användbart behöver vi konceptet med indikator
 
 Låt oss nu ta vad vi har lärt oss och tillämpa det på ett faktiskt kombinatoriskt resultat.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{F10/subset_lattice_w_chain_and_antichain.png}
+    \caption{En illustration av delmängds-gittret för mängden $\{1,2,3,4\}$. Längst upp ser vi hela mängden, längst ner är tomma mängden. De blå strecken indikerar att en mängd är en delmängd till en annan. Det röda strecket från $\emptyset$ till hela mängden är en maximal kedja, och samlingen av mängder inringade i rött bildar en antikedja.}
+    \label{fig:chain_and_antichain}
+\end{figure}
+
 \begin{definition}
     En följd av icketomma delmängder
     $$F_1 \subsetneq \ldots \subsetneq F_{k-1} \subsetneq F_k \subseteq [n]$$
     till $[n]$ kallas för en \emph{kedja}. Ifall $k=n$ kallar vi kedjan för en \emph{maximal} kedja,\sidenote[][]{Att vi inte kan ha en längre kedja torde vara uppenbart.} och då måste vi, eftersom vi kräver att varje mängd är en \emph{strikt} delmängd till nästa, ha att $\abs{F_i} = i$. I så fall låter vi också $F_0 = \emptyset$.
 
     En samling $\mathcal{G}$ av delmängder till $[n]$ kallas för en \emph{anti-kedja} ifall det för varje par $F, G \in \mathcal{G}$ varken gäller att $F \subseteq G$ eller $G \subseteq F$.
+
+    Denna definition illustreras i Figur~\ref{fig:chain_and_antichain}.
 \end{definition}
 
 Att varje maximal kedja består av precis $n$ stycken mängder är uppenbart. Hur stor kan en anti-kedja vara? Ett enkelt sätt att skapa sig en sådan är att ta alla delmängder av storlek $k$ till $[n]$ för något $k$ -- att dessa inte kan vara delmängder till varandra är uppenbart. Att det val av $k$ som gör denna anti-kedja som störst blir $\floor{\frac{n}{2}}$ är inte allt för svårt att se.\sidenote[][]{Vi hade också kunnat välja $\ceil{\frac{n}{2}}$, det ger samma storlek.} Är det möjligt att hitta en ännu större genom att ha med delmängder av olika storlekar? Sperners lemma säger oss att svaret är nej.
