@@ -80,7 +80,14 @@ Vi kan använda denna sats för att bevisa följande resultat:
 
     Vi ser enkelt att graden av $i$ i $G'$ är precis $n$ minus graden av $i$ i $G$, så eftersom $d_i \leq n/2$ i $G$ måste $d_i' \geq n/2$ i $G'$. Alltså kan vi tillämpa Diracs sats och hitta en Hamiltoncykel $\sigma$ i komplementgrafen $G'$.
 
-    Vi kan nu använda denna Hamiltoncykel för att para ihop noder i $G$ -- vi matchar $\sigma(1)$ med $\sigma(2)$, $\sigma(3)$ med $\sigma(4)$, och så vidare. Eftersom detta var en Hamiltoncykel i komplementgrafen är vi alltså garanterade att vi aldrig parar ihop två noder som har en kant mellan sig.
+    Vi kan nu använda denna Hamiltoncykel för att para ihop noder i $G$ -- vi matchar $\sigma(1)$ med $\sigma(2)$, $\sigma(3)$ med $\sigma(4)$, och så vidare. Eftersom detta var en Hamiltoncykel i komplementgrafen är vi alltså garanterade att vi aldrig parar ihop två noder som har en kant mellan sig. Denna process illustreras i Figur~\ref{fig:min_bisection_matching}.
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.7\textwidth]{F11/min_bisection_matching.png}
+      \caption{En graf på åtta noder, med kanter ritade i svart. Eftersom den har maxgrad tre kan vi finna en Hamiltoncykel i komplementgrafen, som är ritad i alternerande streckade och heldragna röda linjer. Om vi väljer enbart de heldragna linjerna får vi en matchning som är disjunkt från kanterna i grafen.}
+      \label{fig:min_bisection_matching}
+    \end{figure}
 
     Vi kan nu skapa oss en slumpmässig delmängd $A \in \binom{[n]}{n/2}$ genom att, för varje par, slumpmässigt välja en av de två noderna att ha med i $A$, och låta den andra vara utanför $A$. Denna delmängd kommer ha rätt storlek eftersom vi väljer en nod ur varje par, så vi måste få precis hälften av noderna.
 
