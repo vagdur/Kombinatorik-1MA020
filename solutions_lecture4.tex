@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[parfill]{parskip}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{endnotes}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\Dim}{\text{Dim }}
+\newcommand{\im}{\text{Im }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\acos}{\text{arccos}}
+\newcommand{\asin}{\text{arcsin}}
+\usepackage{pythonhighlight}
+\newcommand*{\bfrac}[2]{\genfrac{ }{ }{0pt}{}{#1}{#2}}
+
+\title{Lösningsförslag - Föreläsning 4}
+\author{Kristoffer Kulju}
+\begin{document}
+\maketitle
+
+\subsection*{Övning 1}
+Ge ett bevis för följande rekursion för Stirlings cykeltal:
+$$
+{n + 1 \brack k} = {n \brack k - 1} + n{n \brack k}
+$$
+Antag att vi har $n+1$ personer som ska delas ut mellan $k$ osärskiljbara runda bord. Å ena sidan vet vi, per definition, att de räknas av vänstra ledet av vår ekvation. 
+
+Antag nu att en av våra personer är Gauss. Endera sitter Gauss ensam vid ett bord, och i så fall finns det ${n \brack k - 1}$ sätt att dela ut de resterande $n$ gästerna runt de resterande $k-1$ borden. Ifall Gauss inte sitter ensam finns det en person som sitter direkt högerom honom. Efter att vi gjort detta val kan Gauss och denna bordsgranne betraktas som en och samma person, och då finns det ${n \brack k}$ olika sätt att placera ut våra $n$ personer (egentligen $n - 1$ personer och paret beståendes av Gauss och hans bordsgranne till höger) runt våra $k$ bord. 
+
+Eftersom valet av Gauss bordsgranne kan göras på $n$ olika sätt finns det $n{n \brack k}$ olika sätt att att placera ut våra personer ifall vi vet att Gauss har en bordsgranne. Eftersom Gauss endera har åtminståne en bordsgranne $\emph{eller}$ inte har en enda bordgranne följer det att antalet placeringar är $$
+{n \brack k - 1} + n{n \brack k}
+$$ vilket avslutar beviset.
+ 
+\subsection*{Övning 2}
+I slutet av förra föreläsningen talade vi om derangemang – alltså permutationer $\sigma$ sådana att $\sigma(i)\neq i$ för alla $i$. Om vi istället tänker på permutationer som sätt att placera personer runt runda bord, hur kan vi se på vår bordsplacering om vår permutation är ett derangemang?
+
+Om vi tänker oss permutationer som sätt att dela ut personer runt osärskiljbara runda bord kommer antalet bord motsvara antalet cykler, och placeringen runt ett givet bord kommer motsvara någon viss cykel. Att en permutation är ett derangemang är samma sak som att vi inte har någon cykel av längd ett, det vill säga att ingen sitter ensam vid sitt bord.
+
+\subsection*{Övning 3}
+Bevisa att $$
+{n + 1 \brace k + 1} = \sum _{j = k} ^{n} {n \choose j}{j \brace k}
+$$
+Från definitionen av Stirlingtal av andra sorten följer det att vänstra ledet beskriver antalet sätt vi kan dela ut $n + 1$ särskiljbara bollar i $k + 1$ osärskiljbara lådor, om ingen låda får lämnas tom. Antag att $n \geq k$ (annars är båda sidorna lika med noll). 
+
+Alternativt kan vi tänka att alla bollarna redan ligger i en låda, och att vi för över bollarna från den lådan till $k$ stycken andra lådor, så att ingen låda lämnas tom. Om vi tar $j$ stycken bollar från lådan som innehåller alla bollar kan detta göras på $n \choose j$ olika sätt. Sedan kan vi dela ut dessa bland våra $k$ lådor på $j \brace k$ olika sätt, alltså finns det enligt multiplikationsprincipen $ {n \choose j}{j \brace k}$ olika sätt att välja $j$ bollar och dela ut dem bland $k$ lådor.
+
+$j$ är som minst $k$, eftersom vi måste placera ut minst en boll i varje av våra $k$ tomma lådor. $j$ är som högst $n$, eftersom vi har $n + 1$ lådor och vi får inte tömma lådan som innehöll alla bollarna i början helt och hållet. Eftersom $j=k$ $\emph{eller}$ $j=k + 1$ ... $\emph{eller}$ $j= n - 1$ $\emph{eller}$ $j= n$ följer det från additionsprincipen att det finns $$
+{n \choose k}{k \brace k} + {n \choose k + 1}{k + 1 \brace k} + ... + {n \choose n - 1}{n - 1\brace k} + {n \choose n}{n \brace k} =  \sum _{j = k} ^{n} {n \choose j}{j \brace k}
+$$
+olika sätt att placera ut $n + 1$ särskiljbara bollar i $k + 1$ osärskiljbara lådor, vilket avslutar beviset. 
+
+\subsection*{Övning 4}
+Skriv följande permutation av $[10]$ i cykelform $$
+8, 9, 4, 10, 5, 7, 3, 2, 6, 1
+$$
+Vi bestämmer först $\sigma(1)$, sedan bestämmer vi $\sigma(\sigma(1))$, och fortsätter komponera $\sigma$ med sig själv tills vi får tillbaka 1, varefter vi hittat en cykel. Om det finns något element $k$ som inte var med i cykeln så bestämmer vi $\sigma(k)$, $\sigma(\sigma(k))$ o.s.v., tills vi får tillbaka $k$, och vi har hittat en annan cykel. Vi gör dessa tills vi hittat cykler som innehåller alla våra 10 element. 
+
+$\sigma(1)=8$, $\sigma(8)=2$, $\sigma(2)=9$, $\sigma(9)=6$, $\sigma(6)=7$, $\sigma(7)=3$, $\sigma(3)=4$, $\sigma(4)=10$, och $\sigma(10)=1$. Alltså har vi hittat följande cyklen $(1, 8, 2, 9, 6, 7, 3, 4, 10)$. Det enda elementet som inte ingår i cykeln är $5$, så $\sigma(5)=5$ och vår andra cykel är $(5)$. Alltså kan permutationen skrivas i cykelform exempelvis som $$
+(1, 8, 2, 9, 6, 7, 3, 4, 10)(5).
+$$
+
+\end{document}
