@@ -220,6 +220,8 @@ Självklart måste $\abs{X} \geq k$ för att det skall existera några permutati
 	\end{proof}
 \end{proposition}
 
+Vi börjar med att bevisa den allra enklaste identiteten för binomialkoefficienterna.
+
 \begin{proposition}
 	För alla $n \geq 0$ och alla $0 \leq k \leq n$ gäller det att
 	$$\binom{n}{k} = \binom{n}{n-k}.$$
@@ -234,11 +236,12 @@ Vi ger två olika bevis av denna proposition. Det första är algebraiskt:
 	\end{align*}
 \end{proof}
 
-Det andra är kombinatoriskt:\sidenote[][]{Vad menar vi när vi säger att det här beviset är ``kombinatoriskt'', till skillnad från det andra beviset? Nyckeln är att vi här visade att de två mängderna -- mängden av delmängder av storlek $k$ och mängden av delmängder av storlek $n-k$ -- har lika många medlemmar genom att uppvisa en bijektion mellan dem, emedan vi i det algebraiska beviset bara manipulerade våra formler för att visa att de var lika.
+Det andra är kombinatoriskt.\sidenote[][]{Vad menar vi när vi säger att det här beviset är ``kombinatoriskt'', till skillnad från det andra beviset? Nyckeln är att vi här visade att de två mängderna -- mängden av delmängder av storlek $k$ och mängden av delmängder av storlek $n-k$ -- har lika många medlemmar genom att uppvisa en bijektion mellan dem, emedan vi i det algebraiska beviset bara manipulerade våra formler för att visa att de var lika.
 
 Bijektionen vi hittade här är själv ett \emph{kombinatoriskt} objekt, och det berättar mer för oss än bara att mängderna har lika många medlemmar. Man kan se det som att den är en \emph{anledning} till varför de har lika många mängder.
 
 Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- och likaså att bijektionerna ger oss mer förståelse för objekten vi studerar än vad ett algebraiskt bevis gör.}
+
 \begin{proof}
 	Låt $X$ vara en mängd med $n$ element. $\binom{n}{k}$ räknar antalet sätt att välja en delmängd $A \subseteq X$ av storlek $k$. Men varje sådan delmängd $A$ har ett komplement $X\setminus A$ av storlek $n-k$, och för varje delmängd av storlek $n-k$ kan vi få en av storlek $k$ genom att ta dess komplement.
 
@@ -246,6 +249,8 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 
 	Men vi vet att antalet delmängder av storlek $n-k$ är $\binom{n}{n-k}$, och alltså måste $\binom{n}{k} = \binom{n}{n-k}$.
 \end{proof}
+
+Man hade också kunnat formulera det här kombinatoriska beviset för detta som att bägge sidorna av formeln räknar samma sak, nämligen antalet sätt att välja $k$ personer ur en grupp av $n$ personer. Att vänster led gör det är per definition -- och i höger led väljer vi vilka $n - k$ personer som \emph{inte} skall vara med i gruppen, vilket så klart bestämmer precis vilka $k$ som \emph{skall} vara med.
 
 \section{Kombinatoriska bevis}
 
