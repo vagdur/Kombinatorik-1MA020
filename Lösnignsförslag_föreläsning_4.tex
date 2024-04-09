@@ -31,9 +31,10 @@ Antag att vi har $n+1$ personer som ska delas ut mellan $k$ osärskiljbara runda
 
 Antag nu att en av våra personer är Gauss. Endera sitter Gauss ensam vid ett bord, och i så fall finns det ${n \brack k - 1}$ sätt att dela ut de resterande $n$ gästerna runt de resterande $k-1$ borden. Ifall Gauss inte sitter ensam finns det en person som sitter direkt högerom honom. Efter att vi gjort detta val kan Gauss och denna bordsgranne betraktas som en och samma person, och då finns det ${n \brack k}$ olika sätt att placera ut våra $n$ personer (egentligen $n - 1$ personer och paret beståendes av Gauss och hans bordsgranne till höger) runt våra $k$ bord. 
 
-Eftersom valet av Gauss bordsgranne kan göras på $n$ olika sätt finns det $n{n \brack k}$ olika sätt att att placera ut våra personer ifall vi vet att Gauss har en bordsgranne. Eftersom Gauss endera har åtminståne en bordsgranne $\emph{eller}$ inte har en enda bordgranne följer det att antalet sätt att placeringar är $$
+Eftersom valet av Gauss bordsgranne kan göras på $n$ olika sätt finns det $n{n \brack k}$ olika sätt att att placera ut våra personer ifall vi vet att Gauss har en bordsgranne. Eftersom Gauss endera har åtminståne en bordsgranne $\emph{eller}$ inte har en enda bordgranne följer det att antalet placeringar är $$
 {n \brack k - 1} + n{n \brack k}
-$$ vilket avslutar beviet. 
+$$ vilket avslutar beviset.
+ 
 \subsection*{Övning 2}
 I slutet av förra föreläsningen talade vi om derangemang – alltså permutationer $\sigma$ sådana att $\sigma(i)\neq i$ för alla $i$. Om vi istället tänker på permutationer som sätt att placera personer runt runda bord, hur kan vi se på vår bordsplacering om vår permutation är ett derangemang?
 
