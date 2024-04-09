@@ -23,11 +23,11 @@
 \maketitle
 
 \subsection*{Övning 1}
-Ge ett bevis för följande rekrursion för Stirlings cykeltal:
+Ge ett bevis för följande rekursion för Stirlings cykeltal:
 $$
 {n + 1 \brack k} = {n \brack k - 1} + n{n \brack k}
 $$
-Antag att vi har $n+1$ personer som ska delas ut mellan $k$ osärskiljbara runda bord. Å ena sidan vet vi, per definition, att de räknas av vänstra ledet av våran ekvation. 
+Antag att vi har $n+1$ personer som ska delas ut mellan $k$ osärskiljbara runda bord. Å ena sidan vet vi, per definition, att de räknas av vänstra ledet av vår ekvation. 
 
 Antag nu att en av våra personer är Gauss. Endera sitter Gauss ensam vid ett bord, och i så fall finns det ${n \brack k - 1}$ sätt att dela ut de resterande $n$ gästerna runt de resterande $k-1$ borden. Ifall Gauss inte sitter ensam finns det en person som sitter direkt högerom honom. Efter att vi gjort detta val kan Gauss och denna bordsgranne betraktas som en och samma person, och då finns det ${n \brack k}$ olika sätt att placera ut våra $n$ personer (egentligen $n - 1$ personer och paret beståendes av Gauss och hans bordsgranne till höger) runt våra $k$ bord. 
 
