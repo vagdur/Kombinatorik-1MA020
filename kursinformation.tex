@@ -1,4 +1,4 @@
-\documentclass{tufte-handout}
+\documentclass[nobib]{tufte-handout}
 
 \title{Kombinatorik 1MA020: Information om kursen}
 
@@ -30,18 +30,14 @@
 \begin{abstract}
 \noindent
 Den här filen innehåller -- förhoppningsvis -- all praktisk information om kursen som du kan tänkas behöva.\sidenote{Om du saknar någon information här, säg till så lägger jag till den.} Hur bonuspoängen fungerar, innehåll
-i föreläsningarna och rekommenderade uppgifter, et cetera. 
+i föreläsningarna, et cetera. 
 \end{abstract}
 
-Den listade kurslitteraturen för denna kurs är \emph{Applied Combinatorics}\cite{mainTextbook}. Vi förhåller oss dock väldigt löst till boken -- vi kommer säga många saker som den boken inte säger, och också hoppa över mycket som finns i boken. Den kan vara ett ställe att se en annan presentation av samma material när boken och kursen överlappar, men förlita er inte huvudsakligen på den.
-
-Det huvudsakliga materialet för kursen är föreläsningsanteckningarna, som finns på kurshemsidan. Dessa kommer att putsas till lite grann under kursens gång, men innehållet kommer vara väsentligen det samma.\sidenote[][]{Med undantag för den sista delen av kursen, som täcker sannolikhetsteori och den probabilistiska metoden -- denna del kommer att få större förändringar och förbättringar.}
+Den listade kurslitteraturen för denna kurs är våra föreläsningsanteckningar. Vill man ha en annan behandling av samma material finns ett par förslag på gratis tillgängliga böcker på kurshemsidan, inklusive den bok som tidigare var kurslitteratur för kursen.
 
 \section{Planering av föreläsningarna}
 
 Vi skall totalt ha femton schemalagda tillfällen, varav tolv kommer vara föreläsningar, och tre kommer vara övningstillfällen. Om inget oförutsett inträffar så stämmer tiderna och datumen angedda i tabellen i detta dokumentet, men förlita er hellre på TimeEdit.
-
-Innehållet i de sista tre föreläsningarna är fortfarande aningen flytande, och lär ordnas om en del.
 
 \begin{table}[h]
 \begin{tabularx}{\textwidth}{llX}
@@ -67,7 +63,7 @@ Mån 4 Mars &15:15 & Övning
 
 \section{Tentan}
 
-Ordinarie tentamen för kursen inträffar den 11 mars -- kom ihåg att registrera er för den minst tolv dagar i förväg, alltså torsdagen den 29 februari,\sidenote[][]{Det är skottår i år!} det är inget kul att inte få skriva tentan för att man glömt registrera sig.\sidenote{Det hände mig mer än en gång under min kandidat och master...} Det går att få max fyrtio poäng på tentan, och för att få betyget 5a, 4a, 3a behövs respektive 32/25/18 poäng.
+Ordinarie tentamen för kursen inträffar den 11 mars -- kom ihåg att registrera er för den minst tolv dagar i förväg, alltså torsdagen den 29 februari, det är inget kul att inte få skriva tentan för att man glömt registrera sig.\sidenote{Det hände mig mer än en gång under min kandidat och master...} Det går att få max fyrtio poäng på tentan, och för att få betyget 5a, 4a, 3a behövs respektive 32/25/18 poäng.
 
 Omtentor i kursen går den 7e juni och i augusti.
 
@@ -81,7 +77,7 @@ Det finns tre olika sätt att få bonuspoäng till tentan, och du kan maximalt f
 	\item Att skriva en sammanfattning av en forskningsartikel inom kombinatorik.
 \end{enumerate}
 
-Den första av dessa, rättningar av anteckningarna, görs individuellt, och du kan få upp till tre poäng för det -- ett per gång du gör en sådan korrigering eller förbättring. Om du lägger till en till figur skall den självklart faktiskt bidra till att göra materialet lättare att förstå -- en bild bara för bildens skull. Med att ``i övrigt förbättra dem'' menar jag att förtydliga resonmenangen eller ge bättre förklaringar av materialiet. Om du hittar en annan källa än föreläsningsanteckningarna som förklarar samma koncept på ett sätt som du tycker är tydligare kan du alltså få bonuspoäng för att skriva in denna förklaring i föreläsningsanteckningarna.\sidenote[][-0.5cm]{Självklart kan bara en person få poäng per sak som fixas -- om en person hittar ett fel och berättar för sina fem kompisar om det felet, och alla lämnar in en fix av det, så får bara den första som lämnar in det poäng för det.}
+Den första av dessa, rättningar av anteckningarna, görs individuellt, och du kan få upp till tre poäng för det -- ett per gång du gör en sådan korrigering eller förbättring. Om du lägger till en till figur skall den självklart faktiskt bidra till att göra materialet lättare att förstå -- en bild bara för bildens skull räcker inte. Med att ``i övrigt förbättra dem'' menar jag att förtydliga resonmenangen eller ge bättre förklaringar av materialet. Om du hittar en annan källa än föreläsningsanteckningarna som förklarar samma koncept på ett sätt som du tycker är tydligare kan du alltså få bonuspoäng för att skriva in denna förklaring i föreläsningsanteckningarna.\sidenote[][-0.5cm]{Självklart kan bara en person få poäng per sak som fixas -- om en person hittar ett fel och berättar för sina fem kompisar om det felet, och alla lämnar in en fix av det, så får bara den första som lämnar in det poäng för det.}
 
 Till varje av våra tre övningstillfällen kommer vi att ha en samling uppgifter att lösa, samt ett förslag på ett smärre programmeringsprojekt relaterat till ämnet.\sidenote[][]{Eftersom ämnet för denna kurs är kombinatorik, inte programmering, är det okej att lösa denna genom att be t.ex. ChatGPT att skriva de olika funktionerna ni behöver åt er. Detta är så klart inte lika bra för att faktiskt lära sig programmering, och ni måste skriva att ni gjort det i er rapport om ni gör så.} Ni kan få upp till fyra bonuspoäng genom att skriva lösningar på uppgifterna, och/eller upp till sex bonuspoäng på att lösa programmeringsuppgiften -- programmeringen kräver både kod och en förklarande rapport om era resultat.
 
@@ -109,14 +105,20 @@ Ni får själva bilda grupper för att göra uppgiften, och sedan meddela mig om
 	\item Förändringar av föreläsningsanteckningarna görs direkt i \LaTeX-källan för anteckningarna, genom en pull request mot det GitHub-repository som de ligger i.\sidenote[][]{Det finns här: \url{https://github.com/vagdur/Kombinatorik-1MA020}
 	
 	Om du behöver någon hjälp med att lista ut det tekniska med att få detta att fungera får du gärna be om det under ett övningstillfälle eller i pausen på en föreläsning.}
-	\item Även uppgiftslösningar och forskningsartikel-rapporten skall vara skrivna i \LaTeX, och rapport-biten av programmeringen likaså. Dessa kan inlämnas antingen som en pull request på GitHub, där ni lägger ert arbete i nya filer,\sidenote[][]{Gärna i en ny mapp om det är mer än en fil ni lämnar in.} eller på Studium.
+	\item Även uppgiftslösningar och forskningsartikel-rapporten skall vara skrivna i \LaTeX, och rapport-biten av programmeringen likaså. Dessa lämnas in i Studium, med \emph{både} \LaTeX-källan och en renderad pdf-fil.
 	\item Programmeringen får göras i valfritt programspråk, så länge det är möjligt för mig att köra er kod på min laptop och verifiera att den gör vad ni påstår.\sidenote[][]{I praktiken betyder väl detta mest bara att ni inte kan använda Mathematica eller Matlab, eftersom de är proprietära system.
 	
 	Om ni är fundersamma på om ert projekt har blivit för konstigt för min dator att kunna köra det, fråga i pausen på en föreläsning.}
 \end{enumerate}
 
-\bibliography{references}
-\bibliographystyle{plainnat}
+\section{Användning av AI}
+
+Som tidigare sagt är det tillåtet att använda AI för att skriva sin kod på programmeringsuppgiften -- om man inte vill lägga tiden på att lära sig att skriva koden själv är det ett bra verktyg, och man måste fortfarande förstå problemet för att kunna korrigera koden.
+
+För den övriga delen av kursen och inlämningsuppgifterna får ni lov att använda AI för delar, men om ni försöker att bara mata in texten på uppgiften och sedan lämna in vad den matar ut får ni inte godkänt på det. Det kommer dessutom att skada er när ni skall försöka klara tentan -- och AIn är inte riktigt så smart att det hade funkat oavsett.\sidenote[][]{I mina ovetenskapliga test verkar den kunna hitta en korrekt lösning ibland, men också ibland i ett lika korrekt språkbruk skriva nonsens, eller saker som är subtilt fel på ett sätt som nog är svårt för dig som student att upptäcka.} Kort och gott, var smarta med hur ni använder det -- lämpa inte bara över allt ert eget tänkande på maskinen, för det kommer inte att fungera.
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
 
 
 

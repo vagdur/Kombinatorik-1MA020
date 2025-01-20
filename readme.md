@@ -2,9 +2,7 @@
 
 Välkommen till kursen i kombinatorik på kandidatnivå vid Uppsala Universitet. För allmän information om kursen - tenta, inlämningsuppgift, och planering av föreläsningarna, [se detta dokumentet](https://vagdur.github.io/Kombinatorik-1MA020/kursinformation.pdf).
 
-Boken för denna kursen finns [tillgänglig gratis online här](https://rellek.net/book/app-comb.html), i ett antal format. (Inklusive braille, för eventuella blinda studenter.) Vi kommer dock, som sagt i kursinformationen, inte att hålla oss så särskilt nära den boken, så det är mer av ett referensverk för vissa delar av kursen.
-
-Föreläsningsanteckningar för våra föreläsningar ligger nedan -- allteftersom kursen fortskrider lär de revideras en aning innan de ges, men några väsentliga förändringar förutser jag inte förutom i de sista tre föreläsningarna.
+Föreläsningsanteckningar för våra föreläsningar ligger nedan -- förutom att fixa eventuella fel, och kanske lägga till fler övningar, förutser jag inga förändringar i dem. Dessa är också litteraturen för kursen.
 
 # Föreläsningsanteckningar
 
@@ -55,6 +53,7 @@ Om man vill göra inlämningsuppgiften med att skriva en rapport om någon forsk
 1. Ett ställe att hitta sådana på är [anteckningarna från förra föreläsarens version av kursen](https://vagdur.github.io/Kombinatorik-1MA020/CombinatoricsCourse.pdf). Dessa innehåller inte bara övningar, utan också en del exempel som vi inte går igenom på föreläsningarna detta året - så de exemplen kan ju också användas som övningar, om ni försöker lösa exemplet själva innan ni läser hur han gjorde. 
 2. [Den här sidan](https://www.math.wichita.edu/~hammond/math321/section-counting-binomial.html) innehåller en del övningar med lösningsförslag, men den överlappar bara med vår kurs i de första av våra föreläsningar.
 3. [Den här boken](https://discrete.openmathbooks.org/dmoi2/frontmatter.html) överlappar mer med vår kurs, och har "lösningar" på uppgifterna. Tyvärr verkar dessa ofta vara väldigt knapphändiga, men det är i alla fall något.
+4. [Den före detta kursboken för denna kurs](https://rellek.net/book/app-comb.html) innehåller också en del övningar. Den överlappar någorlunda väl med innehållet i denna kurs.
 
 <hr />
 
