@@ -20,7 +20,7 @@ Föreläsningsanteckningar för våra föreläsningar ligger nedan -- förutom a
 
 Vi sammanfattar hela kursen kortfattat, vad varje föreläsning innehöll och nyckelord från den, i detta dokument:
 
-* [Sammanfattning av hela kursen](https://vagdur.github.io/Kombinatorik-1MA020/course_summary.pdf) (Denna kommer att uppdateras lite grann för årets kurs - den är korrekt för förra årets.)
+* [Sammanfattning av hela kursen](https://vagdur.github.io/Kombinatorik-1MA020/course_summary.pdf) (Denna kommer att uppdateras lite grann närmre tentan -- just nu speglar den inte alla förra årets förändringar i kursen.)
 
 # Övningar för övningstillfällen
 
