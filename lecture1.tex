@@ -99,8 +99,7 @@ $$\abs{A\times B} = \abs{\{(a,b) \given a \in A, b \in B\}} = nm.$$
 \end{example}
 
 \begin{example}
-	Om du besöker restaurangen i Exempel \ref{example_addition_rule}, hur många olika sätt finns det att beställa en trerätters middag med en drink till?
-	\sidenote{En fullständigt teoretisk fråga, eftersom ingen faktiskt har råd med det i dagens ekonomi.} Multiplikations-regeln säger oss att svaret är $4\cdot 5\cdot 10\cdot 3 = 600$.
+	Om du besöker restaurangen i Exempel \ref{example_addition_rule}, hur många olika sätt finns det att beställa en trerätters middag med en drink till?\sidenote{En fullständigt teoretisk fråga, eftersom ingen faktiskt har råd med det i dagens ekonomi.} Multiplikations-regeln säger oss att svaret är $4\cdot 5\cdot 10\cdot 3 = 600$.
 \end{example}
 
 \section{Strängar}
@@ -161,7 +160,7 @@ Självklart måste $\abs{X} \geq k$ för att det skall existera några permutati
 \end{proposition}
 
 \begin{example}
-	På hur många olika sätt kan $n$ personer sitta runt ett runt bord?\sidenote{Det finns en liten ritning av detta i anteckningarna från föregående år, och jag lär rita den på den faktiska föreläsningen.}
+	På hur många olika sätt kan $n$ personer sitta runt ett runt bord?
 
 	Det finns två olika sätt vi kan se på frågan\sidenote{Detta är ett exempel av skillnaden mellan problem med etiketter och utan, vilket är ett generellt fenomen som kommer återkomma gång på gång. Här är det platserna runt bordet som kan ha etiketter eller inte.} -- antingen är det skillnad på de olika stolarna runt bordet (vissa kan se ut genom fönstret, andra inte), så att vi får olika sätt att placera folk runt bordet genom att rotera hela placeringen, eller så är det enda som spelar roll ordningen de sitter i, och vi ser olika rotationer av samma ordning som samma sätt att sitta runt bordet.
 
@@ -220,7 +219,7 @@ Självklart måste $\abs{X} \geq k$ för att det skall existera några permutati
 	\end{proof}
 \end{proposition}
 
-Vi börjar med att bevisa den allra enklaste identiteten för binomialkoefficienterna.
+Låt oss nu bevisa den allra enklaste identiteten för binomialkoefficienterna.
 
 \begin{proposition}
 	För alla $n \geq 0$ och alla $0 \leq k \leq n$ gäller det att
@@ -245,7 +244,7 @@ Denna bevismetod, att hitta en bijektion, kommer vara ett återkommande tema -- 
 \begin{proof}
 	Låt $X$ vara en mängd med $n$ element. $\binom{n}{k}$ räknar antalet sätt att välja en delmängd $A \subseteq X$ av storlek $k$. Men varje sådan delmängd $A$ har ett komplement $X\setminus A$ av storlek $n-k$, och för varje delmängd av storlek $n-k$ kan vi få en av storlek $k$ genom att ta dess komplement.
 
-	Delmängder av storlek $k$ och delmängder av storlek $n-k$ står alltså i ett-till-ett-korrespondens med varandra, det finns en bijektion mellan dem, så det måste finnas lika många av storlek $k$ som av storlek $n-k$.
+	Delmängder av storlek $k$ och delmängder av storlek $n-k$ står alltså i ett-till-ett-korrespondens med varandra, det vill säga, det finns en bijektion mellan dem, så det måste finnas lika många av storlek $k$ som av storlek $n-k$.
 
 	Men vi vet att antalet delmängder av storlek $n-k$ är $\binom{n}{n-k}$, och alltså måste $\binom{n}{k} = \binom{n}{n-k}$.
 \end{proof}
@@ -267,7 +266,7 @@ Idén med just ett ``kombinatoriskt bevis'' kommer att återkomma flera gånger 
 
   \begin{figure}
     \includegraphics{graphics/counting_triangular_numbers_by_square.png}
-    \caption[][2cm]{Ett rutnät av punkter. Figur tagen direkt från förra årets föreläsningsanteckningar.}
+    \caption[][3.2cm]{Ett rutnät av punkter. Figur tagen direkt från förra årets föreläsningsanteckningar.}
   \end{figure}
   
   Vi studerar ett rutnät av $(n+1)\times(n+1)$ punkter, såsom i figuren. Vi ser på den nedre gröna triangeln, och försöker räkna antalet punkter i den. Vi ser att kolumnen längst till vänster har $(n+1)-1 = n$ punkter, den näst längst till vänster har $(n+1)-2=n-1$ punkter, och så vidare till den näst längst till höger som har en punkt, och kolumnen längst till höger har noll punkter i den gröna triangeln.
