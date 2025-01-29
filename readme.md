@@ -6,9 +6,9 @@ Föreläsningsanteckningar för våra föreläsningar ligger nedan -- förutom a
 
 # Föreläsningsanteckningar
 
-1. [Föreläsning ett: Additions- och multiplikationsregeln, strängar, permutationer och kombinationer](https://vagdur.github.io/Kombinatorik-1MA020/lecture1.pdf) (Har [lösningsförslag](https://vagdur.github.io/Kombinatorik-1MA020/lecture1_solutions.pdf) till uppgifter.)
-2. [Föreläsning två: Kombinatoriska bevis, binomialsatsen, kompositioner, och multinomialsatsen](https://vagdur.github.io/Kombinatorik-1MA020/lecture2.pdf) (Har [lösningsförslag](https://vagdur.github.io/Kombinatorik-1MA020/lecture2_solutions.pdf) till uppgifter.)
-3. [Föreläsning tre: Induktion, lådprincipen, och inklusion-exklusion](https://vagdur.github.io/Kombinatorik-1MA020/lecture3.pdf)
+1. [Föreläsning ett: Permutationer och kombinationer, och kombinatoriska bevis](https://vagdur.github.io/Kombinatorik-1MA020/lecture1.pdf) (Har [lösningsförslag](https://vagdur.github.io/Kombinatorik-1MA020/lecture1_solutions.pdf) till uppgifter.)
+2. [Föreläsning två: Binomialsatsen, kompositioner, multinomialsatsen, och lådprincipen](https://vagdur.github.io/Kombinatorik-1MA020/lecture2.pdf) (Har [lösningsförslag](https://vagdur.github.io/Kombinatorik-1MA020/lecture2_solutions.pdf) till uppgifter.)
+3. [Föreläsning tre: Inklusion-exklusion, derangemang, surjektioner, och mängdpartitioner](https://vagdur.github.io/Kombinatorik-1MA020/lecture3.pdf)
 4. [Föreläsning fyra: Sammanfattning av alla räkneproblem, samt cykler](https://vagdur.github.io/Kombinatorik-1MA020/lecture4.pdf) (Med [lösningar](https://vagdur.github.io/Kombinatorik-1MA020/solutions_lecture4.pdf).)
 5. [Föreläsning fem: Genererande funktioner](https://vagdur.github.io/Kombinatorik-1MA020/lecture5.pdf)
 6. [Föreläsning sex: Fortsättning på genererande funktioner](https://vagdur.github.io/Kombinatorik-1MA020/lecture6.pdf)
