@@ -116,7 +116,7 @@ Med denna definition gjord kan vi nu resonera algebraiskt om mängder och deras 
   Vad vi har sett nu är alltså att
   $$\sum_{\substack{I \subseteq [n]\\I\neq\emptyset}} (-1)^{\abs{I}+1} \indSet{\bigcap_{i\in I} A_i}(x) = \indSet{X}(x),$$
   så tar vi summan av denna likheten över alla $x \in X$ och flyttar in den så långt vi kan så ser vi att
-  $$\sum_{\substack{I \subseteq [n]\\I\neq\emptyset}} (-1)^{\abs{I}+1} \sum_{x\in X}\indSet{\bigcap_{i\in I} A_i}(x) = \sum{x \in X}\indSet{X}(x),$$
+  $$\sum_{\substack{I \subseteq [n]\\I\neq\emptyset}} (-1)^{\abs{I}+1} \sum_{x\in X}\indSet{\bigcap_{i\in I} A_i}(x) = \sum_{x \in X}\indSet{X}(x),$$
   vilket om vi tillämpar vår regel om summor av indikatorfunktioner till slut ger oss ett uttryck med storlekar på mängder, nämligen
   $$\sum_{\substack{I \subseteq [n]\\I\neq\emptyset}} (-1)^{\abs{I}+1} \abs{\bigcap_{i\in I} A_i} = \abs{X} = \abs{\bigcup_{i \in I} A_i},$$
   vilket ju är precis det första uttrycket i satsen. Att detta är lika med det andra uttrycket följer av att gruppera summan efter storleken på $I$.
@@ -249,7 +249,7 @@ Hur många sätt finns det att fördela $n$ objekt i $k$ stycken olika högar? H
   \begin{proof}
     Vi bevisar detta genom att räkna antalet surjektioner från $X$ till $[k]$ på två olika sätt.
 
-    Beteckna antalet mängdpartitioner av $X$ i $k$ delar med $m$. Vi kan skapa oss en surjektion från $X$ till $[k]$ genom att först dela upp $X$ i $k$ delar, och sedan ge etiketter från $1$ till $k$ till delarna. Vår surjektion blir då att vi skickar del $i$ till talet $i \in [k]$. Eftersom det finns $k!$ sätt att tilldela etiketterna (etiketteringen är en permutation av längd $k$ från $[k]$) säger oss Multiplikationsprincipen att det måste finnas $k!m$ surjektioner från $X$ till $[k]$.
+    Beteckna antalet mängdpartitioner av $X$ i $k$ delar med $m$. Vi kan skapa oss en surjektion från $X$ till $[k]$ genom att först dela upp $X$ i $k$ delar, och sedan ge etiketter från $1$ till $k$ till delarna. Vår surjektion blir då att vi skickar del $i$ till talet $i \in [k]$. Eftersom det finns $k!$ sätt att tilldela etiketterna (etiketteringen är en permutation av längd $k$ från $[k]$) säger oss multiplikationsprincipen att det måste finnas $k!m$ surjektioner från $X$ till $[k]$.
 
     Men vi vet också av Teorem \ref{theorem_count_surjections} att antalet surjektioner ges av $k!\stirlingPart{n}{k}$. Alltså måste $m = \stirlingPart{n}{k}$, som önskat.
   \end{proof}
