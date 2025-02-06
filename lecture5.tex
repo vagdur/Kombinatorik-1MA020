@@ -129,18 +129,16 @@ Om man genomför den beräkningen kommer man i alla fall i slutändan få följa
 \begin{lemma}[Räkneregler för genererande funktioner]\label{lemma_generating_function_calc_rules}
     Antag att vi har en följd $\{a_k\}_{k=0}^\infty$, med genererande funktion $F_a$. Då gäller det att
     \begin{enumerate}
-        \item För varje $j \geq 1$ är
-        $$\sum_{k = j}^{\infty} a_k x^k = \left(\sum_{k=0}^{\infty}a_k x^k\right) - \left(\sum_{k=0}^{k=j-1} a_kx^k\right) = F_a(x) - \sum_{k=0}^{k=j-1} a_kx^k$$
-        \item För alla $m \geq 0$, $l \geq -m$ gäller det att
-        $$\sum_{k=m}^{\infty} a_k x^{k + l} = x^l\left(\sum_{k=m}^{\infty} a_k x^{k}\right) = x^l\left(F_a(x) - \sum_{k=0}^{m-1} a_k x^k\right)$$
+        \item För alla $m \geq 0$, $\ell \geq -m$ gäller det att
+        $$\sum_{k=m}^{\infty} a_k x^{k + \ell} = x^\ell\left(F_a(x) - \sum_{k=0}^{m-1} a_k x^k\right)$$
         \item Det gäller att\sidenote[][]{Denna räkneregel kan förstås generealiseras till att högre potenser av $k$ motsvarar högre derivator -- och om vi istället delar med någon potens av $k$ får vi primitiva funktioner till den genererande funktionen.}
         $$\sum_{k=0}^{\infty} k a_k x^k = x F_a'(x).$$
         
     \end{enumerate}
     \begin{proof}
-        De första två är tydliga -- mellersta uttrycket är närmast ett bevis av påståendet -- så vi ger enbart ett bevis av det tredje.
+        Det första påståendet är enkelt att se -- allt vi gör är att bryta ut $x^\ell$, och sedan lägga in de saknade termerna i summan, på precis samma sätt som vi gjorde när vi hittade genererande funktionen för Fibonaccitalen.
 
-        Först observerar vi att $ka_k=0$ när $k=0$, så
+        För det andra påståendet börjar vi med att observera att $ka_k=0$ när $k=0$, så
         $$\sum_{k=0}^{\infty} k a_k x^k = \sum_{k=1}^{\infty} k a_k x^k$$
         och sedan kommer vi ihåg att $\frac{\intd}{\dx} x^{k} = k x^{k-1}$, vilket ger oss att
         \begin{align*}
@@ -181,7 +179,7 @@ När man väl har sett detta lemma verkar det ju naturligt att gissa att det ock
 \end{example}
 
 \begin{example}
-    Låt $\{a_k\}_{k=0}^\infty$ vara någon följd, och låt $\{b_k\}_{k=0}^\infty$ vara följden som börjar med $n$ stycken ettor, och sedan är noll. Alltså $b_k = 1$ om $k \leq n$, $0$ annars. Vad blir $a*b$?
+    Låt $\{a_k\}_{k=0}^\infty$ vara någon följd, och låt $\{b_k\}_{k=0}^\infty$ vara följden som börjar med $n + 1$ stycken ettor, och sedan är noll. Alltså $b_k = 1$ om $k \leq n$, $0$ annars. Vad blir $a*b$?
 
     Enligt definitionen är
     $$(a*b)_k = \sum_{i=0}^{k} a_i b_{k-i} = \sum_{i=k-n}^{k} a_i$$
