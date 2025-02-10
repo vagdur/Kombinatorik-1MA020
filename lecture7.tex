@@ -54,7 +54,9 @@ När vi först introducerade heltalspartitioner konstaterade vi att vi inte hade
     $$F_a(x) = \prod_{k=1}^{\infty} \frac{1}{1 - x^k}.$$
 \end{lemma}
 \begin{proof}
-    Studera följande produkt av summor\sidenote[][]{Här har vi alltså en oändlig produkt av oändliga summor.}
+    Studera följande produkt av summor\sidenote[][]{Här har vi alltså en oändlig produkt av oändliga summor. Det här är farliga vatten till och med när vi ser våra saker som enbart formella uttryck. Just detta är väldefinierat, men fundera för dig själv varför
+    $$(x+x^2+x^3+\ldots)(x^2+x^4+x^6+\ldots)\ldots$$
+    inte faktiskt är ett väldefinierat uttryck.}
     \begin{align*}
         \prod_{k=1}^{\infty}\left(\sum_{n=0}^{\infty} x^{kn}\right) &= \left(1 + x + x^2 + x^3 + \ldots\right)\left(1 + x^2 + x^4 + x^6 + \ldots\right)\\
         &\qquad\left(1 + x^3 + x^6 + x^9 + \ldots\right)\ldots.
