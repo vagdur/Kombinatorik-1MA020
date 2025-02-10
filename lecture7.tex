@@ -115,7 +115,7 @@ Så nu är vi halvvägs till ett bevis av att antalet udda heltalspartitioner ä
 Det finns uppenbarligen $4^n$ gitterstigar av längd $n$ med en given startpunkt, om vi inte kräver att den skall sluta i någon given punkt.
 
 \begin{definition}
-    En \emph{uppåt-höger-stig} på $\Z^2$ från $a$ till $b$ är en gitterstig mellan $a$ och $b$ som enbart tar steg uppåt och åt höger.\sidenote[][]{I tolkningen av stigar som ord är alltså dessa ord ur det mindre alfabetet $\{U,H\}$.}
+    En \emph{uppåt-höger-stig} på $\Z^2$ från $a$ till $b$ är en gitterstig mellan $a$ och $b$ som enbart tar steg uppåt och åt höger.\sidenote[][-0.5cm]{I tolkningen av stigar som ord är alltså dessa ord ur det mindre alfabetet $\{U,H\}$.}
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.5\textwidth]{graphics/right_up_lattice_path.png}
@@ -235,7 +235,7 @@ Istället för att gå igenom hur man härleder detta ur den genererande funktio
 
     Eftersom vi i punkten vi började spegla just träffat första underdiagonalen så måste vi i den punkten ha haft ett steg mer åt höger än uppåt. Totalt har vi, i originalstigen, lika många steg uppåt som åt höger, så återstoden av den efter den punkten måste ha ett steg mer uppåt än åt höger.
 
-    När vi speglar blir varje steg uppåt ett åt höger, och vice versa, så vår speglade stig måste ha ett steg mer åt höger än uppåt också i biten efter speglingen. Alltså måste den resulterande stigen efter speglingen ha två steg fler åt höger än uppåt, och alltså hamna i $(n+1,n-1)$.\sidenote[][-1cm]{I symboler har vi $u_i$ steg \emph{u}ppåt i stigen \emph{i}nnan punkten vi speglar efter, och $h_i$ steg åt \emph{h}öger. Efter punkten vi speglar \emph{e}fter har vi $u_e$ steg uppåt och $h_e$ steg åt höger. Så i Figur \ref{fig:dyck_comb_proof_path} så har vi $u_i = 3$, $h_i = 4$, $u_e = 5$, och $h_e = 4$.
+    När vi speglar blir varje steg uppåt ett åt höger, och vice versa, så vår speglade stig måste ha ett steg mer åt höger än uppåt också i biten efter speglingen. Alltså måste den resulterande stigen efter speglingen ha två steg fler åt höger än uppåt, och alltså hamna i $(n+1,n-1)$.\sidenote[][-3cm]{I symboler har vi $u_i$ steg \emph{u}ppåt i stigen \emph{i}nnan punkten vi speglar efter, och $h_i$ steg åt \emph{h}öger. Efter punkten vi speglar \emph{e}fter har vi $u_e$ steg uppåt och $h_e$ steg åt höger. Så i Figur \ref{fig:dyck_comb_proof_path} så har vi $u_i = 3$, $h_i = 4$, $u_e = 5$, och $h_e = 4$.
     
     Så för stigen vi börjar med har vi $h_i = u_i + 1$, och $h_i + h_e = n$ samt $u_i + u_e = n$ för att den skall sluta i $(n,n)$. Stigen efter speglingen kommer att ha $h_i + u_e$ steg åt höger och $u_i + h_e$ steg uppåt. Om man arbetar sig igenom dessa ekvationer kommer man att se att vi verkligen har $n+1$ steg åt höger och $n-1$ steg uppåt i den reflekterade stigen.}
 
