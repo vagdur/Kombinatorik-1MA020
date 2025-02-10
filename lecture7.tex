@@ -1,6 +1,6 @@
 \documentclass[nobib]{tufte-handout}
 
-\title{Föreläsning 7: Dyck-stigar och Catalantal $\cdot$ 1MA020}
+\title{Föreläsning 7: Heltalspartitioner, Dyck-stigar och Catalantal $\cdot$ 1MA020}
 
 \author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
 
@@ -36,12 +36,68 @@
 
 \begin{abstract}
 \noindent
-Vi introducerar Dyck-stigar, och härleder en rekursion för deras antal. Sedan använder vi rekursionen för att hitta en genererande funktion, och använder genererande funktionen för att ge en explicit formel för deras antal.
+Vi börjar med att se hur vi kan använda genererande funktioner för att studera heltalspartitioner, och ger ett annat bevis för resultatet att antalet udda partitioner är lika med antalet distinkta partitioner.
+
+Sedan introducerar vi Dyck-stigar, och härleder en rekursion för deras antal. Sedan använder vi rekursionen för att hitta en genererande funktion, och använder genererande funktionen för att ge en explicit formel för deras antal.
 
 Efter det ger vi ett kombinatoriskt bevis för vår formel för antalet Dyck-stigar, som är betydligt kortare.
 
 Slutligen ger vi två till exempel på saker som räknas av Catalantalen.
 \end{abstract}
+
+\section{Genererande funktioner för heltalspartitioner}
+
+När vi först introducerade heltalspartitioner konstaterade vi att vi inte hade någon enkel formel för hur många sådana det finns, men ändå kan bevisa intressanta saker om dem. Sedan gav vi ett komplicerat kombinatoriskt bevis för att det finns lika många udda som distinkta heltalspartitioner. Låt oss nu se hur vi hade kunnat behandla samma problem med hjälp av genererande funktioner.
+
+\begin{lemma}\label{lem:gen_func_integer_partitions}
+    Låt $a_n$ vara antalet sätt att skriva $n$ som en summa av ickenegativa heltal. Då ges den genererande funktionen för $\{a_n\}_{n=0}^\infty$ av
+    $$F_a(x) = \prod_{k=1}^{\infty} \frac{1}{1 - x^k}.$$
+\end{lemma}
+\begin{proof}
+    Studera följande produkt av summor\sidenote[][]{Här har vi alltså en oändlig produkt av oändliga summor.}
+    \begin{align*}
+        \prod_{k=1}^{\infty}\left(\sum_{n=0}^{\infty} x^{kn}\right) &= \left(1 + x + x^2 + x^3 + \ldots\right)\left(1 + x^2 + x^4 + x^6 + \ldots\right)\\
+        &\qquad\left(1 + x^3 + x^6 + x^9 + \ldots\right)\ldots.
+    \end{align*}
+
+    Eftersom vi betraktar detta som ett formellt objekt är det oproblematiskt att bara multiplicera ut hela detta uttryck. Så vi kan fråga oss vad vi får för koefficient på $x^k$.
+
+    En stunds eftertanke på vad som faktiskt händer när vi multiplicerar ut kommer visa att denna koefficient blir precis antalet sätt att skriva $k$ som en summa av ickenegativa heltal. Vilken term vi väljer i första summan motsvarar antalet ettor i vår heltalspartition, vilken term vi väljer i andra motsvarar antalet tvåor, och så vidare.\sidenote[][]{Så om vi väljer tredje termen i första summan, fjärde i andra, andra termen i tredje summan, och sedan väljer resten ettor kommer vi att få totalt $x^2\cdot x^6\cdot x^3\cdot1\cdot1\cdot\ldots = x^{11}$, vilket motsvarar att vi skriver $11 = 2\cdot1 + 3\cdot2 + 1\cdot3 = 1+ 1 + 2 + 2 + 2 + 3$.}
+
+    För varje enskild summa i det stora uttrycket vet vi att
+    $$\sum_{n=0}^\infty x^{kn} = \frac{1}{1-x^k},$$
+    så
+    $$\prod_{k=1}^{\infty}\left(\sum_{n=0}^{\infty} x^{kn}\right) = \prod_{k=1}^{\infty} \frac{1}{1 - x^k},$$
+    vilket ju är precis uttrycket vi önskade.
+\end{proof}
+
+\begin{remark}
+    I själva verket har vi, om man studerar vårt bevis lite noggrannare, bevisat ett starkare påstående med detta argument -- för varje mängd $A \subseteq \N$ har vi visat att, om $a_n$ är antalet sätt att skriva $n$ som en summa av heltal i $A$, så är
+    $$F_a(x) = \prod_{k \in A} \frac{1}{1 - x^k}.$$
+
+    Alltså om vi specifikt tar $A = \N\setminus2\Z$ som de udda talen, så blir $a_n = p_o(n)$ antalet udda partitioner av $n$, och vi får att genererande funktionen för denna blir
+    $$F_{p_o}(x) = \prod_{k \in \N, k \not\in 2\Z} \frac{1}{1-x^k} = \prod_{i=1}^{\infty} \frac{1}{1 - x^{2i-1}}.$$
+\end{remark}
+
+Så nu är vi halvvägs till ett bevis av att antalet udda heltalspartitioner är lika med antalet distinkta -- om vi kan bevisa att antalet distinkta heltalspartitioner också har detta uttryck som genererande funktion är vi alltså klara.
+
+\begin{lemma}
+    Om $a_n = p_d(n)$, antalet distinkta heltalspartitioner av $n$, så ges dess genererande funktion av
+    $$F_a(x) = \prod_{k=1}^{\infty} (1 + x^k) = \prod_{i=1}^{\infty} \frac{1}{1 - x^{2i-1}}.$$
+\end{lemma}
+\begin{proof}
+    Vårt bevis är i två steg -- först visar vi första likhetstecknet, genom att förstå vad en distinkt heltalspartition är, och sedan visar vi nästa likhet genom ett rent algebraiskt bevis.\sidenote[][]{Här ser vi alltså ett bra exempel på varför genererande funktioner är en sådan stark metod -- vi kan göra saker på den algebraiska sidan med våra formella uttryck som helt saknar motsvarighet på den kombinatoriska sidan, och bevisa saker utan att behöva ha lika god kombinatorisk förståelse för problemet.
+    
+    Vid en lunch nyligen uttryckte en av mina kollegor, som sysslar med abstrakt algebraisk hokuspokus jag alls inte förstår, att han alltid uppfattat genererande funktioner som en slags magi. Det är en rätt vanlig attityd, i alla fall hos icke-kombinatoriker. Resultat ramlar ibland bara ut ur metoden utan att man alls förstår hur det gick till.}
+
+    Om vi återvänder till Lemma~\ref{lem:gen_func_integer_partitions}, och hur vi bevisade den formeln, så blir det första likhetstecknet någorlunda tydligt. Vad som har hänt är att vi tagit bort alla valalternativ när vi multiplicerar ut uttrycket utom att ta noll stycken $k$ eller ta ett styck $k$ -- alltså måste partitionen vi väljer vara distinkt.
+
+    Nu till det rent formella argumentet. Vi vet sedan grundskolan att $(1-x)(1+x) = 1 - x^2$, så alltså måste $1 + x = \frac{1 - x^2}{1 - x}$, och således har vi att
+    $$\prod_{k=1}^{\infty} (1 + x^k) = \prod_{k=1}^{\infty} \frac{1 - x^{2k}}{1-x^k} = \frac{1 - x^2}{1 - x}\frac{1 - x^4}{1 - x^2}\frac{1 - x^6}{1 - x^3}\ldots,$$
+    och här ser vi att alla termerna med jämna exponenter på $x$ kommer ta ut varandra, eftersom vi har ett $1-x^{2k}$ både över och under bråkstrecken,\sidenote[][]{Det här är verkligen ett exempel på när vi är glada att dessa är formella uttryck -- att räkna så här med faktiska funktioner vars konvergens vi bryr oss om hade fått en analytiker att börja gråta.} så vi får bara kvar termer på formen $\frac{1}{1 - x^k}$ för udda $k$. Alltså har vi sett att
+    $$\prod_{k=1}^{\infty} (1 + x^k) = \prod_{k\text{ udda}} \frac{1}{1 - x^k},$$
+    vilket är precis vad vi ville bevisa.
+\end{proof}
 
 \section{Dyck-stigar}
 
