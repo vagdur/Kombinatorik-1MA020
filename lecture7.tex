@@ -197,96 +197,16 @@ vilket ser ut som något vi borde kunna använda för att räkna ut genererande 
 
 Så, hittills har vi definierat våra Dyck-stigar, listat ut en rekursion för deras antal, och använt denna rekursion för att härleda en genererande funktion. Kan vi använda denna genererande funktion för att härleda en explicit formel för antalet Dyck-stigar?
 
-Svaret på den frågan är ja, men det kräver ett lemma vi inte sett ännu.
-
-\section{Newtons binomialsats, och en explicit formel för $d_n$}
-
-\begin{definition}
-    För varje $x\in \R$ och varje $k \in \Z^{\geq 0}$ ges den \emph{fallande fakulteten} $x^{\underline{k}}$ av\sidenote[][]{Så produkten har $k$ termer. I fallet med $k=0$ får vi en tom produkt, vilket vi konventionellt anser är ett, så $x^{\underline{0}} = x^{\overline{0}} = 1$ för alla $x$.}
-    $$x^{\underline{k}} = x(x-1)(x-2)\ldots(x-(k-1))$$
-    och den \emph{stigande fakulteten} $x^{\overline{k}}$ av
-    $$x^{\overline{k}} = x(x+1)(x+2)\ldots(x+k-1).$$
-
-    Om $x$ är ett heltal ges alltså $x^{\underline{k}}$ av $\frac{x!}{(x-k)!}$ och $x^{\overline{k}}$ av $\frac{(x+k-1)!}{(x-1)!}$.
-\end{definition}
-
-Vi kan särskilt notera att när $x$ är ett heltal ges antalet permutationer av längd $k$ ur ett alfabete med $x$ bokstäver alltså av $x^{\underline{k}}$, och således har vi också att
-$$\binom{x}{k} = \frac{x^{\underline{k}}}{k!}$$
-för alla heltal $x$ och $k$. Men detta uttrycket är ju helt väldefinierat även om $x$ inte är ett heltal, vilket motiverar oss att göra följande definition:
-
-\begin{definition}
-    För alla $x \in \R$ och $k \in \Z^{\geq 0}$ säger vi att
-    $$\binom{x}{k} = \frac{x^{\underline{k}}}{k!}.$$
-\end{definition}
-
-Anledningen att vi gör allt detta arbetet är att det låter oss generalisera binomialsatsen även till potenser som inte är heltal, såsom Newton upptäckte.
-
-\begin{theorem}[Newtons binomialsats]
-    För alla $x$ och $y$ och $r \in \R$ gäller det att
-    $$(x + y)^r = \sum_{k=0}^{\infty} \binom{r}{k} x^{r-k} y^k$$
-
-    \begin{proof}
-        Taylorutveckla.\sidenote[][]{Ett bevis återfinns lätt med google, men eftersom det inte egentligen har något med kombinatorik att göra utelämnar vi det i denna kursen.}
-    \end{proof}
-\end{theorem}
-
-Låt oss nu tillämpa vår nya kunskap på Dyckstigarna. Eftersom den genererande funktionen vi fann för deras antal involverade en kvadratrot kommer vi ju vilja tillämpa Newtons binomialsats i fallet med $r = \frac{1}{2}$, så låt oss börja med ett lemma om vad som händer i just det fallet.
+Svaret på den frågan är ja, men det involverar en lång och krånglig räkning med att plocka fram en serieutveckling av kvadratroten. Den ligger som ett appendix i dessa föreläsningsanteckningar, eftersom metoden kanske trots allt är bra att ha sett någon gång, men vi skippar att gå igenom den räkningen under själva föreläsningen. Resultatet blir i alla fall följande sats:
 
 \begin{theorem}\label{theorem_dyck_paths_counted_by_catalan}
     Antalet Dyck-stigar $d_n$ ges av
     $$d_n = \frac{1}{n + 1}\binom{2n}{n}.$$
 
     I själva verket är dessa tal så viktiga att de har sitt egna namn -- de kallas för \emph{Catalan-talen}.
-
-    \begin{proof}
-        Vi vet att den genererande funktionen för denna följd ges av
-        $$F_d(x) = \sum_{k=0}^{\infty} d_k x^k = \frac{1 - \sqrt{1 - 4x}}{2x}$$
-        så vi behöver serieutveckla detta uttryck.
-
-        Newtons binomialsats säger oss att
-        $$\sqrt{1 + y} = \sum_{k=0}^{\infty} \binom{1/2}{k} y^k$$
-        så om vi sätter in $y = -4x$ får vi att
-        $$\sqrt{1 - 4x} = \sum_{k=0}^{\infty} (-1)^k \binom{1/2}{k} 4^k x^k.$$
-        
-        När $k=0$ så blir $\binom{1/2}{0} = \frac{(1/2)^{\underline{0}}}{0!} = \frac{1}{1}$, och alltså är hela nollte termen lika med ett. Så alltså gäller det att
-        \begin{align*}
-            \frac{1 - \sqrt{1 - 4x}}{2x} &= \frac{\sum_{k=1}^{\infty} (-1)^{k-1} \binom{1/2}{k} 4^k x^k}{2x}\\
-            &= \sum_{k=1}^{\infty} 2(-1)^{k-1} \binom{1/2}{k} 4^{k-1} x^{k-1}\\
-            &= \sum_{k=0}^{\infty} 2 (-4)^{k}\binom{1/2}{k+1} x^k
-        \end{align*}
-        från vilket vi kan läsa av att
-        $$d_n = 2 (-4)^{n}\binom{1/2}{n+1}.$$
-
-        Låt oss nu försöka förenkla denna formel. Vi börjar med att skriva ut vad definitionen av $\binom{1/2}{n+1}$ är, och får att
-        \begin{align*}
-            d_n &= 2 (-4)^{n}\binom{1/2}{n+1}\\
-            &= 2 (-4)^n \frac{(1/2)^{\underline{n+1}}}{(n+1)!}\\
-            &= 2 (-4)^n \frac{(1/2)(1/2 - 1)(1/2 - 2)\ldots(1/2 - n)}{(n+1)!}\\
-            &= 2 (-4)^n \frac{(1/2)(-1/2)(-3/2)(-5/2)\ldots(-(2n-1)/2)}{(n+1)!}\\
-            &= (-4)^n \frac{(-1)^n 1\cdot3\cdot5\cdot\ldots\cdot(2n-1)}{2^n (n+1)!}\\
-            &= 2^n \frac{1}{(n+1)!}\left(\prod_{k \in [2n], k \not\in2\Z} k\right).
-        \end{align*}
-
-        Nu kan vi observera att
-        $$\prod_{k \in [2n], k \not\in2\Z} k = \left(\prod_{k \in [2n], k \not\in2\Z} k\right)\frac{\prod_{k \in [2n], k \in2\Z} k}{\prod_{k \in [2n], k \in2\Z} k} = \frac{(2n)!}{\prod_{k \in [2n], k \in2\Z} k}$$
-        och om vi bryter ut en tvåa ur varje term i produkten över alla jämna heltal ser vi att
-        $$\prod_{k \in [2n], k \in2\Z} k = 2^n n!$$
-        så sammantaget har vi sett att
-        $$\prod_{k \in [2n], k \not\in2\Z} k = \frac{(2n)!}{2^n n!}.$$
-
-        Om vi stoppar in detta i vårt uttryck för $d_n$ vi hade innan så ser vi att
-        \begin{align*}
-            d_n &= 2^n \frac{1}{(n+1)!}\left(\prod_{k \in [2n], k \not\in2\Z} k\right)\\
-            &= 2^n \frac{1}{(n+1)!}\frac{(2n)!}{2^n n!}\\
-            &= \frac{(2n)!}{(n+1)!(n!)} = \frac{1}{n+1} \frac{(2n)!}{n!n!} = \frac{1}{n+1}\binom{2n}{n},
-        \end{align*}
-        vilket är formeln vi ville bevisa.
-    \end{proof}
 \end{theorem}
 
-Så vi har till slut hittat en fin formel för antalet Dyck-stigar, och alltså för Catalantalen. Tyvärr var vägen vi tog dit väldigt lerig, i botten på en hopväxt och snårig dal. Finns det ett mindre kladdigt sätt att hitta denna formel?\sidenote[][]{Vårt arbete med att ta fram denna formel för antalet Dyck-stigar illustrerar både för- och nackdelarna med metoden med genererande funktioner. Det är en pålitlig metod, med tydliga steg för vad vi vill göra -- efter att vi hittade rekursionen vi började med behövde vi aldrig egentligen vara kreativa, utan vi kom fram till målet genom att bara följa vårt recept.
-
-Å andra sidan kan räkningarna man behöver göra för att tillämpa metoden vara väldigt fula. Vad man köper i standardisering får man betala för i begriplighet -- det är nog svårt att säga att man begriper \emph{varför} den formeln ger Catalantalen efter att ha sett vårt bevis.}
+Istället för att gå igenom hur man härleder detta ur den genererande funktionen vi just fann går vi direkt över till att ge ett kombinatoriskt bevis för denna formel.
 
 \section{Ett kombinatoriskt bevis för formeln för Catalantalen}
 
@@ -334,7 +254,7 @@ Så vi har till slut hittat en fin formel för antalet Dyck-stigar, och alltså 
     vilket bevisar satsen.
 \end{proof}
 
-Så vårt kombinatoriska bevis undvek helt att behöva fundera på rekursioner och genererande funktioner. Det är en mycket mer direkt rutt till vårt mål, men vi missade några sevärdheter längs vägen.\sidenote[][]{Hur man hade härlett vår rekursion eller den genererande funktionen givet bara vad vi lärde oss i det kombinatoriska beviset är långt ifrån uppenbart.}
+Så vårt kombinatoriska bevis undvek helt att behöva fundera på rekursioner och genererande funktioner. Det är en mycket mer direkt rutt till vårt mål, men vi missade några sevärdheter längs vägen.\sidenote[][]{Hur man hade härlett vår rekursion eller den genererande funktionen givet bara vad vi lärde oss i det kombinatoriska beviset är långt ifrån uppenbart -- och rekursionen är mycket användbar för att bevisa att andra saker också räknas av Catalantalen.}
 
 \section{Fler saker som räknas av Catalantalen}
 
@@ -423,6 +343,90 @@ Som vi nämnde tidigare är Catalantalen viktiga eftersom de räknar fler saker 
 \end{xca}
 
 \newpage
+
+\appendix
+
+\section{Appendix: Newtons binomialsats, och en explicit formel för $d_n$}
+
+\begin{definition}
+    För varje $x\in \R$ och varje $k \in \Z^{\geq 0}$ ges den \emph{fallande fakulteten} $x^{\underline{k}}$ av\sidenote[][]{Så produkten har $k$ termer. I fallet med $k=0$ får vi en tom produkt, vilket vi konventionellt anser är ett, så $x^{\underline{0}} = x^{\overline{0}} = 1$ för alla $x$.}
+    $$x^{\underline{k}} = x(x-1)(x-2)\ldots(x-(k-1))$$
+    och den \emph{stigande fakulteten} $x^{\overline{k}}$ av
+    $$x^{\overline{k}} = x(x+1)(x+2)\ldots(x+k-1).$$
+
+    Om $x$ är ett heltal ges alltså $x^{\underline{k}}$ av $\frac{x!}{(x-k)!}$ och $x^{\overline{k}}$ av $\frac{(x+k-1)!}{(x-1)!}$.
+\end{definition}
+
+Vi kan särskilt notera att när $x$ är ett heltal ges antalet permutationer av längd $k$ ur ett alfabete med $x$ bokstäver alltså av $x^{\underline{k}}$, och således har vi också att
+$$\binom{x}{k} = \frac{x^{\underline{k}}}{k!}$$
+för alla heltal $x$ och $k$. Men detta uttrycket är ju helt väldefinierat även om $x$ inte är ett heltal, vilket motiverar oss att göra följande definition:
+
+\begin{definition}
+    För alla $x \in \R$ och $k \in \Z^{\geq 0}$ säger vi att
+    $$\binom{x}{k} = \frac{x^{\underline{k}}}{k!}.$$
+\end{definition}
+
+Anledningen att vi gör allt detta arbetet är att det låter oss generalisera binomialsatsen även till potenser som inte är heltal, såsom Newton upptäckte.
+
+\begin{theorem}[Newtons binomialsats]
+    För alla $x$ och $y$ och $r \in \R$ gäller det att
+    $$(x + y)^r = \sum_{k=0}^{\infty} \binom{r}{k} x^{r-k} y^k$$
+
+    \begin{proof}
+        Taylorutveckla.\sidenote[][]{Ett bevis återfinns lätt med google, men eftersom det inte egentligen har något med kombinatorik att göra utelämnar vi det i denna kursen.}
+    \end{proof}
+\end{theorem}
+
+Låt oss nu tillämpa vår nya kunskap på Dyckstigarna. Eftersom den genererande funktionen vi fann för deras antal involverade en kvadratrot kommer vi att vilja tillämpa Newtons binomialsats i fallet med $r = \frac{1}{2}$.
+
+\begin{proof}[Bevis av Teorem~\ref{theorem_dyck_paths_counted_by_catalan} med genererande funktioner]
+    Vi vet att den genererande funktionen för denna följd ges av
+    $$F_d(x) = \sum_{k=0}^{\infty} d_k x^k = \frac{1 - \sqrt{1 - 4x}}{2x}$$
+    så vi behöver serieutveckla detta uttryck.
+
+    Newtons binomialsats säger oss att
+    $$\sqrt{1 + y} = \sum_{k=0}^{\infty} \binom{1/2}{k} y^k$$
+    så om vi sätter in $y = -4x$ får vi att
+    $$\sqrt{1 - 4x} = \sum_{k=0}^{\infty} (-1)^k \binom{1/2}{k} 4^k x^k.$$
+    
+    När $k=0$ så blir $\binom{1/2}{0} = \frac{(1/2)^{\underline{0}}}{0!} = \frac{1}{1}$, och alltså är hela nollte termen lika med ett. Så alltså gäller det att
+    \begin{align*}
+        \frac{1 - \sqrt{1 - 4x}}{2x} &= \frac{\sum_{k=1}^{\infty} (-1)^{k-1} \binom{1/2}{k} 4^k x^k}{2x}\\
+        &= \sum_{k=1}^{\infty} 2(-1)^{k-1} \binom{1/2}{k} 4^{k-1} x^{k-1}\\
+        &= \sum_{k=0}^{\infty} 2 (-4)^{k}\binom{1/2}{k+1} x^k
+    \end{align*}
+    från vilket vi kan läsa av att
+    $$d_n = 2 (-4)^{n}\binom{1/2}{n+1}.$$
+
+    Låt oss nu försöka förenkla denna formel. Vi börjar med att skriva ut vad definitionen av $\binom{1/2}{n+1}$ är, och får att
+    \begin{align*}
+        d_n &= 2 (-4)^{n}\binom{1/2}{n+1}\\
+        &= 2 (-4)^n \frac{(1/2)^{\underline{n+1}}}{(n+1)!}\\
+        &= 2 (-4)^n \frac{(1/2)(1/2 - 1)(1/2 - 2)\ldots(1/2 - n)}{(n+1)!}\\
+        &= 2 (-4)^n \frac{(1/2)(-1/2)(-3/2)(-5/2)\ldots(-(2n-1)/2)}{(n+1)!}\\
+        &= (-4)^n \frac{(-1)^n 1\cdot3\cdot5\cdot\ldots\cdot(2n-1)}{2^n (n+1)!}\\
+        &= 2^n \frac{1}{(n+1)!}\left(\prod_{k \in [2n], k \not\in2\Z} k\right).
+    \end{align*}
+
+    Nu kan vi observera att
+    $$\prod_{k \in [2n], k \not\in2\Z} k = \left(\prod_{k \in [2n], k \not\in2\Z} k\right)\frac{\prod_{k \in [2n], k \in2\Z} k}{\prod_{k \in [2n], k \in2\Z} k} = \frac{(2n)!}{\prod_{k \in [2n], k \in2\Z} k}$$
+    och om vi bryter ut en tvåa ur varje term i produkten över alla jämna heltal ser vi att
+    $$\prod_{k \in [2n], k \in2\Z} k = 2^n n!$$
+    så sammantaget har vi sett att
+    $$\prod_{k \in [2n], k \not\in2\Z} k = \frac{(2n)!}{2^n n!}.$$
+
+    Om vi stoppar in detta i vårt uttryck för $d_n$ vi hade innan så ser vi att
+    \begin{align*}
+        d_n &= 2^n \frac{1}{(n+1)!}\left(\prod_{k \in [2n], k \not\in2\Z} k\right)\\
+        &= 2^n \frac{1}{(n+1)!}\frac{(2n)!}{2^n n!}\\
+        &= \frac{(2n)!}{(n+1)!(n!)} = \frac{1}{n+1} \frac{(2n)!}{n!n!} = \frac{1}{n+1}\binom{2n}{n},
+    \end{align*}
+    vilket är formeln vi ville bevisa.
+\end{proof}
+
+Så vi har till slut hittat en fin formel för antalet Dyck-stigar, och alltså för Catalantalen. Tyvärr var vägen vi tog dit väldigt lerig, i botten på en hopväxt och snårig dal. Vårt arbete med att ta fram denna formel för antalet Dyck-stigar illustrerar både för- och nackdelarna med metoden med genererande funktioner. Det är en pålitlig metod, med tydliga steg för vad vi vill göra -- efter att vi hittade rekursionen vi började med behövde vi aldrig egentligen vara kreativa, utan vi kom fram till målet genom att bara följa vårt recept.
+
+Å andra sidan kan räkningarna man behöver göra för att tillämpa metoden vara väldigt fula. Vad man köper i standardisering får man betala för i begriplighet -- det är nog svårt att säga att man begriper \emph{varför} den formeln ger Catalantalen efter att ha sett vårt bevis.
 
 %\bibliography{references}
 %\bibliographystyle{plainnat}
