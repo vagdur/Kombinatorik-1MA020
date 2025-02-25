@@ -244,7 +244,7 @@ Vi konstaterade när vi först introducerade dessa tal att det är svårt att be
         $$B_A = \left\{\omega: \forall i, j \in A: \omega(i,j) = \text{blå}\right\}.$$} så blir händelsen att det finns \emph{någon} monokrom delgraf av den storleken precis\sidenote[][]{Den här notationen kan vara aningen förvirrande innan man tänkt efter -- vi tar en union av en samling mängder, där \emph{index} för unionen också är mängder. Men det vi tar unionen över är händelserna $R_A \cup B_A$, inte indexen $A$.}
         $$\bigcup_{A \in \binom{[n]}{k}} R_A \cup B_A.$$
 
-        Hittills verkar det ju inte som att vi gjort några större framsteg -- vi har gått från att behöva göra en väldigt smart konstruktion till att behöva förstå en väldigt invecklad mängd av funktioner, som definierats som en union med index i en bunt mängder... Det är här Unionsbegränsningen visar sin kraft, och låter oss lösa ett mycket mycket enklare problem -- för om vi tillämpar den så får vi ju att
+        Hittills verkar det ju inte som att vi gjort några större framsteg -- vi har gått från att behöva göra en väldigt smart konstruktion till att behöva förstå en väldigt invecklad mängd av funktioner, som definierats som en union med index i en bunt mängder... Det är här unionsbegränsningen visar sin kraft, och låter oss lösa ett mycket mycket enklare problem -- för om vi tillämpar den så får vi ju att
         $$\Prob{\bigcup_{A \in \binom{[n]}{k}} R_A \cup B_A} \leq \sum_{A\in \binom{[n]}{k}} \Prob{R_A} + \Prob{B_A}.$$
 
         Vi behöver alltså inte alls förstå oss på den komplicerade unionen, vi behöver bara förstå sannolikheterna för $R_A$ och $B_A$ -- och de är mycket enklare, eftersom de ju specificerar precis vilken den monokroma delmängden skall vara: Den skall vara $A$.
