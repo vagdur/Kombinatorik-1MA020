@@ -409,7 +409,7 @@ Vi sammanfattar vad vi lärt oss om slumpvariabler hittills i följande räknere
     Hur stor kan en skärande familj av mängder vara, om vi kräver att varje $A \in \mathcal{F}$ har storlek exakt $k$? Svaret ges av följande sats:
 
     \begin{theorem}[Erd\H{o}s-Ko-Rado]
-        För varje skärande familj $\mathcal{F}$ av delmängder av storlek $k$ till $[n]$ gäller det att
+        För varje skärande familj $\mathcal{F}$ av delmängder av storlek $k$ till $[n]$ gäller det, om $n \geq 2k$, att
         $$\abs{F} \leq \binom{n-1}{k-1}.$$
     \end{theorem}
 
@@ -419,7 +419,7 @@ Vi sammanfattar vad vi lärt oss om slumpvariabler hittills i följande räknere
     \textbf{Delfråga b:} Bevisa följande lemma:\sidenote[][]{Den här delen kräver ingen probabilistisk metod, det är bara ett direkt bevis. Sannolikhetsteorin kommer in i nästa delfråga.}
 
     \begin{lemma}
-        Låt $\mathcal{F} \subseteq \binom{[n]}{k}$ vara en skärande familj, och låt för varje $s \in \{0,1,\ldots,n-1\}$
+        Antag att $n \geq 2k$, och låt $\mathcal{F} \subseteq \binom{[n]}{k}$ vara en skärande familj, och låt för varje $s \in \{0,1,\ldots,n-1\}$
         $$A_s = \{s, s+1, \ldots, s + k - 1\}$$
         där additionen är modulo $n$. Då kan $\mathcal{F}$ innehålla högst $k$ av mängderna $A_s$.
     \end{lemma}
