@@ -91,9 +91,9 @@ Det är tydligt att $\Prob{S_{v,A}} = p^k$ för varje $(v, A)$, eftersom vad vi 
 
 Om $X_k$ är antalet $k$-stjärnor i $G$ kan vi alltså räkna att
 \begin{align*}
-    \E{X_k} &= \E{\sum_{v \in V}\sum_{A \in \binom{[n]}{k}} \ind{S_{v,A}}}\\
-    &= \sum_{v \in V}\sum_{A \in \binom{[n]}{k}} \Prob{S_{v,A}}\\
-    &= \sum_{v \in V}\sum_{A \in \binom{[n]}{k}} p^k = n\binom{n}{k}p^k.
+    \E{X_k} &= \E{\sum_{v \in V}\sum_{A \in \binom{V\setminus \{v\}}{k}} \ind{S_{v,A}}}\\
+    &= \sum_{v \in V}\sum_{A \in \binom{V\setminus \{v\}}{k}} \Prob{S_{v,A}}\\
+    &= \sum_{v \in V}\sum_{A \in \binom{V\setminus \{v\}}{k}} p^k = n\binom{n-1}{k}p^k.
 \end{align*}
 
 \section{Fråga 7b}
@@ -103,17 +103,17 @@ Om det finns någon nod $v$ vars grad är åt minstone $k$ kan vi välja den nod
 Så med hjälp av Markovs olikhet och vad vi gjorde i förra delen av uppgiften kan vi räkna att\sidenote[][]{Notera här att vi behöver hantera den lilla detaljen att $\alpha n$ kanske inte är ett heltal genom att avrunda -- eftersom så klart $d_v$ också enbart tar heltalsvärden är detta inget faktiskt problem.}
 \begin{align*}
     \Prob{\max_{v \in V} d_v \geq \alpha n} &= \Prob{X_{\ceil{\alpha n}} > 0}\\
-    &\leq \E{X_{\ceil{\alpha n}}} = n\binom{n}{\ceil{\alpha n}}p^{\ceil{\alpha n}}.
+    &\leq \E{X_{\ceil{\alpha n}}} = n\binom{n-1}{\ceil{\alpha n}}p^{\ceil{\alpha n}}.
 \end{align*}
 
 Så vad vi har att visa är alltså att
-$$\lim_{n \to \infty} n\binom{n}{\ceil{\alpha n}}p^{\ceil{\alpha n}} = 0$$
+$$\lim_{n \to \infty} n\binom{n-1}{\ceil{\alpha n}}p^{\ceil{\alpha n}} = 0$$
 om $p = \frac{c}{n}$ för något $c > 0$.
 
 För att räkna ut detta gränsvärde\sidenote[][]{Kursen handlar ju om kombinatorik, inte om att räkna ut gränsvärden, så på en riktig tenta hade man inte fått mycket om något avdrag på sin lösning om man var väldigt kort i det här steget, eller inte hittade rätt sätt att lösa gränsvärdet alls.
 
 Att hitta detta sätt att beräkna gränsvärdet är varken lätt eller något som förväntas på en tenta -- men inkluderat i lösningsförslaget för att det skall vara fullständigt.} använder vi oss av att
-$$\binom{n}{k} = \frac{n(n-1)\ldots(n-(n-(k-1)))}{k!} \leq \frac{n^k}{k!}.$$
+$$\binom{n-1}{k} = \frac{(n-1)\ldots(n-(n-(k-1)))}{k!} \leq \frac{n^k}{k!}.$$
 
 Med denna räkning i handen ser vi att
 \begin{align*}
