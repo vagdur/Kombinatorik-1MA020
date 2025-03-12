@@ -72,13 +72,13 @@ För att kunna ge en precis variant av det påståendet behöver vi en definitio
 Vi kan använda denna sats för att bevisa följande resultat:
 
 \begin{proposition}
-  Låt $G = ([n], E)$ vara en graf på ett jämnt antal noder, och antag att varje nod har grad högst $\frac{n}{2}$. Då existerar det en delmängd $A \in \binom{[n]}{n/2}$ sådan att
+  Låt $G = ([n], E)$ vara en graf på ett jämnt antal noder, och antag att varje nod har grad mindre än $\frac{n}{2}$. Då existerar det en delmängd $A \in \binom{[n]}{n/2}$ sådan att
   $$\abs{E(A, A^c)} \leq \frac{\abs{E}}{2}.$$ 
 
   \begin{proof}
     Låt $G'$ vara komplementgrafen till $G$ -- alltså grafen där det finns en kant mellan varje par av noder som \emph{inte} har en kant mellan sig i $G$, och som inte har en kant mellan par av noder som har en kant i $G$.
 
-    Vi ser enkelt att graden av $i$ i $G'$ är precis $n$ minus graden av $i$ i $G$, så eftersom $d_i \leq n/2$ i $G$ måste $d_i' \geq n/2$ i $G'$. Alltså kan vi tillämpa Diracs sats och hitta en Hamiltoncykel $\sigma$ i komplementgrafen $G'$.
+    Vi ser enkelt att graden av $i$ i $G'$ är precis $n$ minus graden av $i$ i $G$, så eftersom $d_i < n/2$ i $G$ måste $d_i' \geq n/2$ i $G'$. Alltså kan vi tillämpa Diracs sats och hitta en Hamiltoncykel $\sigma$ i komplementgrafen $G'$.
 
     Vi kan nu använda denna Hamiltoncykel för att para ihop noder i $G$ -- vi matchar $\sigma(1)$ med $\sigma(2)$, $\sigma(3)$ med $\sigma(4)$, och så vidare. Eftersom detta var en Hamiltoncykel i komplementgrafen är vi alltså garanterade att vi aldrig parar ihop två noder som har en kant mellan sig. Denna process illustreras i Figur~\ref{fig:min_bisection_matching}.
 
