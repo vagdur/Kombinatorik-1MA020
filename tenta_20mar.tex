@@ -1,0 +1,206 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Tentamen i kombinatorik, 20 mars 2025 $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{Jag kommer att besöka tentasalen ungefär klockan tre. Om ni behöver nå mig för frågor om tentan kan ni också nå mig på \texttt{072-373 32 90}.}}
+
+\date{20 mars 2025}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+\include{mathcommands.extratex}
+\setlength{\extrarowheight}{12pt}
+
+\begin{document}
+
+\definecolor{darkgreen}{rgb}{0.0627, 0.4588, 0.1451}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+Lycka till! {\vspace{0.1cm}\includegraphics[height=0.08\textwidth]{burning-heart-emoji.png} \includegraphics[height=0.08\textwidth]{lily-emoji.png}}
+
+Denna tenta innehåller åtta frågor, med fem poäng per fråga (alltså är maximal total poäng 40), och poänggränserna är de sedvanliga 18/25/32. Inga medhavda hjälpmedel tillåts, men det finns en formelsamling längst bak i dessa papper.
+\end{abstract}
+
+\section{Fråga 1} % om föreläsning 10
+Vi har redan sett grafer i kursen, men i denna fråga studerar vi i stället \emph{hypergrafer}.\sidenote[][]{De heter faktiskt så, detta är inte en term jag hittat på för att vara lustig.} En hypergraf $G$ består av en mängd $V$ av noder, och en mängd $E \subseteq 2^V$ av delmängder till $V$ som vi kallar för kanter. En hypergraf är alltså en graf där kanterna kan innehålla mer än två noder. Vi säger att en hypergraf är $k$-uniform om varje kant innehåller exakt $k$ noder.
+
+Vi säger att en hypergraf är två-färgningsbar om det finns en färgning av dess noder i rött och blått sådan att ingen av dess kanter är monokromatisk, det vill säga, om det finns en mängd $R \subseteq V$ av noder sådan att $e \not\subseteq R$ och $e \not\subseteq V \setminus R$ för varje $e \in E$.
+
+\begin{theorem}[Erd\H{o}s, 1963]
+  Om $G$ är en $k$-uniform hypergraf med färre än $2^{k-1}$ kanter så är $G$ två-färgningsbar.
+\end{theorem}
+
+\section{Fråga 2} % om föreläsning 9
+Bevisa följande sats:
+
+\begin{theorem}[Erd\H{o}s, 1964]
+  Det finns en $k$-uniform hypergraf $G$ på $n$ noder och $m$ kanter som inte är två-färgningsbar närhelst\sidenote[][]{Det var ett fel i uppgiften såsom den trycktes i tentan -- specifikt saknades faktorn av $m$ i formeln nedan. Se anslaget på Studium för hur detta påverkade rättningen och betygsättningen.}
+  $$2^n\left(1 - m\frac{2\binom{n/2}{k}}{\binom{n}{k}}\right) < 1.$$
+\end{theorem}
+
+\emph{Ledtråd:} Börja med att räkna ut sannolikheten att en slumpmässigt vald delmängd av storlek $k$ kommer vara monokromatisk under en viss fix färgning, och finn en undre begränsning för denna.\sidenote[][]{Binomialkoefficient-funktionen är konvex, så
+$$\frac{\binom{a}{k} + \binom{b}{k}}{\binom{a+b}{k}} \geq \frac{2\binom{(a+b)/2}{k}}{\binom{a+b}{k}}.$$} Använd detta för att begränsa först sannolikheten att en slumpmässigt vald hypergraf inte har några monokromatiska kanter under en fix färgning, och använd sedan det för att begränsa sannolikheten att den är två-färgningsbar.
+
+\section{Fråga 3} % om föreläsning 6
+Kom ihåg följande definition ur kursen:
+\begin{definition}
+  Antag att $\{a_k\}_{k=0}^\infty$ och $\{b_k\}_{k=0}^\infty$ är två följder. Då ges deras \emph{binomial-faltning} $a \ostar b$ av
+  $$(a \ostar b)_k = \sum_{i=0}^{k} \binom{k}{i} a_i b_{k-i}.$$
+\end{definition}
+
+Bevisa följande lemma:\sidenote[][]{Du får lov att använda motsvarande resultat för ordinära genererande funktioner i detta bevis utan att bevisa det.}
+\begin{lemma}
+  Antag att $\{a_k\}_{k=0}^\infty$ och $\{b_k\}_{k=0}^\infty$ är två följder, vars exponentiella genererande funktioner är $EG_a(x)$ och $EG_b(x)$. Då ges den genererande funktionen för binomial-faltningen $a \ostar b$ av
+  $$EG_{a \ostar b}(x) = EG_a(x)EG_b(x).$$
+\end{lemma}
+
+\section{Fråga 4} % om föreläsning 3
+Kom ihåg följande resultat ur kursen:
+\begin{theorem}[Inklusion-exklusion]\label{theorem_inclusion_exclusion}
+  För varje samling av mängder $A_1, \ldots, A_n$ gäller det att
+  \begin{align*}
+    \abs{\bigcup_{i=1}^n A_i} &= \sum_{\substack{I \subseteq [n]\\I\neq\emptyset}} (-1)^{\abs{I}+1}\abs{\bigcap_{i \in I} A_i}\\
+    &=\sum_{k=1}^{n} (-1)^{k-1}\left(\sum_{\substack{I \subseteq [n]\\\abs{I} = k}} \abs{\bigcap_{i \in I} A_i}\right).
+  \end{align*}
+\end{theorem}
+
+Bevisa, med hjälp av detta, följande resultat:
+\begin{theorem}\label{theorem_count_surjections}
+  Låt $A$ och $B$ vara ändliga icketomma mängder med $\abs{A} = n$, $\abs{B} = m$, och $n \geq m$. Antalet surjektioner från $A$ till $B$ ges av
+  $$\sum_{k=0}^{m} (-1)^k \binom{m}{k}(m-k)^n.$$
+\end{theorem}
+
+\section{Fråga 5} % om föreläsning 5
+Definiera Fibonaccitalen, och räkna ut vad deras ordinära genererande funktion är.\sidenote[][]{Här är vi alltså ute efter ett uttryck för denna i form av en rationell funktion. Du behöver alltså inte härleda en formel för varje enskild koefficient.}
+
+\section{Fråga 6} % om föreläsning 4
+Definiera Stirlings cykeltal $\stirlingCycle{n}{k}$, och bevisa att det gäller för varje $n \geq 1$ att
+$$\sum_{k=1}^{n} \stirlingCycle{n}{k} = n!.$$
+
+\section{Fråga 7} % om föreläsning 1
+Ge kombinatoriska bevis för följande likheter:
+\begin{enumerate}
+  \item $$k\binom{n}{k} = n\binom{n-1}{k-1}.$$
+  \item $$\binom{n}{2}\binom{n-2}{k-2} = \binom{n}{k}\binom{k}{2}.$$
+  \item $$\stirlingCycle{n+1}{k} = \stirlingCycle{n}{k-1} + n\stirlingCycle{n}{k}.$$
+\end{enumerate}
+
+\section{Fråga 8} % om föreläsning 2
+Bevisa att om $S \subseteq [2n]$ har $n+1$ medlemmar så finns det $a, b \in S$, med $a < b$, sådana att $b$ är delbart med $a$.
+
+\pagebreak
+
+\section{Formelsamling}
+
+\section{Den tolvfaldiga vägen}
+
+\begin{fullwidth}
+  \begin{tabularx}{\linewidth}{l|ccc}
+    & Generellt $f$ & Injektivt $f$ & Surjektivt $f$\\
+    \midrule
+    Bägge särskiljbara & \specialcell{Ord ur $X$ av längd $n$\\ $x^n$} & \specialcell{Permutation ur $X$ av längd $n$\\ $\frac{x!}{(x-n)!}$} & \specialcell{Surjektion från $N$ till $X$\\$x!\stirlingPart{n}{x}$} \\
+    Osärskiljbara objekt & \specialcell{Multi-delmängd av $X$\\ av storlek $n$\\$\binom{n + x - 1}{n}$} & \specialcell{Delmängd av $X$ av storlek $n$\\$\binom{x}{n}$} & \specialcell{Kompositioner av $n$\\av längd $x$\\$\binom{n - 1}{n - x}$} \\
+    Osärskiljbara lådor & \specialcell{Mängdpartition av $N$\\ i $\leq x$ delar \\$\sum_{k=1}^{x} \stirlingPart{n}{k}$} & \specialcell{Mängdpartition av $N$\\ i $\leq x$ delar av storlek $1$\\$1$ om $n \leq x$, $0$ annars} & \specialcell{Mängdpartition av $N$\\i $x$ delar\\$\stirlingPart{n}{x}$} \\
+    Bägge osärskiljbara & \specialcell{Heltalspartition av $n$ i $\leq x$ delar\\$p_x(n + x)$} & \specialcell{Sätt att skriva $n$ som\\summan av $\leq x$ ettor\\$1$ om $n \leq x$, $0$ annars} & \specialcell{Heltalspartitioner av $n$\\ i $x$ delar \\$p_x(n)$} 
+  \end{tabularx}
+\end{fullwidth}
+
+\section{Räkneregler för genererande funktioner}
+
+\begin{lemma}[Räkneregler för genererande funktioner]
+  Antag att vi har en följd $\{a_k\}_{k=0}^\infty$, med genererande funktion $F_a$. Då gäller det att
+    \begin{enumerate}
+        \item För varje $j \geq 1$ är
+        $$\sum_{k = j}^{\infty} a_k x^k = \left(\sum_{k=0}^{\infty}a_k x^k\right) - \left(\sum_{k=0}^{k=j-1} a_kx^k\right) = F_a(x) - \sum_{k=0}^{k=j-1} a_kx^k$$
+        \item För alla $m \geq 0$, $l \geq -m$ gäller det att
+        $$\sum_{k=m}^{\infty} a_k x^{k + l} = x^l\left(\sum_{k=m}^{\infty} a_k x^{k}\right) = x^l\left(F_a(x) - \sum_{k=0}^{m-1} a_k x^k\right)$$
+        \item Det gäller att\sidenote[][]{Denna räkneregel kan förstås generealiseras till att högre potenser av $k$ motsvarar högre derivator -- och om vi istället delar med någon potens av $k$ får vi primitiva funktioner till den genererande funktionen.}
+        $$\sum_{k=0}^{\infty} k a_k x^k = \frac{F_a'(x)}{x}.$$
+    \end{enumerate}
+\end{lemma}
+
+\section{Vanliga genererande funktioner}
+
+\begin{tabularx}{\linewidth}{cc}
+  Följd & Genererande funktion\\
+  \midrule
+  $(1, 0, 0, \ldots)$ & $1$\\
+  $(1,1,1,\ldots)$ & $\frac{1}{1-x}$\\
+  $a_k = 1$ om $k \leq n$, $0$ annars & $\frac{1 - x^{n+1}}{1 - x}$\\
+  Fixt $n$, $a_k = \binom{n}{k}$ & $(1+x)^n$\\
+  Fixt $n$, $a_k = \binom{n+k-1}{k}$ & $\frac{1}{(1-x)^n}$\\
+  \specialcell{Fibonaccitalen\\$f_0 = f_1 = 1$, $f_{k+1} = f_k + f_{k-1}$ för $k \geq 1$} & $\frac{1}{1 - x - x^2}$\\
+  \specialcell{Indikatorfunktion för jämna talen\\$(1,0,1,0,1,0,\ldots)$} & $\frac{1}{1-x^2}$\\
+  Catalantalen & $\frac{1 - \sqrt{1 - 4x}}{2x}$
+\end{tabularx}
+
+\begin{tabularx}{0.9\linewidth}{cc}
+  Följd & Exponentiell genererande funktion\\
+  \midrule
+  $(1, 0, 0, \ldots)$ & $1$\\
+  $(1, 1, 1, \ldots)$ & $e^x$\\
+  $(0!, 1!, 2!, 3!, \ldots)$ & $\frac{1}{1-x}$\\
+  Fixt $n$, $a_k = \frac{n!}{(n-k)!}$ & $(1 + x)^n$
+\end{tabularx}
+
+\section{Sannolikhetsteori}
+
+\begin{lemma}
+  Det gäller för alla händelser $A$ och $B$ att
+  \begin{itemize}
+      \item per definition är $\Prob{A} = \sum_{\omega \in A} \mu(\omega)$,
+      \item så $\Prob{A^c} = 1 - \Prob{A}$,
+      \item och om $A$ och $B$ har tomt snitt, $A\cap B = \emptyset$, så är $\Prob{A \cup B} = \Prob{A} + \Prob{B}$,
+      \item och om de inte nödvändigtvis har tomt snitt har vi att
+      $$\Prob{A \cup B} = \Prob{A} + \Prob{B} - \Prob{A \cap B}.$$
+      \item $\Prob{A \cap B} = \Prob{A \given B}\Prob{B}$,
+      \item och per definition är $A$ och $B$ oberoende precis när $\Prob{A \cap B} = \Prob{A}\Prob{B}$.
+  \end{itemize}
+\end{lemma}
+
+\begin{lemma}
+  Om $(\Omega, \mu)$ är något sannolikhetsrum, $A \subseteq \Omega$ någon händelse, och $X, Y: \Omega \to \R$ samt $Z: \Omega \to V$ är slumpvariabler som tar värden i $\R$ och i någon godtycklig mängd $V$, så gäller att:
+  \begin{enumerate}
+      \item $$\E{X} = \sum_{x \in X(\Omega)} x \Prob{X = x} = \sum_{\omega \in \Omega} X(\omega)\mu(\omega).$$
+      \item För alla $a, b \in \R$ så är
+      $$\E{aX + bY} = a\E{X} + b\E{Y}.$$
+      Väntevärdet är alltså en linjär funktional.
+      \item $$\Prob{A} = \E{\indSet{A}}.$$
+      \item Om $X(\omega) \leq C$ för varje $\omega$, eller ekvivalent om $\Prob{X \leq C} = 1$, så är $\E{X} \leq C$.
+      \item Om $\E{X} = C$ så finns det åtminstone ett $\omega$ sådant att $X(\omega) \geq C$.
+      \item Om $Z$ är likformigt fördelad på $V$ så gäller det för varje delmängd $W \subseteq V$ att
+      $$\Prob{Z \in W} = \frac{\abs{W}}{\abs{V}}.$$
+  \end{enumerate}
+\end{lemma}
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}

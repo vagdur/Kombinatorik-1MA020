@@ -1,0 +1,131 @@
+\documentclass[nobib]{tufte-handout}
+
+\title{Lösningsförslag för tentamen i kombinatorik, 20 mars 2025 $\cdot$ 1MA020}
+
+\author[Vilhelm Agdur]{Vilhelm Agdur\thanks{\href{mailto:vilhelm.agdur@math.uu.se}{\nolinkurl{vilhelm.agdur@math.uu.se}}}}
+
+\date{28 mars 2024}
+
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{color,soul} % Highlights for text
+
+
+\include{mathcommands.extratex}
+\setlength{\extrarowheight}{12pt}
+
+\begin{document}
+
+\definecolor{darkgreen}{rgb}{0.0627, 0.4588, 0.1451}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+
+Denna fil ger lösningar på uppgifterna i tentan den 20de mars 2025.
+
+\end{abstract}
+
+\section{Fråga 1}
+
+Den enklaste lösningen på denna uppgift använder den probabilistiska metoden, och färgar varje nod i grafen röd eller blå med sannolikhet $1/2$. Då ser vi att sannolikheten att en viss given kant blir monokromatisk blir $2^{1-k}$, eftersom den blir enbart röd med sannolikhet $2^{-k}$ och enbart blå med sannolikhet $2^{-k}$.
+
+Alltså, om vi låter, för varje $e \in E$, $X_e$ vara händelsen att kanten $e$ är monokromatisk så blir händelsen att vår färgning har en monokromatisk kant $\bigcup_{e \in E} X_e$. Så alltså får vi, med en unionsbegränsning, att
+\begin{align*}
+\Prob{\text{Det finns en monokromatisk kant}} 
+&= \Prob{\bigcup_{e \in E} X_e} \\
+&\leq \sum_{e \in E} \Prob{X_e} \\
+&= \sum_{e \in E} 2^{1-k} \\
+&= \abs{E}2^{1-k}.
+\end{align*}
+
+Men enligt vår hypotes i uppgiften är $\abs{E} < 2^{k-1}$, så $\abs{E}2^{1-k} < 2^{k-1}2^{1-k} = 1$. Alltså är sannolikheten att vår färgning har en monokromatisk kant mindre än $1$, vilket betyder att det finns en färgning som inte har någon monokromatisk kant, vilket är vad vi ville visa.
+
+Man hade också kunnat formulera detta bevis i termer av att räkna färgningar, och appellera till någon variant av lådprincipen istället för unionsbegränsningen, men det argumentet vore mer invecklat. Den avsedda lösningen var probabilistisk, att man skall känna igen att vi kan bevisa existens av en färgning med en viss egenskap genom att räkna på sannolikheten att en slumpmässig färgning har egenskapen.
+
+\section{Fråga 2}
+
+Vi ombeds bevisa följande sats:\sidenote[][]{Det var ett fel i uppgiften såsom den trycktes i tentan -- specifikt saknades faktorn av $m$ i formeln i antagandet. Se anslaget på Studium för hur detta påverkade rättningen och betygsättningen.}
+
+\begin{theorem}[Erd\H{o}s, 1964]
+  Det finns en $k$-uniform hypergraf $G$ på $n$ noder och $m$ kanter som inte är två-färgningsbar närhelst
+  $$2^n\left(1 - m\frac{2\binom{n/2}{k}}{\binom{n}{k}}\right) < 1.$$
+\end{theorem}
+
+Vi använder den probabilistiska metoden i två steg. Vi börjar med att tänka att vi har en viss fix färgning $\sigma: [n] \to \left\{\text{röd}, \text{blå}\right\}$ av mängden $[n]$, och väljer en slumpmässig $k$-uniform hypergraf $G = ([n], E)$ på $m$ kanter genom att välja varje kant likformigt slumpmässigt.
+
+Om vår färgning har $r$ röda noder och $b$ blå noder ser vi då att det finns precis $\binom{r}{k} + \binom{b}{k}$ sätt att välja en monokromatisk kant, av totalt $\binom{n}{k}$ möjliga sätt att välja en kant. Så sannolikheten att en slumpmässig kant är monokromatisk är
+$$\frac{\binom{r}{k} + \binom{b}{k}}{\binom{n}{k}},$$
+och (såsom ledtråden angav) vet vi att binomialkoefficienter är en konvex funktion, så alltså har vi för varje slumpmässig kant $e$ att
+$$\Prob{e \text{ är monokromatisk under } f} \geq \frac{2\binom{n/2}{k}}{\binom{n}{k}}.$$
+
+Om vi nu låter $X_{e,f}$ vara just händelsen att kanten $e$ är monokromatisk under färgningen $f$,\sidenote[][]{Notera att här är det $e$ som är slumpmässig och $f$ som är fix, inte tvårtom.} så är färgningen $f$ en \emph{proper} färgning av $G$ om $X_{e,f}$ inte inträffar för något $e$. Så kan vi räkna att
+\begin{align*}
+  \Prob{f \text{ är en proper färgning av } G} &= \Prob{\bigcap_{e} X_{e,f}^c} = \Prob{\left(\bigcup_e X_{e,f}\right)^c} \\
+  &= 1 - \Prob{\bigcup_e X_{e,f}} \geq 1 - \sum_e \Prob{X_{e,f}} \\
+  &\geq 1 - \sum_ e \frac{2\binom{n/2}{k}}{\binom{n}{k}} = 1 - m\frac{2\binom{n/2}{k}}{\binom{n}{k}}.
+\end{align*}
+
+Hittills har vi resonerat om en enda färgning, men vad vi vill ha är ju ett resultat för \emph{alla} färgningar -- att bara bevisa att det finns en färgning av $G$ som har en monokromatisk kant vore ju inte så intressant.\sidenote[][]{Det är ju alltid sant -- bara färga alla noder samma färg.} Så om vi nu låter $Y_f$ vara händelsen att $f$ är en proper färgning av $G$, så blir händelsen att $G$ är två-färgningsbar precis unionen av $Y_f$ över alla färgningar $f$, så alltså får vi att
+\begin{align*}
+  \Prob{G \text{ är två-färgningsbar}}
+  &= \Prob{\bigcup_{f} Y_f} \\
+  &\leq \sum_f \Prob{Y_f} \\
+  &\leq \sum_f \left(1 - m\frac{2\binom{n/2}{k}}{\binom{n}{k}}\right) \\
+  &= 2^n\left(1 - m\frac{2\binom{n/2}{k}}{\binom{n}{k}}\right),
+\end{align*}
+och enligt vårt antagande är detta mindre än $1$, så alltså finns det ett $G$ sådant att inget $f$ är en proper färgning av $G$, alltså är $G$ inte två-färgningsbar, vilket är vad vi ville visa.
+
+\section{Fråga 3}
+
+Detta är Lemma 10 i föreläsning 6.
+
+\section{Fråga 4}
+
+Detta är Teorem 8 i föreläsning 3.
+
+\section{Fråga 5}
+
+Detta är Exempel 5 i föreläsning 5.
+
+\section{Fråga 6}
+
+Detta är Teorem 6 i föreläsning 4.
+
+\section{Fråga 7}
+
+\paragraph*{Del ett:} Tänk att vi har ett parti med $n$ stycken medlemmar och skall välja en kommitte av $k$ personer med en ordförande. Antingen kan vi först välja kommitten, vilket kan göras på $\binom{n}{k}$ sätt, och sedan välja ordföranden ur kommitten, vilket kan göras på $k$ sätt, för totalt $k\binom{n}{k}$ sätt att välja kommitte och ordförande. Eller så väljer vi först ordföranden, vilket kan göras på $n$ sätt, och sedan väljer vi de övriga medlemmarna i kommitteen, vilket kan göras på $\binom{n-1}{k-1}$ sätt, för totalt $n\binom{n-1}{k-1}$ sätt att välja kommitte och ordförande. Alltså är $k\binom{n}{k} = n\binom{n-1}{k-1}$.
+
+\paragraph*{Del två:} Nu har vårt parti moderniserat sitt ledarskap, och skall ha ett delat ordförandeskap av två personer, så vi skall nu välja en kommitte av $k$ personer med två ordföranden. Antingen kan vi först välja kommitten, vilket kan göras på $\binom{n}{k}$ sätt, och sedan välja ordförandena ur kommitten, vilket kan göras på $\binom{k}{2}$ sätt, för totalt $\binom{k}{2}\binom{n}{k}$ sätt att välja kommitte och ordföranden. Eller så väljer vi först ordförandena, vilket kan göras på $\binom{n}{2}$ sätt, och sedan väljer vi de övriga medlemmarna i kommitteen, vilket kan göras på $\binom{n-2}{k-2}$ sätt, för totalt $\binom{n}{2}\binom{n-2}{k-2}$ sätt att välja kommitte och ordföranden. Alltså är $\binom{k}{2}\binom{n}{k} = \binom{n}{2}\binom{n-2}{k-2}$.
+
+\paragraph*{Del tre:} I vänster led skall vi fördela ut $n+1$ personer runt $k$ osärskiljbara runda bord, där det enda som spelar roll är vem man har som bordsgranne, och varje bord måste ha minst en person runt sig.
+
+Låt oss se varför också höger led räknar detta. Vi tänker oss att $n$ personer redan satt sig runt borden. Antingen har de satt sig runt $k-1$ bord, vilket de kan ha gjort på $\stirlingCycle{n}{k-1}$ sätt, och då måste den sista personen sätta sig vid det tomma bordet. Eller så har de $n$ personerna satt sig runt alla $k$ borden, vilket de kan ha gjort på $\stirlingCycle{n}{k}$ sätt, i vilket fall den sista personen kan välja vem som helst av de $n$ personerna att sätta sig till höger om, så detta kan ske på totalt $n\stirlingCycle{n}{k}$ sätt. Så också höger led räknar samma sak, och alltså är $\stirlingCycle{n+1}{k} = \stirlingCycle{n}{k-1} + n\stirlingCycle{n}{k}$.
+
+\section{Fråga 8}
+
+Antag att vår mängd $S$ innehåller talen $x_1, x_2, \dots, x_{n+1}$. För varje av dessa tal kan vi skriva $x_i = 2^{k_i} m_i$, där $m_i$ är ett udda tal och $k_i$ är ett heltal. Eftersom $x_i \le 2n$ så måste $m_i$ vara ett tal i mängden $\{1, 3, 5, \dots, 2n-1\}$, så det finns bara $n$ möjliga värden för $m_i$.
+
+Eftersom $S$ har $n+1$ element, följer det av lådprincipen att det finns två tal $x_i$ och $x_j$ så att $m_i = m_j$. Låt oss välja $i$ och $j$ sådana att $k_i < k_j$ (så att $x_i < x_j$). Då kan vi skriva
+$$x_j = 2^{k_j} m_j = 2^{k_j - k_i} \cdot (2^{k_i} m_i) = 2^{k_j - k_i} \cdot x_i,$$
+så att
+$$\frac{x_j}{x_i} = 2^{k_j - k_i},$$
+och eftersom $k_j - k_i \ge 1$ är $2^{k_j - k_i}$ ett heltal, så att $x_i$ delar $x_j$.
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\end{document}
